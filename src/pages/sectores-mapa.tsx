@@ -67,7 +67,12 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         siteUrl={data.site.siteMetadata.siteUrl}
         language={language}
       />
-      <Header opened={openMenu} toggle={toggleMenu} />
+      <Header
+        opened={openMenu}
+        toggle={toggleMenu}
+        language={language}
+        pageContext={pageContext}
+      />
 
       <AppShell.Main ref={ref}>
         <Grid overflow="hidden">
@@ -93,6 +98,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             >
               <LazyLoad once>
                 <>
+                <ScrollArea hover>
                   <Space h="md" />
                   <Title order={1} size="lg">
                     <Center>
@@ -126,17 +132,14 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                     selectedSector={selectedSector}
                     language={language}
                   />
-                  <Divider size="lg" />
-                <Space/>
-                <ScrollArea h={250} hover>
-                  <Stack>
-                    <Container size="sm">
-                      <Trans i18nKey="1"></Trans>
-                    </Container>
-
-                   
-                  </Stack>
-                </ScrollArea>
+                  <Divider size="sm" />
+                  <Space h="xl"/>
+                    <Stack>
+                      <Container size="sm">
+                        <Trans i18nKey="1"></Trans>
+                      </Container>
+                    </Stack>
+                  </ScrollArea>
                 </>
               </LazyLoad>
             </Drawer>
@@ -188,7 +191,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   selectedSector={selectedSector}
                   language={language}
                 />
-                
               </>
             </LazyLoad>
           </Grid.Col>

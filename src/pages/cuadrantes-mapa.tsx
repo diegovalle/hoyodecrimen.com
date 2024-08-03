@@ -63,7 +63,12 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       }}
       padding={{ base: 0 }}
     >
-      <Header opened={openMenu} toggle={toggleMenu} />
+      <Header
+        opened={openMenu}
+        toggle={toggleMenu}
+        language={language}
+        pageContext={pageContext}
+      />
 
       <AppShell.Main ref={ref}>
         <SocialImage
@@ -87,7 +92,12 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               />
             ) : null}
 
-            <Drawer opened={opened} onClose={close} lockScroll={false} zIndex={250}>
+            <Drawer
+              opened={opened}
+              onClose={close}
+              lockScroll={false}
+              zIndex={250}
+            >
               <LazyLoad once>
                 <>
                   <Space h="md" />

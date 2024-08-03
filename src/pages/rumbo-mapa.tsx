@@ -23,7 +23,7 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [coords, setCoords] = useState(null);
 
   return (
-    <Layout>
+    <Layout language={language} pageContext={pageContext}>
       <SocialImage
         social_image={social_image}
         social_image_en={social_image_en}

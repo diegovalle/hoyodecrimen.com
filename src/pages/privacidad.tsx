@@ -19,7 +19,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { t } = useTranslation();
 
   return (
-    <Layout>
+    <Layout language={language} pageContext={pageContext}>
       <SocialImage
         social_image={social_image}
         social_image_en={social_image_en}

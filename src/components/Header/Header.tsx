@@ -25,15 +25,65 @@ import {
   IconChevronDown,
 } from "@tabler/icons-react";
 import { useTranslation } from "gatsby-plugin-react-i18next";
-// const { site } = useStaticQuery(graphql`
-//   query SiteTitleQuery {
-//     site {
-//       siteMetadata {
-//         title
-//       }
-//     }
-//   }
-// `);
+
+import { translated_routes } from "../../../i18n/locales/routes/routes";
+import us_flag from "../../images/us.png";
+import mx_flag from "../../images/mx.webp";
+
+const LanguageSwitch = ({ language, pageContext, showText = false }) => {
+  const { t } = useTranslation();
+  function invert(obj) {
+    let retObj = {};
+    for (let key in obj) {
+      retObj[obj[key]] = key;
+    }
+    return retObj;
+  }
+
+  return (
+    <>
+      <a
+        style={{ color: "#0a0a0a" }}
+        href={
+          language === "es"
+            ? "/en" +
+              translated_routes[pageContext.localizedPath] +
+              (pageContext.localizedPath === "/" ? "" : "/")
+            : invert(translated_routes)[
+                pageContext.localizedPath.replace("/en", "")
+              ]
+        }
+      >
+        <img
+          src={language === "es" ? us_flag : mx_flag}
+          style={{ margin: showText ? "2px" : "0 0 0 18px"}}
+          width="24"
+          height="17"
+          alt={t("English Version")}
+          title={t("English Version")}
+        />
+      </a>
+      {showText && (
+        <Box ml="md">
+          <Text
+            component="a"
+            href={
+              language === "es"
+                ? "/en" +
+                  translated_routes[pageContext.localizedPath] +
+                  (pageContext.localizedPath === "/" ? "" : "/")
+                : invert(translated_routes)[
+                    pageContext.localizedPath.replace("/en", "")
+                  ]
+            }
+          >
+            {t("English Version")}
+          </Text>
+        </Box>
+      )}
+    </>
+  );
+};
 
 function Header(props) {
   const { t } = useTranslation();
@@ -141,7 +191,7 @@ function Header(props) {
           <Group justify="space-between" gap={0}>
             <Box style={{ display: "flex", alignItems: "center" }}>
               <ThemeIcon variant="light" size={30}>
-                <Icon style={{ width: rem(18), height: rem(18) }} /> 
+                <Icon style={{ width: rem(18), height: rem(18) }} />
               </ThemeIcon>
               <Box ml="md">
                 {" "}
@@ -177,15 +227,24 @@ function Header(props) {
     ));
 
     return (
-      <nav 
+      <nav
       //className={classes.navbar}
       >
-        <ScrollArea 
+        <ScrollArea
         //className={classes.links}
         >
-          <div 
-          //className={classes.linksInner}
-          >{mobileLinks}</div>
+          {mobileLinks}
+          <UnstyledButton className={classes.control}>
+            <Group justify="space-between" gap={0}>
+              <Box style={{ display: "flex", alignItems: "center" }}>
+                <LanguageSwitch
+                  language={props.language}
+                  pageContext={props.pageContext}
+                  showText
+                />
+              </Box>
+            </Group>
+          </UnstyledButton>
         </ScrollArea>
       </nav>
     );
@@ -218,15 +277,17 @@ function Header(props) {
             <HoyodecrimenLogo size={40} />
             <Group ml="sm" gap={0} visibleFrom="md">
               {items}
+              <LanguageSwitch
+                language={props.language}
+                pageContext={props.pageContext}
+              />
             </Group>
           </Group>
         </Group>
       </AppShell.Header>
 
       <AppShell.Navbar py="md" px={4} zIndex={300}>
-        <ScrollArea>
-          <NavbarNested />
-        </ScrollArea>
+        <NavbarNested />
       </AppShell.Navbar>
     </>
   );

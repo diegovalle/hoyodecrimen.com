@@ -217,7 +217,7 @@ const HoraPage: React.FC<PageProps> = ({ pageContext, location, data: meta }) =>
   };
 
   return (
-    <Layout>
+    <Layout language={language} pageContext={pageContext}>
     <SocialImage
       social_image={social_image}
       social_image_en={social_image_en}

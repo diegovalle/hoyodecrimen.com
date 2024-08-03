@@ -51,7 +51,12 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         siteUrl={data.site.siteMetadata.siteUrl}
         language={language}
       />
-      <Header opened={openMenu} toggle={toggleMenu} />
+      <Header
+        opened={openMenu}
+        toggle={toggleMenu}
+        language={language}
+        pageContext={pageContext}
+      />
 
       <AppShell.Main ref={ref}>
         <Grid overflow="hidden">

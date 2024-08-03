@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { graphql } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
-import type { HeadFC, PageProps } from "gatsby";
+import type { PageProps } from "gatsby";
 import {
   AspectRatio,
   Title,
@@ -56,7 +56,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [lastDate, setLastDate] = useState(null);
 
   return (
-    <Layout language={language}>
+    <Layout language={language} pageContext={pageContext}>
       <SocialImage
         social_image={social_image}
         social_image_en={social_image_en}

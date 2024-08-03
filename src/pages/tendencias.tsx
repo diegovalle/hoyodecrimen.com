@@ -66,7 +66,7 @@ const TasasPage: React.FC<PageProps> = ({
   }, []);
 
   return (
-    <Layout>
+    <Layout language={language} pageContext={pageContext}>
       <SocialImage
         social_image={social_image}
         social_image_en={social_image_en}

@@ -44,7 +44,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { t } = useTranslation();
 
   return (
-    <Layout>
+    <Layout language={language} pageContext={pageContext}>
       <SocialImage
         social_image={social_image}
         social_image_en={social_image_en}
@@ -55,12 +55,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <Title
           order={1}
           py=".5rem"
-          /* styles={{
-                root: {
-                  fontFamily:
-                    "Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;",
-                },
-              }} */
         >
           <Trans>About Crime in Mexico City</Trans>
         </Title>

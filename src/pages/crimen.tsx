@@ -292,7 +292,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   };
 
   return (
-    <Layout>
+    <Layout language={language} pageContext={pageContext}>
       <SocialImage
         social_image={social_image}
         social_image_en={social_image_en}
