@@ -1,0 +1,370 @@
+{
+  "type": "FeatureCollection",
+  "name": "sectores",
+  "crs": {
+    "type": "name",
+    "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "sector": "ARENAL" },
+      "geometry": { "type": "Point", "coordinates": [-99.066, 19.424] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "LA NORIA" },
+      "geometry": { "type": "Point", "coordinates": [-99.125, 19.239] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "HORMIGA" },
+      "geometry": { "type": "Point", "coordinates": [-99.192, 19.5] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CUCHILLA" },
+      "geometry": { "type": "Point", "coordinates": [-99.105, 19.466] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TLATELOLCO" },
+      "geometry": { "type": "Point", "coordinates": [-99.141, 19.457] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CUITLAHUAC" },
+      "geometry": { "type": "Point", "coordinates": [-99.172, 19.471] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CLAVERIA" },
+      "geometry": { "type": "Point", "coordinates": [-99.199, 19.479] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CHURUBUSCO" },
+      "geometry": { "type": "Point", "coordinates": [-99.122, 19.368] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "PORTALES" },
+      "geometry": { "type": "Point", "coordinates": [-99.154, 19.367] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TAXQUENA" },
+      "geometry": { "type": "Point", "coordinates": [-99.129, 19.34] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CUAUTEPEC" },
+      "geometry": { "type": "Point", "coordinates": [-99.137, 19.55] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "BUENAVISTA" },
+      "geometry": { "type": "Point", "coordinates": [-99.151, 19.446] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TEPEYAC" },
+      "geometry": { "type": "Point", "coordinates": [-99.124, 19.473] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ZARAGOZA" },
+      "geometry": { "type": "Point", "coordinates": [-99.091, 19.417] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ANGEL" },
+      "geometry": { "type": "Point", "coordinates": [-99.162, 19.431] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "QUIROGA" },
+      "geometry": { "type": "Point", "coordinates": [-99.103, 19.495] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "SANTA FE" },
+      "geometry": { "type": "Point", "coordinates": [-99.24, 19.368] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "MOCTEZUMA" },
+      "geometry": { "type": "Point", "coordinates": [-99.095, 19.439] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "GRANJAS" },
+      "geometry": { "type": "Point", "coordinates": [-99.105, 19.355] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "DEL VALLE" },
+      "geometry": { "type": "Point", "coordinates": [-99.169, 19.38] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CONGRESO" },
+      "geometry": { "type": "Point", "coordinates": [-99.117, 19.43] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "LINDAVISTA" },
+      "geometry": { "type": "Point", "coordinates": [-99.133, 19.492] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "PRADERA" },
+      "geometry": { "type": "Point", "coordinates": [-99.078, 19.487] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TEPEPAN" },
+      "geometry": { "type": "Point", "coordinates": [-99.07, 19.253] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TEZONCO" },
+      "geometry": { "type": "Point", "coordinates": [-99.068, 19.317] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CENTRO" },
+      "geometry": { "type": "Point", "coordinates": [-99.13, 19.435] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "SOTELO" },
+      "geometry": { "type": "Point", "coordinates": [-99.208, 19.444] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "COAPA" },
+      "geometry": { "type": "Point", "coordinates": [-99.129, 19.294] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "FUENTE" },
+      "geometry": { "type": "Point", "coordinates": [-99.192, 19.275] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TICOMAN" },
+      "geometry": { "type": "Point", "coordinates": [-99.146, 19.514] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TACUBAYA" },
+      "geometry": { "type": "Point", "coordinates": [-99.2, 19.407] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CONSULADO" },
+      "geometry": { "type": "Point", "coordinates": [-99.117, 19.447] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TECOMITL" },
+      "geometry": { "type": "Point", "coordinates": [-98.997, 19.196] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "IZTACCIHUATL" },
+      "geometry": { "type": "Point", "coordinates": [-99.123, 19.391] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "NAPOLES" },
+      "geometry": { "type": "Point", "coordinates": [-99.183, 19.381] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TLACOTAL" },
+      "geometry": { "type": "Point", "coordinates": [-99.098, 19.395] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "EL YAQUI" },
+      "geometry": { "type": "Point", "coordinates": [-99.289, 19.347] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "NARVARTE-ALAMOS" },
+      "geometry": { "type": "Point", "coordinates": [-99.149, 19.391] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "PLATEROS" },
+      "geometry": { "type": "Point", "coordinates": [-99.205, 19.382] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "DINAMO" },
+      "geometry": { "type": "Point", "coordinates": [-99.251, 19.295] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ARAGON" },
+      "geometry": { "type": "Point", "coordinates": [-99.076, 19.459] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ABASTO-REFORMA" },
+      "geometry": { "type": "Point", "coordinates": [-99.077, 19.368] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "SANTA CRUZ" },
+      "geometry": { "type": "Point", "coordinates": [-99.042, 19.359] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ZAPOTITLA" },
+      "geometry": { "type": "Point", "coordinates": [-99.042, 19.291] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "MILPA ALTA" },
+      "geometry": { "type": "Point", "coordinates": [-99.053, 19.194] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "NATIVITAS" },
+      "geometry": { "type": "Point", "coordinates": [-99.137, 19.379] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TOPILEJO" },
+      "geometry": { "type": "Point", "coordinates": [-99.188, 19.213] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "POLANCO-CASTILLO" },
+      "geometry": { "type": "Point", "coordinates": [-99.191, 19.429] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "XOTEPINGO" },
+      "geometry": { "type": "Point", "coordinates": [-99.155, 19.314] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CUAJIMALPA" },
+      "geometry": { "type": "Point", "coordinates": [-99.314, 19.347] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ALPES" },
+      "geometry": { "type": "Point", "coordinates": [-99.244, 19.337] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "PADIERNA" },
+      "geometry": { "type": "Point", "coordinates": [-99.227, 19.284] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "MIXQUIC" },
+      "geometry": { "type": "Point", "coordinates": [-98.994, 19.267] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "SAN ANGEL" },
+      "geometry": { "type": "Point", "coordinates": [-99.198, 19.335] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "COYOACAN" },
+      "geometry": { "type": "Point", "coordinates": [-99.157, 19.345] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TACUBA" },
+      "geometry": { "type": "Point", "coordinates": [-99.187, 19.453] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "OASIS" },
+      "geometry": { "type": "Point", "coordinates": [-99.027, 19.377] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "MORELOS" },
+      "geometry": { "type": "Point", "coordinates": [-99.13, 19.447] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "LA RAZA" },
+      "geometry": { "type": "Point", "coordinates": [-99.159, 19.485] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "PANTITLAN" },
+      "geometry": { "type": "Point", "coordinates": [-99.068, 19.401] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ESTRELLA" },
+      "geometry": { "type": "Point", "coordinates": [-99.09, 19.333] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CULHUACAN" },
+      "geometry": { "type": "Point", "coordinates": [-99.118, 19.314] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "QUETZAL" },
+      "geometry": { "type": "Point", "coordinates": [-99.038, 19.33] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "CHAPULTEPEC" },
+      "geometry": { "type": "Point", "coordinates": [-99.228, 19.412] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "TEOTONGO" },
+      "geometry": { "type": "Point", "coordinates": [-98.997, 19.341] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ALAMEDA" },
+      "geometry": { "type": "Point", "coordinates": [-99.14, 19.431] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "HUIPULCO-HOSPITALES" },
+      "geometry": { "type": "Point", "coordinates": [-99.163, 19.281] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "UNIVERSIDAD" },
+      "geometry": { "type": "Point", "coordinates": [-99.179, 19.326] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ASTURIAS" },
+      "geometry": { "type": "Point", "coordinates": [-99.141, 19.414] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "SAN JERONIMO" },
+      "geometry": { "type": "Point", "coordinates": [-99.241, 19.319] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "ROMA" },
+      "geometry": { "type": "Point", "coordinates": [-99.166, 19.412] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "sector": "MERCED-BALBUENA" },
+      "geometry": { "type": "Point", "coordinates": [-99.112, 19.416] }
+    }
+  ]
+}

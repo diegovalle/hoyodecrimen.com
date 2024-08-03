@@ -1,0 +1,15 @@
+{
+  "About Crime in Mexico City": "About Crime in Mexico City",
+  "created": "Created by <1 href=\"https://www.diegovalle.net\">Diego Valle-Jones</1>",
+  "about_text": "<p>Hoyodecrimen.com is your one-stop shop for staying informed about crime in Mexico City. We believe a safer city is a more empowered city, and that starts with transparency and awareness.</p>",
+  "our_mission": "Our Mission:",
+  "li1": "To provide easy access to reliable and up-to-date crime data for Mexico City.",
+  "li2": "o empower residents with the information they need to make informed decisions about their safety.",
+  "li3": "To foster open communication and collaboration between residents and authorities.",
+  "rest": "<strong>Our Data</strong>:<p>We leverage the Mexico City government's open data initiative to deliver the most current crime information available. This data is presented in a user-friendly format, allowing you to see what crimes are happening, where they are happening, and track trends over time.</p><strong>Our Commitment</strong>:<p>We are committed to providing accurate and unbiased information. We do not sensationalize crime, but rather strive to present the facts in a clear and concise way.</p>",
+  "contact":"Hoyodecrimen.com is a community resource, and we value your input. If you have any questions, suggestions, or feedback, please don't hesitate to <Link href=\"https://www.diegovalle.net/contact//\">contact us</Link>.<p>¡Juntos hagamos de la Ciudad de México un lugar más seguro! (Together, let's make Mexico City a safer place!)</p>",
+  "translation":"<strong>Additional Information</strong>:<p>There's also a really cool <Link href=\"\">API</Link>.</p>",
+  "elcrimen":"<p>Visit <Link href=\"\">El Crimen</Link> for crime information at the national, state and municipio level.</p>",
+  "cuadrantes":"<p>You can download a map of cuadrantes as GeoJSON using the <Link href=\"\">API</Link>.</p>",
+  "github": "<p>This webapp is open source and you can view the code on <Link href=\"\">GitHub</Link>.</p>"
+}

@@ -1,49 +1,30 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+nvm use v120.14.0
 
-## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+## To extract tiles:
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+# Join tiles
+tile-join --force -o "mbtiles/mxc_osm.mbtiles" mbtiles/cuadrantes.mbtiles mbtiles/sectores.mbtiles mbtiles/cdmx-mask-z10.mbtiles mbtiles/cdmx-mask-z14.mbtiles mbtiles/maptiler-osm-2020-02-10-v3.11-mexico_mexico-city.mbtiles
 
-2.  **Start developing.**
+# Get rid of osm buildings
+tile-join -j '{ "building": ["any"] }' -f -o mbtiles/mxc_no_buildings.mbtiles mbtiles/mxc_osm.mbtiles
 
-    Navigate into your new site’s directory and start it up.
+# Add OSM-Google-Microsoft buildings
+tile-join --force -o "mbtiles/mxc.mbtiles" mbtiles/mxc_no_buildings.mbtiles mbtiles/buildings_cdmx.mbtiles
+rm mbtiles/mxc_osm.mbtiles 
+pmtiles convert mbtiles/mxc.mbtiles mbtiles/mxc.pmtiles 
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+mb-util --image_format=pbf mbtiles/mxc.mbtiles mxc
+cd  mxc
+gzip -d -r -S .pbf *  #decompress tiles
+find . -type f -exec mv '{}' '{}'.html \; && mv metadata.json.html metadata.json
+```
+tippecanoe -o buildings.mbtiles --drop-densest-as-needed -Z12 -z12 -C './filters/limit-tiles-to-bbox -99.370651 19.147114 -98.926392 19.602488 $*' 9641080902293389312.geojson
 
-3.  **Open the code and start customizing!**
+ogr2ogr -f GeoJSON land.json -clipsrc -99.370651 19.147114 -98.926392 19.602488 building.geojson
 
-    Your site is now running at http://localhost:8000!
+ogr2ogr -spat -99.370651 19.147114 -98.926392 19.602488  building_bounded.geojson  building.geojson
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
 
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+```

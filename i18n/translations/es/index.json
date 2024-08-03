@@ -1,0 +1,22 @@
+{
+  "Mexico City Crime": "Crimen en la Ciudad de México",
+  "Índice delictivo de la Ciudad de México. Conoce las zonas rojas y colonias que debed evitar. Datos actualizados mensualmente": "Índice delictivo de la Ciudad de México. Conoce las zonas rojas y colonias que debed evitar. Datos actualizados mensualmente",
+  "Crimen en la Ciudad de México - Delitos por tu Rumbo": "Crimen en la Ciudad de México - Delitos por tu Rumbo",
+  "number of crimes": "número de crímenes",
+  "Homicide Map": "Mapa de tasas de homicidios por colonia",
+  "What is a smoothed rate?": "¿Qué es una tasa de homicidios alisada?",
+  "smoothed": "Si simplemente graficamos la tasa de homicidios, podríamos ver muchos altibajos, como picos en ciertos colonias y valles en otras. Estos altibajos pueden deberse a eventos aleatorios o a fluctuaciones normales debido a que la colonia promedio no tiene muchos habitantes. Para tener una visión más clara de la tendencia general, se utiliza un método estadístico llamado \"alisado\" que toma en cuenta los homicidios que ocurrieron en las colonias cercanas.",
+  "intro": "Gracias a la iniciativa de datos abierto del gobierno de la Ciudad de México se cuenta con datos georreferenciados de criminalidad. Con estos datos y su visualización, los ciudadanos y las autoridades podrían saber dónde se encuentran las áreas más violentas; los empresarios escogerían mejor dónde situar sus negocios, y los conductores sabrían en cuáles estacionamientos es más probable que les roben el auto...<br/><br />La técnica de alisado espacial toma la tasa individual de cada colonia y la suaviza. Esto implica promediar las tasas con las áreas vecinas para crear una imagen más general del riesgo de homicidio en toda la ciudad.",
+  "intro2": "Con estos mapas interactivos a la mano se les pueden exigir cuentas a los policías y comandantes responsables de cada cuadrante o sector.",
+  "Annualized Homicide Rate in Mexico City": "Tasa de Homicidio Anualizada en CDMX",
+  "Crime Locations": "Índice de criminalidad",
+  "Neighborhoods": "Colonias",
+  "Cuadrantes": "Cuadrantes",
+  "Geolocated Crime": "Crimen geolocalizado",
+  "Each and every major crime reported to the police mapped and geolocated": "Todos y cada uno de los crímenes mapeados y geolocalizados",
+  "Estimates of homicide rates at the neighborhood level using advanced statistical techniques": "Estimaciones de la tasa de homicidio a nivel colonia usando métodos de inteligencia artificial",
+  "Number of crimes in each of the police blocks that make up Mexico City. Will you lose your iPhone or your life...": "Número de crímenes en cada uno de los cuadrantes policíacos.",
+  "All crimes within 700 meters of where you are right now": "Todos los crímenes a 700 metros de donde te encuentres",
+  "Official Crime Data": "Datos Oficiales",
+  "annualized": "La tasa de homicidio anualizada es un indicador que estima el número de homicidios que ocurrirían en un año si la tasa de homicidios observada en un período de tiempo más corto (un mes en este caso) se mantuviera durante todo el año. Se calcula tomando el número de homicidios en cada mes y multiplicándolo por 12."
+}

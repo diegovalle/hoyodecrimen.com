@@ -1,0 +1,26 @@
+{
+  "metrobus": {
+    "width": 32,
+    "height": 32,
+    "x": 0,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "ste": {
+    "width": 32,
+    "height": 32,
+    "x": 34,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  },
+  "metro": {
+    "width": 32,
+    "height": 32,
+    "x": 68,
+    "y": 0,
+    "pixelRatio": 2,
+    "visible": true
+  }
+}

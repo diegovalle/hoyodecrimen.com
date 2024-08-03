@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* For light mode */
+/* :root[data-mantine-color-scheme="light"] {
+  --mantine-color-body: var(--mantine-color-gray-1) !important;
+} */
+
+/* For dark mode */
+/* :root[data-mantine-color-scheme="dark"] {
+  --mantine-color-body: #282827 !important;
+} */
+
+
+/* other styles ... */
+/* 
+h1 {
+  @apply text-4xl;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+}
+h2 {
+  @apply text-2xl;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+}
+h3 {
+  @apply text-lg;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+} */
+a {
+  @apply text-blue-700 underline;
+}
+
+body {
+  font-family: "Cooper Hewitt", sans-serif;
+  /* @apply text-lg; */
+}
+
+.rounded-full {
+  border-radius: 9999px;
+  margin: 0 1rem 0 1rem;
+}
+
+main {
+  @apply text-lg;
+}
+
+/* CSS :invalid pseudo selector */
+input:invalid {
+  @apply border-red-500;
+}
+
+.errorInput {
+  border-width: 1px 1px 1px 10px;
+  border-style: solid;
+  border-color: rgb(191, 22, 80) rgb(191, 22, 80) rgb(191, 22, 80)
+    rgb(236, 89, 144);
+  border-image: initial;
+  background: rgb(251, 236, 242);
+}
+
+code {
+  display: inline-block;
+}
+
+.ribbon {
+  font-size: 16px !important;
+  /* This ribbon is based on a 16px font side and a 24px vertical rhythm. I've used em's to position each element for scalability. If you want to use a different font size you may have to play with the position of the ribbon elements */
+
+  width: 50%;
+
+  position: relative;
+  background: #367ab3;
+  color: #fff;
+  text-align: center;
+  padding: 1em 2em; /* Adjust to suit */
+  margin: 2em auto 3em; /* Based on 24px vertical rhythm. 48px bottom margin - normally 24 but the ribbon 'graphics' take up 24px themselves so we double it. */
+}
+.ribbon:before,
+.ribbon:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: -1em;
+  border: 1.5em solid #2d5b98;
+  z-index: -1;
+}
+.ribbon:before {
+  left: -2em;
+  border-right-width: 1.5em;
+  border-left-color: transparent;
+}
+.ribbon:after {
+  right: -2em;
+  border-left-width: 1.5em;
+  border-right-color: transparent;
+}
+.ribbon .ribbon-content:before,
+.ribbon .ribbon-content:after {
+  content: "";
+  position: absolute;
+  display: block;
+  border-style: solid;
+  border-color: #804f7c transparent transparent transparent;
+  bottom: -1em;
+}
+.ribbon .ribbon-content:before {
+  left: 0;
+  border-width: 1em 0 0 1em;
+}
+.ribbon .ribbon-content:after {
+  right: 0;
+  border-width: 1em 1em 0 0;
+}
+
+.non-semantic-protector {
+  position: relative;
+  z-index: 1;
+}
+
+ul.share-buttons {
+  list-style: none;
+  padding: 0;
+}
+
+ul.share-buttons li {
+  display: inline;
+}
+
+ul.share-buttons .sr-only {
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+button:disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+/* Recaptcha */
+.recaptcha-wrap {
+  position: relative;
+  height: 76px;
+  padding: 1px 0 0 1px;
+  background: #222;
+  > div {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 10px;
+    color: #ccc;
+  }
+}
+
+/* Hides top border */
+.recaptcha-wrap:after {
+  content: "";
+  display: block;
+  background-color: #222;
+  height: 2px;
+  width: 100%;
+  top: -1px;
+  left: 0px;
+  position: absolute;
+}
+
+.navbar-item img {
+  height: fit-content;
+  padding-top: 3px;
+  padding-right: 2px;
+}
+
+

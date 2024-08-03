@@ -1,0 +1,22 @@
+{
+  "Mexico City Crime": "Mexico City Crime",
+  "Índice delictivo de la Ciudad de México. Conoce las zonas rojas y colonias que debed evitar. Datos actualizados mensualmente": "Crime in Mexico City. Find out how safe your neighborhood is with maps and charts",
+  "Crimen en la Ciudad de México - Delitos por tu Rumbo": "Mexico City Crime Rates and Statistics",
+  "number of crimes": "number of crimes",
+  "Homicide Map": "Map of homicide rates by neighborhood",
+  "What is a smoothed rate?": "What is a smoothed rate?",
+  "smoothed": "If we simply graph the homicide rate, we can see many ups and downs, with peaks in certain neighborhoods and valleys in others. These fluctuations can be attributed to random events or normal variations due to the small population of the average neighborhoods. To obtain a clearer view of the overall trend, a statistical method called 'smoothing' is used, which considers the number of homicides in nearby neighborhoods and their population.",
+  "intro": "The Mexico City Police Department divided the city into 847 quadrants. Thanks to the <1 href=\"https://datos.cdmx.gob.mx/explore/dataset/carpetas-de-investigacion-pgj-cdmx/custom/\">open data initiative</1> by the Mexico City government, there is geolocated data available for all crimes committed in Mexico City.<br/><br />Spatially smoothed by rate refers to a technique that takes the individual rate in each neighborhood and smooths them out. This involves averaging rates with neighboring areas to create a more general picture of homicide risk across the entire city",
+  "intro2": "With this data, citizens and authorities can visualize the most violent parts of the city; businessmen can decide where to locate or expand; drivers can find in which parking lots their cars are least likely to be stolen... With interactive maps, the Mexico City government can be held accountable for its incompetence in managing the city's crime problem.",
+  "Annualized Homicide Rate in Mexico City": "Annualized Homicide Rate in Mexico City",
+  "Crime Locations": "Crime Locations",
+  "Neighborhoods": "Neighborhoods",
+  "Cuadrantes": "Cuadrantes",
+  "Geolocated Crime": "Geolocated Crime",
+  "Each and every major crime reported to the police mapped and geolocated": "Each and every major crime reported to the police mapped and geolocated",
+  "Estimates of homicide rates at the neighborhood level using advanced statistical techniques": "Estimates of homicide rates at the neighborhood level using advanced statistical techniques",
+  "Number of crimes in each of the police blocks that make up Mexico City. Will you lose your iPhone or your life...": "Number of crimes in each of the police blocks that make up Mexico City. Will you lose your iPhone or your life...",
+  "All crimes within 700 meters of where you are right now": "All crimes within 700 meters of where you are right now",
+  "Official Crime Data": "Official Crime Data",
+  "annualized": "The annualized homicide rate is a way of estimating how many homicides would occur in a year if the current rate of homicides continued for the entire year. It is calculated by taking the number of homicides that occurred in a given month and multiplying it by 12.<br/>This is a useful statistic for tracking trends in homicide rates over time. For example, if the annualized homicide rate in a city is 20, this means that 20 homicides would occur in the city for every 100,000 people if the current rate continued for the entire year. If the annualized homicide rate then decreases to 10, this means that the city is making progress in reducing its homicide rate."
+}

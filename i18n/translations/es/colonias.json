@@ -1,0 +1,5 @@
+{
+  "Homicide rate by Neighborhood": "Tasa de Homicidio Alisada por Colonia",
+  "What is a smoothed rate?": "¿Qué es una tasa de homicidios alisada?",
+  "smoothed": "Si simplemente graficamos la tasa de homicidios, podríamos ver muchos altibajos, como picos en ciertos colonias y valles en otras. Estos altibajos pueden deberse a eventos aleatorios o a fluctuaciones normales debido a que la colonia promedio no tiene muchos habitantes. Para tener una visión más clara de la tendencia general, se utiliza un método estadístico llamado \"alisado\" que toma en cuenta los homicidios que ocurrieron en las colonias cercanas."
+}

@@ -1,0 +1,57 @@
+.control {
+  display: block;
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
+  border-radius: var(--mantine-radius-md);
+  font-weight: 500;
+
+  @mixin hover {
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-6)
+    );
+  }
+}
+
+.menu {
+  padding-left: 2em;
+}
+
+.header {
+  position: relative;
+}
+
+.linkLabel {
+  font-family: system-ui, sans-serif;
+  font-size: 18px;
+  color: #111;
+}
+
+.link {
+  font-family: system-ui, sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  color: #111;
+  font-weight: 600;
+  margin-left: 1em;
+}
+
+.linkDropdown {
+  font-family: system-ui, sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  color: #111;
+  font-weight: 600;
+  width: 100%;
+  /* background-color: rgb(240, 240, 240); */
+  padding: calc(var(--mantine-spacing-xs) / 1.5) var(--mantine-spacing-sm);
+}
+
+.submenu {
+  font-family: system-ui, sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 0;
+  &[data-hovered] {
+    background-color: #999999;
+  }
+}

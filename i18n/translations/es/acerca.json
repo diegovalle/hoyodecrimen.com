@@ -1,0 +1,15 @@
+{
+  "About Crime in Mexico City": "Acerca de HoyoDeCrimen",
+  "created": "Creado por <1 href=\"https://www.diegovalle.net/es/\">Diego Valle</1>",
+  "about_text": "<p>Hoyodecrimen.com es su ventanilla única para mantenerse informado sobre el crimen en la Ciudad de México. Creemos que una ciudad más segura es una ciudad más empoderada, y eso comienza con la transparencia y la conciencia.</p>",
+  "our_mission": "Nuestra Misión:",
+  "li1": "Proporcionar un fácil acceso a datos delictivos confiables y actualizados para la Ciudad de México.",
+  "li2": "Empoderar a los residentes con la información que necesitan para tomar decisiones informadas sobre su seguridad.",
+  "li3": "Fomentar la comunicación abierta y la colaboración entre residentes y autoridades.",
+  "rest": "<strong>Nuestros Datos</strong>:<br/><p>Aprovechamos la iniciativa de datos abiertos del gobierno de la Ciudad de México para brindar la información delictiva más actualizada disponible. Estos datos se presentan en un formato fácil de usar, lo que le permite ver qué delitos están ocurriendo, dónde están ocurriendo y seguir las tendencias a lo largo del tiempo.</p><br/><strong>Nuestro Compromiso</strong>:<br/><p>Estamos comprometidos a brindar información precisa e imparcial. No sensacionalizamos el crimen, sino que nos esforzamos por presentar los hechos de manera clara y concisa.</p>",
+  "contact":"<br/>Hoyodecrimen.com es un recurso comunitario y valoramos su opinión. Si tiene alguna pregunta, sugerencia o comentario, no dude en <Link href=\"https://www.diegovalle.net/es/contacto/\">contactarnos</Link>.<p>¡Juntos hagamos de la Ciudad de México un lugar más seguro!</p>",
+  "translation":"<br/>También contamos con un <Link href=\"\">API</Link>",
+  "elcrimen":"<p>Visite <Link href=\"\">El Crimen</Link> para obtener información sobre delitos a nivel nacional, estatal y municipal.</p>",
+  "cuadrantes":"<p>Puede descargar un mapa de cuadrantes como GeoJSON usando la <Link href=\"\">API</Link>.</p>",
+  "github": "<p>Esta aplicación web es de código abierto y puede ver el código en <Link href=\"\">GitHub</Link>.</p>"
+}
