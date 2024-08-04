@@ -6,7 +6,7 @@ import { graphql } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 import type { HeadFC, PageProps } from "gatsby";
 import { Title, Center, Space, Divider, Container } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import RumboMap from "../components/HomicideMap/RumboMap";
 import GeoLocateButton from "../components/GeoLocateButton";
 

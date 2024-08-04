@@ -7,7 +7,7 @@ import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
 import type { PageProps } from "gatsby";
 import { Title, Center, Grid, Space, Divider } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import { SocialImage } from "../components/SocialImage";
 import social_image from "../images/social/social-colonias.jpg";

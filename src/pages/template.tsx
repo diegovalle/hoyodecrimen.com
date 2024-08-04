@@ -27,7 +27,7 @@ import {
   Space,
   Divider,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import { SocialImage } from "../components/SocialImage";
 import social_image from "../images/social/social-colonias.jpg";

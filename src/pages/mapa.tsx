@@ -11,7 +11,7 @@ import { useDisclosure, useElementSize } from "@mantine/hooks";
 import type { PageProps } from "gatsby";
 import { AppShell, Grid, Drawer, Affix, Button } from "@mantine/core";
 import { useHash } from "@mantine/hooks";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 
 import DotMap from "../components/HomicideMap/DotMap";

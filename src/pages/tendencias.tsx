@@ -15,7 +15,7 @@ import {
   Divider,
   Skeleton,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import { translations } from "../../i18n/translations/head_translations";
 

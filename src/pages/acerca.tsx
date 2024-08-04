@@ -16,7 +16,7 @@ import {
   ThemeIcon,
   rem,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 
 import { IconCircleCheck } from "@tabler/icons-react";

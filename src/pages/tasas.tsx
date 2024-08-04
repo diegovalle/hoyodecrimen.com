@@ -18,7 +18,7 @@ import {
   Stack,
   rem,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import MapForSectorMonthChart from "../components/MapForSectorMonthChart";
 import CrimeSectorMonthChart from "../components/CrimeSectorMonthChart";

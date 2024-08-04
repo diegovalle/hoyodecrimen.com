@@ -17,7 +17,7 @@ import {
   AspectRatio,
   rem,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import MapForSectorDiffMonthChart from "../components/MapForSectorDiffMonthChart";
 import CrimeSectorDiffMonthChart from "../components/CrimeSectorDiffMonthChart";

@@ -15,7 +15,6 @@ import {
   Grid,
   rem,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
 
 import LazyLoad from "react-lazy-load";
 

@@ -23,7 +23,7 @@ import {
   rem,
   Divider,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import MapForColoniaChart from "../components/MapForColoniaChart";
 import ColoniaDistribution from "../components/ColoniaDistribution";

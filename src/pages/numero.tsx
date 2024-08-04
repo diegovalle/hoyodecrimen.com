@@ -17,7 +17,7 @@ import {
   AspectRatio,
   rem,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import MapForCuadranteMonthChart from "../components/MapForCuadranteMonthChart";
 import CrimeCuadranteMonthChart from "../components/CrimeCuadranteMonthChart";

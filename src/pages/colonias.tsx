@@ -19,7 +19,7 @@ import {
   Title,
   Space,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import { IconInfoCircle } from "@tabler/icons-react";
 
 import ColoniasMap from "../components/HomicideMap/ColoniasMap";

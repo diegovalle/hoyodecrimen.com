@@ -21,7 +21,7 @@ import {
   Space,
   Title,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 
 import SelectCrime from "../components/SelectCrime";

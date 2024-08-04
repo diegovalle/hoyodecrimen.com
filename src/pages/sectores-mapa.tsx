@@ -24,7 +24,7 @@ import {
   Title,
   Divider,
 } from "@mantine/core";
-import "@mantine/core/styles.css";
+//import "@mantine/core/styles.css";
 import { translations } from "../../i18n/translations/head_translations";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 import { SocialImage } from "../components/SocialImage";
