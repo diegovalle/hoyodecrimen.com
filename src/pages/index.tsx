@@ -13,16 +13,11 @@ import {
   Container,
   Text,
   Grid,
-  rem,
+  Card,
+  Group,
 } from "@mantine/core";
 
 import LazyLoad from "react-lazy-load";
-
-import { BsFillPinMapFill } from "react-icons/bs";
-import { TbPolygonOff } from "react-icons/tb";
-import { GiPoliceBadge } from "react-icons/gi";
-import { GiTargetDummy } from "react-icons/gi";
-
 import { LocLink } from "../components/LocLink";
 import ColoniasMap from "../components/HomicideMap/ColoniasMap";
 
@@ -48,6 +43,100 @@ export function BellasArtes() {
     />
   );
 }
+
+export function CrimeIndexPic() {
+  return (
+    <StaticImage
+      src="../images/Gemini_Generated_Image_8coph78coph78cop.jpeg"
+      alt="Crime Index"
+      aspectRatio={590 / 332}
+      //width={400}
+      height={160}
+      layout="fullWidth"
+      breakpoints={[ 300, 400, 500, 600, 700, 800]}
+    />
+  );
+}
+
+export function CuadrantesPic() {
+  return (
+    <StaticImage
+      src="../images/029248f5177b47dfa35873ab2f01ebcc_77225ca9ddf64e6bbcfaa9c1e3243802.jpg"
+      alt="Crime Index"
+      aspectRatio={590 / 332}
+      //width={400}
+      height={160}
+      layout="fullWidth"
+      breakpoints={[ 300, 400, 500, 600, 700, 800]}
+    />
+  );
+}
+
+export function ColoniasPic() {
+  return (
+    <StaticImage
+      src="../images/f8421efb3fc34e7f8a0fa62aa07727ee_e77d198874fa458ba83de750c4a04aed.jpg"
+      alt="Crime Index"
+      aspectRatio={590 / 332}
+      //width={400}
+      height={160}
+      layout="fullWidth"
+      breakpoints={[ 300, 400, 500, 600, 700, 800]}
+    />
+  );
+}
+
+export function CGPic() {
+  return (
+    <StaticImage
+      src="../images/b9ff4bb0bf484d39a542960ce24956b9_c11178e85fbf463d8c24bb5375587904.jpg"
+      alt="Crime Index"
+      aspectRatio={590 / 332}
+      //width={400}
+      height={160}
+      layout="fullWidth"
+      breakpoints={[ 300, 400, 500, 600, 700, 800]}
+    />
+  );
+}
+
+const MyCard = ({ children, href }) => {
+  const firstChild = React.Children.toArray(children)[0];
+  const secondChild = React.Children.toArray(children)[1];
+  const thirdChild = React.Children.toArray(children)[2];
+  // const fourthChild = React.Children.toArray(children)[3];
+  return (
+    <Card shadow="sm" padding="lg" radius="md" withBorder>
+      <Card.Section>
+        {firstChild === undefined ? "undefined" : firstChild}
+      </Card.Section>
+
+      <Group justify="space-between" mt="md" mb="xs">
+        <Text fw={500} fz="xl">
+          <LocLink to={href}>
+            {secondChild === undefined ? "undefined" : secondChild}
+          </LocLink>
+        </Text>
+        {/*  <Badge color="pink">On Sale</Badge> */}
+      </Group>
+
+      <Text size="lg">
+        {thirdChild === undefined ? "undefined" : thirdChild}
+      </Text>
+
+     {/*  <Button
+        color="blue"
+        fullWidth
+        mt="md"
+        radius="md"
+        component="a"
+        href={href}
+      >
+        {fourthChild === undefined ? "undefined" : fourthChild}
+      </Button> */}
+    </Card>
+  );
+};
 
 const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { language } = pageContext;
@@ -116,7 +205,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       <Container
         size="xs"
         p={"1rem"}
-        bg="var(--mantine-color-yellow-light)"
+        bg="var(--mantine-color-blue-light)"
         r="--mantine-radius-md"
       >
         <Title order={2} size={"md"}>
@@ -161,7 +250,9 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, md: 6, lg: 5 }}>
-          <BellasArtes />
+          <Center>
+            <BellasArtes />
+          </Center>
         </Grid.Col>
       </Grid>
       <Divider my="xl" />
@@ -173,8 +264,8 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       </Center>
       <Grid pl={20}>
         <Grid.Col
-          span={{ base: 12, md: 6, lg: 8 }}
-          offset={{ base: 0, md: 0, lg: 2 }}
+          span={{ base: 12, md: 10, lg: 8 }}
+          offset={{ base: 0, md: 1, lg: 2 }}
         >
           <Space h="xl" />
           <AspectRatio ratio={5 / 4} h={450} p={15}>
@@ -192,7 +283,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       <Container
         size="xs"
         p={"1rem"}
-        bg="var(--mantine-color-yellow-light)"
+        bg="var(--mantine-color-blue-light)"
         r="--mantine-radius-md"
       >
         <Text>
@@ -205,105 +296,62 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       <Grid>
         <Grid.Col
           pt={40}
-          offset={{ base: 0, md: 1, lg: 2 }}
-          span={{ base: 12, md: 6, lg: 4 }}
+          offset={{ base: 1, md: 1, lg: 1 }}
+          span={{ base: 10, md: 6, lg: 4 }}
         >
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-              <BsFillPinMapFill
-                style={{ color: "#fc9272", width: rem(68), height: rem(68) }}
-              />
-            </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6, lg: 9 }}>
-              <Title order={3}>
-                <LocLink to="/mapa/">
-                  {" "}
-                  <Trans>Crime Locations</Trans>
-                </LocLink>
-              </Title>
-              <Text>
-                <Trans>
-                  Each and every major crime reported to the police mapped and
-                  geolocated
-                </Trans>
-              </Text>
-            </Grid.Col>
-          </Grid>
-        </Grid.Col>
-        <Grid.Col pt={40} span={{ base: 12, md: 6, lg: 4 }}>
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-              {" "}
-              <TbPolygonOff
-                style={{ color: "#fc9272", width: rem(68), height: rem(68) }}
-              />
-            </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6, lg: 9 }}>
-              {" "}
-              <Title order={3}>
-                <LocLink to="/colonias/">
-                  <Trans>Neighborhoods</Trans>
-                </LocLink>
-              </Title>
-              <Text>
-                <Trans>
-                  Estimates of homicide rates at the neighborhood level using
-                  advanced statistical techniques
-                </Trans>
-              </Text>
-            </Grid.Col>
-          </Grid>
+          <MyCard href="/mapa/">
+            <CrimeIndexPic />
+            <Trans>Crime Locations</Trans>
+            <Trans>
+              Each and every major crime reported to the police mapped and
+              geolocated
+            </Trans>
+            <Trans>Crime</Trans>
+          </MyCard>
         </Grid.Col>
         <Grid.Col
           pt={40}
-          offset={{ base: 0, md: 1, lg: 2 }}
-          span={{ base: 12, md: 6, lg: 4 }}
+          offset={{ base: 1, md: 0, lg: 2 }}
+          span={{ base: 10, md: 6, lg: 4 }}
         >
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-              {" "}
-              <GiPoliceBadge
-                style={{ color: "#fc9272", width: rem(68), height: rem(68) }}
-              />{" "}
-            </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6, lg: 9 }}>
-              {" "}
-              <Title order={3}>
-                <LocLink to="/cuadrantes-mapa/">
-                  <Trans>Cuadrantes</Trans>
-                </LocLink>
-              </Title>
-              <Text>
-                <Trans>
-                  Number of crimes in each of the police blocks that make up
-                  Mexico City. Will you lose your iPhone or your life...
-                </Trans>
-              </Text>
-            </Grid.Col>
-          </Grid>
+          <MyCard href="/colonias/">
+            <ColoniasPic />
+            <Trans>Neighborhoods</Trans>
+            <Trans>
+              Estimates of homicide rates at the neighborhood level using
+              advanced statistical techniques
+            </Trans>
+            <Trans>Crime</Trans>
+          </MyCard>
         </Grid.Col>
-        <Grid.Col pt={40} span={{ base: 12, md: 6, lg: 4 }}>
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>
-              {" "}
-              <GiTargetDummy
-                style={{ color: "#fc9272", width: rem(68), height: rem(68) }}
-              />{" "}
-            </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6, lg: 9 }}>
-              {" "}
-              <Title order={3}>
-                <LocLink to="/rumbo-mapa/">
-                  <Trans>Geolocated Crime</Trans>
-                </LocLink>
-              </Title>
-              <Text>
-                <Trans>
-                  All crimes within 700 meters of where you are right now
-                </Trans>
-              </Text>
-            </Grid.Col>
-          </Grid>
+        <Grid.Col
+          pt={40}
+          offset={{ base: 1, md: 1, lg: 1 }}
+          span={{ base: 10, md: 6, lg: 4 }}
+        >
+          <MyCard href="/cuadrantes-mapa/">
+            <CuadrantesPic />
+            <Trans>Cuadrantes</Trans>
+            <Trans>
+              Number of crimes in each of the police blocks that make up Mexico
+              City. Will you lose your iPhone or your life...
+            </Trans>
+            <Trans>Crime</Trans>
+          </MyCard>
+        </Grid.Col>
+        <Grid.Col
+          pt={40}
+          offset={{  base: 1, md: 0, lg: 2 }}
+          span={{ base: 10, md: 6, lg: 4 }}
+        >
+          <MyCard href="/rumbo-mapa/">
+            <CGPic />
+            <Trans>Geolocated Crime</Trans>
+            <Trans>
+              All crimes within 700 meters of where you are right now
+            </Trans>
+            <Trans>Crime</Trans>
+          </MyCard>
         </Grid.Col>
       </Grid>
     </Layout>
