@@ -4,7 +4,7 @@ import React from "react";
 import { useDisclosure } from "@mantine/hooks";
 import Header from "./Header/Header";
 import FooterCentered from "./Footer/FooterCentered";
-import { AppShell, MantineProvider } from "@mantine/core";
+import { AppShell } from "@mantine/core";
 
 const Layout = ({ children, language, pageContext} = props ) => {
   const [opened, { toggle }] = useDisclosure();

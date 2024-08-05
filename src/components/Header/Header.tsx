@@ -268,14 +268,14 @@ function Header(props) {
           <Burger
             opened={props.opened}
             onClick={props.toggle}
-            hiddenFrom="md"
+            hiddenFrom="sm"
             size="sm"
             color="black"
             aria-label="Toggle navigation"
           />
           <Group justify="space-between" style={{ flex: 1 }}>
             <HoyodecrimenLogo size={40} />
-            <Group ml="sm" gap={0} visibleFrom="md">
+            <Group ml="sm" gap={0} visibleFrom="sm">
               {items}
               <LanguageSwitch
                 language={props.language}
