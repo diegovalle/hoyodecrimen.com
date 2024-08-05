@@ -18,6 +18,7 @@ import * as pmtiles from "pmtiles";
 import LoadingOverlay from "./LoadingOverlay";
 import { circle as turfCircle } from "@turf/circle";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import pRetry from "p-retry";
 
 import "../../css/loading.css";
 
@@ -182,6 +183,16 @@ export const RumboMap = (props: Props) => {
       "/" +
       marker?.latitude +
       `/distance/${distance}`;
+
+      const run = async () => {
+        const response = await fetch('https://sindresorhus.com/unicorn');
+      
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+      
+        return response.json();
+      };
 
     if (marker) {
       let center = [marker.longitude, marker.latitude];

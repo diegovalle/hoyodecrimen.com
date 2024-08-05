@@ -150,6 +150,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 autoContrast={true}
                 color="rgba(255, 255, 255, 1)"
                 onClick={toggle}
+                aria-label="Options"
               >
                 <IconAdjustmentsHorizontal style={{}} />
               </Button>
