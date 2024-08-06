@@ -11,7 +11,7 @@ export const SocialImage = ({ social_image, social_image_en, siteUrl, language }
           (language === "es" ? social_image : social_image_en)
         }
       />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:height" content="628" />
       <meta property="og:image:width" content="1200" />
       <meta
         name="twitter:image"
