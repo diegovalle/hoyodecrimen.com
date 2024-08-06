@@ -1,1 +1,1 @@
-/api/*  https://api.hoyodecrimen.com/:splat  200
+/api/v1/*  https://api.hoyodecrimen.com/:splat  200
