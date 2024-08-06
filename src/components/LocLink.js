@@ -11,7 +11,7 @@ export const LocLink = ({ language, children, to, prefetch, ...props }) => {
   let localizedTo =
     c.language === c.defaultLanguage
       ? to
-      : "/en" + r.translated_routes[to];
+      : ("/en" + r.translated_routes[to] + "/").replace(/\/\/$/, "/");
 
   if (typeof localizedTo ===  "undefined")
     throw new Error("❌ Missing entry in i18n/locales/routes");
@@ -23,13 +23,13 @@ export const LocLink = ({ language, children, to, prefetch, ...props }) => {
       </a>
     );
   }
-  if (className2) {
-    return (
-      <Link to={localizedTo} {...props} className={className2}>
-       <span style={{"display": "block"}}>  {children}</span>
-      </Link>
-    );
-  }
+  // if (className2) {
+  //   return (
+  //     <Link to={localizedTo} {...props} className={className2}>
+  //      <span style={{"display": "block"}}>  {children}</span>
+  //     </Link>
+  //   );
+  // }
   return (
     <Link to={localizedTo} {...props}>
      <span style={{"display": "block"}}>  {children}</span>
