@@ -98,15 +98,15 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             >
               <LazyLoad once>
                 <>
-                <ScrollArea hover>
-                  <Space h="md" />
-                  <Title order={1} size="lg">
-                    <Center>
-                      <Trans>Crime Rates by Sector</Trans>
-                    </Center>
-                  </Title>
-                  <Text>
-                    <Center>
+                  <ScrollArea hover>
+                    <Space h="md" />
+                    <Title order={1} size="lg">
+                      <Center>
+                        <Trans>Crime Rates by Sector</Trans>
+                      </Center>
+                    </Title>
+
+                    <Center component="span">
                       {lastDate
                         ? t("Map from") +
                           " " +
@@ -114,26 +114,25 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                           lastDate.slice(1)
                         : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
                     </Center>
-                  </Text>
-                  <Space h="md" />
-                  <Container pb="1rem" size="25rem">
-                    <SelectCrime
-                      updateCrime={updateCrime}
+                    <Space h="md" />
+                    <Container pb="1rem" size="25rem">
+                      <SelectCrime
+                        updateCrime={updateCrime}
+                        selectedCrime={selectedCrime}
+                      />
+                    </Container>
+                    <Text>
+                    <Center component="span" >
+                        {selectedSector === "df" ? "CDMX" : selectedSector}
+                      </Center>
+                    </Text>
+                    <SectoresLineChart
                       selectedCrime={selectedCrime}
+                      selectedSector={selectedSector}
+                      language={language}
                     />
-                  </Container>
-                  <Text>
-                    <Center>
-                      {selectedSector === "df" ? "CDMX" : selectedSector}
-                    </Center>
-                  </Text>
-                  <SectoresLineChart
-                    selectedCrime={selectedCrime}
-                    selectedSector={selectedSector}
-                    language={language}
-                  />
-                  <Divider size="sm" />
-                  <Space h="xl"/>
+                    <Divider size="sm" />
+                    <Space h="xl" />
                     <Stack>
                       <Container size="sm">
                         <Trans i18nKey="1"></Trans>
@@ -166,7 +165,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   </Center>
                 </Title>
                 <Text>
-                  <Center>
+                  <Center component="span">
                     {lastDate
                       ? t("Map from") +
                         " " +
@@ -183,7 +182,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   />
                 </Container>
                 <Text>
-                  <Center>
+                <Center component="span" >
                     {selectedSector === "df" ? "CDMX" : selectedSector}
                   </Center>
                 </Text>

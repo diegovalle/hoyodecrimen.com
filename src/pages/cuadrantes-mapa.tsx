@@ -106,16 +106,18 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                       <Trans>Crimes by Cuadrante</Trans>
                     </Center>
                   </Title>
-                  <Text>
-                    <Center>
+
+                  <Center component="span">
+                    <Text span>
                       {lastDate
                         ? t("Map from") +
                           " " +
                           lastDate.charAt(0).toUpperCase() +
                           lastDate.slice(1)
                         : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
-                    </Center>
-                  </Text>
+                    </Text>
+                  </Center>
+
                   <Space h="md" />
                   <Container pb="1rem" size="25rem">
                     <SelectCrime
@@ -124,7 +126,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                     />
                   </Container>
                   <Text>
-                    <Center>
+                    <Center component="span">
                       {selectedCuadrante === "df" ? "CDMX" : selectedCuadrante}
                     </Center>
                   </Text>
@@ -159,7 +161,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   </Center>
                 </Title>
                 <Text>
-                  <Center>
+                  <Center component="span">
                     {lastDate
                       ? t("Map from") +
                         " " +
@@ -176,7 +178,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   />
                 </Container>
                 <Text>
-                  <Center>
+                  <Center component="span">
                     {selectedCuadrante === "df" ? "CDMX" : selectedCuadrante}
                   </Center>
                 </Text>

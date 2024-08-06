@@ -4,12 +4,12 @@
   border-radius: var(--mantine-radius-md);
   font-weight: 500;
 
-  @mixin hover {
+  /*  @mixin hover {
     background-color: light-dark(
       var(--mantine-color-gray-0),
       var(--mantine-color-dark-6)
     );
-  }
+  } */
 }
 
 .menu {
@@ -22,22 +22,36 @@
 
 .linkLabel {
   font-family: system-ui, sans-serif;
-  font-size: 18px;
+  font-size: var(--mantine-font-size-md);
   color: #111;
+
+  @media (max-width: em(992)) {
+    font-size: var(--mantine-font-size-sm);
+  }
+  @media (min-width: em(1200)) {
+    font-size: var(--mantine-font-size-lg);
+  }
 }
 
 .link {
   font-family: system-ui, sans-serif;
-  font-size: 18px;
+  font-size: var(--mantine-font-size-md);
   text-decoration: none;
   color: #111;
   font-weight: 600;
   margin-left: 1em;
+
+  @media (max-width: em(992)) {
+    font-size: var(--mantine-font-size-sm);
+  }
+  @media (min-width: em(1200)) {
+    font-size: var(--mantine-font-size-lg);
+  }
 }
 
 .linkDropdown {
   font-family: system-ui, sans-serif;
-  font-size: 18px;
+  /*  font-size: var(--mantine-font-size-md); */
   text-decoration: none;
   color: #111;
   font-weight: 600;

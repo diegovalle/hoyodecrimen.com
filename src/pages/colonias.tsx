@@ -79,13 +79,13 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               title={t("Homicide rate by Neighborhood")}
               zIndex={250}
             >
-              <Text>
+              
                 <Title order={2} size={"md"}>
                   <Trans>What is a smoothed rate?</Trans>
                 </Title>
                 <Space h="xs"></Space>
                 <Trans i18nKey="smoothed"></Trans>
-              </Text>
+              
             </Drawer>
             <Affix position={{ bottom: 85, right: 20 }}>
               <Button

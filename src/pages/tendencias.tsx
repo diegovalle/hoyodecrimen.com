@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
-import type { HeadFC, PageProps } from "gatsby";
+import type { PageProps } from "gatsby";
 import {
   AspectRatio,
   Title,
@@ -17,7 +17,6 @@ import {
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
-import { translations } from "../../i18n/translations/head_translations";
 
 import TrendMonthChart from "../components/TrendMonthChart";
 import { SocialImage } from "../components/SocialImage";
@@ -42,7 +41,6 @@ const TasasPage: React.FC<PageProps> = ({
   data: meta,
 }) => {
   const [data, setData] = useState(null);
-  const [CDMXRate, setCDMXRate] = useState(null);
   const { language } = pageContext;
   const { t } = useTranslation();
 
@@ -53,17 +51,11 @@ const TasasPage: React.FC<PageProps> = ({
       .then((response) => response.json())
       .then((responseJSON) => {
         setData(responseJSON);
-
-        let cdmx_homicidio = JSON.parse(JSON.stringify(responseJSON[1]));
-        cdmx_homicidio["HOMICIDIO DOLOSO"][3] = cdmx_homicidio[
-          "HOMICIDIO DOLOSO"
-        ][3].map((x, i) => (x / cdmx_pop[i]) * 100000 * 12);
-        setCDMXRate(cdmx_homicidio);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [meta.site.siteMetadata.apiUrl]);
 
   return (
     <Layout language={language} pageContext={pageContext}>
