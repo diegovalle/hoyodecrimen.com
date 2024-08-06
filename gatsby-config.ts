@@ -235,15 +235,15 @@ const config: GatsbyConfig = {
       },
       __key: "images",
     },
-    //"gatsby-plugin-postcss",
-    {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        printRejected: true,
-        //ignore: ['styles.css', 'maplibre-gl.css'], // Ignore files/folders
-         purgeOnly : ['bootstrap/'], // Purge only these files/folders
-      },
-    },
+    "gatsby-plugin-postcss",
+    // {
+    //   resolve: `gatsby-plugin-purgecss`,
+    //   options: {
+    //     printRejected: true,
+    //     //ignore: ['styles.css', 'maplibre-gl.css'], // Ignore files/folders
+    //      purgeOnly : ['bootstrap/'], // Purge only these files/folders
+    //   },
+    // },
     {
       resolve: "gatsby-remark-opengraph",
       options: {
