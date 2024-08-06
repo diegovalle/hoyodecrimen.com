@@ -146,7 +146,7 @@ function FooterCentered({ language } = props) {
               <Trans i18nKey="copyright">
                 Diego Valle-Jones. All Rights Reserved.
               </Trans>
-              <Trans i18nKey="Privacy"><a href="/privacidad">Privacy</a></Trans>
+              <Trans i18nKey="Privacy"><a href="/privacidad/">Privacy</a></Trans>
             </Text>
             {/*  <Text size="sm">
               Unless otherwise stated, the content of this page is licensed
