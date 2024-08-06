@@ -15,7 +15,8 @@ IMAGES=(acerca
         numero
         rumbo
         tasas
-        tendencias)
+        tendencias
+        privacidad)
 
 TITLES=("Acerca\nde"
         "Cambios\nCriminales\npor\nSector"
@@ -33,6 +34,7 @@ TITLES=("Acerca\nde"
         "Crimen\npor\ntu\nRumbo"
         "Tasas\nde\nCrimen"
         "Tendencias\nCriminales"
+        "Privacidad"
 )
 
 TITLES_EN=("About"
@@ -51,6 +53,7 @@ TITLES_EN=("About"
         "Crime\nin\nyour\nLocation"
         "Crime\nRates\nby\nSector"
         "Crime\nTrends\nin\nMexico\nCity"
+        "Privacy"
 )
 WW=1200
 HH=628

@@ -10,8 +10,8 @@ import { Title, Center, Grid, Space, Divider } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import { SocialImage } from "../components/SocialImage";
-import social_image from "../images/social/social-colonias.jpg";
-import social_image_en from "../images/social/social-colonias_en.jpg";
+import social_image from "../images/social/social-privacidad.jpg";
+import social_image_en from "../images/social/social-privacidad_en.jpg";
 
 const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   useEffect(() => {}, []);
