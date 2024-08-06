@@ -4,4 +4,4 @@ public
 src/gatsby-types.d.ts
 sentry.ts
 *.swp
-*.cache
+**/*.cache
