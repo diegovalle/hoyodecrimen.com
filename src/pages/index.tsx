@@ -51,9 +51,9 @@ export function CrimeIndexPic() {
       alt="Crime Index"
       aspectRatio={590 / 332}
       //width={400}
-      height={160}
+      //height={160}
       layout="fullWidth"
-      breakpoints={[ 300, 400, 500, 600, 700, 800]}
+      breakpoints={[300, 400, 500, 600, 700, 800]}
     />
   );
 }
@@ -65,9 +65,9 @@ export function CuadrantesPic() {
       alt="Crime Index"
       aspectRatio={590 / 332}
       //width={400}
-      height={160}
+      //height={160}
       layout="fullWidth"
-      breakpoints={[ 300, 400, 500, 600, 700, 800]}
+      breakpoints={[300, 400, 500, 600, 700, 800]}
     />
   );
 }
@@ -79,9 +79,9 @@ export function ColoniasPic() {
       alt="Crime Index"
       aspectRatio={590 / 332}
       //width={400}
-      height={160}
+      // height={160}
       layout="fullWidth"
-      breakpoints={[ 300, 400, 500, 600, 700, 800]}
+      breakpoints={[300, 400, 500, 600, 700, 800]}
     />
   );
 }
@@ -89,13 +89,13 @@ export function ColoniasPic() {
 export function CGPic() {
   return (
     <StaticImage
-      src="../images/b9ff4bb0bf484d39a542960ce24956b9_c11178e85fbf463d8c24bb5375587904.jpg"
+      src="../images/Gemini_Generated_Image_1a4ywa1a4ywa1a4y.jpeg"
       alt="Crime Index"
       aspectRatio={590 / 332}
       //width={400}
-      height={160}
+      //height={160}
       layout="fullWidth"
-      breakpoints={[ 300, 400, 500, 600, 700, 800]}
+      breakpoints={[300, 400, 500, 600, 700, 800]}
     />
   );
 }
@@ -124,7 +124,7 @@ const MyCard = ({ children, href }) => {
         {thirdChild === undefined ? "undefined" : thirdChild}
       </Text>
 
-     {/*  <Button
+      {/*  <Button
         color="blue"
         fullWidth
         mt="md"
@@ -236,7 +236,6 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 available for all crimes committed in Mexico City.
               </Trans>
               <br />
-              <br />
               <Trans i18nKey="intro2">
                 With this data, citizens and authorities can visualize the most
                 violent parts of the city; businessmen can decide where to
@@ -329,9 +328,9 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           offset={{ base: 1, md: 1, lg: 1 }}
           span={{ base: 10, md: 6, lg: 4 }}
         >
-          <MyCard href="/cuadrantes-mapa/">
+          <MyCard href="/sectores-mapa/">
             <CuadrantesPic />
-            <Trans>Cuadrantes</Trans>
+            <Trans>Sectores</Trans>
             <Trans>
               Number of crimes in each of the police blocks that make up Mexico
               City. Will you lose your iPhone or your life...
@@ -341,7 +340,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         </Grid.Col>
         <Grid.Col
           pt={40}
-          offset={{  base: 1, md: 0, lg: 2 }}
+          offset={{ base: 1, md: 0, lg: 2 }}
           span={{ base: 10, md: 6, lg: 4 }}
         >
           <MyCard href="/rumbo-mapa/">
