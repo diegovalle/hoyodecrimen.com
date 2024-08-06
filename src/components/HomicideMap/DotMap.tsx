@@ -270,17 +270,7 @@ export const DotMap = (props: Props) => {
     url = buildUrl(url);
 
     const fetchAggregate = async (url) => {
-      // Abort any pending requests
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
-      }
-
-      // Create new abort controller
-      const newAbortController = new AbortController();
-      abortControllerRef.current = newAbortController;
-      const response = await fetch(url, {
-        signal: abortControllerRef.current.signal,
-      });
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
@@ -290,7 +280,20 @@ export const DotMap = (props: Props) => {
     if (zoom.current < 14) {
       //setRefreshClusters(false);
       setOptionsChanged(false);
+
+      // Abort any pending requests
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+
+      // Create new abort controller
+      const newAbortController = new AbortController();
+
+      abortControllerRef.current = newAbortController;
+      // Call onSearch with new search term and abort controller
+
       const fetchRequestJSON = pRetry(() => fetchAggregate(url), {
+        signal: abortControllerRef.current.signal,
         retries: 2,
       });
       Promise.all([fetchRequestJSON])

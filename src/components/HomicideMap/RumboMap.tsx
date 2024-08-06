@@ -79,8 +79,8 @@ export const RumboMap = (props: Props) => {
       }
     }
   `);
-  
-  mapStyle.sources.openmaptiles.tiles = [meta.site.siteMetadata.osmTilesUrl]
+
+  mapStyle.sources.openmaptiles.tiles = [meta.site.siteMetadata.osmTilesUrl];
 
   const circleLayer: LayerProps = {
     id: "circle-fill",
@@ -184,15 +184,58 @@ export const RumboMap = (props: Props) => {
       marker?.latitude +
       `/distance/${distance}`;
 
-      const run = async () => {
-        const response = await fetch('https://sindresorhus.com/unicorn');
-      
-        if (!response.ok) {
-          throw new Error(response.statusText);
+    const run = async (crimeCircle, center, cdmxCenter) => {
+      let response;
+      try {
+        response = await fetch(url);
+      } finally {
+        setFetching(false);
+      }
+
+      if (response.status === 404) {
+        geojson.features = [];
+        setPointData(geojson);
+        setCircle(crimeCircle);
+        if (!booleanPointInPolygon(center, cdmxPoly)) {
+          setUserLocation(cdmxCenter);
         }
-      
-        return response.json();
-      };
+        //throw new Error("404 response", { cause: response });
+      }
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      let crimes = await response.json();
+
+      geojson.features = [
+        ...crimes.rows.map((item) => {
+          return {
+            type: "Feature",
+            properties: {
+              crime: item.crime,
+              date: item.date,
+              hour: item.hour,
+            },
+            geometry: {
+              type: "Point",
+              coordinates: [item.long, item.lat],
+            },
+          };
+        }),
+      ];
+
+      setPointData(geojson);
+      setCircle(crimeCircle);
+
+      // .catch((error) => {
+      //   console.log(error);
+      //   setFetching(false);
+      // })
+      // .finally(() => {
+      toggleAnimation(mapRef);
+      setFetching(false);
+      // });
+    };
 
     if (marker) {
       let center = [marker.longitude, marker.latitude];
@@ -214,50 +257,15 @@ export const RumboMap = (props: Props) => {
       abortControllerRef.current = newAbortController;
       // Call onSearch with new search term and abort controller
       setFetching(true);
-
-      fetch(url, {
-        signal: abortControllerRef.current.signal,
-      })
-        .then(function (response) {
-          if (!response.ok) {
-            geojson.features = [];
-            setPointData(geojson);
-            setCircle(crimeCircle);
-            if (!booleanPointInPolygon(center, cdmxPoly)) {
-              setUserLocation(cdmxCenter);
-            }
-            throw new Error("Not 2xx response", { cause: response });
-          } else return response.json();
-        })
-        .then(function (crimes) {
-          geojson.features = [
-            ...crimes.rows.map((item) => {
-              return {
-                type: "Feature",
-                properties: {
-                  crime: item.crime,
-                  date: item.date,
-                  hour: item.hour,
-                },
-                geometry: {
-                  type: "Point",
-                  coordinates: [item.long, item.lat],
-                },
-              };
-            }),
-          ];
-
-          setPointData(geojson);
-          setCircle(crimeCircle);
-        })
-        .catch((error) => {
-          console.log(error);
-          setFetching(false);
-        })
-        .finally(() => {
-          toggleAnimation(mapRef);
-          setFetching(false);
+      try {
+        pRetry(() => run(crimeCircle, center, cdmxCenter), {
+          signal: abortControllerRef.current.signal,
+          retries: 2,
         });
+      } catch (error) {
+        console.log(error.message);
+        //=> 'User clicked cancel button'
+      }
     }
     return () => {
       ignore = true;
