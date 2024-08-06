@@ -1,0 +1,366 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HTTP Routing Table &#8212; HoyoDeCrimen API 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+ 
+
+    <script type="text/javascript">
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="#" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">HoyoDeCrimen API 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+   <h1>HTTP Routing Table</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-/"><strong>/</strong></a> | 
+   <a href="#cap-/(user)"><strong>/(user)</strong></a> | 
+   <a href="#cap-/api"><strong>/api</strong></a> | 
+   <a href="#cap-/baz"><strong>/baz</strong></a> | 
+   <a href="#cap-/foo"><strong>/foo</strong></a> | 
+   <a href="#cap-/posts"><strong>/posts</strong></a> | 
+   <a href="#cap-/short-syntax"><strong>/short-syntax</strong></a> | 
+   <a href="#cap-/users"><strong>/users</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/"><td></td><td>
+       <strong>/</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#get--"><code class="xref">GET /</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/(user)"><td></td><td>
+       <strong>/(user)</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#get--(user)"><code class="xref">GET /(user)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#get--(user)-posts-(int-post_id)"><code class="xref">GET /(user)/posts/(int:post_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/api"><td></td><td>
+       <strong>/api</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-crimes"><code class="xref">GET /api/v1/crimes</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes"><code class="xref">GET /api/v1/cuadrantes</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-(string-cuadrante)-crimes-(string-crime)-period"><code class="xref">GET /api/v1/cuadrantes/(string:cuadrante)/crimes/(string:crime)/period</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-(string-cuadrante)-crimes-(string-crime)-period-change"><code class="xref">GET /api/v1/cuadrantes/(string:cuadrante)/crimes/(string:crime)/period/change</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-(string-cuadrante)-crimes-(string-crime)-series"><code class="xref">GET /api/v1/cuadrantes/(string:cuadrante)/crimes/(string:crime)/series</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-crimes-(string-crime)-pip-(string-long)-(string-lat)"><code class="xref">GET /api/v1/cuadrantes/crimes/(string:crime)/pip/(string:long)/(string:lat)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-crimes-(string-crime)-pip_extra-(string-long)-(string-lat)"><code class="xref">GET /api/v1/cuadrantes/crimes/(string:crime)/pip_extra/(string:long)/(string:lat)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-crimes-(string-crime)-top-counts"><code class="xref">GET /api/v1/cuadrantes/crimes/(string:crime)/top/counts</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-crimes-(string-crime)-top-counts-change"><code class="xref">GET /api/v1/cuadrantes/crimes/(string:crime)/top/counts/change</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-geojson"><code class="xref">GET /api/v1/cuadrantes/geojson</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-cuadrantes-pip-(string-long)-(string-lat)"><code class="xref">GET /api/v1/cuadrantes/pip/(string:long)/(string:lat)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-df-crimes-(string-crime)-days"><code class="xref">GET /api/v1/df/crimes/(string:crime)/days</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-df-crimes-(string-crime)-hours"><code class="xref">GET /api/v1/df/crimes/(string:crime)/hours</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-df-crimes-(string-crime)-series"><code class="xref">GET /api/v1/df/crimes/(string:crime)/series</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-latlong-crimes-(string-crime)-coords-(string-long)-(string-lat)-distance-(int-distance)"><code class="xref">GET /api/v1/latlong/crimes/(string:crime)/coords/(string:long)/(string:lat)/distance/(int:distance)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-municipios"><code class="xref">GET /api/v1/municipios</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-municipios-(string-municipio)-crimes-(string-crime)-period"><code class="xref">GET /api/v1/municipios/(string:municipio)/crimes/(string:crime)/period</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-municipios-(string-municipio)-crimes-(string-crime)-series"><code class="xref">GET /api/v1/municipios/(string:municipio)/crimes/(string:crime)/series</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-municipios-geojson"><code class="xref">GET /api/v1/municipios/geojson</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-sectores"><code class="xref">GET /api/v1/sectores</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-sectores-(string-sector)-crimes-(string-crime)-period"><code class="xref">GET /api/v1/sectores/(string:sector)/crimes/(string:crime)/period</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-sectores-(string-sector)-crimes-(string-crime)-period-change"><code class="xref">GET /api/v1/sectores/(string:sector)/crimes/(string:crime)/period/change</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-sectores-(string-sector)-crimes-(string-crime)-series"><code class="xref">GET /api/v1/sectores/(string:sector)/crimes/(string:crime)/series</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-sectores-crimes-(string-crime)-top-rates"><code class="xref">GET /api/v1/sectores/crimes/(string:crime)/top/rates</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="index.html#get--api-v1-sectores-geojson"><code class="xref">GET /api/v1/sectores/geojson</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/baz"><td></td><td>
+       <strong>/baz</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#post--baz"><code class="xref">POST /baz</code></a></td><td><strong>Deprecated:</strong>
+       <em>Something special, but use PUT instead</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#put--baz"><code class="xref">PUT /baz</code></a></td><td>
+       <em>Something special</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/foo"><td></td><td>
+       <strong>/foo</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#get--foo"><code class="xref">GET /foo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/posts"><td></td><td>
+       <strong>/posts</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/doc/index.html#post--posts-(int-post_id)"><code class="xref">POST /posts/(int:post_id)</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/short-syntax"><td></td><td>
+       <strong>/short-syntax</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#get--short-syntax"><code class="xref">GET /short-syntax</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/users"><td></td><td>
+       <strong>/users</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#head--users-(int-user_id)-posts-(tag)"><code class="xref">HEAD /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#get--users-(int-user_id)-posts-(tag)"><code class="xref">GET /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#post--users-(int-user_id)-posts-(tag)"><code class="xref">POST /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#put--users-(int-user_id)-posts-(tag)"><code class="xref">PUT /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#delete--users-(int-user_id)-posts-(tag)"><code class="xref">DELETE /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#patch--users-(int-user_id)-posts-(tag)"><code class="xref">PATCH /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#options--users-(int-user_id)-posts-(tag)"><code class="xref">OPTIONS /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#trace--users-(int-user_id)-posts-(tag)"><code class="xref">TRACE /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#connect--users-(int-user_id)-posts-(tag)"><code class="xref">CONNECT /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="ext/httpdomain/test/index.html#copy--users-(int-user_id)-posts-(tag)"><code class="xref">COPY /users/(int:user_id)/posts/(tag)</code></a></td><td>
+       <em></em></td></tr>
+   </table>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="#" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">HoyoDeCrimen API 1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Diego Valle-Jones.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.2.
+    </div>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQQDKGGFMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HQQDKGGFMW');
+</script>
+
+  </body>
+</html>
