@@ -98,15 +98,14 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               lockScroll={false}
               zIndex={250}
             >
+              <Space h="md" />
+              <Title order={1} size="lg">
+                <Center>
+                  <Trans>Crimes by Cuadrante</Trans>
+                </Center>
+              </Title>
               <LazyLoad once>
                 <>
-                  <Space h="md" />
-                  <Title order={1} size="lg">
-                    <Center>
-                      <Trans>Crimes by Cuadrante</Trans>
-                    </Center>
-                  </Title>
-
                   <Center component="span">
                     <Text span>
                       {lastDate
