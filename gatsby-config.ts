@@ -133,13 +133,13 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
-    apiUrl: "http://localhost:8080",
+    apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
     osmTilesUrl: `https://tilehoyo.surge.sh/{z}/{x}/{y}.html`,
     year: "2024",
-    // arcgis "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+    // arcgis ""
     // stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"
     satelliteMap:
-      "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
     twitterHandle: "@diegovalle",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -168,7 +168,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-preconnect",
       options: {
-        domains: ["https://api.hoyodecrimen.com"],
+        domains: ["https://cooperative-corissa-diegovalle-177b049e.koyeb.app"],
       },
     },
     {
@@ -235,18 +235,13 @@ const config: GatsbyConfig = {
       },
       __key: "images",
     },
-    "gatsby-plugin-postcss",
-    // `gatsby-plugin-postcss`,
-    // {
-    //   resolve: `gatsby-plugin-purgecss`,
-    //   options: {
-    //     tailwind: true,
-    //   },
-    // },
+    //"gatsby-plugin-postcss",
     {
-      resolve: `gatsby-plugin-canonical-urls`,
+      resolve: `gatsby-plugin-purgecss`,
       options: {
-        siteUrl: `https://hoyodecrimen.com`,
+        printRejected: true,
+        //ignore: ['styles.css', 'maplibre-gl.css'], // Ignore files/folders
+         purgeOnly : ['bootstrap/'], // Purge only these files/folders
       },
     },
     {
