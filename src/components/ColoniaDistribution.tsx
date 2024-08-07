@@ -73,7 +73,7 @@ function CrimeSectorDiffMonthChart(props) {
       //text: props.title,
       left: "center",
       textStyle: {
-        fontFamily: "Roboto Condensed",
+        fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
         //fontSize: props.fontSize,
         //fontWeight: props.fontWeight,
       },
