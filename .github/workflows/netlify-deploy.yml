@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - netlify
+
+env:
+  NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+  
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
@@ -17,6 +21,5 @@ jobs:
           && npm install netlify-cli@17.10.1 -g
           && ./node_modules/.bin/gatsby telemetry --disable 
           && ./node_modules/.bin/gatsby build 
-          && netlify link --id ${{ secrets.NETLIFY_SITE_ID }}
           && netlify deploy --dir public -site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_API_TOKEN }}  --prod'
      
