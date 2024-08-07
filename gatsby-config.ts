@@ -134,7 +134,9 @@ const config: GatsbyConfig = {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
     apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
-    osmTilesUrl: `https://tilehoyo.surge.sh/{z}/{x}/{y}.html`,
+    osmTilesUrl: `https://hoyodecrimen-tiles.onrender.com/{z}/{x}/{y}.html`,
+    spriteUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/sprites/sprite",
+    glyphsUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/fonts/{fontstack}/{range}.pbf",
     year: "2024",
     // arcgis ""
     // stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"

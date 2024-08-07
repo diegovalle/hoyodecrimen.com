@@ -44,6 +44,8 @@ export const SectoresMap = (props: Props) => {
           satelliteMap
           osmTilesUrl
           apiUrl
+          spriteUrl
+          glyphsUrl
         }
       }
     }
@@ -55,8 +57,8 @@ export const SectoresMap = (props: Props) => {
   const mapStyle = {
     version: 8,
     //glyphs:'https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf',
-    sprite: "/tiles/sprites/sprite",
-    glyphs: "/tiles/fonts/{fontstack}/{range}.pbf",
+    sprite: meta.site.siteMetadata.spriteUrl,
+    glyphs: meta.site.siteMetadata.glyphsUrl,
     sources: {
       openmaptiles: {
         promoteId: "sector",

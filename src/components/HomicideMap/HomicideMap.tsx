@@ -3,12 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { scaleSequential } from "d3-scale";
 import { interpolatePlasma } from "d3-scale-chromatic";
-import {
-  max,
-  min,
-  sortedIndexOf,
-  zip,
-} from "lodash-es";
+import { max, min, sortedIndexOf, zip } from "lodash-es";
 import {
   Map,
   NavigationControl,
@@ -33,6 +28,8 @@ const meta = useStaticQuery(graphql`
       siteMetadata {
         satelliteMap
         osmTilesUrl
+        spriteUrl
+        glyphsUrl
       }
     }
   }
@@ -40,9 +37,10 @@ const meta = useStaticQuery(graphql`
 const mapStyle = {
   version: 8,
   //glyphs:'https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf',
-  sprite: "https://openmaptiles.github.io/positron-gl-style/sprite",
-  glyphs:
-    "/tiles/fonts/{fontstack}/{range}.pbf",
+  //sprite: "https://openmaptiles.github.io/positron-gl-style/sprite",
+
+  sprite: `${meta.site.siteMetadata.spriteUrl}`,
+  glyphs: `${meta.site.siteMetadata.glyphsUrl}`,
   sources: {
     openmaptiles: {
       type: "vector",

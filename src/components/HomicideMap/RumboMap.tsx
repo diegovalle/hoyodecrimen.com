@@ -31,8 +31,6 @@ import { cdmxPoly } from "../cdmx_polygon";
 const mapStyle = {
   version: 8,
   //glyphs:'https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf',
-  sprite: "/tiles/sprites/sprite",
-  glyphs: "/tiles/fonts/{fontstack}/{range}.pbf",
   sources: {
     openmaptiles: {
       type: "vector",
@@ -75,12 +73,16 @@ export const RumboMap = (props: Props) => {
           satelliteMap
           osmTilesUrl
           apiUrl
+          spriteUrl
+          glyphsUrl
         }
       }
     }
   `);
 
   mapStyle.sources.openmaptiles.tiles = [meta.site.siteMetadata.osmTilesUrl];
+  mapStyle.sprite = meta.site.siteMetadata.spriteUrl;
+  mapStyle.glyphs = meta.site.siteMetadata.glyphsUrl;
 
   const circleLayer: LayerProps = {
     id: "circle-fill",

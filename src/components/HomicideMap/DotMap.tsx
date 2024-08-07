@@ -65,6 +65,8 @@ export const DotMap = (props: Props) => {
           satelliteMap
           osmTilesUrl
           apiUrl
+          spriteUrl
+          glyphsUrl
         }
       }
     }
@@ -152,8 +154,8 @@ export const DotMap = (props: Props) => {
     let mapStyle = {
       version: 8,
       //glyphs:'https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf',
-      sprite: "/tiles/sprites/sprite",
-      glyphs: "/tiles/fonts/{fontstack}/{range}.pbf",
+      sprite: meta.site.siteMetadata.spriteUrl,
+      glyphs: meta.site.siteMetadata.glyphsUrl,
       sources: {
         openmaptiles: {
           type: "vector",
