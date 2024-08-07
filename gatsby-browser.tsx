@@ -1,8 +1,19 @@
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
-//import '@mantine/core/styles.css';
+// import '@mantine/core/styles.css';
 
+
+// A list of CSS files that you can import from 
+// @mantine/core package as a replacement for 
+// @mantine/core/styles.css.
+
+// All Mantine components depend on global styles, 
+// you need to import them before all other styles:
 import '@mantine/core/styles/global.css';
+
+// If you are not sure which components are used in a 
+// particular component, you can import all styles for 
+// components that are reused in other components:
 import '@mantine/core/styles/ScrollArea.css';
 import '@mantine/core/styles/UnstyledButton.css';
 import '@mantine/core/styles/VisuallyHidden.css';
@@ -17,7 +28,6 @@ import '@mantine/core/styles/Input.css';
 import '@mantine/core/styles/InlineInput.css';
 import '@mantine/core/styles/Flex.css';
 
-import '@mantine/core/styles/PillsInput.css';
 //import '@mantine/core/styles/TypographyStylesProvider.css';
 import '@mantine/core/styles/ActionIcon.css';
 import '@mantine/core/styles/Affix.css';
@@ -32,6 +42,7 @@ import '@mantine/core/styles/Combobox.css';
 import '@mantine/core/styles/Combobox.css';
 import '@mantine/core/styles/Container.css';
 import '@mantine/core/styles/Divider.css';
+import '@mantine/core/styles/Drawer.css';
 import '@mantine/core/styles/Grid.css';
 import '@mantine/core/styles/List.css';
 import '@mantine/core/styles/Menu.css';
@@ -39,6 +50,7 @@ import '@mantine/core/styles/Modal.css';
 import '@mantine/core/styles/NavLink.css';
 import '@mantine/core/styles/Paper.css';
 import '@mantine/core/styles/Pill.css';
+import '@mantine/core/styles/PillsInput.css';
 import '@mantine/core/styles/Radio.css';
 import '@mantine/core/styles/Skeleton.css';
 import '@mantine/core/styles/Slider.css';
