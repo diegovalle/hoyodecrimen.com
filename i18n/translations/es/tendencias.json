@@ -1,3 +1,4 @@
 {
-  "Mexico City Crime Trends": "Tendencias criminales"
+  "Mexico City Crime Trends": "Tendencias criminales",
+  "intro": "La tendencia corresponde a la primera derivada del último valor de un modelo aditivo generalizado. El color es rojo si la tendencia es al alza y azul a la baja, si no hay tendencia significative el color es negro."
 }
