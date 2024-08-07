@@ -12,7 +12,8 @@ jobs:
       - name: build hoyodecrimen website
         run: >
           docker run -v ${{github.workspace}}:/hoyodecrimen node:20.14.0
-          /bin/sh -c 'npm install 
+          /bin/sh -c 'cd /hoyodecrimen 
+          && npm install 
           && ./node_modules/.bin/gatsby telemetry --disable 
           && ./node_modules/.bin/gatsby build 
           && chmod -R o+rwx /hoyodecrimen'
