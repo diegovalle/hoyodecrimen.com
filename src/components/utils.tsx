@@ -24,14 +24,14 @@ export function YYYYmmddArrayToDate(arr) {
 }
 
 export const axisLabel = {
-  fontFamily: "Arial",
+  fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
   fontSize: 12,
   color: "#4d4d4d",
 };
 
 export const nameTextStyle = {
-  fontFamily: "Arial",
-  fontSize: 12,
+  fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+  fontSize: 18,
   color: "#222",
 };
 

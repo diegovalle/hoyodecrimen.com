@@ -74,7 +74,7 @@ function TrendMonthChart(props) {
       text: Object.keys(props.data)[0],
       left: "center",
       textStyle: {
-        fontFamily: "Roboto Condensed",
+        fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
         fontSize: props.fontSize,
         fontWeight: props.fontWeight,
       },
@@ -134,7 +134,7 @@ function TrendMonthChart(props) {
         name: props.yname,
         nameLocation: "middle",
         nameGap: 31,
-        nameTextStyle: { fontFamily: "Roboto Condensed" },
+        nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif" },
         type: "value",
         scale: false,
         splitNumber: 3,

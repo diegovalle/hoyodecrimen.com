@@ -109,7 +109,7 @@ const HoraPage: React.FC<PageProps> = ({ pageContext, location, data: meta }) =>
         trigger: "item",
         textStyle: {
           color: "#111",
-          fontFamily: "Roboto Condensed",
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
         },
         axisPointer: {
           animation: false,

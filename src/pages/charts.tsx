@@ -136,7 +136,7 @@ const SectoresPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         trigger: "axis",
         textStyle: {
           color: "#111",
-          fontFamily: "Roboto Condensed",
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
         },
         axisPointer: {
           animation: false,

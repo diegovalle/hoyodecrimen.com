@@ -30,10 +30,7 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         language={language}
       />
       <Center>
-        <Title
-          order={1}
-          py=".5rem"
-        >
+        <Title order={1} py=".5rem">
           <Trans>Crime in your Area</Trans>
         </Title>
       </Center>
@@ -50,23 +47,28 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       <RumboMap coords={coords} />
 
       <Divider my="xl" />
-
-      <p style={{ margin: "0.1em 0 2em 0" }}>
-        <span style={{ color: "#e41a1c", fontWeight: "bold" }}>⬤</span>
-        &nbsp;{t("Homicidio")} <span style={{ color: "#984ea3" }}>⬤</span>&nbsp;
-        {t("Robo de Vehículo C.V.")} <span style={{ color: "#41ab5d" }}>⬤</span>
-        &nbsp;{t("Robo de Vehículo S.V.")} 
-        <span style={{ color: "#377eb8" }}>⬤</span>&nbsp;
-        {t("Robo a Transeúnte C.V.")} 
-        <span style={{ color: "#fe9929" }}>⬤</span>&nbsp;
-        {t("Lesiones por Arma de Fuego")} 
-        <span style={{ color: "#777" }}>⬤</span>&nbsp;{t("Otros")} 
-        <br />
-        <Trans>
-          The points represent crimes committed during the last 12 months at
-          least 700 meters from your location
-        </Trans>
-      </p>
+      <Container size="sm">
+       
+          <span style={{ color: "#e41a1c", fontWeight: "bold" }}>⬤</span>
+          &nbsp;{t("Homicidio")} <span style={{ color: "#984ea3" }}>⬤</span>
+          &nbsp;
+          {t("Robo de Vehículo C.V.")} 
+          <span style={{ color: "#41ab5d" }}>⬤</span>
+          &nbsp;{t("Robo de Vehículo S.V.")} 
+          <span style={{ color: "#377eb8" }}>⬤</span>&nbsp;
+          {t("Robo a Transeúnte C.V.")} 
+          <span style={{ color: "#fe9929" }}>⬤</span>&nbsp;
+          {t("Lesiones por Arma de Fuego")} 
+          <span style={{ color: "#777" }}>⬤</span>&nbsp;{t("Otros")} 
+         
+          
+          <Divider m="lg"/>
+          <Trans>
+            The points represent crimes committed during the last 12 months at
+            least 700 meters from your location
+          </Trans>
+       
+      </Container>
     </Layout>
   );
 };
@@ -89,7 +91,10 @@ export const query = graphql`
       }
     }
     locales: allLocale(
-      filter: { ns: { in: ["common", "rumbo-mapa"] }, language: { eq: $language } }
+      filter: {
+        ns: { in: ["common", "rumbo-mapa"] }
+        language: { eq: $language }
+      }
     ) {
       edges {
         node {

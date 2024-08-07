@@ -98,7 +98,7 @@ function SectoresLineChart(props) {
           shadowOffsetX: 0,
           shadowOffsetY: 0,
           color: "#111",
-          fontFamily: "Roboto Condensed",
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
         },
       },
       formatter: function (item) {
@@ -145,7 +145,7 @@ function SectoresLineChart(props) {
         name: t("number of crimes"),
         nameLocation: "middle",
         nameGap: 39,
-        nameTextStyle: { fontFamily: "Roboto Condensed" },
+        nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif" },
         type: "value",
         scale: false,
         splitNumber: 2,

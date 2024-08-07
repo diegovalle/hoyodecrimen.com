@@ -144,7 +144,7 @@ function SectoresLineChart(props) {
         name: t("rate"),
         nameLocation: "middle",
         nameGap: 25,
-        nameTextStyle: { fontFamily: "Roboto Condensed" },
+        nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif" },
         type: "value",
         scale: false,
         splitNumber: 2,

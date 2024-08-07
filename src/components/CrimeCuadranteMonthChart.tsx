@@ -65,7 +65,7 @@ function CrimeCuadranteMonthChart(props) {
         text: props.title,
         left: "center",
         textStyle: {
-          fontFamily: "Roboto Condensed",
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
           fontSize: props.fontSize,
           fontWeight: props.fontWeight,
         },
@@ -82,7 +82,7 @@ function CrimeCuadranteMonthChart(props) {
             shadowOffsetX: 0,
             shadowOffsetY: 0,
             color: "#111",
-            fontFamily: "Roboto Condensed",
+            fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
           },
         },
         formatter: function (item) {
