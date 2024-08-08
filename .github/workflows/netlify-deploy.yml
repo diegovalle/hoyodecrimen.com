@@ -20,6 +20,7 @@ jobs:
           && npm install 
           && npm install netlify-cli@17.10.1 -g
           && ./node_modules/.bin/gatsby telemetry --disable 
-          && ./node_modules/.bin/gatsby build 
-          && netlify deploy --dir=public -site="57216e3a-8772-4ff4-b555-5211e8b3a3e9" --auth=${{ secrets.NETLIFY_API_TOKEN }} --prod'
+          && ./node_modules/.bin/gatsby build
+          && cd public 
+          && netlify deploy --dir=. -site="57216e3a-8772-4ff4-b555-5211e8b3a3e9" --auth=${{ secrets.NETLIFY_API_TOKEN }} --prod'
      
