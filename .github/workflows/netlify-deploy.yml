@@ -21,5 +21,6 @@ jobs:
           && npm install netlify-cli@17.10.1 -g
           && ./node_modules/.bin/gatsby telemetry --disable 
           && ./node_modules/.bin/gatsby build 
+          netlify link  --auth=${{ secrets.NETLIFY_API_TOKEN }} --id ${{ secrets.NETLIFY_SITE_ID }}
           && netlify deploy --dir public -site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_API_TOKEN }}  --prod'
      
