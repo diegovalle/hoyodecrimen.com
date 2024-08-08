@@ -14,6 +14,7 @@ jobs:
       - name: build hoyodecrimen website
         env:
           NETLIFY_SITE_ID: 15a82f5a-5dd0-4b52-afeb-9e17b03dc075
+          NETLIFY_API_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
         run: >
           docker run -v ${{github.workspace}}:/hoyodecrimen node:20.14.0
           /bin/sh -c 'cd /hoyodecrimen 
@@ -21,6 +22,5 @@ jobs:
           && npm install netlify-cli@17.10.1 -g
           && ./node_modules/.bin/gatsby telemetry --disable 
           && ./node_modules/.bin/gatsby build
-          && cd public 
-          && netlify deploy --dir=. -site="57216e3a-8772-4ff4-b555-5211e8b3a3e9" --auth=${{ secrets.NETLIFY_API_TOKEN }} --prod'
+          && netlify deploy --dir=public --auth ${{ secrets.NETLIFY_API_TOKEN }} --prod'
      
