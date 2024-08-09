@@ -30,6 +30,8 @@ import { translated_routes } from "../../../i18n/locales/routes/routes";
 import us_flag from "../../images/us.png";
 import mx_flag from "../../images/mx.webp";
 
+const { routes } = require("../../../i18n/locales");
+
 const LanguageSwitch = ({ language, pageContext, showText = false }) => {
   const { t } = useTranslation();
   function invert(obj) {
@@ -56,7 +58,7 @@ const LanguageSwitch = ({ language, pageContext, showText = false }) => {
       >
         <img
           src={language === "es" ? us_flag : mx_flag}
-          style={{ margin: showText ? "2px" : "0 0 0 18px"}}
+          style={{ margin: showText ? "2px" : "0 0 0 18px" }}
           width="24"
           height="17"
           alt={t("English Version")}
@@ -121,9 +123,29 @@ function Header(props) {
     { link: "/acerca/", icon: IconInfoCircle, label: "Acerca" },
   ];
 
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].links)
+      for (let j = 0; j < links[i].links.length; j++) {
+        links[i].links[j].en_link = (
+          "/en" + routes.translated_routes[links[i].links[j].link]
+        ).replace(/\/\/$/, "/");
+      }
+    else
+      links[i].en_link = (
+        "/en" + routes.translated_routes[links[i].link]
+      ).replace(/\/\/$/, "/");
+  }
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
-      <Menu.Item className={classes.submenu} key={item.link}>
+      <Menu.Item
+        className={
+          item.link === props.pageContext.localizedPath ||
+          item.en_link === props.pageContext.localizedPath
+            ? classes.submenu + " " + classes.submenuActive
+            : classes.submenu
+        }
+        key={item.link}
+      >
         <LocLink to={item.link} className={classes.linkDropdown}>
           {item.label}
         </LocLink>
@@ -149,7 +171,19 @@ function Header(props) {
               // onClick={(event) => event.preventDefault()}
             >
               <Center>
-                <span className={classes.linkLabel}>{link.label}</span>
+                <span
+                  className={
+                    link.links.some(
+                      (e) =>
+                        e.link === props.pageContext.localizedPath ||
+                        e.en_link === props.pageContext.localizedPath
+                    )
+                      ? classes.linkLabel + " " + classes.underlined
+                      : classes.linkLabel
+                  }
+                >
+                  {link.label}
+                </span>
                 <IconChevronDown size="0.9rem" stroke={1.5} />
               </Center>
             </a>
@@ -163,7 +197,13 @@ function Header(props) {
       <LocLink
         key={link.label}
         to={link.link}
-        className={classes.link}
+        className={
+          props.pageContext.localizedPath === link.link ||
+          props.pageContext.localizedPath === link.en_link
+            ? classes.link + " " + classes.underlined
+            : classes.link
+        }
+
         //onClick={(event) => event.preventDefault()}
       >
         {link.label}
@@ -181,7 +221,7 @@ function Header(props) {
         key={link.label}
         // onClick={(event) => event.preventDefault()}
       >
-        {link.label}
+        {link.label + "a"}
       </Text>
     ));
 
@@ -221,7 +261,7 @@ function Header(props) {
     );
   };
 
-  const NavbarNested = () => {
+  const MobileNavbarNested = () => {
     const mobileLinks = links.map((item) => (
       <LinksGroup {...item} key={item.label} />
     ));
@@ -287,7 +327,7 @@ function Header(props) {
       </AppShell.Header>
 
       <AppShell.Navbar py="md" px={4} zIndex={300}>
-        <NavbarNested />
+        <MobileNavbarNested />
       </AppShell.Navbar>
     </>
   );
