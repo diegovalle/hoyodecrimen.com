@@ -23,6 +23,13 @@ export function YYYYmmddArrayToDate(arr) {
   return arr.map((item) => YYYYmmddToDate15(item));
 }
 
+export function YYYYmmToStr(str: string, language: string) {
+  return [
+    new Date(str + "-15").toLocaleString(language, { month: "short" }),
+    new Date(str + "-15").getFullYear(),
+  ].join(`\n`);
+}
+
 export const axisLabel = {
   fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
   fontSize: 12,

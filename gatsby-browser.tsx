@@ -45,6 +45,7 @@ import '@mantine/core/styles/Divider.css';
 import '@mantine/core/styles/Drawer.css';
 import '@mantine/core/styles/Grid.css';
 import '@mantine/core/styles/List.css';
+import '@mantine/core/styles/LoadingOverlay.css';
 import '@mantine/core/styles/Menu.css';
 import '@mantine/core/styles/Modal.css';
 import '@mantine/core/styles/NavLink.css';
