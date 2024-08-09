@@ -98,7 +98,6 @@ export const MapFilters = (props: Props) => {
           label={props.hourLabelFormat}
           marks={props.hourMarks}
           onChangeEnd={(v) => {
-            console.log(v);
             let meridiem_start = v[0] % 24 >= 12 ? " PM" : " AM";
             let meridiem_end = v[1] % 24 >= 12 ? " PM" : " AM";
             let hour_start = v[0] % 12 === 0 ? 12 : v[0] % 12;
