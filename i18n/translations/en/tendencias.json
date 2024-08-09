@@ -1,3 +1,4 @@
 {
-  "Mexico City Crime Trends": "Mexico City Crime Trends"
+  "Mexico City Crime Trends": "Mexico City Crime Trends",
+  "intro": "The trend is the value of the first derivative at the last point of a generalized additive model (GAM) fitted to the homicide counts. Trendlines are colored blue when crime is going down, red when crime is going up, and black when the trend is not statistically significant."
 }

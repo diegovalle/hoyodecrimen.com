@@ -51,9 +51,9 @@ export const DotMap = (props: Props) => {
   const [geoJson, setGeoJson] = useState(null);
   const [sectoresLayerProps, setSectoresLayerProps] = useState({});
   const [clusterCount, setClusterCount] = useState({});
-  const [debounced] = useDebouncedValue(selectedCrimes, 1000);
-  const [debouncedDate] = useDebouncedValue(dateEndValue, 1000);
-  const [debouncedHour] = useDebouncedValue(hourEndValue, 1000);
+  const [debounced] = useDebouncedValue(selectedCrimes, 400);
+  const [debouncedDate] = useDebouncedValue(dateEndValue, 0);
+  const [debouncedHour] = useDebouncedValue(hourEndValue, 0);
 
   const abortControllerRef = useRef<AbortController>(null);
   const zoom = useRef(null);
@@ -293,7 +293,7 @@ export const DotMap = (props: Props) => {
 
       abortControllerRef.current = newAbortController;
       // Call onSearch with new search term and abort controller
-
+      props.openLoading();
       const fetchRequestJSON = pRetry(() => fetchAggregate(url), {
         signal: abortControllerRef.current.signal,
         retries: 2,
@@ -379,6 +379,9 @@ export const DotMap = (props: Props) => {
         })
         .catch((error) => {
           console.log(error);
+        })
+        .finally(() => {
+          props.closeLoading();
         });
     } else {
       setOptionsChanged(true);

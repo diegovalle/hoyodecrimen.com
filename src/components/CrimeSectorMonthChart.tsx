@@ -69,7 +69,7 @@ function CrimeSectorMonthChart(props) {
         text: props.title,
         left: "center",
         textStyle: {
-          fontFamily: "Roboto Condensed",
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
           fontSize: props.fontSize,
           fontWeight: props.fontWeight,
         },
@@ -86,7 +86,7 @@ function CrimeSectorMonthChart(props) {
             shadowOffsetX: 0,
             shadowOffsetY: 0,
             color: "#111",
-            fontFamily: "Roboto Condensed",
+            fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
           },
         },
         formatter: function (item) {
@@ -195,7 +195,17 @@ function CrimeSectorMonthChart(props) {
         if (echartsInstance?.current !== null)
           echartsInstance.current.getEchartsInstance().hideLoading();
       });
-  }, [meta.site.siteMetadata.apiUrl, props.fontSize, props.fontWeight, props.lang, props.title, props.yname, selectedCrime, selectedRegion, t]);
+  }, [
+    meta.site.siteMetadata.apiUrl,
+    props.fontSize,
+    props.fontWeight,
+    props.lang,
+    props.title,
+    props.yname,
+    selectedCrime,
+    selectedRegion,
+    t,
+  ]);
 
   return (
     <>

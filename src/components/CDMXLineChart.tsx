@@ -101,7 +101,7 @@ function CDMXLineChart(props) {
       text: props.title,
       left: "center",
       textStyle: {
-        fontFamily: "Roboto Condensed",
+        fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
         fontSize: props.fontSize,
         fontWeight: props.fontWeight,
       },
@@ -118,7 +118,7 @@ function CDMXLineChart(props) {
           shadowOffsetX: 0,
           shadowOffsetY: 0,
           color: "#111",
-          fontFamily: "Roboto Condensed",
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
         },
       },
       formatter: function (item) {
@@ -146,7 +146,7 @@ function CDMXLineChart(props) {
     },
     xAxis: {
       type: "category",
-      nameTextStyle: { fontFamily: "Roboto Condensed", color: "#111" },
+      nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif", color: "#111" },
       data: CDMXRate
         ? CDMXRate.map(function (item) {
             return item.date;
@@ -170,7 +170,7 @@ function CDMXLineChart(props) {
         name: t("homicide rate"),
         nameLocation: "middle",
         nameGap: 30,
-        nameTextStyle: { fontFamily: "Roboto Condensed", color: "#111" },
+        nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif", color: "#111" },
         type: "value",
         scale: false,
         splitNumber: 2,

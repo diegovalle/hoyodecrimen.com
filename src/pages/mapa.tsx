@@ -9,7 +9,16 @@ import { useViewportSize } from "@mantine/hooks";
 
 import { useDisclosure, useElementSize } from "@mantine/hooks";
 import type { PageProps } from "gatsby";
-import { AppShell, Grid, Drawer, Affix, Button } from "@mantine/core";
+import {
+  AppShell,
+  Grid,
+  Drawer,
+  Affix,
+  Button,
+  ScrollArea,
+  LoadingOverlay,
+  Box,
+} from "@mantine/core";
 import { useHash } from "@mantine/hooks";
 //import "@mantine/core/styles.css";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
@@ -24,11 +33,22 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   useEffect(() => {}, []);
   const { language } = pageContext;
   const { t } = useTranslation();
-  const { height: h, width: w } = useViewportSize();
+  const { width: w } = useViewportSize();
   const [openMenu, { toggle: toggleMenu }] = useDisclosure(false);
+  const [
+    visibleLoading,
+    { open: openLoading, close: closeLoading, toggle: toggleLoading },
+  ] = useDisclosure(false);
   const [opened, { close, toggle }] = useDisclosure(false);
   const { ref, height } = useElementSize();
   const [hash, setHash] = useHash({ getInitialValueInEffect: true });
+  const breakpoints = {
+    xs: 576,
+    sm: 768,
+    md: 992,
+    lg: 1200,
+    xl: 1408,
+  };
 
   // const [selectedCrime, setSelectedCrime] = useState("HOMICIDIO DOLOSO");
   // const updateCrime = (crime) => {
@@ -204,6 +224,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 dateEndValue={dateEndValue}
                 hourEndValue={hourEndValue}
                 monthsAvailable={monthsAvailable}
+                openLoading={openLoading}
+                closeLoading={closeLoading}
               />
             ) : null}
 
@@ -220,7 +242,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               </Button>
             </Affix>
           </Grid.Col>
-          {w < 600 ? (
+          {w < breakpoints.sm ? (
             <Drawer
               opened={opened}
               onClose={close}
@@ -228,21 +250,31 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               title={t("Filters")}
               keepMounted={true}
               zIndex={250}
+              scrollAreaComponent={ScrollArea.Autosize}
             >
-              <MapFilters
-                checked={checked}
-                setChecked={setChecked}
-                numMonths={numMonths}
-                monthMarks={monthMarks}
-                valueLabelFormat={valueLabelFormat}
-                hourLabelFormat={hourLabelFormat}
-                hourMarks={hourMarks}
-                crimeList={crimeList}
-                setSelectedCrimes={setSelectedCrimes}
-                selectedCrimes={selectedCrimes}
-                setDateEndValue={setDateEndValue}
-                setHourEndValue={setHourEndValue}
-              />
+              <Box style={{ height: height + 16 }} pos="relative">
+                <LoadingOverlay
+                  visible={visibleLoading}
+                  zIndex={1000}
+                  overlayProps={{ radius: "sm", blur: 1 }}
+                />
+                <MapFilters
+                  checked={checked}
+                  setChecked={setChecked}
+                  numMonths={numMonths}
+                  monthMarks={monthMarks}
+                  valueLabelFormat={valueLabelFormat}
+                  hourLabelFormat={hourLabelFormat}
+                  hourMarks={hourMarks}
+                  crimeList={crimeList}
+                  setSelectedCrimes={setSelectedCrimes}
+                  selectedCrimes={selectedCrimes}
+                  setDateEndValue={setDateEndValue}
+                  setHourEndValue={setHourEndValue}
+                  monthsAvailable={monthsAvailable}
+                  language={language}
+                />
+              </Box>
             </Drawer>
           ) : (
             <Grid.Col
@@ -251,20 +283,31 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               p={0}
               m={0}
             >
-              <MapFilters
-                checked={checked}
-                setChecked={setChecked}
-                numMonths={numMonths}
-                monthMarks={monthMarks}
-                valueLabelFormat={valueLabelFormat}
-                hourLabelFormat={hourLabelFormat}
-                hourMarks={hourMarks}
-                crimeList={crimeList}
-                setSelectedCrimes={setSelectedCrimes}
-                selectedCrimes={selectedCrimes}
-                setDateEndValue={setDateEndValue}
-                setHourEndValue={setHourEndValue}
-              />
+              <Box style={{ height: height + 16 }} pos="relative">
+                <LoadingOverlay
+                  visible={visibleLoading}
+                  zIndex={1000}
+                  overlayProps={{ radius: "sm", blur: 1 }}
+                />
+                <ScrollArea type="always">
+                  <MapFilters
+                    checked={checked}
+                    setChecked={setChecked}
+                    numMonths={numMonths}
+                    monthMarks={monthMarks}
+                    valueLabelFormat={valueLabelFormat}
+                    hourLabelFormat={hourLabelFormat}
+                    hourMarks={hourMarks}
+                    crimeList={crimeList}
+                    setSelectedCrimes={setSelectedCrimes}
+                    selectedCrimes={selectedCrimes}
+                    setDateEndValue={setDateEndValue}
+                    setHourEndValue={setHourEndValue}
+                    monthsAvailable={monthsAvailable}
+                    language={language}
+                  />
+                </ScrollArea>
+              </Box>
             </Grid.Col>
           )}
 
@@ -293,7 +336,7 @@ export const query = graphql`
       }
     }
     locales: allLocale(
-      filter: { ns: { in: ["common", "index"] }, language: { eq: $language } }
+      filter: { ns: { in: ["common", "mapa"] }, language: { eq: $language } }
     ) {
       edges {
         node {

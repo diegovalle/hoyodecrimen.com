@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { graphql } from "gatsby";
-import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
+import { Trans } from "gatsby-plugin-react-i18next";
 
 import { useDisclosure, useElementSize } from "@mantine/hooks";
 //import { MantineLogo } from "@mantine/ds";
@@ -15,9 +15,10 @@ import {
   Drawer,
   Affix,
   Button,
-  Text,
   Title,
   Space,
+  ScrollArea,
+  Container,
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import { IconInfoCircle } from "@tabler/icons-react";
@@ -30,10 +31,11 @@ import social_image_en from "../images/social/social-colonias_en.jpg";
 const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   useEffect(() => {}, []);
   const { language } = pageContext;
-  const { t } = useTranslation();
   const [openMenu, { toggle: toggleMenu }] = useDisclosure(false);
   const [opened, { close, toggle }] = useDisclosure(false);
   const { ref, height } = useElementSize();
+
+  const [lastDate, setLastDate] = useState(null);
 
   return (
     <AppShell
@@ -69,6 +71,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               <ColoniasMap
                 selectedCrime={"HOMICIDIO DOLOSO"}
                 setSelectedCuadrante={null}
+                setLastDate={setLastDate}
+                lang={language}
               />
             ) : null}
 
@@ -78,14 +82,31 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               lockScroll={false}
               title={""}
               zIndex={250}
+              scrollAreaComponent={ScrollArea.Autosize}
             >
-                <Title order={1}><Trans>Homicide rate by Neighborhood"</Trans></Title>
-                <Title order={2} size={"md"}>
-                  <Trans>What is a smoothed rate?</Trans>
-                </Title>
-                <Space h="xs"></Space>
-                <Trans i18nKey="smoothed"></Trans>
-              
+                <Container size="xs">
+                  <Title order={1} size="h4">
+                    <Trans>Homicide rate by Neighborhood</Trans>
+                  </Title>
+                  {lastDate
+                    ? lastDate.charAt(0).toUpperCase() + lastDate.slice(1)
+                    : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
+                  <Space h="xl" />
+                  <Container
+                    size="xs"
+                    p={"1rem"}
+                    bg="var(--mantine-color-blue-light)"
+                    r="--mantine-radius-md"
+                  >
+                    <Title order={2} size="h7">
+                      <Trans>What is a smoothed rate?</Trans>
+                    </Title>
+                    <Space h="xs"></Space>
+                    <Trans i18nKey="smoothed"></Trans>
+                  </Container>
+                  <Space h="xs"></Space>
+                  <Trans i18nKey="slop"></Trans>
+                </Container>
             </Drawer>
             <Affix position={{ bottom: 85, right: 20 }}>
               <Button

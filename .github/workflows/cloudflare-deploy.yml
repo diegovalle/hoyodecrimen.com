@@ -1,21 +1,19 @@
 name: Cloudflare Production Deployment
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   push:
     branches:
-      - production
+      - cloudflare
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
-      - name: deploy production
+      - name: build hoyodecrimen website
         run: >
           docker run -v ${{github.workspace}}:/hoyodecrimen node:20.14.0
-          /bin/sh -c 'npm install 
+          /bin/sh -c 'cd /hoyodecrimen 
+          && npm install 
           && ./node_modules/.bin/gatsby telemetry --disable 
           && ./node_modules/.bin/gatsby build 
           && chmod -R o+rwx /hoyodecrimen'
@@ -24,15 +22,15 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: YOUR_ACCOUNT_ID
-          projectName: YOUR_PROJECT_NAME
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ secrets.CLOUDFLARE_PROJECT }}
           directory: public
           # Optional: Enable this if you want to have GitHub Deployments triggered
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           # Optional: Switch what branch you are publishing to.
           # By default this will be the branch which triggered this workflow
-          branch: master
+          branch: cloudflare
           # Optional: Change the working directory
-          workingDirectory: ${{github.workspace}}/public
+          # workingDirectory: ${{github.workspace}}/public
           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
           wranglerVersion: '3'

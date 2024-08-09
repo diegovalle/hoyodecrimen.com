@@ -14,6 +14,7 @@ import {
   Space,
   Divider,
   Skeleton,
+  Container
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
@@ -119,7 +120,7 @@ const TasasPage: React.FC<PageProps> = ({
                         "ROBO DE VEHICULO AUTOMOTOR C.V." ||
                       Object.keys(crime)[0] ===
                         "ROBO DE VEHICULO AUTOMOTOR S.V."
-                        ? 17
+                        ? 14
                         : 14
                     }
                   />
@@ -134,6 +135,9 @@ const TasasPage: React.FC<PageProps> = ({
           <TrendChartPlaceHolder n={15} prefix="b" />
         )}
       </Grid>
+      <Container size="sm">
+          <Trans i18nKey="intro"></Trans>
+        </Container>
     </Layout>
   );
 };

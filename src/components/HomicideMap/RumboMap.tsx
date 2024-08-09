@@ -169,7 +169,6 @@ export const RumboMap = (props: Props) => {
   }, [coords]);
 
   useEffect(() => {
-    let ignore = false;
     //const cdmxCenter = { latitude: 19.43260554030921, longitude: -99.133208 };
     const cdmxCenter = {
       latitude: 19.291535549974697,
@@ -269,9 +268,9 @@ export const RumboMap = (props: Props) => {
         //=> 'User clicked cancel button'
       }
     }
-    return () => {
-      ignore = true;
-    };
+    // return () => {
+    //   ignore = true;
+    // };
   }, [marker]);
 
   useEffect(() => {

@@ -1,0 +1,26 @@
+name: Netlify Production Deployment
+on:
+  push:
+    branches:
+      - netlify
+
+
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: build hoyodecrimen website
+        env:
+          NETLIFY_SITE_ID: 15a82f5a-5dd0-4b52-afeb-9e17b03dc075
+          NETLIFY_API_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
+        run: >
+          docker run -v ${{github.workspace}}:/hoyodecrimen node:20.14.0
+          /bin/sh -c 'cd /hoyodecrimen 
+          && npm install 
+          && npm install netlify-cli@17.10.1 -g
+          && ./node_modules/.bin/gatsby telemetry --disable 
+          && ./node_modules/.bin/gatsby build
+          && netlify deploy --dir=public --auth ${{ secrets.NETLIFY_API_TOKEN }} --prod'
+     
