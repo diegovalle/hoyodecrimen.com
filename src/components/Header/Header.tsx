@@ -211,17 +211,23 @@ function Header(props) {
     );
   });
 
-  const LinksGroup = ({ links, label, link, icon: Icon }) => {
+  const LinksGroup = ({ links, label, link, en_link, icon: Icon }) => {
     const hasLinks = Array.isArray(links);
     const items = (hasLinks ? links : []).map((link) => (
       <Text<"a">
         component="a"
-        className={classes.link}
+        //className={classes.link}
         href={link.link}
         key={link.label}
+        className={
+          props.pageContext.localizedPath === link.link ||
+          props.pageContext.localizedPath === link.en_link
+            ? classes.link + " " + classes.textUnderlined
+            : classes.link
+        }
         // onClick={(event) => event.preventDefault()}
       >
-        {link.label + "a"}
+        {link.label}
       </Text>
     ));
 
@@ -238,7 +244,16 @@ function Header(props) {
                 {hasLinks ? (
                   label
                 ) : (
-                  <Text component="a" href={link}>
+                  <Text
+                    component="a"
+                    href={link}
+                    className={
+                      props.pageContext.localizedPath === link ||
+                      props.pageContext.localizedPath === en_link
+                        ? classes.textUnderlined
+                        : ""
+                    }
+                  >
                     {label}
                   </Text>
                 )}

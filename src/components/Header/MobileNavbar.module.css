@@ -51,10 +51,14 @@
 
 .underlined {
   /* text-decoration: underline; */
-  background:linear-gradient(180deg, transparent 60%, #444 60%);
+  background: linear-gradient(180deg, transparent 60%, #444 60%);
   background-position: 0 0.7em;
   background-repeat: repeat-x;
   background-size: 100% 1em;
+}
+
+.textUnderlined {
+  text-decoration: underline;
 }
 
 .linkDropdown {
