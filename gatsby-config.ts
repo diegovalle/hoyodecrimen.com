@@ -134,8 +134,8 @@ const config: GatsbyConfig = {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
     apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
-    // https://tilehoyo.surge.sh
-    // https://tileshoyo.netlify.app
+    // https://tileshoyo.surge.sh (cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
+    // https://tileshoyo.netlify.app (cors hoyodecrimen.com)
     osmTilesUrl: `https://hoyodecrimen-tiles.onrender.com/{z}/{x}/{y}.html`,
     spriteUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/sprites/sprite",
     glyphsUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/fonts/{fontstack}/{range}.pbf",
