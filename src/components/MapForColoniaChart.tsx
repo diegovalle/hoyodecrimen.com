@@ -138,7 +138,7 @@ const MapForSectorMonthChart = React.memo(
     const [chartOptions, setChartOptions] = useState(options);
 
     useEffect(() => {
-      fetch("/maps/colonias.pbf")
+      fetch("/maps/colonias_2019.pbf.avif")
         .then((data) => data.arrayBuffer())
         .then((data) => {
           let geoJson = geobuf.decode(new Pbf(data));

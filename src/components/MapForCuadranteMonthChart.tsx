@@ -146,7 +146,7 @@ const MapForCuadranteMonthChart = React.memo(
       const url =
         `${meta.site.siteMetadata.apiUrl}/api/v1/cuadrantes/all/crimes/HOMICIDIO%20DOLOSO/period`;
 
-      fetch("/maps/cuadrantes_2023.pbf")
+      fetch("/maps/cuadrantes_2023.pbf.avif")
         .then((data) => data.arrayBuffer())
         .then((data) => {
           let geoJson = geobuf.decode(new Pbf(data));
