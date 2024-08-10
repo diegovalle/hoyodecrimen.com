@@ -320,7 +320,7 @@ export const RumboMap = (props: Props) => {
     mapStyle.layers.push(...rumboStyle);
 
     if (userLocation) {
-      mapRef.current.setZoom(14.3);
+      mapRef.current.setZoom(14.1);
       mapRef.current.setCenter([userLocation.longitude, userLocation.latitude]);
       setMarker({
         longitude: userLocation.longitude,
@@ -360,9 +360,9 @@ export const RumboMap = (props: Props) => {
       maxZoom={maxZoom}
       onMouseEnter={onHover}
       onTouchStart={onHover}
-      onMouseLeave={() => {
-        setHoverInfo(null);
-      }}
+      // onMouseLeave={() => {
+      //   setHoverInfo(null);
+      // }}
       interactiveLayerIds={["crime-points"]}
     >
       {pointData && (
