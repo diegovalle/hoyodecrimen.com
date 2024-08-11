@@ -1,6 +1,6 @@
 export const translations = {
   en: {
-    "/en/_title": "Mexico City Crime Rates and Statistics",
+    "/en/_title": "Mexico City Crime Rates and Statistics - HoyoDeCrimen",
     "/en/_description":
       "Mexico City crime rates and violence map. Find out how safe your neighborhood is with maps and charts",
     "/en/cuadrantes-map_title": "Crime in Mexico City by Cuadrante",
