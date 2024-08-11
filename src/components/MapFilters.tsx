@@ -93,7 +93,14 @@ export const MapFilters = (props: Props) => {
               // classNames={classes}
             />
           ) : (
-            <Skeleton height={16 + 32} radius="xl" />
+            <RangeSlider
+              pl={30}
+              pr={50}
+              minRange={0}
+              min={0}
+              max={70}
+              marks={[{ value: 0, label: "⠀⠀⠀" }]}
+            />
           )}
           {/* <Skeleton height={19+32} radius="xl" /> */}
           {/* </AspectRatio> */}
