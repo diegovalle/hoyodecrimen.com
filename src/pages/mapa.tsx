@@ -65,6 +65,10 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [dateEndValue, setDateEndValue] = useState(null);
   const [hourEndValue, setHourEndValue] = useState(null);
   const [monthsAvailable, setMonthsAvailable] = useState(null);
+  const [dateValue, setDateValue] = useState(null);
+  const [hourValue, setHourValue] = useState<[number, number]>([5, 28]);
+  const [monthsText, setMonthsText] = useState(t("All"));
+  const [hoursText, setHoursText] = useState(t("All"));
 
   function dateRange(startDate, endDate) {
     // we use UTC methods so that timezone isn't considered
@@ -226,6 +230,10 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 monthsAvailable={monthsAvailable}
                 openLoading={openLoading}
                 closeLoading={closeLoading}
+                dateValue={dateValue}
+                setDateValue={setDateValue}
+                hourValue={hourValue}
+                setHourValue={setHourValue}
               />
             ) : null}
 
@@ -252,7 +260,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               zIndex={250}
               scrollAreaComponent={ScrollArea.Autosize}
             >
-              <Box style={{ height: height + 16 }} pos="relative">
+              <Box pos="relative">
                 <LoadingOverlay
                   visible={visibleLoading}
                   zIndex={1000}
@@ -273,6 +281,14 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   setHourEndValue={setHourEndValue}
                   monthsAvailable={monthsAvailable}
                   language={language}
+                  dateValue={dateValue}
+                  setDateValue={setDateValue}
+                  hourValue={hourValue}
+                  setHourValue={setHourValue}
+                  hoursText={hoursText}
+                  setHoursText={setHoursText}
+                  monthsText={monthsText}
+                  setMonthsText={setMonthsText}
                 />
               </Box>
             </Drawer>
@@ -283,30 +299,36 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               p={0}
               m={0}
             >
-              <Box style={{ height: height + 16 }} pos="relative">
+              <Box style={{ height: "100%" }} pos="relative">
                 <LoadingOverlay
                   visible={visibleLoading}
                   zIndex={1000}
                   overlayProps={{ radius: "sm", blur: 1 }}
                 />
-                <ScrollArea type="always">
-                  <MapFilters
-                    checked={checked}
-                    setChecked={setChecked}
-                    numMonths={numMonths}
-                    monthMarks={monthMarks}
-                    valueLabelFormat={valueLabelFormat}
-                    hourLabelFormat={hourLabelFormat}
-                    hourMarks={hourMarks}
-                    crimeList={crimeList}
-                    setSelectedCrimes={setSelectedCrimes}
-                    selectedCrimes={selectedCrimes}
-                    setDateEndValue={setDateEndValue}
-                    setHourEndValue={setHourEndValue}
-                    monthsAvailable={monthsAvailable}
-                    language={language}
-                  />
-                </ScrollArea>
+                <MapFilters
+                  checked={checked}
+                  setChecked={setChecked}
+                  numMonths={numMonths}
+                  monthMarks={monthMarks}
+                  valueLabelFormat={valueLabelFormat}
+                  hourLabelFormat={hourLabelFormat}
+                  hourMarks={hourMarks}
+                  crimeList={crimeList}
+                  setSelectedCrimes={setSelectedCrimes}
+                  selectedCrimes={selectedCrimes}
+                  setDateEndValue={setDateEndValue}
+                  setHourEndValue={setHourEndValue}
+                  monthsAvailable={monthsAvailable}
+                  language={language}
+                  dateValue={dateValue}
+                  setDateValue={setDateValue}
+                  hourValue={hourValue}
+                  setHourValue={setHourValue}
+                  hoursText={hoursText}
+                  setHoursText={setHoursText}
+                  monthsText={monthsText}
+                  setMonthsText={setMonthsText}
+                />
               </Box>
             </Grid.Col>
           )}
