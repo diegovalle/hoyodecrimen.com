@@ -43,7 +43,6 @@ function CrimeSectorDiffMonthChart(props) {
     language,
     period,
     lang,
-    height = 450,
     title = "", // eslint-disable-line
     fontWeight = "normal", // eslint-disable-line
     fontSize = 14, // eslint-disable-line

@@ -33,7 +33,6 @@ const MapForSectorMonthChart = React.memo(
   ({ updateRegion, selectedCrime, updateColoniaName, height = "100%" }) => {
     const [geoJSON, setGeoJSON] = useState(null);
     const coloniasRef = useRef(null);
-    const [colonias, setColonias] = useState(null);
     const meta = useStaticQuery(graphql`
       query {
         site {
@@ -150,7 +149,6 @@ const MapForSectorMonthChart = React.memo(
             names[geoJson.features[i].properties.CVEUT] =
               geoJson.features[i].properties.NOMUT;
           }
-          setColonias({ ...names });
           coloniasRef.current = { ...names };
           echarts.registerMap("Colonias", geoJson);
         });
@@ -190,7 +188,7 @@ const MapForSectorMonthChart = React.memo(
       click: function (params) {
         const values = { ...params };
         updateRegion(values.name);
-        updateColoniaName(colonias[values.name]);
+        updateColoniaName(coloniasRef.current[values.name]);
       },
     };
     const MemoChart = useMemo(
