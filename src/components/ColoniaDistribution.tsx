@@ -262,9 +262,10 @@ function CrimeSectorDiffMonthChart(props) {
                 label: {
                   formatter:
                     (coloniaName ? coloniaName : "") +
-                    " - " +
+                    " \n" + t("Homicide Rate") + ": " +
                     round1(pointEstimate[idx]),
                   position: "end",
+                  fontStyle: "bold",
                 },
               },
             ],
