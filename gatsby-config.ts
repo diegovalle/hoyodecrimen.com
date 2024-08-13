@@ -98,9 +98,9 @@ const deploy_headers_vercel = {
 };
 
 const deploy_headers_netlify = {
-  // '/': [
-  //   'Link: </elcrimen-json/states_hexgrid.json>; rel=preload; as=fetch; crossorigin',
-  // ],
+   '/': [
+     'Link: <https://api.hoyodecrimen.com>; rel="preconnect"',
+   ],
   "/static/json/*": [
     "cache-control: public",
     "cache-control: max-age=0",
