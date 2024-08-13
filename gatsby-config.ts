@@ -133,6 +133,8 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
+    // "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
+    // "http://localhost:8080"
     apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
     // https://tileshoyo.surge.sh (cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
     // https://tileshoyo.netlify.app (cors hoyodecrimen.com)
