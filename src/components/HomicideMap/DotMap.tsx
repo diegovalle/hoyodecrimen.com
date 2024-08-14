@@ -24,7 +24,7 @@ import "../../css/loading.css";
 import MAP_STYLE from "../MapStyles/3d";
 
 import dotStyle from "../MapStyles/dot-map";
-import sectoresCentroids from "../../../static/maps/sectores_centroids.geojson.json";
+import sectoresCentroids from "../../../static/maps/sectores_centroids_2023.geojson.json";
 
 export const DotMap = (props: Props) => {
   const maxZoom = 19;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import ReactEChartsCore from "echarts-for-react/lib/core";
 // Import the echarts core module, which provides the necessary interfaces for using echarts.
@@ -17,10 +17,7 @@ import {
 
 import geobuf from "geobuf";
 import Pbf from "pbf";
-import { decode } from "geobuf";
-
-import { maxBy, minBy } from "lodash-es";
-import { round1 } from "./utils";
+import { round0 } from "./utils";
 import { useTranslation } from "gatsby-plugin-react-i18next";
 
 echarts.use([
@@ -35,7 +32,7 @@ echarts.use([
 const MapForSectorMonthChart = React.memo(
   ({ updateRegion, selectedCrime, updateColoniaName, height = "100%" }) => {
     const [geoJSON, setGeoJSON] = useState(null);
-    const [colonias, setColonias] = useState(null);
+    const coloniasRef = useRef(null);
     const meta = useStaticQuery(graphql`
       query {
         site {
@@ -86,7 +83,11 @@ const MapForSectorMonthChart = React.memo(
         transitionDuration: 0.2,
         formatter: (item) => {
           return (
-            item.name + "<br/><b>" + t("Rate") + "</b>:  " + round1(item.value)
+            coloniasRef.current[item.name] +
+            "<br/><b>" +
+            t("homicide rate") +
+            "</b>:  " +
+            round0(item.value)
           );
         },
       },
@@ -138,7 +139,7 @@ const MapForSectorMonthChart = React.memo(
     const [chartOptions, setChartOptions] = useState(options);
 
     useEffect(() => {
-      fetch("/maps/colonias.pbf")
+      fetch("/maps/colonias_2019.pbf.avif")
         .then((data) => data.arrayBuffer())
         .then((data) => {
           let geoJson = geobuf.decode(new Pbf(data));
@@ -148,7 +149,7 @@ const MapForSectorMonthChart = React.memo(
             names[geoJson.features[i].properties.CVEUT] =
               geoJson.features[i].properties.NOMUT;
           }
-          setColonias(names);
+          coloniasRef.current = { ...names };
           echarts.registerMap("Colonias", geoJson);
         });
     }, []);
@@ -187,7 +188,7 @@ const MapForSectorMonthChart = React.memo(
       click: function (params) {
         const values = { ...params };
         updateRegion(values.name);
-        updateColoniaName(colonias[values.name]);
+        updateColoniaName(coloniasRef.current[values.name]);
       },
     };
     const MemoChart = useMemo(

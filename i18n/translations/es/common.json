@@ -80,5 +80,7 @@
   "Police investigations started by the FGJ‑CDMX since January 2019": "Averiguaciones previas iniciadas por la FGJ‑CDMX",
   "Filters": "Filtros",
   "Privacy": " <0 href=\"/privacidad\">Privacidad</0>",
-  "English Version": "English Version"
+  "English Version": "English Version",
+  "smoothed": "Si simplemente graficamos la tasa de homicidios, podríamos notar muchos altibajos, como tasas muy altas en ciertas colonias y tasas muy bajas en otras. Estos altibajos pueden deberse a eventos aleatorios o a fluctuaciones normales debido a que la colonia promedio no tiene muchos habitantes. Para tener una visión más clara de la tendencia general, se utiliza un método estadístico llamado \"alisado\" que toma en cuenta los homicidios que ocurrieron en las colonias cercanas y los promedia",
+  "Invalid email": "Email no valido"
 }

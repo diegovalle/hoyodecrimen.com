@@ -98,9 +98,9 @@ const deploy_headers_vercel = {
 };
 
 const deploy_headers_netlify = {
-  // '/': [
-  //   'Link: </elcrimen-json/states_hexgrid.json>; rel=preload; as=fetch; crossorigin',
-  // ],
+   '/': [
+     'Link: <https://api.hoyodecrimen.com>; rel="preconnect"',
+   ],
   "/static/json/*": [
     "cache-control: public",
     "cache-control: max-age=0",
@@ -133,9 +133,11 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
+    // "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
+    // "http://localhost:8080"
     apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
-    // https://tilehoyo.surge.sh
-    // https://tileshoyo.netlify.app
+    // https://tileshoyo.surge.sh (cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
+    // https://tileshoyo.netlify.app (cors hoyodecrimen.com)
     osmTilesUrl: `https://hoyodecrimen-tiles.onrender.com/{z}/{x}/{y}.html`,
     spriteUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/sprites/sprite",
     glyphsUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/fonts/{fontstack}/{range}.pbf",

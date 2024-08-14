@@ -23,7 +23,7 @@ import {
 import { axisLabel } from "./utils";
 
 import { useTranslation } from "gatsby-plugin-react-i18next";
-import { round1, YYYYmmddToDate15 } from "./utils";
+import { round0, YYYYmmddToDate15 } from "./utils";
 
 echarts.use([
   TitleComponent,
@@ -43,7 +43,6 @@ function CrimeSectorDiffMonthChart(props) {
     language,
     period,
     lang,
-    height = 450,
     title = "", // eslint-disable-line
     fontWeight = "normal", // eslint-disable-line
     fontSize = 14, // eslint-disable-line
@@ -171,7 +170,8 @@ function CrimeSectorDiffMonthChart(props) {
     const bins = Math.ceil((max - min + 1) / size);
     const bin_width = (max - min) / bins;
     const histogram = [];
-    for (let i = 0; i < bins; i++) {
+    // Add an extra 2 bins to add padding to the xAxis
+    for (let i = 0; i < bins + 2; i++) {
       histogram.push([bin_width * (i + 1), 0]);
     }
 
@@ -183,7 +183,7 @@ function CrimeSectorDiffMonthChart(props) {
   }
 
   useEffect(() => {
-    let url =`${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=smoothgamhomicides`;
+    let url = `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=smoothgamhomicides`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -262,9 +262,12 @@ function CrimeSectorDiffMonthChart(props) {
                 label: {
                   formatter:
                     (coloniaName ? coloniaName : "") +
-                    " - " +
-                    round1(pointEstimate[idx]),
+                    " \n" +
+                    t("Homicide Rate") +
+                    ": " +
+                    round0(pointEstimate[idx]),
                   position: "end",
+                  fontStyle: "bold",
                 },
               },
             ],

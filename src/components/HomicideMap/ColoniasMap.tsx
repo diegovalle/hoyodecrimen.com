@@ -22,7 +22,7 @@ import MAP_STYLE from "../MapStyles/3d";
 
 import crimeStyle from "../MapStyles/colonias-map";
 import { useTranslation } from "gatsby-plugin-react-i18next";
-import { YYYYmmddToDate15 } from "../utils";
+import { YYYYmmddToDate15, comma } from "../utils";
 
 let coloniaId = null;
 
@@ -396,7 +396,7 @@ export const SectoresMap = (props: Props) => {
           <b>
             <Trans>Population</Trans>
           </b>
-          : {clickInfo.population}
+          : {comma(clickInfo.population)}
           <br />
         </Popup>
       )}

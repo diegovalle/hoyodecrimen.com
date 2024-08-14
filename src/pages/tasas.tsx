@@ -76,32 +76,34 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <SelectCrime updateCrime={updateCrime} />
       </Container>
 
-      <Grid pl={20}>
-        <Grid.Col span={{ base: 12, md: 4, lg: 5 }}>
-          <AspectRatio ratio={1.1} style={{ flex: `0 0 ${rem(100)}` }}>
-            <MapForSectorMonthChart
-              selectedCrime={selectedCrime}
-              updateRegion={setSelectedRegion}
-              height="100%"
-            />
-          </AspectRatio>
-        </Grid.Col>
-        <Grid.Col span={{ base: 12, md: 8, lg: 7 }}>
-          <Center>
-            {selectedRegion === "null" ? "CDMX" : "Sector: " + selectedRegion}
-          </Center>
-          <AspectRatio ratio={2} style={{ flex: `0 0 ${rem(100)}` }}>
-            <CrimeSectorMonthChart
-              lang={language}
-              selectedRegion={selectedRegion}
-              selectedCrime={selectedCrime}
-              height="100%"
-            />
-          </AspectRatio>
-        </Grid.Col>
-      </Grid>
+      <div id="annualized_rate">
+        <Grid pl={20}>
+          <Grid.Col span={{ base: 12, md: 4, lg: 5 }}>
+            <AspectRatio ratio={1.1} style={{ flex: `0 0 ${rem(100)}` }}>
+              <MapForSectorMonthChart
+                selectedCrime={selectedCrime}
+                updateRegion={setSelectedRegion}
+                height="100%"
+              />
+            </AspectRatio>
+          </Grid.Col>
+          <Grid.Col span={{ base: 12, md: 8, lg: 7 }}>
+            <Center>
+              {selectedRegion === "null" ? "CDMX" : "Sector: " + selectedRegion}
+            </Center>
+            <AspectRatio ratio={2} style={{ flex: `0 0 ${rem(100)}` }}>
+              <CrimeSectorMonthChart
+                lang={language}
+                selectedRegion={selectedRegion}
+                selectedCrime={selectedCrime}
+                height="100%"
+              />
+            </AspectRatio>
+          </Grid.Col>
+        </Grid>
+      </div>
       <Space h="lg" />
-      <Divider/>
+      <Divider />
       <Space h="lg" />
       <Stack>
         <Container size="sm">

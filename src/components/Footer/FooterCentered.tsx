@@ -61,7 +61,7 @@ function FooterCentered({ language } = props) {
 
   return (
     <>
-      <MailChimp />
+      <MailChimp language={language}/>
 
       <AppShell.Footer
         withBorder={true}

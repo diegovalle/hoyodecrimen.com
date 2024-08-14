@@ -1,6 +1,6 @@
 export const translations = {
   en: {
-    "/en/_title": "Mexico City Crime Rates and Statistics",
+    "/en/_title": "Mexico City Crime Rates and Statistics - HoyoDeCrimen",
     "/en/_description":
       "Mexico City crime rates and violence map. Find out how safe your neighborhood is with maps and charts",
     "/en/cuadrantes-map_title": "Crime in Mexico City by Cuadrante",
@@ -95,9 +95,9 @@ export const translations = {
     "/cambios/_title": "Cambio en Número de Crímenes por Sector",
     "/cambios/_description":
       "Cambio en el número de crímenes en los sectores del Distrito Federal. Compara los últimos doce meses con el mismo periodo del año pasado",
-    "/comparar-colonias/_title": "Compara Delincuencia por Colonia en CDMX",
+    "/comparar-colonias/_title": "Compara la Tasa de Homicidio por Colonia en la CDMX",
     "/comparar-colonias/_description":
-      "Compara las tasas de homicidio en las distintas colonias de la CDMX. Las mejores zonas para vivir y trabajar en CDMX",
+      "Tasas de homicidio en las distintas colonias de la CDMX. Las zonas más seguras para vivir y trabajar en CDMX",
     "/rumbo-mapa/_title": "Crimen por tu Rumbo",
     "/rumbo-mapa/_description": "Mapa de delitos por tu rumbo",
     "/acerca/_title": "Información de HoyoDeCrimen.com",

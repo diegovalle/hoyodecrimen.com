@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { HeadFC, PageProps } from "gatsby";
+import type { HeadFC } from "gatsby";
 import { translations } from "../../i18n/translations/head_translations";
 import { translated_routes } from "../../i18n/locales/routes/routes";
 

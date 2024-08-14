@@ -49,6 +49,18 @@
   }
 }
 
+.underlined {
+  /* text-decoration: underline; */
+  background: linear-gradient(180deg, transparent 60%, #444 60%);
+  background-position: 0 0.7em;
+  background-repeat: repeat-x;
+  background-size: 100% 1em;
+}
+
+.textUnderlined {
+  text-decoration: underline;
+}
+
 .linkDropdown {
   font-family: system-ui, sans-serif;
   /*  font-size: var(--mantine-font-size-md); */
@@ -68,4 +80,8 @@
   &[data-hovered] {
     background-color: #999999;
   }
+}
+
+.submenuActive {
+  background-color: #999999;
 }

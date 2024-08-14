@@ -151,30 +151,15 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         siteUrl={data.site.siteMetadata.siteUrl}
         language={language}
       />
-      <Center>
-        <Title
-          order={1}
-          py=".5rem"
-          /* styles={{
-            root: {
-              fontFamily:
-                "Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;",
-            },
-          }} */
-        >
-          <Trans>Mexico City Crime</Trans>
-        </Title>
-      </Center>
+      <Title order={1} py=".5rem" align="center">
+        <Trans>Mexico City Crime</Trans>
+      </Title>
+      <Title order={2} size="sm" align="center">
+        <Trans>Homicide Map</Trans>
+      </Title>
       <Center>
         <Title order={2} size="sm">
-          <Trans>Homicide Map</Trans>
-        </Title>
-      </Center>
-      <Center>
-        <Title order={2} size="sm">
-          {lastDate
-            ? lastDate.charAt(0).toUpperCase() + lastDate.slice(1)
-            : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
+          {lastDate ? lastDate : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
         </Title>
       </Center>
       <Center>

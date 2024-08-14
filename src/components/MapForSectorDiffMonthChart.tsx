@@ -161,7 +161,7 @@ const MapForSectorDiffMonthChart = React.memo(
     `);
 
     useEffect(() => {
-      fetch("/maps/sectores_2023.pbf")
+      fetch("/maps/sectores_2023.pbf.avif")
         .then((data) => data.arrayBuffer())
         .then((data) => {
           let geoJson = geobuf.decode(new Pbf(data));
