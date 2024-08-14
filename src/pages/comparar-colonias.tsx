@@ -22,6 +22,7 @@ import {
   Grid,
   rem,
   Divider,
+  Text,
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
@@ -91,12 +92,31 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       </Grid>
       <Divider my="xl" />
       <Stack>
-        <Container size="sm">
+      <Container size="sm">
           <Title order={2}>
             <Trans>Data from</Trans> {period}
           </Title>
           <Space h="md" />
         </Container>
+        
+        <Container size="sm">
+          <Trans i18nKey="colonias"></Trans>
+        </Container>
+
+        <Container
+        size="xs"
+        p={"1rem"}
+        bg="var(--mantine-color-blue-light)"
+        r="--mantine-radius-md"
+      >
+        <Title order={2} size={"md"}>
+          <Trans>What is a smoothed rate?</Trans>
+        </Title>
+        <Space h="xs"></Space>
+        <Text>
+          <Trans i18nKey="smoothed"></Trans>
+        </Text>
+      </Container>
         <Container size="sm">
           <Trans i18nKey="Mexico"></Trans>
         </Container>

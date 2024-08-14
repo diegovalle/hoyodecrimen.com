@@ -159,9 +159,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       </Title>
       <Center>
         <Title order={2} size="sm">
-          {lastDate
-            ? lastDate
-            : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
+          {lastDate ? lastDate : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
         </Title>
       </Center>
       <Center>

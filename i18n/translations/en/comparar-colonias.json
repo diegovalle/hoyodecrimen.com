@@ -18,5 +18,6 @@
 
   "li5": "Be mindful of your belongings: Keep valuables secure and avoid carrying large sums of cash.",
 
-  "last": "Mexico City has so much to offer, and with a little planning and awareness, you can navigate its diverse landscape safely. By understanding the areas with a higher risk profile, you can make informed decisions and still experience the magic of this remarkable city."
+  "last": "Mexico City has so much to offer, and with a little planning and awareness, you can navigate its diverse landscape safely. By understanding the areas with a higher risk profile, you can make informed decisions and still experience the magic of this remarkable city.",
+  "colonias": "The histogram visually represents the distribution of homicide rates across different colonias. The height of each bar indicates the frequency of occurrences within a specific rate range. Error bars associated with each bar represent the uncertainty or margin of error in the data. Longer error bars signify greater uncertainty in the homicide rate for that particular colonia, while shorter ones suggest higher confidence in the reported value. By analyzing the histogram and error bars, trends, patterns, and potential outliers in homicide rates can be identified and interpreted"
 }
