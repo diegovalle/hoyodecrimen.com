@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Trans, useTranslation } from "gatsby-plugin-react-i18next";
 import {
   Button,
@@ -9,14 +9,17 @@ import {
   Text,
   rem,
 } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useForm, isEmail } from "@mantine/form";
 import jsonp from "jsonp";
 import { IconAt } from "@tabler/icons-react";
 
-export const MailChimp = () => {
+export const MailChimp = ({ language }) => {
   const { t } = useTranslation();
   const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
+  const errorMessage = t("Invalid email2");
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -24,14 +27,8 @@ export const MailChimp = () => {
     },
 
     validate: {
-      
-      email: (value) =>
-        // eslint-disable-next-line
-        /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(
-          value
-        )
-          ? null
-          : "Invalid email",
+      validateInputOnChange: true,
+      email: isEmail(errorMessage),
     },
   });
 
@@ -49,31 +46,39 @@ export const MailChimp = () => {
   // //mc.us6.list-manage.com/subscribe/landing-page?u=787fae824c502d9f3ad7d0b73&id=1bd9444074&f_id=005f0be2f0
 
   const handleSubmit = (values: typeof form.values) => {
-    let url =
-      "https://diegovalle.us6.list-manage.com/subscribe/post?u=787fae824c502d9f3ad7d0b73&id=1bd9444074";
+    if (!form.isValid()) return;
+    let u, id;
+    if (language === "es") {
+      u = "787fae824c502d9f3ad7d0b73";
+      id = "99835eea14";
+    } else {
+      u = "787fae824c502d9f3ad7d0b73";
+      id = "102491489b";
+    }
+    let url = `https://hoyodecrimen.us6.list-manage.com/subscribe/post?u=${u}&id=${id}`;
     url = url.replace("/post?", "/post-json?");
     jsonp(
       `${url}&EMAIL=${encodeURIComponent(values.email)}`,
       { param: "c" },
       (err, data) => {
         if (err) {
-          this.setState({
-            status: "error",
-            message: err,
-          });
+          console.log(err);
+          setError("Invalid");
         } else if (data.result !== "success") {
-          this.setState({
-            status: "error",
-            message: data.msg,
-          });
+          console.log(data);
+          setError(data.msg);
         } else {
-          this.setState({
-            status: "success",
-            message: data.msg,
-          });
+          console.log(err);
+          setSuccess(true);
         }
       }
     );
+  };
+
+  const handleError = (errors: typeof form.errors) => {
+    if (errors.email) {
+      setError("Invalid Email");
+    }
   };
 
   return (
@@ -106,21 +111,24 @@ export const MailChimp = () => {
             direction="row"
             wrap="wrap"
           >
-            <form
-              // style={{ justifyContent: "flex-end", display: "flex", flex: 1 }}
-              onSubmit={form.onSubmit(handleSubmit)}
-            >
+            <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
               <Group justify="center" mt={2}>
                 <TextInput
                   // mt={0}
+                  
                   rightSectionPointerEvents="none"
                   rightSection={icon}
                   key={form.key("email")}
                   {...form.getInputProps("email")}
                   placeholder={t("Your email")}
+                  error={error}
+                  disabled={success}
+                  aria-label="Email for submission" 
                 />
 
-                <Button type="submit" style={{color: "#000"}}><Trans>Submit</Trans></Button>
+                <Button type="submit" style={{ color: "#000" }}>
+                  <Trans>Submit</Trans>
+                </Button>
               </Group>
             </form>
           </Flex>

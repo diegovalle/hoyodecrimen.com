@@ -81,5 +81,7 @@
   "Police investigations started by the FGJ‑CDMX since January 2019": "Police investigations started by the FGJ‑CDMX ",
   "Filters": "Filters",
   "Privacy": " <0 href=\"/privacidad\">Privacy</0>",
-  "English Version": "Versión en Español"
+  "English Version": "Versión en Español",
+  "smoothed": "If we simply graph the homicide rate, we can see many ups and downs, with peaks in certain neighborhoods and valleys in others. These fluctuations can be attributed to random events or normal variations due to the small population of the average neighborhoods. To obtain a clearer view of the overall trend, a statistical method called 'smoothing' is used, which considers the number of homicides in nearby neighborhoods and their population.",
+  "Invalid email": "Invalid email"
 }
