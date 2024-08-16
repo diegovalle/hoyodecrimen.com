@@ -126,8 +126,8 @@ function CrimeCuadranteMonthChart(props) {
         {
           name: t("count"),
           nameLocation: "middle",
-          nameGap: 30,
-          nameTextStyle: { ...nameTextStyle },
+          nameGap: 40,
+          nameTextStyle: { ...axisLabel },
           axisLabel: {
             ...axisLabel,
           },

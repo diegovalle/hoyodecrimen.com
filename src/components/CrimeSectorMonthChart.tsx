@@ -131,7 +131,7 @@ function CrimeSectorMonthChart(props) {
           name: t("rate"),
           nameLocation: "middle",
           nameGap: 30,
-          nameTextStyle: { ...nameTextStyle },
+          nameTextStyle: { ...axisLabel },
           axisLabel: {
             ...axisLabel,
           },

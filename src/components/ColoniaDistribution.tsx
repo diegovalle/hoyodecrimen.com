@@ -81,7 +81,7 @@ function CrimeSectorDiffMonthChart(props) {
       left: "5%",
       right: "5%",
       bottom: "10%",
-      top: "10%",
+      top: "18%",
       containLabel: true,
     },
     xAxis: {
