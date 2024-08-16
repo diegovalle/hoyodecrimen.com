@@ -7,7 +7,7 @@ import Header from "../components/Header/Header";
 import { useTranslation } from "gatsby-plugin-react-i18next";
 import { useViewportSize } from "@mantine/hooks";
 
-import { useDisclosure, useElementSize } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 import type { PageProps } from "gatsby";
 import {
   AppShell,
@@ -22,6 +22,7 @@ import {
 import { useHash } from "@mantine/hooks";
 //import "@mantine/core/styles.css";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
+import useWindowSize from "../components/useWindowSize";
 
 import DotMap from "../components/HomicideMap/DotMap";
 import MapFilters from "../components/MapFilters";
@@ -40,7 +41,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
     { open: openLoading, close: closeLoading, toggle: toggleLoading },
   ] = useDisclosure(false);
   const [opened, { close, toggle }] = useDisclosure(false);
-  const { ref, height } = useElementSize();
+  const wSize = useWindowSize();
   const [hash, setHash] = useHash({ getInitialValueInEffect: true });
   const breakpoints = {
     xs: 576,
@@ -212,14 +213,14 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         pageContext={pageContext}
       />
 
-      <AppShell.Main ref={ref}>
+      <AppShell.Main>
         <Grid overflow="hidden">
           <Grid.Col
             span={{ base: 12, md: "auto", lg: "auto" }}
-            style={{ height: height + 16 }}
+            style={{ height: wSize.height - 60 + 16 }}
             pb={0}
           >
-            {height ? (
+            {wSize.height ? (
               <DotMap
                 checked={checked}
                 setHash={setHash}
