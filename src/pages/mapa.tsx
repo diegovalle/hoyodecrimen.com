@@ -251,7 +251,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               </Button>
             </Affix>
           </Grid.Col>
-          {w < breakpoints.sm ? (
+          {wSize.width < breakpoints.sm ? (
             <Drawer
               opened={opened}
               onClose={close}
@@ -267,6 +267,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   zIndex={1000}
                   overlayProps={{ radius: "sm", blur: 1 }}
                 />
+                {wSize.height}
                 <MapFilters
                   checked={checked}
                   setChecked={setChecked}
