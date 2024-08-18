@@ -60,7 +60,6 @@ export const RumboMap = (props: Props) => {
   const [pointData, setPointData] = useState(null);
   const [circle, setCircle] = useState(null);
   const [hoverInfo, setHoverInfo] = useState(null);
-  const [fetching, setFetching] = useState(false);
   const dragging = useRef(false);
   const distance = 700;
   const markerRef = useRef<maplibregl.Marker>();
@@ -136,7 +135,6 @@ export const RumboMap = (props: Props) => {
   }, []);
 
   const onMarkerDragEnd = useCallback((event: MarkerDragEvent) => {
-    console.log(event.lngLat);
     dragging.current = false;
     setMarker({
       longitude: event.lngLat.lng,
@@ -144,14 +142,16 @@ export const RumboMap = (props: Props) => {
     });
   }, []);
 
-  const toggleAnimation = (map) => {
+  const toggleAnimation = (map, state: boolean) => {
     if (map) {
       let i;
       for (i = 0; i < map.current["_controls"].length; i++)
         if (typeof map.current["_controls"][i].toggleLoading === "function")
           break;
       if (i < map.current["_controls"].length)
-        map.current["_controls"][i].toggleLoading();
+        state
+          ? map.current["_controls"][i].turnOn()
+          : map.current["_controls"][i].turnOff();
     }
   };
 
@@ -185,13 +185,9 @@ export const RumboMap = (props: Props) => {
       marker?.latitude +
       `/distance/${distance}`;
 
-    const run = async (crimeCircle, center, cdmxCenter) => {
+    const downloadPoints = async (crimeCircle, center, cdmxCenter) => {
       let response;
-      try {
-        response = await fetch(url);
-      } finally {
-        setFetching(false);
-      }
+      response = await fetch(url);
 
       if (response.status === 404) {
         geojson.features = [];
@@ -230,47 +226,49 @@ export const RumboMap = (props: Props) => {
 
       // .catch((error) => {
       //   console.log(error);
-      //   setFetching(false);
       // })
       // .finally(() => {
-      toggleAnimation(mapRef);
-      setFetching(false);
+      toggleAnimation(mapRef, false);
       // });
     };
 
     if (marker) {
+      toggleAnimation(mapRef, true);
       let center = [marker.longitude, marker.latitude];
       let options = {
         steps: 100,
         units: "kilometers",
       };
       let crimeCircle = turfCircle(center, (distance + 5) / 1000, options);
-      toggleAnimation(mapRef);
 
       // Abort any pending requests
       if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
+        abortControllerRef.current.abort(
+          new Error("User moved marker still downloading")
+        );
       }
 
       // Create new abort controller
-      const newAbortController = new AbortController();
-
-      abortControllerRef.current = newAbortController;
+      abortControllerRef.current = new AbortController();
       // Call onSearch with new search term and abort controller
-      setFetching(true);
       try {
-        pRetry(() => run(crimeCircle, center, cdmxCenter), {
+        pRetry(() => downloadPoints(crimeCircle, center, cdmxCenter), {
           signal: abortControllerRef.current.signal,
+          onFailedAttempt: error => {
+            console.log(`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`);
+            // 1st request => Attempt 1 failed. There are 4 retries left.
+            // 2nd request => Attempt 2 failed. There are 3 retries left.
+            // …
+          },
           retries: 2,
         });
       } catch (error) {
         console.log(error.message);
-        //=> 'User clicked cancel button'
+      } finally {
+        
       }
     }
-    // return () => {
-    //   ignore = true;
-    // };
+   
   }, [marker]);
 
   useEffect(() => {

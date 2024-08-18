@@ -4,9 +4,16 @@ import * as React from "react";
 import { useState } from "react";
 import { graphql } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
-import type { ageProps } from "gatsby";
-import { Title, Center, Space, Divider, Container } from "@mantine/core";
-//import "@mantine/core/styles.css";
+import {
+  Title,
+  Center,
+  Space,
+  Divider,
+  Container,
+  List,
+  ThemeIcon,
+  rem,
+} from "@mantine/core";
 import RumboMap from "../components/HomicideMap/RumboMap";
 import GeoLocateButton from "../components/GeoLocateButton";
 
@@ -15,6 +22,7 @@ import Layout from "../components/Layout";
 import { SocialImage } from "../components/SocialImage";
 import social_image from "../images/social/social-rumbo.jpg";
 import social_image_en from "../images/social/social-rumbo_en.jpg";
+import { IconPointFilled } from "@tabler/icons-react";
 
 const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { language } = pageContext;
@@ -48,26 +56,80 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
       <Divider my="xl" />
       <Container size="sm">
-       
-          <span style={{ color: "#e41a1c", fontWeight: "bold" }}>⬤</span>
-          &nbsp;{t("Homicidio")} <span style={{ color: "#984ea3" }}>⬤</span>
-          &nbsp;
-          {t("Robo de Vehículo C.V.")} 
-          <span style={{ color: "#41ab5d" }}>⬤</span>
-          &nbsp;{t("Robo de Vehículo S.V.")} 
-          <span style={{ color: "#377eb8" }}>⬤</span>&nbsp;
-          {t("Robo a Transeúnte C.V.")} 
-          <span style={{ color: "#fe9929" }}>⬤</span>&nbsp;
-          {t("Lesiones por Arma de Fuego")} 
-          <span style={{ color: "#777" }}>⬤</span>&nbsp;{t("Otros")} 
-         
-          
-          <Divider m="lg"/>
-          <Trans>
-            The points represent crimes committed during the last 12 months at
-            least 700 meters from your location
-          </Trans>
-       
+        <List spacing="xl" size="lg" center>
+          <List.Item
+            icon={
+              <ThemeIcon color="#e41a1c" size={24} radius="xl">
+                <IconPointFilled
+                  style={{ width: rem(16), height: rem(16), color: "#e41a1c" }}
+                />
+              </ThemeIcon>
+            }
+          >
+            {t("Homicidio")}
+          </List.Item>
+          <List.Item
+            icon={
+              <ThemeIcon color="#fe9929" size={24} radius="xl">
+                <IconPointFilled
+                  style={{ width: rem(16), height: rem(16), color: "#fe9929" }}
+                />
+              </ThemeIcon>
+            }
+          >
+            {t("Lesiones por Arma de Fuego")}
+          </List.Item>
+          <List.Item
+            icon={
+              <ThemeIcon color="#984ea3" size={24} radius="xl">
+                <IconPointFilled
+                  style={{ width: rem(16), height: rem(16), color: "#984ea3" }}
+                />
+              </ThemeIcon>
+            }
+          >
+            {t("Robo de Vehículo C.V.")}
+          </List.Item>{" "}
+          <List.Item
+            icon={
+              <ThemeIcon color="#41ab5d" size={24} radius="xl">
+                <IconPointFilled
+                  style={{ width: rem(16), height: rem(16), color: "#41ab5d" }}
+                />
+              </ThemeIcon>
+            }
+          >
+            {t("Robo de Vehículo S.V.")}
+          </List.Item>{" "}
+          <List.Item
+            icon={
+              <ThemeIcon color="#377eb8" size={24} radius="xl">
+                <IconPointFilled
+                  style={{ width: rem(16), height: rem(16), color: "#377eb8" }}
+                />
+              </ThemeIcon>
+            }
+          >
+            {t("Robo a Transeúnte C.V.")}
+          </List.Item>{" "}
+          <List.Item
+            icon={
+              <ThemeIcon color="#777" size={24} radius="xl">
+                <IconPointFilled
+                  style={{ width: rem(16), height: rem(16), color: "#777" }}
+                />
+              </ThemeIcon>
+            }
+          >
+            {t("Otros")}
+          </List.Item>
+        </List>
+
+        <Divider m="lg" />
+        <Trans>
+          The points represent crimes committed during the last 12 months at
+          least 700 meters from your location
+        </Trans>
       </Container>
     </Layout>
   );
