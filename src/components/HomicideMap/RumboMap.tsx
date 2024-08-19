@@ -98,7 +98,7 @@ export const RumboMap = (props: Props) => {
     paint: {
       "circle-radius": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 14, 6],
       "circle-stroke-color": "#111111",
-      "circle-stroke-width": 1.9,
+      "circle-stroke-width": 1.5,
       "circle-color": [
         "match",
         ["get", "crime"],
@@ -356,11 +356,11 @@ export const RumboMap = (props: Props) => {
       mapStyle={pmTilesReady ? (mapStyle ? mapStyle : undefined) : undefined}
       attributionControl={false}
       maxZoom={maxZoom}
-      onMouseEnter={onHover}
-      onTouchStart={onHover}
-      // onMouseLeave={() => {
-      //   setHoverInfo(null);
-      // }}
+      onMouseMove={onHover}
+     //onMouseDown={onHover}
+      onMouseLeave={() => {
+        setHoverInfo(null);
+      }}
       interactiveLayerIds={["crime-points"]}
     >
       {pointData && (
@@ -392,17 +392,24 @@ export const RumboMap = (props: Props) => {
         customAttribution='© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://sites.research.google/open-buildings/#download">Google</a>/<a href="https://planetarycomputer.microsoft.com/dataset/ms-buildings">Microsoft</a> Open Buildings'
       />
 
-      {selectedCrime && mapRef && mapRef.current.getZoom() >= 13 && (
+      {hoverInfo && mapRef && mapRef.current.getZoom() >= 13 && (
         <Popup
           key={hoverInfo.longitude + hoverInfo.latitude}
           longitude={hoverInfo.longitude}
           latitude={hoverInfo.latitude}
-          offset={[0, -10]}
-          closeOnClick
-          closeOnMove
-          className="crime-info"
+          //offset={[0, -10]}
+          //closeOnClick
+          //closeOnMove
+          //className="crime-info"
+
         >
-          {selectedCrime}
+          {<div>
+        <b>{hoverInfo.crimeName}</b>
+        <br />
+        {hoverInfo.date}
+        <br />
+        {hoverInfo.hour}
+      </div>}
         </Popup>
       )}
     </Map>

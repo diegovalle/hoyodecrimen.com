@@ -143,7 +143,7 @@ function SectoresLineChart(props) {
       {
         name: t("rate"),
         nameLocation: "middle",
-        nameGap: 40,
+        nameGap: 33,
         nameTextStyle: { ...axisLabel },
         type: "value",
         scale: false,
