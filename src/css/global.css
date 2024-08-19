@@ -36,7 +36,8 @@ a {
 }
 
 body {
-  font-family: "Cooper Hewitt", sans-serif;
+  /* font-family: "Cooper Hewitt", sans-serif; */
+  /* font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif; */
   /* @apply text-lg; */
 }
 
