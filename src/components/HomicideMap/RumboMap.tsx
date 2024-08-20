@@ -14,6 +14,8 @@ import {
 import Pin from "./pin";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { notifications } from "@mantine/notifications";
+
 import * as pmtiles from "pmtiles";
 import LoadingOverlay from "./LoadingOverlay";
 import { circle as turfCircle } from "@turf/circle";
@@ -47,7 +49,7 @@ const mapStyle = {
 };
 
 export const RumboMap = (props: Props) => {
-  let { coords } = props;
+  let { coords, setNotInside } = props;
   const maxZoom = 19;
   const mapRef = useRef();
   const [pmTilesReady, setPmTilesReady] = useState(false);
@@ -189,11 +191,15 @@ export const RumboMap = (props: Props) => {
         geojson.features = [];
         setPointData(geojson);
         setCircle(crimeCircle);
+        toggleAnimation(mapRef, false);
         if (!booleanPointInPolygon(center, cdmxPoly)) {
           setUserLocation(cdmxCenter);
+          setNotInside(true);
         }
         //throw new Error("404 response", { cause: response });
-      } if (!response.ok) {
+        return;
+      }
+      if (!response.ok && !response.status === 404) {
         toggleAnimation(mapRef, false);
         throw new Error(response.statusText);
       }
@@ -284,9 +290,10 @@ export const RumboMap = (props: Props) => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            if (!booleanPointInPolygon([longitude, latitude], cdmxPoly))
+            if (!booleanPointInPolygon([longitude, latitude], cdmxPoly)) {
               setUserLocation(cdmxCenter);
-            else setUserLocation({ latitude, longitude });
+              setNotInside(true);
+            } else setUserLocation({ latitude, longitude });
           },
           (error) => {
             setUserLocation(cdmxCenter);
@@ -350,73 +357,75 @@ export const RumboMap = (props: Props) => {
     );
 
   return (
-    <Map
-      ref={(ref) => (mapRef.current = ref && ref.getMap())}
-      maxBounds={[-100.421, 18.468, -97.901, 20.182]}
-      mapLib={maplibregl}
-      styleDiffing={true}
-      style={{ height: "400px", width: "100%" }}
-      mapStyle={pmTilesReady ? (mapStyle ? mapStyle : undefined) : undefined}
-      attributionControl={false}
-      maxZoom={maxZoom}
-      onMouseMove={onHover}
-      //onMouseDown={onHover}
-      onMouseLeave={() => {
-        setHoverInfo(null);
-      }}
-      interactiveLayerIds={["crime-points"]}
-    >
-      {pointData && (
-        <Source type="geojson" data={pointData}>
-          <Layer {...pointLayer} />
-        </Source>
-      )}
-      {circle && (
-        <Source type="geojson" data={circle}>
-          <Layer {...circleLayer} />
-        </Source>
-      )}
-      <Marker
-        ref={markerRef}
-        longitude={marker ? marker.longitude : null}
-        latitude={marker ? marker.latitude : null}
-        anchor="bottom"
-        draggable
-        onDragEnd={onMarkerDragEnd}
-        onDragStart={onMarkerDragStart}
+    <>
+      <Map
+        ref={(ref) => (mapRef.current = ref && ref.getMap())}
+        maxBounds={[-100.421, 18.468, -97.901, 20.182]}
+        mapLib={maplibregl}
+        styleDiffing={true}
+        style={{ height: "400px", width: "100%" }}
+        mapStyle={pmTilesReady ? (mapStyle ? mapStyle : undefined) : undefined}
+        attributionControl={false}
+        maxZoom={maxZoom}
+        onMouseMove={onHover}
+        //onMouseDown={onHover}
+        onMouseLeave={() => {
+          setHoverInfo(null);
+        }}
+        interactiveLayerIds={["crime-points"]}
       >
-        <Pin size={30} />
-      </Marker>
-      <NavigationControl visualizePitch={true} />
-      <LoadingOverlay />
-      <FullscreenControl />
-      <AttributionControl
-        compact={true}
-        customAttribution='© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://sites.research.google/open-buildings/#download">Google</a>/<a href="https://planetarycomputer.microsoft.com/dataset/ms-buildings">Microsoft</a> Open Buildings'
-      />
-
-      {hoverInfo && mapRef && mapRef.current.getZoom() >= 13 && (
-        <Popup
-          key={hoverInfo.longitude + hoverInfo.latitude}
-          longitude={hoverInfo.longitude}
-          latitude={hoverInfo.latitude}
-          //offset={[0, -10]}
-          //closeOnClick
-          //closeOnMove
-          //className="crime-info"
+        {pointData && (
+          <Source type="geojson" data={pointData}>
+            <Layer {...pointLayer} />
+          </Source>
+        )}
+        {circle && (
+          <Source type="geojson" data={circle}>
+            <Layer {...circleLayer} />
+          </Source>
+        )}
+        <Marker
+          ref={markerRef}
+          longitude={marker ? marker.longitude : null}
+          latitude={marker ? marker.latitude : null}
+          anchor="bottom"
+          draggable
+          onDragEnd={onMarkerDragEnd}
+          onDragStart={onMarkerDragStart}
         >
-          {
-            <div>
-              <b>{hoverInfo.crimeName}</b>
-              <br />
-              {hoverInfo.date}
-              <br />
-              {hoverInfo.hour}
-            </div>
-          }
-        </Popup>
-      )}
-    </Map>
+          <Pin size={30} />
+        </Marker>
+        <NavigationControl visualizePitch={true} />
+        <LoadingOverlay />
+        <FullscreenControl />
+        <AttributionControl
+          compact={true}
+          customAttribution='© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://sites.research.google/open-buildings/#download">Google</a>/<a href="https://planetarycomputer.microsoft.com/dataset/ms-buildings">Microsoft</a> Open Buildings'
+        />
+
+        {hoverInfo && mapRef && mapRef.current.getZoom() >= 13 && (
+          <Popup
+            key={hoverInfo.longitude + hoverInfo.latitude}
+            longitude={hoverInfo.longitude}
+            latitude={hoverInfo.latitude}
+            //offset={[0, -10]}
+            //closeOnClick
+            //closeOnMove
+            //className="crime-info"
+          >
+            {
+              <div>
+                <b>{hoverInfo.crimeName}</b>
+                <br />
+                {hoverInfo.date}
+                <br />
+                {hoverInfo.hour}
+              </div>
+            }
+          </Popup>
+        )}
+      </Map>
+    </>
   );
 };
 

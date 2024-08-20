@@ -13,6 +13,7 @@ import {
   List,
   ThemeIcon,
   rem,
+  Text,
 } from "@mantine/core";
 import RumboMap from "../components/HomicideMap/RumboMap";
 import GeoLocateButton from "../components/GeoLocateButton";
@@ -28,6 +29,7 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { language } = pageContext;
   const { t } = useTranslation();
   const [coords, setCoords] = useState(null);
+  const [notInside, setNotInside] = useState(null);
 
   return (
     <Layout language={language} pageContext={pageContext}>
@@ -52,9 +54,18 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <GeoLocateButton setButtonCoords={setCoords} />
       </Container>
 
-      <RumboMap coords={coords} />
+      <RumboMap coords={coords} setNotInside={setNotInside} />
 
       <Divider my="xl" />
+      {notInside ? (
+        <Center>
+          <Text c="red">
+            <Trans>You are not inside Mexico City</Trans>
+          </Text>
+        </Center>
+      ) : (
+        <Text>⠀⠀⠀⠀⠀⠀⠀⠀</Text>
+      )}
       <Container size="sm">
         <List spacing="xl" size="lg" center>
           <List.Item
