@@ -169,11 +169,7 @@ export const RumboMap = (props: Props) => {
   }, [coords]);
 
   useEffect(() => {
-    //const cdmxCenter = { latitude: 19.43260554030921, longitude: -99.133208 };
-    const cdmxCenter = {
-      latitude: 19.291535549974697,
-      longitude: -99.11735971674928,
-    };
+    const cdmxCenter = { latitude: 19.43260554030921, longitude: -99.133208 };
     let geojson = {
       type: "FeatureCollection",
       features: [],
@@ -197,8 +193,8 @@ export const RumboMap = (props: Props) => {
           setUserLocation(cdmxCenter);
         }
         //throw new Error("404 response", { cause: response });
-      }
-      if (!response.ok) {
+      } if (!response.ok) {
+        toggleAnimation(mapRef, false);
         throw new Error(response.statusText);
       }
 
@@ -254,8 +250,10 @@ export const RumboMap = (props: Props) => {
       try {
         pRetry(() => downloadPoints(crimeCircle, center, cdmxCenter), {
           signal: abortControllerRef.current.signal,
-          onFailedAttempt: error => {
-            console.log(`Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`);
+          onFailedAttempt: (error) => {
+            console.log(
+              `Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`
+            );
             // 1st request => Attempt 1 failed. There are 4 retries left.
             // 2nd request => Attempt 2 failed. There are 3 retries left.
             // …
@@ -264,11 +262,16 @@ export const RumboMap = (props: Props) => {
         });
       } catch (error) {
         console.log(error.message);
+        toggleAnimation(mapRef, false);
       } finally {
-        
       }
     }
-   
+    return () => {
+      if (abortControllerRef.current)
+        abortControllerRef.current.abort(
+          new Error("User moved marker still downloading")
+        ); // Cancel the request if component unmounts
+    };
   }, [marker]);
 
   useEffect(() => {
@@ -295,12 +298,12 @@ export const RumboMap = (props: Props) => {
     };
 
     geoPermission();
-    return () => {
+    /* return () => {
       // Cleanup function to abort any pending requests
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
-    };
+    }; */
   }, []);
 
   useEffect(() => {
@@ -357,7 +360,7 @@ export const RumboMap = (props: Props) => {
       attributionControl={false}
       maxZoom={maxZoom}
       onMouseMove={onHover}
-     //onMouseDown={onHover}
+      //onMouseDown={onHover}
       onMouseLeave={() => {
         setHoverInfo(null);
       }}
@@ -401,15 +404,16 @@ export const RumboMap = (props: Props) => {
           //closeOnClick
           //closeOnMove
           //className="crime-info"
-
         >
-          {<div>
-        <b>{hoverInfo.crimeName}</b>
-        <br />
-        {hoverInfo.date}
-        <br />
-        {hoverInfo.hour}
-      </div>}
+          {
+            <div>
+              <b>{hoverInfo.crimeName}</b>
+              <br />
+              {hoverInfo.date}
+              <br />
+              {hoverInfo.hour}
+            </div>
+          }
         </Popup>
       )}
     </Map>
