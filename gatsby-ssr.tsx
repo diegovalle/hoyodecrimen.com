@@ -9,6 +9,11 @@ export const onPreRenderHTML = ({
   const headComponents = getHeadComponents();
   replaceHeadComponents([
     ...headComponents,
+   /*  <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2949275046149330"
+      crossOrigin="anonymous"
+    ></script>, */
     <ColorSchemeScript key="color-scheme-script" />,
   ]);
 };
