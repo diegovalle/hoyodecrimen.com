@@ -75,12 +75,12 @@ where homicide counts changed the most.</p>
 very easy to write applications that use it. You can use your browser
 to access any API URL, or pretty much any HTTP client in any
 programming language (yes, even something like STATA).</p>
-<p>For example, <a class="reference external" href="https://hoyodecrimen.com/api/v1/crimes">https://hoyodecrimen.com/api/v1/crimes</a> will return a list
+<p>For example, <a class="reference external" href="https://api.hoyodecrimen.com/api/v1/crimes">https://api.hoyodecrimen.com/api/v1/crimes</a> will return a list
 of all crimes in the database.
-<a class="reference external" href="https://hoyodecrimen.com/api/v1/cuadrantes">https://hoyodecrimen.com/api/v1/cuadrantes</a> will return a list of all
+<a class="reference external" href="https://api.hoyodecrimen.com/api/v1/cuadrantes">https://api.hoyodecrimen.com/api/v1/cuadrantes</a> will return a list of all
 the cuadrantes in the Federal District. Once you have a list of crimes
 and cuadrantes you can use
-<a class="reference external" href="https://hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series">https://hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series</a>
+<a class="reference external" href="https://api.hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series">https://api.hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series</a>
 to get a time series of the homicide rate in cuadrante C-1.1.1 (the
 API is case insensitive). Note that <cite>homicidio%20doloso</cite> can be
 changed to <cite>all</cite> to get all the crimes that occurred in that
@@ -98,7 +98,7 @@ at diego [at] diegovalle.net. All crime data comes from the Mexico City
 <h1><a class="toc-backref" href="#id10">License</a><a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
 <p>Data accessed via this API is provided under the
 <a class="reference external" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. If you use this
-data you must link back to <a class="reference external" href="https://hoyodecrimen.com/">https://hoyodecrimen.com/</a> as the origin of
+data you must link back to <a class="reference external" href="https://api.hoyodecrimen.com/">https://api.hoyodecrimen.com/</a> as the origin of
 the data. You may also consult our <a class="reference external" href="https://gist.github.com/diegovalle/83d0c541d784e5e6ccce">privacy policy</a>.</p>
 </div>
 <div class="section" id="what-s-available">
@@ -213,7 +213,7 @@ API. Here is a basic example of how to handle JSONP requests using
 jQuery.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">,</span>
-    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;https://hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series&#39;</span><span class="p">,</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;https://api.hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series&#39;</span><span class="p">,</span>
     <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// console.debug(data)</span>
     <span class="p">}</span>
@@ -230,7 +230,7 @@ which contains a short description of what went wrong.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
     <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">,</span>
     <span class="c1">// notice the invalid start_date</span>
-    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;https://hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/all/series?start_date=2014-99?end_date=2014-07&#39;</span><span class="p">,</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;https://api.hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/all/series?start_date=2014-99?end_date=2014-07&#39;</span><span class="p">,</span>
     <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// console.debug(data)</span>
     <span class="p">},</span>
@@ -272,7 +272,7 @@ which contains a short description of what went wrong.</p>
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/geojson</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -301,7 +301,7 @@ which contains a short description of what went wrong.</p>
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/municipios/geojson</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -330,7 +330,7 @@ which contains a short description of what went wrong.</p>
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/sectores/geojson</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -359,7 +359,7 @@ which contains a short description of what went wrong.</p>
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -403,7 +403,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/municipios</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -446,7 +446,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/sectores</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -489,7 +489,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/crimes</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -555,7 +555,7 @@ the cuadrante containing the longitude and latitude during the last 12 months</p
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/latlong/crimes/all/coords/-99.13333/19.43/distance/500</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -643,7 +643,7 @@ the cuadrante containing the longitude and latitude and the nearest 8 cuadrantes
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/crimes/all/pip_extra/-99.13333/19.43</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -739,7 +739,7 @@ All population data returned by this call is in persons/year and comes from the 
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/crimes/homicidio%20doloso/top/counts/change</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -803,7 +803,7 @@ the cuadrante containing the longitude and latitude during the last 12 months</p
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/crimes/all/pip/-99.13333/19.43</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -887,7 +887,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/all/crimes/all/period/change</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -955,7 +955,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/sectores/all/crimes/all/period/change</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1023,7 +1023,7 @@ All population data returned by this call is in persons/year and comes from the 
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/crimes/homicidio%20doloso/top/counts</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1084,7 +1084,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/c-1.1.1/crimes/violacion/series</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1145,7 +1145,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span>GET /api/v1/municipios/tlalpan/crimes/homicidio%20doloso/series
-Host: hoyodecrimen.com
+Host: api.hoyodecrimen.com
 Accept: application/json
 </pre></div>
 </div>
@@ -1206,7 +1206,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/all/crimes/all/period</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1268,7 +1268,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/municipios/tlalpan/crimes/all/period</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1334,7 +1334,7 @@ All population data returned by this call is in persons/year and comes from the 
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/sectores/crimes/homicidio%20doloso/top/rates</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1396,7 +1396,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/sectores/angel%20-%20zona%20rosa/crimes/violacion/series</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1457,7 +1457,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/sectores/all/crimes/all/period</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1511,7 +1511,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/cuadrantes/pip/-99.13333/19.43</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1570,7 +1570,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/df/crimes/violacion/series</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1628,7 +1628,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/df/crimes/ALL/hours</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
@@ -1693,7 +1693,7 @@ Content-Type: application/json
 </table>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/api/v1/df/crimes/ALL/hours</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">hoyodecrimen.com</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.hoyodecrimen.com</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 </pre></div>
 </div>
