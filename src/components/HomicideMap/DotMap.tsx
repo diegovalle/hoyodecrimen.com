@@ -578,11 +578,12 @@ export const DotMap = (props: Props) => {
       <GeolocateControl
         showAccuracyCircle={false}
         onError={(e) => {
-          // console.log(e);
+           console.log(e);
         }}
         onOutOfMaxBounds={(e) => {
-          // console.log(e);
+          console.log(e);
         }}
+        trackUserLocation={false}
       />
       {clickInfo && (
         <Popup

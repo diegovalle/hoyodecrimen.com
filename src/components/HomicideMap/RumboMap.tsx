@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useTranslation } from "gatsby-plugin-react-i18next";
 import {
   Map,
   NavigationControl,
@@ -14,12 +15,13 @@ import {
 import Pin from "./pin";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { notifications, Notifications } from "@mantine/notifications";
+
 import * as pmtiles from "pmtiles";
 import LoadingOverlay from "./LoadingOverlay";
 import { circle as turfCircle } from "@turf/circle";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import pRetry from "p-retry";
-
 import "../../css/loading.css";
 
 import MAP_STYLE from "../MapStyles/3d";
@@ -47,7 +49,7 @@ const mapStyle = {
 };
 
 export const RumboMap = (props: Props) => {
-  let { coords } = props;
+  let { coords, setNotInside } = props;
   const maxZoom = 19;
   const mapRef = useRef();
   const [pmTilesReady, setPmTilesReady] = useState(false);
@@ -60,11 +62,11 @@ export const RumboMap = (props: Props) => {
   const [pointData, setPointData] = useState(null);
   const [circle, setCircle] = useState(null);
   const [hoverInfo, setHoverInfo] = useState(null);
-  const [fetching, setFetching] = useState(false);
   const dragging = useRef(false);
   const distance = 700;
   const markerRef = useRef<maplibregl.Marker>();
   const abortControllerRef = useRef(null);
+  const { t } = useTranslation();
 
   const meta = useStaticQuery(graphql`
     query {
@@ -99,7 +101,7 @@ export const RumboMap = (props: Props) => {
     paint: {
       "circle-radius": ["interpolate", ["linear"], ["zoom"], 0, 1, 6, 2, 14, 6],
       "circle-stroke-color": "#111111",
-      "circle-stroke-width": 1.9,
+      "circle-stroke-width": 1.5,
       "circle-color": [
         "match",
         ["get", "crime"],
@@ -136,7 +138,6 @@ export const RumboMap = (props: Props) => {
   }, []);
 
   const onMarkerDragEnd = useCallback((event: MarkerDragEvent) => {
-    console.log(event.lngLat);
     dragging.current = false;
     setMarker({
       longitude: event.lngLat.lng,
@@ -144,14 +145,16 @@ export const RumboMap = (props: Props) => {
     });
   }, []);
 
-  const toggleAnimation = (map) => {
+  const toggleAnimation = (map, state: boolean) => {
     if (map) {
       let i;
       for (i = 0; i < map.current["_controls"].length; i++)
         if (typeof map.current["_controls"][i].toggleLoading === "function")
           break;
       if (i < map.current["_controls"].length)
-        map.current["_controls"][i].toggleLoading();
+        state
+          ? map.current["_controls"][i].turnOn()
+          : map.current["_controls"][i].turnOff();
     }
   };
 
@@ -161,7 +164,7 @@ export const RumboMap = (props: Props) => {
         markerRef.current.setLngLat(coords);
         setMarker({ longitude: coords[0], latitude: coords[1] });
         if (mapRef) {
-          mapRef.current.setZoom(14.3);
+          mapRef.current.setZoom(14.1);
           mapRef.current.setCenter(coords);
         }
       }
@@ -169,11 +172,7 @@ export const RumboMap = (props: Props) => {
   }, [coords]);
 
   useEffect(() => {
-    //const cdmxCenter = { latitude: 19.43260554030921, longitude: -99.133208 };
-    const cdmxCenter = {
-      latitude: 19.291535549974697,
-      longitude: -99.11735971674928,
-    };
+    const cdmxCenter = { latitude: 19.43260554030921, longitude: -99.133208 };
     let geojson = {
       type: "FeatureCollection",
       features: [],
@@ -185,24 +184,32 @@ export const RumboMap = (props: Props) => {
       marker?.latitude +
       `/distance/${distance}`;
 
-    const run = async (crimeCircle, center, cdmxCenter) => {
+    const downloadPoints = async (crimeCircle, center, cdmxCenter) => {
       let response;
-      try {
-        response = await fetch(url);
-      } finally {
-        setFetching(false);
-      }
+      response = await fetch(url);
 
       if (response.status === 404) {
         geojson.features = [];
         setPointData(geojson);
         setCircle(crimeCircle);
+        toggleAnimation(mapRef, false);
         if (!booleanPointInPolygon(center, cdmxPoly)) {
+          notifications.show({
+            color: "red",
+            border: true,
+            title: t("Location error"),
+            message: t("Looks like your are not in Mexico City. Setting your location to the Zocalo"),
+            position: "bottom-right",
+            autoClose: 10000,
+          });
           setUserLocation(cdmxCenter);
+          //setNotInside(true);
         }
         //throw new Error("404 response", { cause: response });
+        return;
       }
-      if (!response.ok) {
+      if (!response.ok && !response.status === 404) {
+        toggleAnimation(mapRef, false);
         throw new Error(response.statusText);
       }
 
@@ -230,47 +237,56 @@ export const RumboMap = (props: Props) => {
 
       // .catch((error) => {
       //   console.log(error);
-      //   setFetching(false);
       // })
       // .finally(() => {
-      toggleAnimation(mapRef);
-      setFetching(false);
+      toggleAnimation(mapRef, false);
       // });
     };
 
     if (marker) {
+      toggleAnimation(mapRef, true);
       let center = [marker.longitude, marker.latitude];
       let options = {
         steps: 100,
         units: "kilometers",
       };
       let crimeCircle = turfCircle(center, (distance + 5) / 1000, options);
-      toggleAnimation(mapRef);
 
       // Abort any pending requests
       if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
+        abortControllerRef.current.abort(
+          new Error("User moved marker still downloading")
+        );
       }
 
       // Create new abort controller
-      const newAbortController = new AbortController();
-
-      abortControllerRef.current = newAbortController;
+      abortControllerRef.current = new AbortController();
       // Call onSearch with new search term and abort controller
-      setFetching(true);
       try {
-        pRetry(() => run(crimeCircle, center, cdmxCenter), {
+        pRetry(() => downloadPoints(crimeCircle, center, cdmxCenter), {
           signal: abortControllerRef.current.signal,
+          onFailedAttempt: (error) => {
+            console.log(
+              `Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`
+            );
+            // 1st request => Attempt 1 failed. There are 4 retries left.
+            // 2nd request => Attempt 2 failed. There are 3 retries left.
+            // …
+          },
           retries: 2,
         });
       } catch (error) {
         console.log(error.message);
-        //=> 'User clicked cancel button'
+        toggleAnimation(mapRef, false);
+      } finally {
       }
     }
-    // return () => {
-    //   ignore = true;
-    // };
+    return () => {
+      if (abortControllerRef.current)
+        abortControllerRef.current.abort(
+          new Error("User moved marker still downloading")
+        ); // Cancel the request if component unmounts
+    };
   }, [marker]);
 
   useEffect(() => {
@@ -283,9 +299,10 @@ export const RumboMap = (props: Props) => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            if (!booleanPointInPolygon([longitude, latitude], cdmxPoly))
+            if (!booleanPointInPolygon([longitude, latitude], cdmxPoly)) {
               setUserLocation(cdmxCenter);
-            else setUserLocation({ latitude, longitude });
+              setNotInside(true);
+            } else setUserLocation({ latitude, longitude });
           },
           (error) => {
             setUserLocation(cdmxCenter);
@@ -297,12 +314,12 @@ export const RumboMap = (props: Props) => {
     };
 
     geoPermission();
-    return () => {
+    /* return () => {
       // Cleanup function to abort any pending requests
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
-    };
+    }; */
   }, []);
 
   useEffect(() => {
@@ -349,65 +366,76 @@ export const RumboMap = (props: Props) => {
     );
 
   return (
-    <Map
-      ref={(ref) => (mapRef.current = ref && ref.getMap())}
-      maxBounds={[-100.421, 18.468, -97.901, 20.182]}
-      mapLib={maplibregl}
-      styleDiffing={true}
-      style={{ height: "400px", width: "100%" }}
-      mapStyle={pmTilesReady ? (mapStyle ? mapStyle : undefined) : undefined}
-      attributionControl={false}
-      maxZoom={maxZoom}
-      onMouseEnter={onHover}
-      onTouchStart={onHover}
-      // onMouseLeave={() => {
-      //   setHoverInfo(null);
-      // }}
-      interactiveLayerIds={["crime-points"]}
-    >
-      {pointData && (
-        <Source type="geojson" data={pointData}>
-          <Layer {...pointLayer} />
-        </Source>
-      )}
-      {circle && (
-        <Source type="geojson" data={circle}>
-          <Layer {...circleLayer} />
-        </Source>
-      )}
-      <Marker
-        ref={markerRef}
-        longitude={marker ? marker.longitude : null}
-        latitude={marker ? marker.latitude : null}
-        anchor="bottom"
-        draggable
-        onDragEnd={onMarkerDragEnd}
-        onDragStart={onMarkerDragStart}
+    <>
+      <Notifications zIndex={1000} withBorder />
+      <Map
+        ref={(ref) => (mapRef.current = ref && ref.getMap())}
+        maxBounds={[-100.421, 18.468, -97.901, 20.182]}
+        mapLib={maplibregl}
+        styleDiffing={true}
+        style={{ height: "400px", width: "100%" }}
+        mapStyle={pmTilesReady ? (mapStyle ? mapStyle : undefined) : undefined}
+        attributionControl={false}
+        maxZoom={maxZoom}
+        onMouseMove={onHover}
+        //onMouseDown={onHover}
+        onMouseLeave={() => {
+          setHoverInfo(null);
+        }}
+        interactiveLayerIds={["crime-points"]}
       >
-        <Pin size={30} />
-      </Marker>
-      <NavigationControl visualizePitch={true} />
-      <LoadingOverlay />
-      <FullscreenControl />
-      <AttributionControl
-        compact={true}
-        customAttribution='© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://sites.research.google/open-buildings/#download">Google</a>/<a href="https://planetarycomputer.microsoft.com/dataset/ms-buildings">Microsoft</a> Open Buildings'
-      />
-
-      {selectedCrime && mapRef && mapRef.current.getZoom() >= 13 && (
-        <Popup
-          key={hoverInfo.longitude + hoverInfo.latitude}
-          longitude={hoverInfo.longitude}
-          latitude={hoverInfo.latitude}
-          offset={[0, -10]}
-          closeOnClick
-          closeOnMove
-          className="crime-info"
+        {pointData && (
+          <Source type="geojson" data={pointData}>
+            <Layer {...pointLayer} />
+          </Source>
+        )}
+        {circle && (
+          <Source type="geojson" data={circle}>
+            <Layer {...circleLayer} />
+          </Source>
+        )}
+        <Marker
+          ref={markerRef}
+          longitude={marker ? marker.longitude : null}
+          latitude={marker ? marker.latitude : null}
+          anchor="bottom"
+          draggable
+          onDragEnd={onMarkerDragEnd}
+          onDragStart={onMarkerDragStart}
         >
-          {selectedCrime}
-        </Popup>
-      )}
-    </Map>
+          <Pin size={30} />
+        </Marker>
+        <NavigationControl visualizePitch={true} />
+        <LoadingOverlay />
+        <FullscreenControl />
+        <AttributionControl
+          compact={true}
+          customAttribution='© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://sites.research.google/open-buildings/#download">Google</a>/<a href="https://planetarycomputer.microsoft.com/dataset/ms-buildings">Microsoft</a> Open Buildings'
+        />
+
+        {hoverInfo && mapRef && mapRef.current.getZoom() >= 13 && (
+          <Popup
+            key={hoverInfo.longitude + hoverInfo.latitude}
+            longitude={hoverInfo.longitude}
+            latitude={hoverInfo.latitude}
+            //offset={[0, -10]}
+            //closeOnClick
+            //closeOnMove
+            //className="crime-info"
+          >
+            {
+              <div>
+                <b>{hoverInfo.crimeName}</b>
+                <br />
+                {hoverInfo.date}
+                <br />
+                {hoverInfo.hour}
+              </div>
+            }
+          </Popup>
+        )}
+      </Map>
+    </>
   );
 };
 

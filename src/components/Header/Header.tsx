@@ -211,13 +211,20 @@ function Header(props) {
     );
   });
 
-  const LinksGroup = ({ links, label, link, en_link, icon: Icon }) => {
+  const LinksGroup = ({
+    links,
+    label,
+    link,
+    en_link,
+    icon: Icon,
+    language,
+  }) => {
     const hasLinks = Array.isArray(links);
     const items = (hasLinks ? links : []).map((link) => (
       <Text<"a">
         component="a"
         //className={classes.link}
-        href={link.link}
+        href={language === "es" ? link.link : link.en_link}
         key={link.label}
         className={
           props.pageContext.localizedPath === link.link ||
@@ -246,7 +253,7 @@ function Header(props) {
                 ) : (
                   <Text
                     component="a"
-                    href={link}
+                    href={language === "es" ? link : en_link}
                     className={
                       props.pageContext.localizedPath === link ||
                       props.pageContext.localizedPath === en_link
@@ -276,9 +283,9 @@ function Header(props) {
     );
   };
 
-  const MobileNavbarNested = () => {
+  const MobileNavbarNested = ({ language }) => {
     const mobileLinks = links.map((item) => (
-      <LinksGroup {...item} key={item.label} />
+      <LinksGroup {...item} key={item.label} language={language} />
     ));
 
     return (
@@ -342,7 +349,7 @@ function Header(props) {
       </AppShell.Header>
 
       <AppShell.Navbar py="md" px={4} zIndex={300}>
-        <MobileNavbarNested />
+        <MobileNavbarNested language={props.language} />
       </AppShell.Navbar>
     </>
   );

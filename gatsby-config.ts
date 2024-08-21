@@ -133,9 +133,8 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
-    // "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
-    // "http://localhost:8080"
     apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
+    //apiUrl: "http://localhost:8080",
     // https://tileshoyo.surge.sh (cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
     // https://tileshoyo.netlify.app (cors hoyodecrimen.com)
     osmTilesUrl: `https://hoyodecrimen-tiles.onrender.com/{z}/{x}/{y}.html`,
@@ -190,9 +189,17 @@ const config: GatsbyConfig = {
         short_name: `HoyoDeCrimen`,
         icon: `src/images/logo.png`,
         start_url: `/`,
+        lang: 'es',
         background_color: `#f7f0eb`,
-        theme_color: `#a2466c`,
         display: `standalone`,
+        localize: [
+          {
+            start_url: `/en/`,
+            lang: `en`,
+            name: `Mexico City Crime`,
+            short_name: `CDMX Crime`
+          },
+        ],
       },
     },
     // {

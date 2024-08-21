@@ -1,5 +1,8 @@
 {
   "Crime in your Area": "Crime in your Area",
-  "geolocateSettings": "To let HoyodeCrimen.com use this device's precise location, update your location settings.",
-  "Get nearby results by using precise location": "Get nearby results by using precise location"
+  "geolocateSettings": "To let HoyodeCrimen.com use this device's precise location, update the location settings of your device.",
+  "Get nearby results by using precise location": "Get nearby results by using precise location",
+  "You are not inside Mexico City": "You are not inside Mexico City",
+  "Location error": "Location error",
+  "Looks like your are not in Mexico City. Setting your location to the Zocalo": "Looks like your are not in Mexico City. Setting your location to the Zocalo"
 }

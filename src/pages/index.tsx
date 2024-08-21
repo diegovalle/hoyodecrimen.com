@@ -264,6 +264,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           </AspectRatio>
         </Grid.Col>
       </Grid>
+      <Space h="xl" />
       <Container
         size="xs"
         p={"1rem"}

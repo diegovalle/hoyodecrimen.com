@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import { graphql } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
-import { useDisclosure, useElementSize } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 //import { MantineLogo } from "@mantine/ds";
-import type { HeadFC, PageProps } from "gatsby";
+import type { PageProps } from "gatsby";
 import Header from "../components/Header/Header";
 import {
   AppShell,
@@ -26,12 +26,11 @@ import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 
 import SelectCrime from "../components/SelectCrime";
 
+import useWindowSize from "../components/useWindowSize";
+
 import LazyLoad from "react-lazy-load";
 import CuadrantesMap from "../components/HomicideMap/CuadrantesMap";
 import CuadrantesLineChart from "../components/CuadrantesLineChart";
-
-import { translations } from "../../i18n/translations/head_translations";
-import { translated_routes } from "../../i18n/locales/routes/routes";
 
 import { SocialImage } from "../components/SocialImage";
 import social_image from "../images/social/social-cuadrantes-mapa.jpg";
@@ -43,7 +42,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { t } = useTranslation();
   const [openMenu, { toggle: toggleMenu }] = useDisclosure(false);
   const [opened, { close, toggle }] = useDisclosure(false);
-  const { ref, height } = useElementSize();
 
   const [lastDate, setLastDate] = useState(null);
   const [selectedCuadrante, setSelectedCuadrante] = useState("df");
@@ -52,6 +50,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
     setSelectedCrime(crime);
     console.log(selectedCrime);
   };
+
+  const wSize = useWindowSize();
 
   return (
     <AppShell
@@ -70,7 +70,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         pageContext={pageContext}
       />
 
-      <AppShell.Main ref={ref}>
+      <AppShell.Main>
         <SocialImage
           social_image={social_image}
           social_image_en={social_image_en}
@@ -80,10 +80,10 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <Grid overflow="hidden">
           <Grid.Col
             span={{ base: 12, md: 9, lg: 9 }}
-            style={{ height: height + 16 }}
+            style={{ height: wSize.height - 60 + 16 }}
             pb={0}
           >
-            {height ? (
+            {wSize.height ? (
               <CuadrantesMap
                 selectedCrime={selectedCrime}
                 setSelectedCuadrante={setSelectedCuadrante}

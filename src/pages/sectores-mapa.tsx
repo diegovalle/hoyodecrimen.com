@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { graphql } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
-import { useDisclosure, useElementSize } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 //import { MantineLogo } from "@mantine/ds";
 import type { HeadFC, PageProps } from "gatsby";
 import Header from "../components/Header/Header";
@@ -25,11 +25,11 @@ import {
   Divider,
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
-import { translations } from "../../i18n/translations/head_translations";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 import { SocialImage } from "../components/SocialImage";
 import social_image from "../images/social/social-sectores-mapa.jpg";
 import social_image_en from "../images/social/social-sectores-mapa_en.jpg";
+import useWindowSize from "../components/useWindowSize";
 
 import LazyLoad from "react-lazy-load";
 import SectoresMap from "../components/HomicideMap/SectoresMap";
@@ -43,7 +43,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [lastDate, setLastDate] = useState(null);
   const [openMenu, { toggle: toggleMenu }] = useDisclosure(false);
   const [opened, { close, toggle }] = useDisclosure(false);
-  const { ref, height } = useElementSize();
+  const wSize = useWindowSize();
 
   const [selectedSector, setSelectedSector] = useState("df");
   const [selectedCrime, setSelectedCrime] = useState("HOMICIDIO DOLOSO");
@@ -74,14 +74,14 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         pageContext={pageContext}
       />
 
-      <AppShell.Main ref={ref}>
+      <AppShell.Main>
         <Grid overflow="hidden">
           <Grid.Col
             span={{ base: 12, md: 9, lg: 9 }}
-            style={{ height: height + 16 }}
+            style={{ height: wSize.height - 60 + 16 }}
             pb={0}
           >
-            {height ? (
+            {wSize.height ? (
               <SectoresMap
                 selectedCrime={selectedCrime}
                 setSelectedSector={setSelectedSector}
@@ -122,7 +122,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                       />
                     </Container>
                     <Text>
-                    <Center component="span" >
+                      <Center component="span">
                         {selectedSector === "df" ? "CDMX" : selectedSector}
                       </Center>
                     </Text>
@@ -182,7 +182,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   />
                 </Container>
                 <Text>
-                <Center component="span" >
+                  <Center component="span">
                     {selectedSector === "df" ? "CDMX" : selectedSector}
                   </Center>
                 </Text>

@@ -21,7 +21,7 @@
 }
 
 .linkLabel {
-  font-family: system-ui, sans-serif;
+  font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
   font-size: var(--mantine-font-size-md);
   color: #111;
 
@@ -34,11 +34,11 @@
 }
 
 .link {
-  font-family: system-ui, sans-serif;
+  font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
   font-size: var(--mantine-font-size-md);
   text-decoration: none;
   color: #111;
-  font-weight: 600;
+  font-weight: 500;
   margin-left: 1em;
 
   @media (max-width: em(992)) {
@@ -62,18 +62,18 @@
 }
 
 .linkDropdown {
-  font-family: system-ui, sans-serif;
+  font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
   /*  font-size: var(--mantine-font-size-md); */
   text-decoration: none;
   color: #111;
-  font-weight: 600;
+  font-weight: 500;
   width: 100%;
   /* background-color: rgb(240, 240, 240); */
   padding: calc(var(--mantine-spacing-xs) / 1.5) var(--mantine-spacing-sm);
 }
 
 .submenu {
-  font-family: system-ui, sans-serif;
+  font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
   font-size: 18px;
   text-decoration: none;
   padding: 0;

@@ -83,7 +83,7 @@ export const MailChimp = ({ language }) => {
 
   return (
     <>
-      <Container fluid mt={120} pb={15} bg="dark.8">
+      <Container fluid mt={"9rem"} pb={"2em"} bg="dark.8">
         <Flex
           mih={0}
           bg="dark.8"

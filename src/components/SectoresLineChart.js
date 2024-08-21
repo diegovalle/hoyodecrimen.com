@@ -15,7 +15,7 @@ import {
   CanvasRenderer,
   // SVGRenderer,
 } from "echarts/renderers";
-import { YYYYmmddToDate15, annualizeRate } from "./utils";
+import { YYYYmmddToDate15, annualizeRate, axisLabel } from "./utils";
 
 import { useTranslation } from "gatsby-plugin-react-i18next";
 //import '../assets/css/trends.css';
@@ -113,10 +113,10 @@ function SectoresLineChart(props) {
       },
     },
     grid: {
-      left: "5%",
+      left: "15%",
       right: "5%",
-      bottom: "30%",
-      top: "10%",
+      bottom: "10%",
+      top: "30%",
       containLabel: true,
     },
     xAxis: {
@@ -143,8 +143,8 @@ function SectoresLineChart(props) {
       {
         name: t("rate"),
         nameLocation: "middle",
-        nameGap: 25,
-        nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif" },
+        nameGap: 33,
+        nameTextStyle: { ...axisLabel },
         type: "value",
         scale: false,
         splitNumber: 2,

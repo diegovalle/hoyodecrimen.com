@@ -126,7 +126,7 @@ function CrimeSectorDiffMonthChart(props) {
           name: t("count"),
           nameLocation: "middle",
           nameGap: 30,
-          nameTextStyle: { ...nameTextStyle },
+          nameTextStyle: { ...axisLabel },
           axisLabel: {
             ...axisLabel,
           },

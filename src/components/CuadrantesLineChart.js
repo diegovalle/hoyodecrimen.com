@@ -144,7 +144,7 @@ function SectoresLineChart(props) {
       {
         name: t("number of crimes"),
         nameLocation: "middle",
-        nameGap: 39,
+        nameGap: 30,
         nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif" },
         type: "value",
         scale: false,
