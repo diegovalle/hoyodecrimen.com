@@ -133,13 +133,17 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
-    apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
+    
+    //apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
     //apiUrl: "http://localhost:8080",
+    apiUrl: "https://api.hoyodecrimen.com",
+    
     // https://tileshoyo.surge.sh (cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
     // https://tileshoyo.netlify.app (cors hoyodecrimen.com)
-    osmTilesUrl: `https://hoyodecrimen-tiles.onrender.com/{z}/{x}/{y}.html`,
-    spriteUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/sprites/sprite",
-    glyphsUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/fonts/{fontstack}/{range}.pbf",
+    osmTilesUrl: `https://tiles1.hoyodecrimen.com/{z}/{x}/{y}.html`,
+    // osmTilesUrl: `https://hoyodecrimen-tiles.onrender.com/{z}/{x}/{y}.html`,
+    spriteUrl: "https://tiles1.hoyodecrimen.com/tiles/sprites/sprite",
+    glyphsUrl: "https://tiles1.hoyodecrimen.com/tiles/fonts/{fontstack}/{range}.pbf",
     year: "2024",
     // arcgis "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
     // stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"

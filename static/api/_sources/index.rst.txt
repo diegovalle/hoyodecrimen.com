@@ -31,12 +31,12 @@ very easy to write applications that use it. You can use your browser
 to access any API URL, or pretty much any HTTP client in any
 programming language (yes, even something like STATA).
 
-For example, https://hoyodecrimen.com/api/v1/crimes will return a list
+For example, https://api.hoyodecrimen.com/api/v1/crimes will return a list
 of all crimes in the database.
-https://hoyodecrimen.com/api/v1/cuadrantes will return a list of all
+https://api.hoyodecrimen.com/api/v1/cuadrantes will return a list of all
 the cuadrantes in the Federal District. Once you have a list of crimes
 and cuadrantes you can use
-https://hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series
+https://api.hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series
 to get a time series of the homicide rate in cuadrante C-1.1.1 (the
 API is case insensitive). Note that `homicidio%20doloso` can be
 changed to `all` to get all the crimes that occurred in that
@@ -57,7 +57,7 @@ License
 Data accessed via this API is provided under the
 `Creative Commons Attribution 4.0 International License
 <http://creativecommons.org/licenses/by/4.0/>`_. If you use this
-data you must link back to https://hoyodecrimen.com/ as the origin of
+data you must link back to https://api.hoyodecrimen.com/ as the origin of
 the data. You may also consult our `privacy policy <https://gist.github.com/diegovalle/83d0c541d784e5e6ccce>`_.
 
 What's available
@@ -116,7 +116,7 @@ jQuery.
 
    $.ajax({
        dataType: 'jsonp',
-       url: 'https://hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series',
+       url: 'https://api.hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/homicidio%20doloso/series',
        success: function(data) {
            // console.debug(data)
        }
@@ -128,7 +128,7 @@ jQuery.
 
 ..   import requests as r
 ..   import pandas as pd
-..   sectores = r.get("https://hoyodecrimen.com/api/v1/sectores").json['rows']
+..   sectores = r.get("https://api.hoyodecrimen.com/api/v1/sectores").json['rows']
 ..   df = pd.DataFrame(sectores)
 
 Handling Errors
@@ -145,7 +145,7 @@ Example Error Response:
    $.ajax({
        dataType: 'jsonp',
        // notice the invalid start_date
-       url: 'https://hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/all/series?start_date=2014-99?end_date=2014-07',
+       url: 'https://api.hoyodecrimen.com/api/v1/cuadrantes/c-1.1.1/crimes/all/series?start_date=2014-99?end_date=2014-07',
        success: function(data) {
            // console.debug(data)
        },
