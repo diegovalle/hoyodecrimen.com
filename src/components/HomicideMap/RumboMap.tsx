@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useTranslation } from "gatsby-plugin-react-i18next";
 import {
   Map,
   NavigationControl,
@@ -14,14 +15,13 @@ import {
 import Pin from "./pin";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { notifications } from "@mantine/notifications";
+import { notifications, Notifications } from "@mantine/notifications";
 
 import * as pmtiles from "pmtiles";
 import LoadingOverlay from "./LoadingOverlay";
 import { circle as turfCircle } from "@turf/circle";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import pRetry from "p-retry";
-
 import "../../css/loading.css";
 
 import MAP_STYLE from "../MapStyles/3d";
@@ -66,6 +66,7 @@ export const RumboMap = (props: Props) => {
   const distance = 700;
   const markerRef = useRef<maplibregl.Marker>();
   const abortControllerRef = useRef(null);
+  const { t } = useTranslation();
 
   const meta = useStaticQuery(graphql`
     query {
@@ -163,7 +164,7 @@ export const RumboMap = (props: Props) => {
         markerRef.current.setLngLat(coords);
         setMarker({ longitude: coords[0], latitude: coords[1] });
         if (mapRef) {
-          mapRef.current.setZoom(14.3);
+          mapRef.current.setZoom(14.1);
           mapRef.current.setCenter(coords);
         }
       }
@@ -193,8 +194,16 @@ export const RumboMap = (props: Props) => {
         setCircle(crimeCircle);
         toggleAnimation(mapRef, false);
         if (!booleanPointInPolygon(center, cdmxPoly)) {
+          notifications.show({
+            color: "red",
+            border: true,
+            title: t("Location error"),
+            message: t("Looks like your are not in Mexico City. Setting your location to the Zocalo"),
+            position: "bottom-right",
+            autoClose: 10000,
+          });
           setUserLocation(cdmxCenter);
-          setNotInside(true);
+          //setNotInside(true);
         }
         //throw new Error("404 response", { cause: response });
         return;
@@ -358,6 +367,7 @@ export const RumboMap = (props: Props) => {
 
   return (
     <>
+      <Notifications zIndex={1000} withBorder />
       <Map
         ref={(ref) => (mapRef.current = ref && ref.getMap())}
         maxBounds={[-100.421, 18.468, -97.901, 20.182]}
