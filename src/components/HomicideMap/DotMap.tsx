@@ -38,10 +38,11 @@ export const DotMap = (props: Props) => {
     hourEndValue,
     dateEndValue,
     monthsAvailable,
+    openLoading,
+    closeLoading,
   } = props;
 
   const [hoverInfo, setHoverInfo] = useState(null);
-  const [clickInfo, setClickInfo] = useState(null);
   //const [zoom, setZoom] = useState(null);
   const [refreshClusters, setRefreshClusters] = useState(0);
   const [optionsChanged, setOptionsChanged] = useState(false);
@@ -98,18 +99,18 @@ export const DotMap = (props: Props) => {
     [optionsChanged]
   );
 
-  const onMoveEnd = useCallback((event) => {
-    //console.log(event);
-    setViewState(event.viewState);
-    if (event)
-      setHash(
-        round5(event.viewState.latitude) +
-          "/" +
-          round5(event.viewState.longitude) +
-          "/" +
-          round1(event.viewState.zoom)
-      );
-  }, []);
+  // const onMoveEnd = useCallback((event) => {
+  //   //console.log(event);
+  //   setViewState(event.viewState);
+  //   if (event)
+  //     setHash(
+  //       round5(event.viewState.latitude) +
+  //         "/" +
+  //         round5(event.viewState.longitude) +
+  //         "/" +
+  //         round1(event.viewState.zoom)
+  //     );
+  // }, [setHash]);
 
   // const onClick = useCallback((event) => {
   //   if (event.features.length === 0) {
@@ -216,9 +217,17 @@ export const DotMap = (props: Props) => {
       maplibregl.addProtocol("pmtiles", protocol.tile);
       setPmTilesReady(true);
     }
-  }, [pmTilesReady]);
+  }, [
+    mapOptions,
+    meta.site.siteMetadata.glyphsUrl,
+    meta.site.siteMetadata.osmTilesUrl,
+    meta.site.siteMetadata.satelliteMap,
+    meta.site.siteMetadata.spriteUrl,
+    pmTilesReady,
+  ]);
 
   useEffect(() => {
+    if (!monthsAvailable) return;
     const buildUrl = (base) => {
       let url = base;
       if (debouncedDate || debouncedHour) url += "?";
@@ -293,7 +302,7 @@ export const DotMap = (props: Props) => {
 
       abortControllerRef.current = newAbortController;
       // Call onSearch with new search term and abort controller
-      props.openLoading();
+      openLoading();
       const fetchRequestJSON = pRetry(() => fetchAggregate(url), {
         signal: abortControllerRef.current.signal,
         retries: 2,
@@ -381,7 +390,7 @@ export const DotMap = (props: Props) => {
           console.log(error);
         })
         .finally(() => {
-          props.closeLoading();
+          closeLoading();
         });
     } else {
       setOptionsChanged(true);
@@ -396,6 +405,9 @@ export const DotMap = (props: Props) => {
     debouncedHour,
     refreshClusters,
     monthsAvailable,
+    meta.site.siteMetadata.apiUrl,
+    openLoading,
+    closeLoading,
   ]);
 
   useEffect(() => {
@@ -528,7 +540,7 @@ export const DotMap = (props: Props) => {
       // onClick={onClick}
       onMouseMove={onHover}
       onZoomEnd={onZoomEnd}
-      onMoveEnd={onMoveEnd}
+      //onMoveEnd={onMoveEnd}
       onSourceData={handleData}
       onIdle={handleIdle}
       interactiveLayerIds={["crime-points"]}
@@ -578,33 +590,13 @@ export const DotMap = (props: Props) => {
       <GeolocateControl
         showAccuracyCircle={false}
         onError={(e) => {
-           console.log(e);
+          console.log(e);
         }}
         onOutOfMaxBounds={(e) => {
           console.log(e);
         }}
         trackUserLocation={false}
       />
-      {clickInfo && (
-        <Popup
-          key={clickInfo.longitude + clickInfo.latitude}
-          longitude={clickInfo.longitude}
-          latitude={clickInfo.latitude}
-          offset={[0, -10]}
-          closeButton={true}
-          className="rate-info"
-          //closeOnClick={false}
-        >
-          <b>Cuadrante</b>: {clickInfo.cuadrante}
-          <br />
-          <b>Sector</b>: {clickInfo.sector}
-          <br />
-          <b>Alcaldía</b>: {clickInfo.alcaldia}
-          <br />
-          <b>Count</b>: {clickInfo.count}
-          <br />
-        </Popup>
-      )}
       {crimePopUp && (
         <Popup
           key={hoverInfo.longitude + hoverInfo.latitude}
