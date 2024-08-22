@@ -99,8 +99,7 @@ const deploy_headers_vercel = {
 
 const deploy_headers_netlify = {
    '/': [
-     'Link: <https://api.hoyodecrimen.com>; rel="preconnect"',
-     'Link: <https://tiles1.hoyodecrimen.com>; rel="preconnect"',
+     'Link: <https://api.hoyodecrimen.com>; rel=preconnect, <https://tiles1.hoyodecrimen.com>; rel=preconnect',
    ],
   "/static/json/*": [
     "cache-control: public",
