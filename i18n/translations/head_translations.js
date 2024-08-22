@@ -48,7 +48,7 @@ export const translations = {
     "/en/privacy_description":
       "Information on how HoyoDeCrimen.com protects your privacy",
 
-    "/en/hour_title": "Crime by hour in Mexico City. At what time of the day are most likely to be a victim of crime?",
+    "/en/hour_title": "Crime by hour in Mexico City. At what time of the day are you most likely to be a victim of crime?",
     "/en/hour_description":
       "Charts of the number of crimes in Mexico City during each hour of the day",
   },

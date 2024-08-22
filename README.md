@@ -1,6 +1,16 @@
-nvm use v120.14.0
+nvm use v20.14.0
 
+website:
+netlify
+cloudflare
+kinsta
+render
 
+tiles:
+surge
+render
+netlify
+cloudflare
 
 ## To extract tiles:
 
@@ -28,3 +38,11 @@ ogr2ogr -spat -99.370651 19.147114 -98.926392 19.602488  building_bounded.geojso
 
 
 ```
+
+
+## Todo
+
+* /mapa/ Save map type and dates
+* Add page with under-reporting
+* Month over month difference (current month − same month previous year)
+
