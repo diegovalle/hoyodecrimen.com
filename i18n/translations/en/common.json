@@ -84,5 +84,7 @@
   "English Version": "Versión en Español",
   "smoothed": "If we simply graph the homicide rate, we can see many ups and downs, with peaks in certain neighborhoods and valleys in others. These fluctuations can be attributed to random events or normal variations due to the small population of the average neighborhoods. To obtain a clearer view of the overall trend, a statistical method called 'smoothing' is used, which considers the number of homicides in nearby neighborhoods and their population.",
   "What is a smoothed rate?": "What is a smoothed rate?",
-  "Invalid email": "Invalid email"
+  "Invalid email": "Invalid email",
+  "more homicides": "more homicides",
+  "less homicides": "less homicides"
 }

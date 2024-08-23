@@ -185,8 +185,29 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           lang={language}
         />
       </div>
-      <Space h="sm"></Space>
 
+      <Space h="sm"></Space>
+      <Container
+        pb={0}
+        size="xs"
+        style={{
+          height: "20px",
+          background:
+            "linear-gradient(90deg,  #30123BFF 0%, #455BCDFF 10%, #3E9BFEFF 20%, #18D6CBFF 30%, #46F884FF 40%, #A2FC3CFF 50%, #E1DD37FF 60%, #FEA632FF 70%, #F05B12FF 80%, #C42503FF 90%, #7A0403FF 100%)",
+        }}
+      ></Container>
+      <Container size="xs" px={0}>
+        <Group justify="space-between">
+          <Text size="xs">
+            <Trans>less homicides</Trans>
+          </Text>
+          <Text size="xs" ta="right">
+            <Trans>more homicides</Trans>
+          </Text>
+        </Group>
+      </Container>
+
+      <Space h="lg"></Space>
       <Container
         size="xs"
         p={"1rem"}
