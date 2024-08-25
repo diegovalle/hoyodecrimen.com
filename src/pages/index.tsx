@@ -142,6 +142,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { language } = pageContext;
   const { t } = useTranslation();
   const [lastDate, setLastDate] = useState(null);
+  const [maxRate, setMaxRate] = useState(null);
 
   return (
     <Layout language={language} pageContext={pageContext}>
@@ -183,6 +184,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           setSelectedCuadrante={null}
           setLastDate={setLastDate}
           lang={language}
+          setMaxRate={setMaxRate}
         />
       </div>
 
@@ -202,6 +204,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             <Trans>less homicides</Trans>
           </Text>
           <Text size="xs" ta="right">
+            {/* {maxRate ? Math.ceil(maxRate) : "⠀⠀"}{" "} */}
             <Trans>more homicides</Trans>
           </Text>
         </Group>

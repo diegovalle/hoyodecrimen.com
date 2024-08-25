@@ -198,7 +198,9 @@ export const RumboMap = (props: Props) => {
             color: "red",
             border: true,
             title: t("Location error"),
-            message: t("Looks like your are not in Mexico City. Setting your location to the Zocalo"),
+            message: t(
+              "Looks like your are not in Mexico City. Setting your location to the Zocalo"
+            ),
             position: "bottom-right",
             autoClose: 10000,
           });
@@ -367,7 +369,7 @@ export const RumboMap = (props: Props) => {
 
   return (
     <>
-      <Notifications zIndex={1000} withBorder />
+      <Notifications zIndex={1000} />
       <Map
         ref={(ref) => (mapRef.current = ref && ref.getMap())}
         maxBounds={[-100.421, 18.468, -97.901, 20.182]}

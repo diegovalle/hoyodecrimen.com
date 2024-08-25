@@ -78,7 +78,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <Grid overflow="hidden">
           <Grid.Col
             span={{ base: 12, md: 9, lg: 9 }}
-            style={{ height: wSize.height - 60 + 16 }}
+            style={{ height: wSize.height ?  wSize.height- 60 + 16 : 0 }}
             pb={0}
           >
             {wSize.height ? (
