@@ -14,7 +14,6 @@ import {
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as pmtiles from "pmtiles";
-import { round1, round5 } from "../utils";
 import { useDebouncedValue } from "@mantine/hooks";
 import pRetry from "p-retry";
 
@@ -413,11 +412,11 @@ export const DotMap = (props: Props) => {
   useEffect(() => {
     let args = hash.split("/");
     let zoom, lat, lon;
-    if (args.length === 3) {
+    if (args.length === 4) {
       try {
-        zoom = parseFloat(args[2]);
-        lat = parseFloat(args[0].replace("#", ""));
-        lon = parseFloat(args[1]);
+        zoom = parseFloat(args[3]);
+        lat = parseFloat(args[1].replace("#", ""));
+        lon = parseFloat(args[2]);
       } catch {
         return;
       }

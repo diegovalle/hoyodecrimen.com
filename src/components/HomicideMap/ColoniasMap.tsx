@@ -191,7 +191,7 @@ export const SectoresMap = (props: Props) => {
         "case",
         ["boolean", ["feature-state", "hover"], false],
         2.5,
-        0.2,
+        0.1,
       ],
     },
     //minzoom: 13,
@@ -248,11 +248,10 @@ export const SectoresMap = (props: Props) => {
             ].join(" ");
             props.setLastDate(dateStrStart + " " + t("to") + " " + dateStrEnd);
           }
+          let maxRate = max(crimes[0].pred_rate.map((x) => Math.exp(x)));
+          if (props.setMaxRate) props.setMaxRate(maxRate);
           var myColorScale = scaleSequential()
-            .domain([
-              min(crimes[0].pred_rate.map((x) => Math.exp(x))),
-              max(crimes[0].pred_rate.map((x) => Math.exp(x))),
-            ])
+            .domain([0, maxRate])
             .interpolator(interpolateTurbo);
 
           setCrimeData([...crimes]);
@@ -303,7 +302,7 @@ export const SectoresMap = (props: Props) => {
         console.log(error);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.setMaxRate]);
 
   const crimePopUp =
     hoverInfo && hoverInfo.crimeName ? (

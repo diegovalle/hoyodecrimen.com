@@ -4,7 +4,7 @@ import { useTranslation } from "gatsby-plugin-react-i18next";
 import ReactEChartsCore from "echarts-for-react/lib/core";
 // Import the echarts core module, which provides the necessary interfaces for using echarts.
 import * as echarts from "echarts/core";
-import { LineChart, ScatterChart } from "echarts/charts";
+import { LineChart } from "echarts/charts";
 import {
   GridComponent,
   TooltipComponent,
@@ -21,7 +21,6 @@ echarts.use([
   TooltipComponent,
   GridComponent,
   LineChart,
-  ScatterChart,
   CanvasRenderer,
 ]);
 
