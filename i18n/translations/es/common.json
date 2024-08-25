@@ -27,7 +27,7 @@
   "Submit": "Enviar",
   "createdBy": "Creado por <1 href=\"https://www.diegovalle.net/es/\">Diego Valle</1>",
   "dataSource": "Los datos de incidencia delictiva provienen de la <1 href=\"https://datos.cdmx.gob.mx/dataset/carpetas-de-investigacion-fgj-de-la-ciudad-de-mexico\"> FGJ-CDMX </1>. El mapa de cuadrantes es de la <3 href=\"https://datos.cdmx.gob.mx/dataset/cuadrantesl\">  Secretaría de Seguridad Ciudadana (SSC)  </3> y las colonias del  <5 href=\"https://datos.cdmx.gob.mx/dataset/coloniascdmx\"> Instituto Electoral de la Ciudad de México </5>. La población está basada en información del <7 href=\"https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html\"> Censo 2020 por manzana </7>.",
-  "coolAPI": "También contamos con un <1 href=\"https://hoyodecrimen.com/api\">API</1>.",
+  "coolAPI": "También contamos con un <1 href=\"https://hoyodecrimen.com/api/\">API</1>.",
   "elcrimenLink": "Visiten  <1 href=\"https://elcri.men/\">El Crimen</1> para una guía completa del crimen y seguridad en todo México.",
   "copyright": "Diego Valle-Jones. Todos los derechos reservados.",
   "Follow on 𝕏 (Twitter)": "Seguir en 𝕏 (Twitter)",
