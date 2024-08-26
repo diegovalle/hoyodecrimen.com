@@ -41,7 +41,7 @@ export const Head: HeadFC = (props) => {
         rel="canonical"
         href={`${defaults.siteUrl}${localizedPath}${
           language === "en" && localizedPath !== "/" ? "/" : ""
-        }`}
+        }`.replace(/\/\/$/, "/")}
       />
       <meta
         property="og:url"
