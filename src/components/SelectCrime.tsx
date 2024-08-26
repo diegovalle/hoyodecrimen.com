@@ -20,12 +20,29 @@ function SelectCrime(props) {
 
   useEffect(() => {
     const url = `${meta.site.siteMetadata.apiUrl}/api/v1/crimes`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setCrimeList(data.rows.map((r) => r.crime));
-      });
-  }, []);
+    const fetchData = async () => {
+      let retries = 0;
+      while (retries < 3) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          setCrimeList(data.rows.map((r) => r.crime));
+          return;
+        } catch (error) {
+          retries++;
+          console.error(`Attempt ${retries} failed. ${error.message}`);
+          if (retries === 3) {
+            console.error('Failed to fetch crime list after 3 attempts');
+          }
+        }
+      }
+    };
+
+    fetchData();
+  }, [meta.site.siteMetadata.apiUrl]);
 
   const handleSelect = (e) => {
     props.updateCrime(e);

@@ -229,73 +229,85 @@ export const SectoresMap = (props: Props) => {
   useEffect(() => {
     let url = `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=smoothgamhomicides`;
 
-    const fetchRequestJSON = fetch(url);
-    Promise.all([fetchRequestJSON])
-      .then(async (responses) => {
-        const [responseJSON] = responses;
-        try {
-          const [crimes] = await Promise.all([responseJSON.json()]);
-          if (props?.setLastDate) {
-            let dateStart = YYYYmmddToDate15(crimes[1].start[0]);
-            let dateStrStart = [
-              dateStart.toLocaleString(props.lang, { month: "long" }),
-              dateStart.getFullYear(),
-            ].join(" ");
-            let dateEnd = YYYYmmddToDate15(crimes[2].end[0]);
-            let dateStrEnd = [
-              dateEnd.toLocaleString(props.lang, { month: "long" }),
-              dateEnd.getFullYear(),
-            ].join(" ");
-            props.setLastDate(dateStrStart + " " + t("to") + " " + dateStrEnd);
-          }
-          let maxRate = max(crimes[0].pred_rate.map((x) => Math.exp(x)));
-          if (props.setMaxRate) props.setMaxRate(maxRate);
-          var myColorScale = scaleSequential()
-            .domain([0, maxRate])
-            .interpolator(interpolateTurbo);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return await response.json();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Retry once
+        console.log("Retrying fetch...");
+        const retryResponse = await fetch(url);
+        if (!retryResponse.ok) {
+          throw new Error("Retry failed");
+        }
+        return await retryResponse.json();
+      }
+    };
 
-          setCrimeData([...crimes]);
-          let colors = zip(
-            crimes[0].CVEUT,
-            crimes[0].pred_rate.map((x) => myColorScale(Math.exp(x)))
+    fetchData()
+      .then((crimes) => {
+        if (props?.setLastDate) {
+          let dateStart = YYYYmmddToDate15(crimes[1].start[0]);
+          let dateStrStart = [
+            dateStart.toLocaleString(props.lang, { month: "long" }),
+            dateStart.getFullYear(),
+          ].join(" ");
+          let dateEnd = YYYYmmddToDate15(crimes[2].end[0]);
+          let dateStrEnd = [
+            dateEnd.toLocaleString(props.lang, { month: "long" }),
+            dateEnd.getFullYear(),
+          ].join(" ");
+          props.setLastDate(dateStrStart + " " + t("to") + " " + dateStrEnd);
+        }
+        let maxRate = max(crimes[0].pred_rate.map((x) => Math.exp(x)));
+        if (props.setMaxRate) props.setMaxRate(maxRate);
+        var myColorScale = scaleSequential()
+          .domain([0, maxRate])
+          .interpolator(interpolateTurbo);
+
+        setCrimeData([...crimes]);
+        let colors = zip(
+          crimes[0].CVEUT,
+          crimes[0].pred_rate.map((x) => myColorScale(Math.exp(x)))
+        );
+
+        mapStyle.layers = mapStyle.layers.filter(function (item) {
+          return !(
+            crimeStyle.reduce(
+              (prev, cur) => prev || cur.id === item.id,
+              false
+            ) ||
+            item.id === "place_label_city" ||
+            //item.id === "road_trunk_primary" ||
+            item.id === "road_major_label"
           );
+        });
+        fillLayer.paint["fill-color"].stops = [...colors];
+        setFillLayerOptions({ ...fillLayer });
 
-          mapStyle.layers = mapStyle.layers.filter(function (item) {
-            return !(
-              crimeStyle.reduce(
-                (prev, cur) => prev || cur.id === item.id,
-                false
-              ) ||
-              item.id === "place_label_city" ||
-              //item.id === "road_trunk_primary" ||
-              item.id === "road_major_label"
-            );
-          });
-          fillLayer.paint["fill-color"].stops = [...colors];
-          setFillLayerOptions({ ...fillLayer });
+        if (!mapOptions) {
+          mapStyle.layers.push(...crimeStyle);
+          setMapOptions({ ...mapStyle });
+        }
 
-          if (!mapOptions) {
-            mapStyle.layers.push(...crimeStyle);
-            setMapOptions({ ...mapStyle });
-          }
+        crimeDotsNoCrime.filter = [
+          "all",
+          ["==", "crime", props.selectedCrime],
+          ["!has", "point_count"],
+        ];
+        //crimeDotsNoCrime.paint["circle-color"] = color;
+        setCrimeDots({
+          ...crimeDotsNoCrime,
+        });
 
-          crimeDotsNoCrime.filter = [
-            "all",
-            ["==", "crime", props.selectedCrime],
-            ["!has", "point_count"],
-          ];
-          //crimeDotsNoCrime.paint["circle-color"] = color;
-          setCrimeDots({
-            ...crimeDotsNoCrime,
-          });
-
-          if (!pmTilesReady) {
-            const protocol = new pmtiles.Protocol();
-            maplibregl.addProtocol("pmtiles", protocol.tile);
-            setPmTilesReady(true);
-          }
-        } catch (err) {
-          console.log(err);
+        if (!pmTilesReady) {
+          const protocol = new pmtiles.Protocol();
+          maplibregl.addProtocol("pmtiles", protocol.tile);
+          setPmTilesReady(true);
         }
       })
       .catch((error) => {

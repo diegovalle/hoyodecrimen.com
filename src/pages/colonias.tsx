@@ -4,6 +4,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import { Trans } from "gatsby-plugin-react-i18next";
+import { useTranslation } from "gatsby-plugin-react-i18next";
 
 import { useDisclosure } from "@mantine/hooks";
 //import { MantineLogo } from "@mantine/ds";
@@ -38,6 +39,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [opened, { close, toggle }] = useDisclosure(false);
   const wSize = useWindowSize();
 
+  const { t } = useTranslation();
   const [lastDate, setLastDate] = useState(null);
 
   return (
@@ -88,7 +90,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               scrollAreaComponent={ScrollArea.Autosize}
             >
               <Container size="xs">
-                <Title order={1} size="h4">
+                <Title order={2} size="h4">
                   <Trans>Homicide rate by Neighborhood</Trans>
                 </Title>
                 {lastDate
@@ -134,6 +136,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               </Container>
             </Drawer>
             <Affix position={{ bottom: 85, right: 20 }}>
+              
               <Button
                 px={6}
                 variant="filled"
@@ -141,7 +144,9 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 color="rgba(255, 255, 255, 1)"
                 onClick={toggle}
                 aria-label="Options"
+                title={t("Homicide rate by Neighborhood")}
               >
+                <h1 style={{display: "none"}}>Homicide rate by Neighborhood</h1>
                 <IconInfoCircle style={{}} />
               </Button>
             </Affix>

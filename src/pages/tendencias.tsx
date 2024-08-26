@@ -14,7 +14,7 @@ import {
   Space,
   Divider,
   Skeleton,
-  Container
+  Container,
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
@@ -46,15 +46,35 @@ const TasasPage: React.FC<PageProps> = ({
   const { t } = useTranslation();
 
   useEffect(() => {
-    fetch(
-      `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=crime_trends`
-    )
-      .then((response) => response.json())
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=crime_trends`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return await response.json();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Retry once
+        console.log("Retrying fetch...");
+        const retryResponse = await fetch(
+          `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=crime_trends`
+        );
+        if (!retryResponse.ok) {
+          throw new Error("Retry failed");
+        }
+        return await retryResponse.json();
+      }
+    };
+
+    fetchData()
       .then((responseJSON) => {
         setData(responseJSON);
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Error:", error);
       });
   }, [meta.site.siteMetadata.apiUrl]);
 
@@ -136,8 +156,8 @@ const TasasPage: React.FC<PageProps> = ({
         )}
       </Grid>
       <Container size="sm">
-          <Trans i18nKey="intro"></Trans>
-        </Container>
+        <Trans i18nKey="intro"></Trans>
+      </Container>
     </Layout>
   );
 };
