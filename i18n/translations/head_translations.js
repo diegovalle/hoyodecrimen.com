@@ -2,25 +2,25 @@ export const translations = {
   en: {
     "/en/_title": "Mexico City Crime Rates and Statistics - HoyoDeCrimen",
     "/en/_description":
-      "Mexico City crime rates and violence map. Find out how safe your neighborhood is with maps and charts",
+      "Mexico City crime rates and violence maps. HoyoDeCrimen will help you find out how safe your neighborhood (colonia) is.",
     "/en/cuadrantes-map_title": "Crime in Mexico City by Cuadrante",
     "/en/cuadrantes-map_description":
       "Interactive map of crime rates in the cuadrantes of Mexico City",
-    "/en/neighborhoods_title": "Homicides in Mexico City by Neighborhood",
+    "/en/neighborhoods_title": "Homicides Rates in Mexico City by Neighborhood",
     "/en/neighborhoods_description":
-      "Interactive map of homicides rates in the different colonias of Mexico City. Interactive map of Mexico City neighborhoods",
+      "Interactive map of homicides rates in the different colonias of Mexico City. Find out which neighborhoods are safe with this map.",
     "/en/sectores-map_title": "Crime Rate in Mexico City by Sector",
     "/en/sectores-map_description":
-      "Interactive map of crime rates in the sectors of Mexico City. Mexico City crime rate map in each of mayor areas.",
+      "Interactive map of crime rates in the different police sectors of Mexico City.",
     "/en/map_title": "Mexico City Safety Map",
     "/en/map_description":
-      "Map of crime incidents in Mexico City tagged with latitude/longitude, date and time of occurrence. Robberies, murders, carjackings, firearm lesions... ",
+      "Map of crime incidents in Mexico City tagged with latitude/longitude, date and time of occurrence. Murders, robberies , carjackings, firearm lesions... ",
     "/en/rates_title": "Maps of Crime Rates in Mexico City by Police Sector",
     "/en/rates_description": "Mexico City Crime Rates by Sector",
     "/en/counts_title": "Crime Counts by Cuadrante in Mexico City",
     "/en/counts_description":
       "Maps of crime rates in Mexico City by cuadrante delictivo",
-    "/en/crime_title": "Charts of Different Crimes in Mexico City",
+    "/en/crime_title": "Charts of the Different Crimes in Mexico City",
     "/en/crime_description":
       "Small multiple charts of crime in all of Mexico City",
 
@@ -38,7 +38,7 @@ export const translations = {
     "/en/compare-neighborhoods_title":
       "Compare Neighborhoods in Mexico City by Homicide Rate",
     "/en/compare-neighborhoods_description":
-      "Compare crime by neighborhood in Mexico City. Where is the safest place to live? Crime in Roma, Condesa, Polanco, etc.",
+      "Compare crime by neighborhood in Mexico City. Where is the safest place to live? Crime in Roma, Condesa, Polanco...",
     "/en/area-map_title": "Crime in your Area",
     "/en/area-map_description":
       "All crimes in Mexico City within 700 meters of where you are right now",
@@ -59,12 +59,12 @@ export const translations = {
     "/cuadrantes-mapa/_title": "Mapa de Crímenes por Cuadrante",
     "/cuadrantes-mapa/_description":
       "Mapa interactivo del número de crímenes en los cuadrantes de CDMX. Las zonas rojas de CDMX",
-    "/colonias/_title": "Mapa de Homicidios por Colonia",
+    "/colonias/_title": "Mapa de Homicidios por Colonia en la CDMX",
     "/colonias/_description":
       "Mapa interactivo de tasas de homicidio en la Ciudad de México por colonia ¿Cuáles son las colonias más seguras y más peligrosas en CDMX?",
-    "/sectores-mapa/_title": "Mapa de Crímenes en CDMX por Sector",
+    "/sectores-mapa/_title": "Mapa de Tasas de Crímenes en la CDMX por Sector",
     "/sectores-mapa/_description":
-      "Mapa interactivo del crimen en la Ciudad de México por sector",
+      "Mapa interactivo de tasas de crimen en la Ciudad de México por sector policíaco",
     "/mapa/_title": "Mapa del Crimen en la Ciudad de México",
     "/mapa/_description":
       "Mapa de la inseguridad e incidentes criminales en la Ciudad de México con latitud, longitud, fecha y hora de ocurrencia",
@@ -100,7 +100,7 @@ export const translations = {
       "Tasas de homicidio en las distintas colonias de la CDMX. Las zonas más seguras para vivir y trabajar en CDMX",
     "/rumbo-mapa/_title": "Crimen por tu Rumbo",
     "/rumbo-mapa/_description": "Mapa de delitos por tu rumbo",
-    "/acerca/_title": "Información de HoyoDeCrimen.com",
+    "/acerca/_title": "Acerca de HoyoDeCrimen.com",
     "/acerca/_description": "Información de la página HoyoDeCrimen.com",
     "/privacidad/_title": "Política de Privacidad",
     "/privacidad/_description":

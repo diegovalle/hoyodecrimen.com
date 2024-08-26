@@ -105,8 +105,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               <Trans i18nKey="li3"></Trans>
             </List.Item>
           </List>
-
           <Space h="xl" />
+
           <Trans i18nKey="rest">
             Additional Information:
             <p>There's also a Spanish version and a really cool API.</p>
@@ -121,6 +121,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               This webapp is open source and you can view the code on GitHub.
             </p>
           </Trans>
+          aaa
           <Space h="sm" />
           <Trans
             i18nKey="contact"

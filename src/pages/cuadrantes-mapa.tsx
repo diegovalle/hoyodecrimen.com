@@ -80,7 +80,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <Grid overflow="hidden">
           <Grid.Col
             span={{ base: 12, md: 9, lg: 9 }}
-            style={{ height: wSize.height ?  wSize.height- 60 + 16 : 0 }}
+            style={{ height: wSize.height ? wSize.height - 60 + 16 : 0 }}
             pb={0}
           >
             {wSize.height ? (
@@ -104,20 +104,79 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   <Trans>Crimes by Cuadrante</Trans>
                 </Center>
               </Title>
+              <>
+                <Center component="span">
+                  <Text span>
+                    {lastDate
+                      ? t("Map from") +
+                        " " +
+                        lastDate.charAt(0).toUpperCase() +
+                        lastDate.slice(1)
+                      : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
+                  </Text>
+                </Center>
+
+                <Space h="md" />
+
+                <LazyLoad once>
+                  <>
+                    <Container pb="1rem" size="25rem">
+                      <SelectCrime
+                        updateCrime={updateCrime}
+                        selectedCrime={selectedCrime}
+                      />
+                    </Container>
+                    <Text>
+                      <Center component="span">
+                        {selectedCuadrante === "df"
+                          ? "CDMX"
+                          : selectedCuadrante}
+                      </Center>
+                    </Text>
+                    <CuadrantesLineChart
+                      selectedCrime={selectedCrime}
+                      selectedCuadrante={selectedCuadrante}
+                      language={language}
+                    />
+                  </>
+                </LazyLoad>
+              </>
+            </Drawer>
+            <Affix position={{ bottom: 85, right: 20 }} hiddenFrom="md">
+              <Button
+                px={6}
+                variant="filled"
+                autoContrast={true}
+                color="rgba(255, 255, 255, 1)"
+                onClick={toggle}
+                aria-label="Options"
+                title={t("Crimes by Cuadrante")}
+              >
+                <IconAdjustmentsHorizontal style={{}} />
+              </Button>
+            </Affix>
+          </Grid.Col>
+          <Grid.Col visibleFrom="md" span={{ base: 12, md: 3, lg: 3 }} pb={0}>
+            <>
+              <Space h="md" />
+              <Title order={1} size="lg">
+                <Center>
+                  <Trans>Crimes by Cuadrante</Trans>
+                </Center>
+              </Title>
+              <Text>
+                <Center component="span">
+                  {lastDate
+                    ? t("Map from") +
+                      " " +
+                      lastDate.charAt(0).toUpperCase() +
+                      lastDate.slice(1)
+                    : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
+                </Center>
+              </Text>
+              <Space h="md" />
               <LazyLoad once>
                 <>
-                  <Center component="span">
-                    <Text span>
-                      {lastDate
-                        ? t("Map from") +
-                          " " +
-                          lastDate.charAt(0).toUpperCase() +
-                          lastDate.slice(1)
-                        : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
-                    </Text>
-                  </Center>
-
-                  <Space h="md" />
                   <Container pb="1rem" size="25rem">
                     <SelectCrime
                       updateCrime={updateCrime}
@@ -136,58 +195,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   />
                 </>
               </LazyLoad>
-            </Drawer>
-            <Affix position={{ bottom: 85, right: 20 }} hiddenFrom="md">
-              <Button
-                px={6}
-                variant="filled"
-                autoContrast={true}
-                color="rgba(255, 255, 255, 1)"
-                onClick={toggle}
-                aria-label="Options"
-              >
-                <IconAdjustmentsHorizontal style={{}} />
-              </Button>
-            </Affix>
-          </Grid.Col>
-          <Grid.Col visibleFrom="md" span={{ base: 12, md: 3, lg: 3 }} pb={0}>
-            <LazyLoad once>
-              <>
-                <Space h="md" />
-                <Title order={1} size="lg">
-                  <Center>
-                    <Trans>Crimes by Cuadrante</Trans>
-                  </Center>
-                </Title>
-                <Text>
-                  <Center component="span">
-                    {lastDate
-                      ? t("Map from") +
-                        " " +
-                        lastDate.charAt(0).toUpperCase() +
-                        lastDate.slice(1)
-                      : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
-                  </Center>
-                </Text>
-                <Space h="md" />
-                <Container pb="1rem" size="25rem">
-                  <SelectCrime
-                    updateCrime={updateCrime}
-                    selectedCrime={selectedCrime}
-                  />
-                </Container>
-                <Text>
-                  <Center component="span">
-                    {selectedCuadrante === "df" ? "CDMX" : selectedCuadrante}
-                  </Center>
-                </Text>
-                <CuadrantesLineChart
-                  selectedCrime={selectedCrime}
-                  selectedCuadrante={selectedCuadrante}
-                  language={language}
-                />
-              </>
-            </LazyLoad>
+            </>
           </Grid.Col>
         </Grid>
       </AppShell.Main>
