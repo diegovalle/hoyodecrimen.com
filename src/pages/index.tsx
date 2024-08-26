@@ -45,10 +45,11 @@ export function BellasArtes() {
 }
 
 export function CrimeIndexPic() {
+  const { t } = useTranslation();
   return (
     <StaticImage
       src="../images/Gemini_Generated_Image_8coph78coph78cop.jpeg"
-      alt="Crime Index"
+      alt={t("Crime Locations")}
       aspectRatio={590 / 332}
       //width={400}
       //height={160}
@@ -59,10 +60,11 @@ export function CrimeIndexPic() {
 }
 
 export function CuadrantesPic() {
+  const { t } = useTranslation();
   return (
     <StaticImage
       src="../images/029248f5177b47dfa35873ab2f01ebcc_77225ca9ddf64e6bbcfaa9c1e3243802.jpg"
-      alt="Crime Index"
+      alt={t("Sectores")}
       aspectRatio={590 / 332}
       //width={400}
       //height={160}
@@ -73,10 +75,11 @@ export function CuadrantesPic() {
 }
 
 export function ColoniasPic() {
+  const { t } = useTranslation();
   return (
     <StaticImage
       src="../images/f8421efb3fc34e7f8a0fa62aa07727ee_e77d198874fa458ba83de750c4a04aed.jpg"
-      alt="Crime Index"
+      alt={t("Neighborhoods")}
       aspectRatio={590 / 332}
       //width={400}
       // height={160}
@@ -87,10 +90,11 @@ export function ColoniasPic() {
 }
 
 export function CGPic() {
+  const { t } = useTranslation();
   return (
     <StaticImage
       src="../images/Gemini_Generated_Image_1a4ywa1a4ywa1a4y.jpeg"
-      alt="Crime Index"
+      alt={t("Crime in your area")}
       aspectRatio={590 / 332}
       //width={400}
       //height={160}

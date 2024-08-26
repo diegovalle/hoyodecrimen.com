@@ -16,5 +16,6 @@
   "Number of crimes in each of the police blocks that make up Mexico City. Will you lose your iPhone or your life...": "Número de crímenes en cada uno de los sectores policíacos.",
   "All crimes within 700 meters of where you are right now": "Todos los crímenes a 700 metros de donde te encuentres",
   "Official Crime Data": "Datos Oficiales",
-  "annualized": "La tasa de homicidio anualizada es un indicador que estima el número de homicidios que ocurrirían en un año si la tasa de homicidios observada en un período de tiempo más corto (un mes en este caso) se mantuviera durante todo el año. Se calcula tomando el número de homicidios en cada mes y multiplicándolo por 12."
+  "annualized": "La tasa de homicidio anualizada es un indicador que estima el número de homicidios que ocurrirían en un año si la tasa de homicidios observada en un período de tiempo más corto (un mes en este caso) se mantuviera durante todo el año. Se calcula tomando el número de homicidios en cada mes y multiplicándolo por 12.",
+  "Crime in your area": "Crime por tu rumbo"
 }
