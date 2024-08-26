@@ -15,6 +15,7 @@ import {
   Grid,
   Card,
   Group,
+  Blockquote
 } from "@mantine/core";
 
 import LazyLoad from "react-lazy-load";
@@ -22,6 +23,8 @@ import { LocLink } from "../components/LocLink";
 import ColoniasMap from "../components/HomicideMap/ColoniasMap";
 
 import Layout from "../components/Layout";
+
+import { IconInfoCircle } from '@tabler/icons-react';
 
 import CDMXLineChart from "../components/CDMXLineChart";
 
@@ -147,6 +150,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { t } = useTranslation();
   const [lastDate, setLastDate] = useState(null);
   const [maxRate, setMaxRate] = useState(null);
+  const icon = <IconInfoCircle />;
 
   return (
     <Layout language={language} pageContext={pageContext}>
@@ -296,12 +300,14 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       <Container
         size="xs"
         p={"1rem"}
-        bg="var(--mantine-color-blue-light)"
         r="--mantine-radius-md"
       >
+        <Blockquote color="blue" cite="" icon={icon} mt="xl">
         <Text>
           <Trans i18nKey="annualized"></Trans>
         </Text>
+        </Blockquote>
+
       </Container>
 
       <Divider my="xl" />

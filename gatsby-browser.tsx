@@ -32,6 +32,7 @@ import "@mantine/core/styles/ActionIcon.css";
 import "@mantine/core/styles/Affix.css";
 import "@mantine/core/styles/AppShell.css";
 import "@mantine/core/styles/AspectRatio.css";
+import '@mantine/core/styles/Blockquote.css';
 import "@mantine/core/styles/Burger.css";
 import "@mantine/core/styles/Button.css";
 import "@mantine/core/styles/Card.css";
