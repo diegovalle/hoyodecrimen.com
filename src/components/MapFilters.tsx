@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import {
   Radio,
   Group,
@@ -10,10 +9,7 @@ import {
   Divider,
   Text,
   Center,
-  AspectRatio,
   Title,
-  rem,
-  Skeleton,
 } from "@mantine/core";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
@@ -23,7 +19,7 @@ import { YYYYmmToStr } from "./utils";
 
 export const MapFilters = (props: Props) => {
   const { t } = useTranslation();
-  const [debounced, cancel] = useDebouncedValue(props.selectedCrimes, 1000);
+  const [debounced] = useDebouncedValue(props.selectedCrimes, 1000);
 
   return (
     <>
@@ -85,9 +81,9 @@ export const MapFilters = (props: Props) => {
                 props.setMonthsText(
                   !props.monthMarks
                     ? t("All")
-                    : YYYYmmToStr(props.monthsAvailable[v[0]], props.language) +
+                    : YYYYmmToStr(props.monthsAvailable.current[v[0]], props.language) +
                         " - " +
-                        YYYYmmToStr(props.monthsAvailable[v[1]], props.language)
+                        YYYYmmToStr(props.monthsAvailable.current[v[1]], props.language)
                 );
               }}
               // classNames={classes}

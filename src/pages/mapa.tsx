@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { graphql } from "gatsby";
 import Header from "../components/Header/Header";
 import { useTranslation } from "gatsby-plugin-react-i18next";
@@ -65,7 +65,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [months, setMonths] = useState(null);
   const [dateEndValue, setDateEndValue] = useState(null);
   const [hourEndValue, setHourEndValue] = useState(null);
-  const [monthsAvailable, setMonthsAvailable] = useState(null);
+  const monthsAvailable = useRef(null);
   const [dateValue, setDateValue] = useState(null);
   const [hourValue, setHourValue] = useState<[number, number]>([5, 28]);
   const [monthsText, setMonthsText] = useState(t("All"));
@@ -147,7 +147,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           let start_date = data.date_range[0];
           let end_date = data.date_range[1];
 
-          setMonthsAvailable(monthRange(start_date, end_date));
+          monthsAvailable.current = monthRange(start_date, end_date);
 
           let totalMonths =
             (parseInt(end_date.slice(0, 4)) -
@@ -238,7 +238,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <Grid overflow="hidden">
           <Grid.Col
             span={{ base: 12, md: "auto", lg: "auto" }}
-            style={{ height: wSize.height - 60 + 16 }}
+            style={{ height: wSize.height ? wSize.height - 60 + 16 : 0 }}
             pb={0}
           >
             {wSize.height ? (
@@ -249,7 +249,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 selectedCrimes={selectedCrimes}
                 dateEndValue={dateEndValue}
                 hourEndValue={hourEndValue}
-                monthsAvailable={monthsAvailable}
+                ref={monthsAvailable}
                 openLoading={openLoading}
                 closeLoading={closeLoading}
                 dateValue={dateValue}

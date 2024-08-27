@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, forwardRef } from "react";
 import {
   Map,
   NavigationControl,
@@ -25,18 +25,16 @@ import MAP_STYLE from "../MapStyles/3d";
 import dotStyle from "../MapStyles/dot-map";
 import sectoresCentroids from "../../../static/maps/sectores_centroids_2023.geojson.json";
 
-export const DotMap = (props: Props) => {
+export const DotMap = forwardRef((props: Props, ref) => {
   const maxZoom = 19;
   const mapRef = useRef();
   const [pmTilesReady, setPmTilesReady] = useState(false);
   const {
     checked,
-    setHash,
     hash,
     selectedCrimes,
     hourEndValue,
     dateEndValue,
-    monthsAvailable,
     openLoading,
     closeLoading,
   } = props;
@@ -226,13 +224,13 @@ export const DotMap = (props: Props) => {
   ]);
 
   useEffect(() => {
-    if (!monthsAvailable) return;
     const buildUrl = (base) => {
       let url = base;
+      if (ref.current === null && debouncedDate === null && debouncedHour === null) return url;
       if (debouncedDate || debouncedHour) url += "?";
       if (debouncedDate)
-        url += `start_date=${monthsAvailable[debouncedDate[0]]}&end_date=${
-          monthsAvailable[debouncedDate[1]]
+        url += `start_date=${ref.current[debouncedDate[0]]}&end_date=${
+          ref.current[debouncedDate[1]]
         }`;
       if (debouncedDate && debouncedHour) url += "&";
       if (debouncedHour)
@@ -397,13 +395,13 @@ export const DotMap = (props: Props) => {
     return () => {
       abortControllerRef.current.abort();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     debounced,
     mapOptions,
     debouncedDate,
     debouncedHour,
     refreshClusters,
-    monthsAvailable,
     meta.site.siteMetadata.apiUrl,
     openLoading,
     closeLoading,
@@ -610,6 +608,6 @@ export const DotMap = (props: Props) => {
       )}
     </Map>
   ) : null;
-};
+});
 
 export default React.memo(DotMap);

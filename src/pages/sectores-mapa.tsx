@@ -7,7 +7,7 @@ import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
 import { useDisclosure } from "@mantine/hooks";
 //import { MantineLogo } from "@mantine/ds";
-import type { HeadFC, PageProps } from "gatsby";
+import type { PageProps } from "gatsby";
 import Header from "../components/Header/Header";
 import {
   AppShell,
