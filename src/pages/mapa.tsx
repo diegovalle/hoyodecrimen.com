@@ -118,57 +118,78 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   useEffect(() => {
     const url = `${data.site.siteMetadata.apiUrl}/api/v1/crimes_extra`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setCrimeList(
-          data.crimes.map((r) => {
-            switch (r.crime) {
-              case "HOMICIDIO DOLOSO":
-                return "HOMICIDIO DOLOSO";
-              case "ROBO DE VEHICULO AUTOMOTOR S.V.":
-                return "ROBO DE VEHICULO AUTOMOTOR S.V.";
-              case "ROBO DE VEHICULO AUTOMOTOR C.V.":
-                return "ROBO DE VEHICULO AUTOMOTOR C.V.";
-              default:
-                return r.crime;
-            }
-          })
-        );
+    const fetchData = async () => {
+      let retries = 0;
+      const maxRetries = 3;
+      while (retries < maxRetries) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
 
-        let start_date = data.date_range[0];
-        let end_date = data.date_range[1];
+          setCrimeList(
+            data.crimes.map((r) => {
+              switch (r.crime) {
+                case "HOMICIDIO DOLOSO":
+                  return "HOMICIDIO DOLOSO";
+                case "ROBO DE VEHICULO AUTOMOTOR S.V.":
+                  return "ROBO DE VEHICULO AUTOMOTOR S.V.";
+                case "ROBO DE VEHICULO AUTOMOTOR C.V.":
+                  return "ROBO DE VEHICULO AUTOMOTOR C.V.";
+                default:
+                  return r.crime;
+              }
+            })
+          );
 
-        setMonthsAvailable(monthRange(start_date, end_date));
+          let start_date = data.date_range[0];
+          let end_date = data.date_range[1];
 
-        let totalMonths =
-          (parseInt(end_date.slice(0, 4)) - parseInt(start_date.slice(0, 4))) *
-            12 +
-          parseInt(end_date.slice(5)) -
-          1;
-        setMonths(dateRange(start_date, end_date));
-        setNumMonths(totalMonths);
-        setMonthMarks([
-          {
-            value: 0,
-            label: [
-              new Date(start_date + "-15").toLocaleString(language, {
-                month: "short",
-              }),
-              new Date(start_date + "-15").getFullYear(),
-            ].join(`\n`),
-          },
-          {
-            value: totalMonths,
-            label: [
-              new Date(end_date + "-15").toLocaleString(language, {
-                month: "short",
-              }),
-              new Date(end_date + "-15").getFullYear(),
-            ].join(`\n`),
-          },
-        ]);
-      });
+          setMonthsAvailable(monthRange(start_date, end_date));
+
+          let totalMonths =
+            (parseInt(end_date.slice(0, 4)) -
+              parseInt(start_date.slice(0, 4))) *
+              12 +
+            parseInt(end_date.slice(5)) -
+            1;
+          setMonths(dateRange(start_date, end_date));
+          setNumMonths(totalMonths);
+          setMonthMarks([
+            {
+              value: 0,
+              label: [
+                new Date(start_date + "-15").toLocaleString(language, {
+                  month: "short",
+                }),
+                new Date(start_date + "-15").getFullYear(),
+              ].join(`\n`),
+            },
+            {
+              value: totalMonths,
+              label: [
+                new Date(end_date + "-15").toLocaleString(language, {
+                  month: "short",
+                }),
+                new Date(end_date + "-15").getFullYear(),
+              ].join(`\n`),
+            },
+          ]);
+
+          return;
+        } catch (error) {
+          retries++;
+          console.error(`Attempt ${retries} failed. ${error.message}`);
+          if (retries === maxRetries) {
+            console.error("Failed to fetch data after 3 attempts");
+          }
+        }
+      }
+    };
+
+    fetchData();
   }, []);
 
   const hourMarks = [

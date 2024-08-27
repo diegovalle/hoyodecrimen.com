@@ -36,7 +36,7 @@ export const MapFilters = (props: Props) => {
           </Title>
         </Center>
         <Container pb="1rem" size="25rem">
-          <Space h="lg" />
+          
           <Radio.Group
             name="favoriteFramework"
             label={t("Base Map")}
