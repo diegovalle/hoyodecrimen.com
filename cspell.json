@@ -36,7 +36,9 @@
         "mantine",
         "maplibre",
         "maplibregl",
+        "maxzoom",
         "metrobus",
+        "minzoom",
         "openmaptiles",
         "pickpocketing",
         "Polanco",
@@ -47,6 +49,7 @@
         "Tepito",
         "TRANSEUNTE",
         "Underreporting",
+        "Underzooming",
         "VEHICULO"
     ],
     "ignoreWords": [],
