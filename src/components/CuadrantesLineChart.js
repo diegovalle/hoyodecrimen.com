@@ -116,7 +116,7 @@ function SectoresLineChart(props) {
     grid: {
       left: "8%",
       right: "5%",
-      bottom: "30%",
+      bottom: "20%",
       top: "10%",
       containLabel: true,
     },

@@ -175,26 +175,27 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 </Center>
               </Text>
               <Space h="md" />
-              <LazyLoad once>
-                <>
-                  <Container pb="1rem" size="25rem">
-                    <SelectCrime
-                      updateCrime={updateCrime}
-                      selectedCrime={selectedCrime}
-                    />
-                  </Container>
-                  <Text>
-                    <Center component="span">
-                      {selectedCuadrante === "df" ? "CDMX" : selectedCuadrante}
-                    </Center>
-                  </Text>
+
+              <>
+                <Container pb="1rem" size="25rem">
+                  <SelectCrime
+                    updateCrime={updateCrime}
+                    selectedCrime={selectedCrime}
+                  />
+                </Container>
+                <Text>
+                  <Center component="span">
+                    {selectedCuadrante === "df" ? "CDMX" : selectedCuadrante}
+                  </Center>
+                </Text>
+                {wSize.height ? (
                   <CuadrantesLineChart
                     selectedCrime={selectedCrime}
                     selectedCuadrante={selectedCuadrante}
                     language={language}
                   />
-                </>
-              </LazyLoad>
+                ) : null}
+              </>
             </>
           </Grid.Col>
         </Grid>

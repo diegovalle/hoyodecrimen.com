@@ -114,27 +114,28 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                       : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
                   </Center>
                   <Space h="md" />
-                  <LazyLoad once>
-                    <>
-                      <Container pb="1rem" size="25rem">
-                        <SelectCrime
-                          updateCrime={updateCrime}
-                          selectedCrime={selectedCrime}
-                        />
-                      </Container>
-                      <Text>
-                        <Center component="span">
-                          {selectedSector === "df" ? "CDMX" : selectedSector}
-                        </Center>
-                      </Text>
 
+                  <>
+                    <Container pb="1rem" size="25rem">
+                      <SelectCrime
+                        updateCrime={updateCrime}
+                        selectedCrime={selectedCrime}
+                      />
+                    </Container>
+                    <Text>
+                      <Center component="span">
+                        {selectedSector === "df" ? "CDMX" : selectedSector}
+                      </Center>
+                    </Text>
+                    {wSize.height ? (
                       <SectoresLineChart
                         selectedCrime={selectedCrime}
                         selectedSector={selectedSector}
                         language={language}
                       />
-                    </>
-                  </LazyLoad>
+                    ) : null}
+                  </>
+
                   <Divider size="sm" />
                   <Space h="xl" />
                   <Stack>
@@ -178,26 +179,27 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 </Center>
               </Text>
               <Space h="md" />
-              <LazyLoad once>
-                <>
-                  <Container pb="1rem" size="25rem">
-                    <SelectCrime
-                      updateCrime={updateCrime}
-                      selectedCrime={selectedCrime}
-                    />
-                  </Container>
-                  <Text>
-                    <Center component="span">
-                      {selectedSector === "df" ? "CDMX" : selectedSector}
-                    </Center>
-                  </Text>
+
+              <>
+                <Container pb="1rem" size="25rem">
+                  <SelectCrime
+                    updateCrime={updateCrime}
+                    selectedCrime={selectedCrime}
+                  />
+                </Container>
+                <Text>
+                  <Center component="span">
+                    {selectedSector === "df" ? "CDMX" : selectedSector}
+                  </Center>
+                </Text>
+                {wSize.height ? (
                   <SectoresLineChart
                     selectedCrime={selectedCrime}
                     selectedSector={selectedSector}
                     language={language}
                   />
-                </>
-              </LazyLoad>
+                ) : null}
+              </>
             </>
           </Grid.Col>
         </Grid>
