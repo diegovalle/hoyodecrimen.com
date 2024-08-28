@@ -32,7 +32,6 @@ export const MapFilters = (props: Props) => {
           </Title>
         </Center>
         <Container pb="1rem" size="25rem">
-          
           <Radio.Group
             name="favoriteFramework"
             label={t("Base Map")}
@@ -81,9 +80,15 @@ export const MapFilters = (props: Props) => {
                 props.setMonthsText(
                   !props.monthMarks
                     ? t("All")
-                    : YYYYmmToStr(props.monthsAvailable.current[v[0]], props.language) +
+                    : YYYYmmToStr(
+                        props.monthsAvailable.current[v[0]],
+                        props.language
+                      ) +
                         " - " +
-                        YYYYmmToStr(props.monthsAvailable.current[v[1]], props.language)
+                        YYYYmmToStr(
+                          props.monthsAvailable.current[v[1]],
+                          props.language
+                        )
                 );
               }}
               // classNames={classes}

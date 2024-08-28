@@ -38,6 +38,7 @@ import "@mantine/core/styles/Button.css";
 import "@mantine/core/styles/Card.css";
 import "@mantine/core/styles/Center.css";
 import "@mantine/core/styles/Checkbox.css";
+//import '@mantine/core/styles/Chip.css';
 import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Container.css";
