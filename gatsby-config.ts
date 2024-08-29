@@ -183,11 +183,23 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: "gatsby-plugin-rollbar",
+      options: {
+        accessToken: "01e6e28461fb46f7ad79d087bf33a744", // POST_CLIENT_ITEM_ACCESS_TOKEN
+        // For all configuration options, see https://docs.rollbar.com/docs/rollbarjs-configuration-reference
+        captureUncaught: true,
+        captureUnhandledRejections: true,
+        payload: {
+          environment: "production"
+        }
+      }
+    },
+    /* {
       resolve: "@sentry/gatsby",
       options: {
         //dsn: process.env.SENTRY_DSN,
       },
-    },
+    }, */
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
