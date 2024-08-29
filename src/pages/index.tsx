@@ -15,16 +15,18 @@ import {
   Grid,
   Card,
   Group,
-  Blockquote
+  Blockquote,
+  Table,
 } from "@mantine/core";
 
 import LazyLoad from "react-lazy-load";
 import { LocLink } from "../components/LocLink";
 import ColoniasMap from "../components/HomicideMap/ColoniasMap";
+import { round1, comma } from "../components/utils";
 
 import Layout from "../components/Layout";
 
-import { IconInfoCircle } from '@tabler/icons-react';
+import { IconInfoCircle } from "@tabler/icons-react";
 
 import CDMXLineChart from "../components/CDMXLineChart";
 
@@ -150,7 +152,21 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const { t } = useTranslation();
   const [lastDate, setLastDate] = useState(null);
   const [maxRate, setMaxRate] = useState(null);
+  const [yearlyHomicides, setYearlyHomicides] = useState(null);
   const icon = <IconInfoCircle />;
+
+  const rows = yearlyHomicides
+    ? yearlyHomicides.map((element) => (
+        <Table.Tr key={element.year}>
+          <Table.Td>{element.year}</Table.Td>
+          <Table.Td>{comma(element.count)}</Table.Td>
+          <Table.Td>{comma(element.population)}</Table.Td>
+          <Table.Td>
+            {round1((element.count / element.population) * 100000)}
+          </Table.Td>
+        </Table.Tr>
+      ))
+    : null;
 
   return (
     <Layout language={language} pageContext={pageContext}>
@@ -285,30 +301,75 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         >
           <Space h="xl" />
           <AspectRatio ratio={5 / 4} h={450} p={15}>
-            <LazyLoad>
+            <LazyLoad offset={1300}>
               <CDMXLineChart
                 height={450}
                 lang={language}
                 title=""
                 yname={t("tasa de homicidio")}
+                setYearlyHomicides={setYearlyHomicides}
               />
             </LazyLoad>
           </AspectRatio>
         </Grid.Col>
       </Grid>
-      <Space h="xl" />
-      <Container
-        size="xs"
-        p={"1rem"}
-        r="--mantine-radius-md"
-      >
-        <Blockquote color="blue" cite="" icon={icon} mt="xl">
-        <Text>
-          <Trans i18nKey="annualized"></Trans>
-        </Text>
-        </Blockquote>
 
+      <Container size="xs" p={"1rem"} r="--mantine-radius-md">
+        <Blockquote color="blue" cite="" icon={icon} mt="xl">
+          <Text>
+            <Trans i18nKey="annualized"></Trans>
+          </Text>
+        </Blockquote>
       </Container>
+
+      <Space h="xl" />
+
+      <Grid justify="center">
+        <Grid.Col span={{ base: 12, md: 5, lg: 5, xl: 4 }}>
+          <Center>
+            <Title order={3}>
+              <Trans>What is the murder rate in Mexico City?</Trans>
+            </Title>
+          </Center>
+          <Space h="xl" />
+          <Table striped size="xl">
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>{t("Year")}</Table.Th>
+                <Table.Th>{t("Homicides")}</Table.Th>
+                <Table.Th>{t("Population")}</Table.Th>
+                <Table.Th>{t("Rate")}</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>{rows}</Table.Tbody>
+          </Table>
+          <Space h="xl" />
+
+          {yearlyHomicides ? (
+            <Text size="xl">
+              <Title order={4}>
+                {t("homicide_rate", {
+                  year: yearlyHomicides[yearlyHomicides.length - 1].year,
+                  rate: round1(
+                    (yearlyHomicides[yearlyHomicides.length - 1].count /
+                      yearlyHomicides[yearlyHomicides.length - 1].population) *
+                      100000
+                  ),
+                })}
+              </Title>
+            </Text>
+          ) : (
+            "         "
+          )}
+
+          <Space h="xl" />
+          <Text size="xl" component="div">
+            <Trans i18nKey="murder_rate">
+              aaa<em>zzz</em>
+            </Trans>
+          </Text>
+        </Grid.Col>
+      </Grid>
 
       <Divider my="xl" />
 
