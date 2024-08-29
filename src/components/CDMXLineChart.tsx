@@ -57,6 +57,7 @@ const cdmx_pop = [
 
 function CDMXLineChart(props) {
   const {
+    setYearlyHomicides,
     pageContext,
     lang,
     height = 170,
@@ -88,11 +89,30 @@ function CDMXLineChart(props) {
           (x, i) => (x["rate"] = annualizeRate(x.count, x.date, cdmx_pop[i]))
         );
         setCDMXRate(responseJSON.rows);
+        responseJSON.rows.forEach(
+          (x, i) => (x["year"] = x.date.substring(0, 4))
+        );
+        if (setYearlyHomicides) {
+          let yearly = Object.values(
+            responseJSON.rows.reduce((agg, value, i) => {
+              if (agg[value.year] === undefined)
+                agg[value.year] = { year: value.year, count: 0, num_months: 0 };
+              agg[value.year].count += +value.count;
+              agg[value.year].num_months = i + 1;
+              return agg;
+            }, {})
+          );
+          yearly = yearly.filter((year) => !(year.num_months % 12));
+          for (let i = 0; i < yearly.length; i++) {
+            yearly[i].population = cdmx_pop[yearly[i].num_months -6 ];
+          }
+          setYearlyHomicides(yearly);
+        }
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [meta.site.siteMetadata.apiUrl, setYearlyHomicides]);
 
   let chartOption = {
     animation: false,
@@ -145,7 +165,10 @@ function CDMXLineChart(props) {
     },
     xAxis: {
       type: "category",
-      nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif", color: "#111" },
+      nameTextStyle: {
+        fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+        color: "#111",
+      },
       data: CDMXRate
         ? CDMXRate.map(function (item) {
             return item.date;
@@ -169,7 +192,10 @@ function CDMXLineChart(props) {
         name: t("homicide rate"),
         nameLocation: "middle",
         nameGap: 25,
-        nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif", color: "#111" },
+        nameTextStyle: {
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+          color: "#111",
+        },
         type: "value",
         scale: false,
         splitNumber: 2,

@@ -17,5 +17,12 @@
   "All crimes within 700 meters of where you are right now": "Todos los crímenes a 700 metros de donde te encuentres",
   "Official Crime Data": "Datos Oficiales",
   "annualized": "La tasa de homicidio anualizada es un indicador que estima el número de homicidios que ocurrirían en un año si la tasa de homicidios observada en un período de tiempo más corto (un mes en este caso) se mantuviera durante todo el año. Se calcula tomando el número de homicidios en cada mes y multiplicándolo por 12.",
-  "Crime in your area": "Crime por tu rumbo"
+  "Crime in your area": "Crime por tu rumbo",
+  "Year": "Año",
+  "Homicides": "Carpetas de investigación por Homicidio",
+  "Population": "Población",
+  "Rate": "Tasa por 100,000",
+  "What is the murder rate in Mexico City?": "¿Cuál es la tasa de homicidio en la Ciudad de México?",
+  "murder_rate": "<p>Sólo reportamos la tasa de homicidio porque reportar la <1>tasa bruta de criminalidad de la Ciudad de México</1> puede ser engañoso para comprender la naturaleza y alcance de la actividad criminal en la ciudad. Esta medida incluye una gran variedad de delitos, desde infracciones menores hasta crímenes violentos graves, lo que puede ocultar tendencias importantes. Además, muchos delitos no se denuncian debido a factores como la desconfianza en las fuerzas del orden, el miedo a represalias o la percepción de que denunciar no conducirá a acciones significativas. Esta falta de denuncias puede distorsionar significativamente la tasa bruta de criminalidad, convirtiéndola en un indicador poco fiable de la situación real del crimen.</p><br/><p>Sin embargo, centrarse en la tasa de homicidios proporciona una imagen más precisa de los delitos graves en la Ciudad de México. Es más probable que los homicidios sean reportados y registrados que otros tipos de delitos, lo que hace que los datos sean más confiables. Además, la tasa de homicidios se considera a menudo un indicador clave de la seguridad general y la violencia social. No obstante, incluso las estadísticas de homicidios deben abordarse con precaución. Problemas como la clasificación errónea de muertes, la manipulación política de datos y las inconsistencias en los métodos de reporte entre diferentes regiones pueden afectar aún la precisión de estas cifras. Es crucial considerar múltiples fuentes, observar tendencias a largo plazo y ser consciente de las posibles limitaciones y sesgos en los datos al analizar las estadísticas de criminalidad en México.</p>",
+  "homicide_rate" : "La tasa de homicidios en la Ciudad de México en {{ year }} fue de {{ rate }}"
 }
