@@ -335,10 +335,10 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Table striped size="xl">
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{t("Year")}</Table.Th>
-                <Table.Th>{t("Homicides")}</Table.Th>
-                <Table.Th>{t("Population")}</Table.Th>
-                <Table.Th>{t("Rate")}</Table.Th>
+                <Table.Th role="columnheader" scope="col">{t("Year")}</Table.Th>
+                <Table.Th role="columnheader" scope="col">{t("Homicides")}</Table.Th>
+                <Table.Th role="columnheader" scope="col">{t("Population")}</Table.Th>
+                <Table.Th role="columnheader" scope="col">{t("Rate")}</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>
@@ -346,7 +346,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Space h="xl" />
 
           {yearlyHomicides ? (
-            <Text size="xl">
+            <Text size="xl" component="div">
               <Title order={4}>
                 {t("homicide_rate", {
                   year: yearlyHomicides[yearlyHomicides.length - 1].year,
