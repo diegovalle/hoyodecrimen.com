@@ -20,6 +20,7 @@
         "cuadrantes",
         "DOLOSO",
         "echarts",
+        "ENVIPE",
         "FUEGO",
         "gatsby",
         "geobuf",
@@ -32,6 +33,7 @@
         "graficamos",
         "HOMICIDIO",
         "Hoyodecrimen",
+        "INEGI",
         "LESIONES",
         "mantine",
         "maplibre",
@@ -45,13 +47,16 @@
         "Rumbo",
         "Sectores",
         "selectchanged",
+        "Subregistro",
         "Tasas",
         "Tepito",
         "TRANSEUNTE",
         "underreporting",
         "Underreporting",
         "Underzooming",
-        "VEHICULO"
+        "VEHICULO",
+        "Victimización",
+        "yearmon"
     ],
     "ignoreWords": [],
     "import": []

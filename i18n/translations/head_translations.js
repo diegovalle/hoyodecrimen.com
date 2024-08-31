@@ -31,7 +31,8 @@ export const translations = {
     "/en/day_description":
       "Small multiple charts of crime in Mexico City by day of week",
     "/en/trends_title": "Mexico City Crime Trends",
-    "/en/trends_description": "Is crime going up or down in Mexico City. Analyze crime trends with interactive charts",
+    "/en/trends_description":
+      "Is crime going up or down in Mexico City. Analyze crime trends with interactive charts",
     "/en/changes_title": "Changes in Number of Crimes by Sector in Mexico City",
     "/en/changes_description":
       "Change in crime counts at the sector delictivo level in Mexico City. Is crime going up or down in yur area?",
@@ -48,9 +49,13 @@ export const translations = {
     "/en/privacy_description":
       "Information on how HoyoDeCrimen.com protects your privacy",
 
-    "/en/hour_title": "Crime by hour in Mexico City. At what time of the day are you most likely to be a victim of crime?",
+    "/en/hour_title":
+      "Crime by hour in Mexico City. At what time of the day are you most likely to be a victim of crime?",
     "/en/hour_description":
       "Charts of the number of crimes in Mexico City during each hour of the day",
+    "/en/underreporting_title": "Under-reporting crime in Mexico City",
+    "/en/underreporting_description":
+      "Analysis of crime under-reporting in Mexico City based on death certificates and victimization surveys",
   },
   es: {
     "/_title": "Crimen en la Ciudad de México - HoyoDeCrimen",
@@ -95,7 +100,8 @@ export const translations = {
     "/cambios/_title": "Cambio en Número de Crímenes por Sector",
     "/cambios/_description":
       "Cambio en el número de crímenes en los sectores del Distrito Federal. Compara los últimos doce meses con el mismo periodo del año pasado",
-    "/comparar-colonias/_title": "Compara la Tasa de Homicidio por Colonia en la CDMX",
+    "/comparar-colonias/_title":
+      "Compara la Tasa de Homicidio por Colonia en la CDMX",
     "/comparar-colonias/_description":
       "Tasas de homicidio en las distintas colonias de la CDMX. Las zonas más seguras para vivir y trabajar en CDMX",
     "/rumbo-mapa/_title": "Crimen por tu Rumbo",
@@ -105,5 +111,8 @@ export const translations = {
     "/privacidad/_title": "Política de Privacidad",
     "/privacidad/_description":
       "¿Cómo protegemos tus datos en HoyoDeCrimen.com?",
+    "/subregistro/_title": "Subregistro de delitos",
+    "/subregistro/_description":
+      "Subregistro de delitos en CDMX. Incluyen un análisis con datos del INEGI y la  Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública",
   },
 };

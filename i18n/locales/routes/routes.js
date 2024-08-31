@@ -30,5 +30,6 @@ module.exports = {
     "/tasas/": "/rates",
     "/tendencias/": "/trends",
     "/privacidad/": "/privacy",
+    "/subregistro/": "/underreporting"
   },
 };

@@ -116,6 +116,7 @@ function Header(props) {
         { link: "/dia/", label: t("Por Día de la Semana") },
         { link: "/tendencias/", label: t("Trends") },
         { link: "/cambios/", label: t("Change by Sector") },
+        { link: "/subregistro/", label: t("Underreporting Crime") },
         { link: "/comparar-colonias/", label: t("Compare Neighborhoods") },
         { link: "/rumbo-mapa/", label: t("Crime in your Area") },
       ],
