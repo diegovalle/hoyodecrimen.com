@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { scaleSequential } from "d3-scale";
 import { interpolateTurbo } from "d3-scale-chromatic";
-import { max, min, zip } from "lodash-es";
+import { max, zip } from "lodash-es";
 import { Trans } from "gatsby-plugin-react-i18next";
 import {
   Map,
@@ -26,9 +26,10 @@ import { YYYYmmddToDate15, comma } from "../utils";
 
 let coloniaId = null;
 
-export const SectoresMap = (props: Props) => {
+export const ColoniasMap = (props: Props) => {
   const maxZoom = 19;
   const mapRef = useRef();
+  const attributionControlRef = useRef();
   const [pmTilesReady, setPmTilesReady] = useState(false);
 
   const [hoverInfo, setHoverInfo] = useState(null);
@@ -331,7 +332,9 @@ export const SectoresMap = (props: Props) => {
 
   return (
     <Map
-      ref={(ref) => (mapRef.current = ref && ref.getMap())}
+      ref={(ref) => {
+        mapRef.current = ref && ref.getMap();
+      }}
       initialViewState={{
         bounds: [
           -99.3503799438477, 19.1274166107178, -98.9456329345703,
@@ -427,4 +430,4 @@ export const SectoresMap = (props: Props) => {
   );
 };
 
-export default React.memo(SectoresMap);
+export default React.memo(ColoniasMap);
