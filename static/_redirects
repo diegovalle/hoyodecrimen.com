@@ -1,2 +1,5 @@
 /api/v1/*        https://cooperative-corissa-diegovalle-177b049e.koyeb.app/api/v1/:splat     200
 /api             /api/
+
+/cuadrantes-     /cuadrantes-mapa/
+/sectores        /sectores-mapa/
