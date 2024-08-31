@@ -39,6 +39,7 @@ export const DotMap = forwardRef((props: Props, ref) => {
     closeLoading,
   } = props;
 
+  const [count, setCount] = useState(0);
   const [hoverInfo, setHoverInfo] = useState(null);
   //const [zoom, setZoom] = useState(null);
   const [refreshClusters, setRefreshClusters] = useState(0);
@@ -226,7 +227,12 @@ export const DotMap = forwardRef((props: Props, ref) => {
   useEffect(() => {
     const buildUrl = (base) => {
       let url = base;
-      if (ref.current === null && debouncedDate === null && debouncedHour === null) return url;
+      if (
+        ref.current === null &&
+        debouncedDate === null &&
+        debouncedHour === null
+      )
+        return url;
       if (debouncedDate || debouncedHour) url += "?";
       if (debouncedDate)
         url += `start_date=${ref.current[debouncedDate[0]]}&end_date=${
@@ -298,8 +304,8 @@ export const DotMap = forwardRef((props: Props, ref) => {
       const newAbortController = new AbortController();
 
       abortControllerRef.current = newAbortController;
-      // Call onSearch with new search term and abort controller
-      openLoading();
+
+      if (count) openLoading();
       const fetchRequestJSON = pRetry(() => fetchAggregate(url), {
         signal: abortControllerRef.current.signal,
         retries: 2,
@@ -387,7 +393,8 @@ export const DotMap = forwardRef((props: Props, ref) => {
           console.log(error);
         })
         .finally(() => {
-          closeLoading();
+          if (count) closeLoading();
+          setCount((count) => count + 1);
         });
     } else {
       setOptionsChanged(true);
@@ -395,7 +402,7 @@ export const DotMap = forwardRef((props: Props, ref) => {
     return () => {
       abortControllerRef.current.abort();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     debounced,
     mapOptions,
