@@ -156,42 +156,42 @@ const MapForCuadranteMonthChart = React.memo(
     }, []);
 
     useEffect(() => {
-      const url =
-        `${meta.site.siteMetadata.apiUrl}/api/v1/cuadrantes/all/crimes/` +
-        selectedCrime.replaceAll(" ", "%20") +
-        `/period`;
-      fetch(url)
-        .then((data) => data.json())
-        .then((data) => {
-          let mapData = data.rows.map((item) => {
-            return { name: item.cuadrante, value: item.count };
-          });
-          mapData = mapData.filter((item) => item.name !==  "(NO ESPECIFICADO)")
-          let max = {
-            max: maxBy(mapData, (o) => {
-              if (o.name !== "(NO ESPECIFICADO)") return o.value;
-              else return 0;
-            })["value"],
-          };
-          let min = {
-            min: minBy(mapData, (o) => {
-              if (o.name !== "(NO ESPECIFICADO)") return o.value;
-              else return 0;
-            })["value"],
-          };
-          let seriesObject = {
-            series: [{ ...chartOptions.series[0], data: mapData }],
-          };
-          let vmObject = {
-            visualMap: { ...chartOptions.visualMap, ...max, ...min },
-          };
-          setChartOptions({
-            ...chartOptions,
-            ...vmObject,
-            ...seriesObject,
-          });
-        });
-    }, [selectedCrime]);
+      const fetchData = async (retries = 3) => {
+        const url = `${meta.site.siteMetadata.apiUrl}/api/v1/cuadrantes/all/crimes/${selectedCrime.replaceAll(" ", "%20")}/period`;
+        
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          const data = await response.json();
+          
+          let mapData = data.rows
+            .map(item => ({ name: item.cuadrante, value: item.count }))
+            .filter(item => item.name !== "(NO ESPECIFICADO)");
+    
+          const max = { max: maxBy(mapData, 'value').value };
+          const min = { min: minBy(mapData, 'value').value };
+    
+          setChartOptions(prevOptions => ({
+            ...prevOptions,
+            visualMap: { ...prevOptions.visualMap, ...max, ...min },
+            series: [{ ...prevOptions.series[0], data: mapData }],
+          }));
+        } catch (error) {
+          console.error(`Fetch attempt failed: ${error.message}`);
+          if (retries > 0) {
+            console.log(`Retrying... (${retries} attempts left)`);
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retrying
+            await fetchData(retries - 1);
+          } else {
+            console.error('Max retries reached. Failed to fetch data.');
+            // Optionally, update state to show an error message to the user
+          }
+        }
+      };
+    
+      fetchData();
+    }, [selectedCrime, meta.site.siteMetadata.apiUrl]);
+    
 
     let unselect = false;
     const onEvents = {

@@ -16,7 +16,7 @@ import {
   CanvasRenderer,
   // SVGRenderer,
 } from "echarts/renderers";
-import { YYYYmmddToDate15, annualizeRate } from "./utils";
+import { YYYYmmddToDate15 } from "./utils";
 import { useTranslation } from "gatsby-plugin-react-i18next";
 
 //import '../assets/css/trends.css';
@@ -71,18 +71,35 @@ function SectoresLineChart(props) {
         selectedCrime.replaceAll(" ", "%20") +
         `/series`;
 
-    if (echartsInstance?.current !== null) {
-      echartsInstance.current.getEchartsInstance().showLoading();
-    }
-    const fetchRequestJSON = fetch(url);
-    Promise.all([fetchRequestJSON]).then(async (responses) => {
-      const [responseJSON] = responses;
-      let [counts] = await Promise.all([responseJSON.json()]);
-      setData(counts.rows);
-      if (echartsInstance?.current === null)
-        echartsInstance.current.getEchartsInstance().hideLoading();
-    });
-  }, [selectedCrime, selectedCuadrante]);
+    const fetchData = async (retries = 3) => {
+      try {
+        if (echartsInstance?.current) {
+          echartsInstance.current.getEchartsInstance().showLoading();
+        }
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const counts = await response.json();
+        setData(counts.rows);
+      } catch (error) {
+        console.error("Fetch error:", error);
+        if (retries > 0) {
+          console.log(`Retrying... (${retries} attempts left)`);
+          await fetchData(retries - 1);
+        } else {
+          console.error("Max retries reached. Unable to fetch data.");
+          // Optionally, set an error state here
+        }
+      } finally {
+        if (echartsInstance?.current) {
+          echartsInstance.current.getEchartsInstance().hideLoading();
+        }
+      }
+    };
+
+    fetchData();
+  }, [meta.site.siteMetadata.apiUrl, selectedCrime, selectedCuadrante]);
 
   let chartOption = {
     animation: false,
@@ -107,7 +124,6 @@ function SectoresLineChart(props) {
           date.toLocaleString(language, { month: "long" }),
           date.getFullYear(),
         ].join(" ");
-        let tasa = props.yname;
         return `${dateStr}<br/>${t("number")}: <b>${
           Math.round(item[0].value * 10) / 10
         }</b>`;
@@ -145,7 +161,9 @@ function SectoresLineChart(props) {
         name: t("number of crimes"),
         nameLocation: "middle",
         nameGap: 30,
-        nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif" },
+        nameTextStyle: {
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+        },
         type: "value",
         scale: false,
         splitNumber: 2,

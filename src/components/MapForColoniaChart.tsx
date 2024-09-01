@@ -155,34 +155,43 @@ const MapForSectorMonthChart = React.memo(
     }, []);
 
     useEffect(() => {
-      const url = `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=smoothgamhomicides`;
-      fetch(url)
-        .then((data) => data.json())
-        .then((data) => {
+      const fetchData = async (retries = 3) => {
+        const url = `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=smoothgamhomicides`;
+
+        try {
+          const response = await fetch(url);
+          if (!response.ok)
+            throw new Error(`HTTP error! status: ${response.status}`);
+          const data = await response.json();
+
           let point_estimates = data[0].pred_rate.map((i) => Math.exp(i));
-          let mapData = point_estimates.map((item, i) => {
-            return { name: data[0].CVEUT[i], value: item };
-          });
-          let max = {
-            max: Math.max(...point_estimates),
-          };
-          console.log(max);
-          let min = {
-            min: Math.min(...point_estimates),
-          };
-          let seriesObject = {
-            series: [{ ...chartOptions.series[0], data: mapData }],
-          };
-          let vmObject = {
-            visualMap: { ...chartOptions.visualMap, ...max, ...min },
-          };
-          setChartOptions({
-            ...chartOptions,
-            ...vmObject,
-            ...seriesObject,
-          });
-        });
-    }, [selectedCrime]);
+          let mapData = point_estimates.map((item, i) => ({
+            name: data[0].CVEUT[i],
+            value: item,
+          }));
+
+          let max = { max: Math.max(...point_estimates) };
+          let min = { min: Math.min(...point_estimates) };
+
+          setChartOptions((prevOptions) => ({
+            ...prevOptions,
+            visualMap: { ...prevOptions.visualMap, ...max, ...min },
+            series: [{ ...prevOptions.series[0], data: mapData }],
+          }));
+        } catch (error) {
+          console.error("Fetch error:", error);
+          if (retries > 0) {
+            console.log(`Retrying... (${retries} attempts left)`);
+            await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second before retrying
+            await fetchData(retries - 1);
+          } else {
+            console.error("Max retries reached. Fetch failed.");
+          }
+        }
+      };
+
+      fetchData();
+    }, [selectedCrime, meta.site.siteMetadata.apiUrl]);
 
     const onEvents = {
       click: function (params) {
@@ -191,6 +200,7 @@ const MapForSectorMonthChart = React.memo(
         updateColoniaName(coloniasRef.current[values.name]);
       },
     };
+
     const MemoChart = useMemo(
       () => (
         <ReactEChartsCore

@@ -183,22 +183,28 @@ function CrimeSectorDiffMonthChart(props) {
   }
 
   useEffect(() => {
-    let url = `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=smoothgamhomicides`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async (retries = 3) => {
+      const url = `${meta.site.siteMetadata.apiUrl}/api/v1/get_file?file_name=smoothgamhomicides`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+
         setData(data);
-        //let a = bin(1)(data[0].pred_rate.map((i) => Math.exp(i)))
         let pointEstimate = data[0].pred_rate.map((i) => Math.exp(i));
         setPointEstimate(pointEstimate);
         option.series[0].data = histogram(pointEstimate, 2);
-        let low = data[0].pred_rate.map((item, i) => {
-          return Math.exp(item - 1.96 * data[0]["se.fit"][i]);
-        });
+
+        let low = data[0].pred_rate.map((item, i) =>
+          Math.exp(item - 1.96 * data[0]["se.fit"][i])
+        );
         setLow(low);
-        let high = data[0].pred_rate.map((item, i) => {
-          return Math.exp(item + 1.96 * data[0]["se.fit"][i]);
-        });
+
+        let high = data[0].pred_rate.map((item, i) =>
+          Math.exp(item + 1.96 * data[0]["se.fit"][i])
+        );
         setHigh(high);
 
         let max = Math.max(...option.series[0].data.map((item) => item[1]));
@@ -218,8 +224,20 @@ function CrimeSectorDiffMonthChart(props) {
           dateEnd.getFullYear(),
         ].join(" ");
         setPeriod(dateStrStart + " " + t("to") + " " + dateStrEnd);
-      });
-  }, []);
+      } catch (error) {
+        console.error("Fetch error:", error);
+        if (retries > 0) {
+          console.log(`Retrying... (${retries} attempts left)`);
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second before retrying
+          await fetchData(retries - 1);
+        } else {
+          console.error("Max retries reached. Fetch failed.");
+        }
+      }
+    };
+
+    fetchData();
+  }, [meta.site.siteMetadata.apiUrl, language, t]);
 
   useEffect(() => {
     if (!data | !low | !high) return;
