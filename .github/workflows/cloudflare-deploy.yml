@@ -20,8 +20,8 @@ jobs:
      
       - name: Production branch control
         run: >
-          curl --request PATCH 
-          "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/${{ secrets.CLOUDFLARE_PROJECT }}" 
+          curl --request PATCH
+          "https://api.cloudflare.com/client/v4/accounts/${{secrets.CLOUDFLARE_ACCOUNT_ID}}/pages/projects/${{secrets.CLOUDFLARE_PROJECT}}" 
           --header "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
           --header "Content-Type: application/json"
           --data "{\"production_branch\": \"main\"}"
