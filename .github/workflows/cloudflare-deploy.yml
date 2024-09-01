@@ -9,6 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Production branch control
+        run: >
+          curl --request PATCH
+          "https://api.cloudflare.com/client/v4/accounts/${{secrets.CLOUDFLARE_ACCOUNT_ID}}/pages/projects/hoyodecrimen-com" 
+          --header "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          --header "Content-Type: application/json"
+          --data "{\"production_branch\": \"main\"}"
+      
       - name: build hoyodecrimen website
         run: >
           docker run -v ${{github.workspace}}:/hoyodecrimen node:20.14.0
@@ -17,14 +25,6 @@ jobs:
           && ./node_modules/.bin/gatsby telemetry --disable 
           && ./node_modules/.bin/gatsby build 
           && chmod -R o+rwx /hoyodecrimen'
-     
-      - name: Production branch control
-        run: >
-          curl --request PATCH
-          "https://api.cloudflare.com/client/v4/accounts/${{secrets.CLOUDFLARE_ACCOUNT_ID}}/pages/projects/${{secrets.CLOUDFLARE_PROJECT}}" 
-          --header "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
-          --header "Content-Type: application/json"
-          --data "{\"production_branch\": \"main\"}"
      
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
