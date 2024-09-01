@@ -1,38 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { graphql } from "gatsby";
-import { timeFormatDefaultLocale } from "d3-time-format";
-import { useI18next, useTranslation, Trans } from "gatsby-plugin-react-i18next";
+import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
-import { useDisclosure, useHeadroom } from "@mantine/hooks";
-import { MantineLogo } from "@mantine/ds";
-import type { HeadFC, PageProps } from "gatsby";
-import { HeaderMenu } from "../components/HeaderMenu";
-import { ColorSchemeToggle } from "../components/ColorSchemeToggle/ColorSchemeToggle";
-import { MantineProvider, Navbar, Header } from "@mantine/core";
-import {
-  AspectRatio,
-  Title,
-  Text,
-  Menu,
-  Center,
-  Container,
-  AppShell,
-  Burger,
-  Group,
-  UnstyledButton,
-  Grid,
-  Space,
-  Divider,
-  Blockquote,
-} from "@mantine/core";
+import type { PageProps } from "gatsby";
+import { Title, Text, Center, Grid, Space, Blockquote } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import { SocialImage } from "../components/SocialImage";
-import social_image from "../images/social/social-colonias.jpg";
-import social_image_en from "../images/social/social-colonias_en.jpg";
+import social_image from "../images/social/social-subregistro.jpg";
+import social_image_en from "../images/social/social-subregistro_en.jpg";
 import deathData from "../assets/hom_acc_na.json";
 
 import * as echarts from "echarts/core";
@@ -83,7 +62,7 @@ const SubregistroPage: React.FC<PageProps> = ({
   const { language } = pageContext;
   const { t } = useTranslation();
 
-  let chartOption = {
+  let inegiChartOption = {
     animation: false,
     legend: {},
     title: {
@@ -110,29 +89,38 @@ const SubregistroPage: React.FC<PageProps> = ({
           fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
         },
       },
-      /* formatter: function (item) {
+      formatter: function (item) {
         let date = YYYYmmddToDate15(item[0].name);
         let datestr = [
-          date.toLocaleString(props.lang, { month: "long" }),
+          date.toLocaleString(language, { month: "long" }),
           date.getFullYear(),
         ].join(" ");
-        let c = CDMXRate[item[0].dataIndex].count;
         return (
-          `${datestr}<br/><b>` +
-          t("Rate") +
-          `</b>:${Math.round(item[0].data * 10) / 10} <i>(${c} ` +
-          t("homicides") +
-          ")</i>"
+          `${datestr}<br/><br/>` +
+          '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' +
+          item[0].color +
+          ';"></span>' +
+          item[0].seriesName +
+          `: <b>` +
+          item[0].value +
+          "</b><br/>" +
+          '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' +
+          item[1].color +
+          ';"></span>' +
+          item[1].seriesName +
+          ": <b>" +
+          item[1].value +
+          "</b>"
         );
-      }, */
+      },
     },
-    /* grid: {
+    grid: {
       left: "5%",
       right: "5%",
       bottom: "10%",
-      top: "10%",
+      top: "17%",
       containLabel: true,
-    }, */
+    },
     xAxis: {
       type: "category",
       nameTextStyle: {
@@ -243,13 +231,13 @@ const SubregistroPage: React.FC<PageProps> = ({
         );
       }, */
     },
-    /* grid: {
-      left: "5%",
+    grid: {
+      left: "10%",
       right: "5%",
       bottom: "10%",
       top: "10%",
       containLabel: true,
-    }, */
+    },
     xAxis: {
       type: "category",
       nameTextStyle: {
@@ -262,7 +250,6 @@ const SubregistroPage: React.FC<PageProps> = ({
       axisLabel: {
         interval: 2,
       },
-      boundaryGap: false,
       boundaryGap: ["20%", "0%"],
       splitNumber: 6,
     },
@@ -347,9 +334,14 @@ const SubregistroPage: React.FC<PageProps> = ({
           span={{ base: 12, md: 10, lg: 10 }}
           offset={{ base: 0, md: 1, lg: 1 }}
         >
+          <Center>
+            <Title order={2}>
+              {t("Selected Violent Deaths INEGI 2004-2022")}
+            </Title>
+          </Center>
           <ReactEChartsCore
             echarts={echarts}
-            option={chartOption}
+            option={inegiChartOption}
             style={{ height: 400, width: "100%" }}
             opts={{ locale: echarts.registerLocale(language) }}
           />
@@ -393,7 +385,7 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Space h="xl" />
           <Blockquote color="orange" cite={t("Source: ENVIPE")}>
             {t(
-              "In 37% of Mexico City households at least one person was the victim of a crime"
+              "In 37% of Mexico City households at least one person was the victim of a crime in 2023"
             )}
           </Blockquote>
 
@@ -421,7 +413,7 @@ const SubregistroPage: React.FC<PageProps> = ({
 
           <Blockquote color="orange" cite={t("Source: ENVIPE")}>
             {t(
-              "En la Ciudad de México, el 92.6% de los delitos cometidos quedaron sin denuncia o sin investigación"
+              "In Mexico City 92.6% of crimes were not denounced or investigated by the police"
             )}
           </Blockquote>
 
@@ -434,7 +426,6 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Space h="md" />
         </Grid.Col>
       </Grid>
-
     </Layout>
   );
 };
