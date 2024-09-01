@@ -52,7 +52,7 @@ export const Head: HeadFC = (props) => {
       <meta property="og:type" content="website" />
       <meta
         property="og:title"
-        content={translations[language].index_page_title}
+        content={props.socialTitle || translations[language][localizedPath + "_title"]}
       />
       <meta
         property="og:description"
@@ -68,7 +68,7 @@ export const Head: HeadFC = (props) => {
               translated_routes[props.location.pathname] +
               (localizedPath !== "/" ? "/" : "")
             : invert(translated_routes)[
-                props.location.pathname.replace("/en", "").replace(/(?<=[\w]{1})\/$/, "")
+                props.location.pathname.replace("/en", "").replace(/(?:[\w]{1})\/$/, "")
               ])
         }
       />
