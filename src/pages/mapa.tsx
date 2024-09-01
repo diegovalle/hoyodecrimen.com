@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from "react";
 import { graphql } from "gatsby";
 import Header from "../components/Header/Header";
 import { useTranslation } from "gatsby-plugin-react-i18next";
-import { useViewportSize } from "@mantine/hooks";
 
 import { useDisclosure } from "@mantine/hooks";
 import type { PageProps } from "gatsby";
@@ -34,12 +33,9 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   useEffect(() => {}, []);
   const { language } = pageContext;
   const { t } = useTranslation();
-  const { width: w } = useViewportSize();
   const [openMenu, { toggle: toggleMenu }] = useDisclosure(false);
-  const [
-    visibleLoading,
-    { open: openLoading, close: closeLoading, toggle: toggleLoading },
-  ] = useDisclosure(false);
+  const [visibleLoading, { open: openLoading, close: closeLoading }] =
+    useDisclosure(false);
   const [opened, { close, toggle }] = useDisclosure(false);
   const wSize = useWindowSize();
   const [hash, setHash] = useHash({ getInitialValueInEffect: true });
@@ -190,7 +186,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
     };
 
     fetchData();
-  }, []);
+  }, [data.site.siteMetadata.apiUrl, language]);
 
   const hourMarks = [
     { value: 5, label: "5 AM" },
