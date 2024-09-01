@@ -1,5 +1,15 @@
 import type { GatsbyConfig } from "gatsby";
 
+// const osmTilesUrl = `https://tileshoyo.surge.sh/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
+// const osmTilesUrl = `https://tileshoyo.surge.sh/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
+// const osmTilesUrl = `https://tiles-n.hoyodecrimen.com/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com)
+// const osmTilesUrl = `https://tiles-r.hoyodecrimen.com/{z}/{x}/{y}.html`,
+const osmTilesUrl = "https://tiles-r.hoyodecrimen.com";
+
+// const apiUrl = "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
+// const apiUrl = "http://localhost:8080";
+const apiUrl = "https://api.hoyodecrimen.com";
+
 const deploy_headers_vercel = {
   headers: [
     {
@@ -98,9 +108,7 @@ const deploy_headers_vercel = {
 };
 
 const deploy_headers_netlify = {
-   '/': [
-     'Link: <https://api.hoyodecrimen.com>; rel=preconnect, <https://tiles1.hoyodecrimen.com>; rel=preconnect',
-   ],
+  "/": [`Link: <${apiUrl}>; rel=preconnect, <${osmTilesUrl}>; rel=preconnect`],
   "/static/json/*": [
     "cache-control: public",
     "cache-control: max-age=0",
@@ -133,19 +141,13 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
-    
-    apiUrl: "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
-    // apiUrl: "http://localhost:8080",
-    // apiUrl: "https://api.hoyodecrimen.com",
-    
-    // osmTilesUrl: `https://tileshoyo.surge.sh/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
-    // osmTilesUrl: `https://tileshoyo.netlify.app/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com)
-    osmTilesUrl: `https://hoyodecrimen-tiles.onrender.com/{z}/{x}/{y}.html`,
-    // osmTilesUrl: `https://tiles1.hoyodecrimen.com/{z}/{x}/{y}.html`,
+
+    apiUrl: apiUrl,
+    osmTilesUrl: `${osmTilesUrl}/{z}/{x}/{y}.html`,
 
     spriteUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/sprites/sprite",
-    glyphsUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/fonts/{fontstack}/{range}.pbf",
-
+    glyphsUrl:
+      "https://hoyodecrimen-tiles.onrender.com/tiles/fonts/{fontstack}/{range}.pbf",
     year: "2024",
     // arcgis "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
     // stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"
@@ -179,7 +181,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-preconnect",
       options: {
-        domains: ["https://cooperative-corissa-diegovalle-177b049e.koyeb.app"],
+        domains: [apiUrl, osmTilesUrl],
       },
     },
     {
@@ -188,11 +190,13 @@ const config: GatsbyConfig = {
         accessToken: "01e6e28461fb46f7ad79d087bf33a744", // POST_CLIENT_ITEM_ACCESS_TOKEN
         // For all configuration options, see https://docs.rollbar.com/docs/rollbarjs-configuration-reference
         captureUncaught: true,
+        maxItems: 10,
+        itemsPerMinute: 5,
         captureUnhandledRejections: true,
         payload: {
-          environment: "production"
-        }
-      }
+          environment: "production",
+        },
+      },
     },
     /* {
       resolve: "@sentry/gatsby",
@@ -207,7 +211,7 @@ const config: GatsbyConfig = {
         short_name: `HoyoDeCrimen`,
         icon: `src/images/logo.png`,
         start_url: `/`,
-        lang: 'es',
+        lang: "es",
         background_color: `#f7f0eb`,
         display: `standalone`,
         localize: [
@@ -215,7 +219,7 @@ const config: GatsbyConfig = {
             start_url: `/en/`,
             lang: `en`,
             name: `Mexico City Crime`,
-            short_name: `CDMX Crime`
+            short_name: `CDMX Crime`,
           },
         ],
       },
@@ -227,16 +231,25 @@ const config: GatsbyConfig = {
     //   },
     // },
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          "G-HQQDKGGFMW", // Google Analytics / GA
-          // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
-          // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
-        ],
+        id: "G-HQQDKGGFMW",
+        includeInDevelopment: false,
+        defaultDataLayer: { platform: "gatsby" },
+        enableWebVitalsTracking: true,
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-google-gtag`,
+    //   options: {
+    //     // You can add multiple tracking ids and a pageview event will be fired for all of them.
+    //     trackingIds: [
+    //       "G-HQQDKGGFMW", // Google Analytics / GA
+    //       // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
+    //       // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
+    //     ],
+    //   },
+    // },
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-mdx",
