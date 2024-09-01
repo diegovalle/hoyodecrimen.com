@@ -35,7 +35,7 @@ class OverlayControl implements IControl {
     this._container.innerHTML =
       '<div class="loading-box">' +
       '<button aria-label="Loading">' +
-      '<span class="mapboxgl-ctrl-icon my-image-button" aria-hidden="true" title="Description"></span>' +
+      '<span class="mapboxgl-ctrl-icon my-image-button"  title="Description"></span>' +
       "</button>" +
       "</div>";
     this._redraw();
