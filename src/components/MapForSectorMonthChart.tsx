@@ -167,7 +167,6 @@ const MapForSectorMonthChart = React.memo(
               else return 0;
             })["value"],
           };
-          console.log(max);
           let min = {
             min: minBy(mapData, (o) => {
               if (o.name !== "NO ESPECIFICADO") return o.value;

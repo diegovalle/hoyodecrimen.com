@@ -233,103 +233,115 @@ export const SectoresMap = (props: Props) => {
         },
       },
     };
-    const url =
-      `${meta.site.siteMetadata.apiUrl}/api/v1/sectores/all/crimes/` +
-      props.selectedCrime.replaceAll(" ", "%20") +
-      `/period`;
 
-    const fetchRequestJSON = fetch(url);
-    Promise.all([fetchRequestJSON])
-      .then(async (responses) => {
-        const [responseJSON] = responses;
+    const fetchWithRetry = async (url, retries = 3, delay = 1000) => {
+      for (let i = 0; i < retries; i++) {
         try {
-          let [data] = await Promise.all([responseJSON.json()]);
+          const response = await fetch(url);
+          if (!response.ok)
+            throw new Error(`HTTP error! status: ${response.status}`);
+          return await response.json();
+        } catch (error) {
+          if (i === retries - 1) throw error;
+          await new Promise((resolve) => setTimeout(resolve, delay));
+        }
+      }
+    };
 
-          if (props?.setLastDate) {
-            let dateStart = YYYYmmddToDate15(data.rows[0].start_date);
-            let dateStrStart = [
-              dateStart.toLocaleString(props.lang, { month: "long" }),
-              dateStart.getFullYear(),
-            ].join(" ");
-            let dateEnd = YYYYmmddToDate15(data.rows[0].end_date);
-            let dateStrEnd = [
-              dateEnd.toLocaleString(props.lang, { month: "long" }),
-              dateEnd.getFullYear(),
-            ].join(" ");
-            props.setLastDate(dateStrStart + " " + t("to") + " " + dateStrEnd);
-          }
+    const fetchData = async () => {
+      const url = `${
+        meta.site.siteMetadata.apiUrl
+      }/api/v1/sectores/all/crimes/${encodeURIComponent(
+        props.selectedCrime
+      )}/period`;
 
-          let rates = data.rows;
-          setSectorData(rates);
-          rates.forEach(
-            (item, i) =>
-              (item["rate"] = (item.count / item.population) * 100000)
-          );
-          var myColorScale = scaleSequential()
-            .domain([
-              min(
-                rates.map((r) => (r.sector === "NO ESPECIFICADO" ? 0 : r.rate))
-              ),
-              max(
-                rates.map((r) => (r.sector === "NO ESPECIFICADO" ? 0 : r.rate))
-              ),
-            ])
-            .interpolator(interpolateYlOrRd);
+      try {
+        const data = await fetchWithRetry(url);
 
-          let colors = zip(
-            rates.map((item) => item.sector),
-            rates.map((item) => myColorScale(item.rate))
-          );
+        if (props?.setLastDate) {
+          let dateStart = YYYYmmddToDate15(data.rows[0].start_date);
+          let dateStrStart = [
+            dateStart.toLocaleString(props.lang, { month: "long" }),
+            dateStart.getFullYear(),
+          ].join(" ");
+          let dateEnd = YYYYmmddToDate15(data.rows[0].end_date);
+          let dateStrEnd = [
+            dateEnd.toLocaleString(props.lang, { month: "long" }),
+            dateEnd.getFullYear(),
+          ].join(" ");
+          props.setLastDate(dateStrStart + " " + t("to") + " " + dateStrEnd);
+        }
 
-          /* crimeDotsNoCrime.filter = [
+        let rates = data.rows;
+        setSectorData(rates);
+        rates.forEach(
+          (item) => (item["rate"] = (item.count / item.population) * 100000)
+        );
+
+        var myColorScale = scaleSequential()
+          .domain([
+            min(
+              rates.map((r) => (r.sector === "NO ESPECIFICADO" ? 0 : r.rate))
+            ),
+            max(
+              rates.map((r) => (r.sector === "NO ESPECIFICADO" ? 0 : r.rate))
+            ),
+          ])
+          .interpolator(interpolateYlOrRd);
+
+        let colors = zip(
+          rates.map((item) => item.sector),
+          rates.map((item) => myColorScale(item.rate))
+        );
+
+        /* crimeDotsNoCrime.filter = [
             "all",
             ["==", "crime", props.selectedCrime],
             // ["!has", "point_count"],
           ]; */
-          setCrimeDots({
-            ...crimeDotsNoCrime,
+        setCrimeDots({
+          ...crimeDotsNoCrime,
+        });
+        setVectorTiles(
+          `${meta.site.siteMetadata.apiUrl}/api/v1/tiles/dates/{z}/{x}/{y}?crimes=` +
+            encodeURIComponent(props.selectedCrime)
+        );
+        if (!mapOptions) {
+          mapStyle.layers = mapStyle.layers.filter(function (item) {
+            return !(
+              sectorStyle.reduce(
+                (prev, cur) => prev || cur.id === item.id,
+                false
+              ) ||
+              item.id === "place_label_city" ||
+              //item.id === "road_trunk_primary" ||
+              item.id === "road_major_label"
+            );
           });
-          setVectorTiles(
-            `${meta.site.siteMetadata.apiUrl}/api/v1/tiles/dates/{z}/{x}/{y}?crimes=` +
-              encodeURIComponent(props.selectedCrime)
-          );
-          if (!mapOptions) {
-            mapStyle.layers = mapStyle.layers.filter(function (item) {
-              return !(
-                sectorStyle.reduce(
-                  (prev, cur) => prev || cur.id === item.id,
-                  false
-                ) ||
-                item.id === "place_label_city" ||
-                //item.id === "road_trunk_primary" ||
-                item.id === "road_major_label"
-              );
-            });
-            mapStyle.layers.push(...sectorStyle);
-            // mapStyle.layers.forEach((element) => {
-            //   if (element.id === "sectores-fill")
-            //     element.paint["fill-color"].stops = colors;
-            //   return element;
-            // });
+          mapStyle.layers.push(...sectorStyle);
+          // mapStyle.layers.forEach((element) => {
+          //   if (element.id === "sectores-fill")
+          //     element.paint["fill-color"].stops = colors;
+          //   return element;
+          // });
 
-            setMapOptions({ ...mapStyle });
-          }
-
-          fillLayer.paint["fill-color"].stops = [...colors];
-          setFillLayerOptions({ ...fillLayer });
-
-          if (!pmTilesReady) {
-            const protocol = new pmtiles.Protocol();
-            maplibregl.addProtocol("pmtiles", protocol.tile);
-            setPmTilesReady(true);
-          }
-        } catch (err) {
-          console.log(err);
+          setMapOptions({ ...mapStyle });
         }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+        fillLayer.paint["fill-color"].stops = [...colors];
+        setFillLayerOptions({ ...fillLayer });
+
+        if (!pmTilesReady) {
+          const protocol = new pmtiles.Protocol();
+          maplibregl.addProtocol("pmtiles", protocol.tile);
+          setPmTilesReady(true);
+        }
+      } catch (error) {
+        console.error("Failed to fetch data after retries:", error);
+      }
+    };
+
+    fetchData();
   }, [props.selectedCrime, pmTilesReady, mapOptions]);
 
   return (

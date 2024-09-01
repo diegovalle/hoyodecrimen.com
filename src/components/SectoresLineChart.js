@@ -73,14 +73,34 @@ function SectoresLineChart(props) {
     if (echartsInstance?.current !== null) {
       echartsInstance.current.getEchartsInstance().showLoading();
     }
-    const fetchRequestJSON = fetch(url);
-    Promise.all([fetchRequestJSON]).then(async (responses) => {
-      const [responseJSON] = responses;
-      let [rates] = await Promise.all([responseJSON.json()]);
-      setData(rates.rows);
-      if (echartsInstance?.current !== null)
-        echartsInstance.current.getEchartsInstance().hideLoading();
-    });
+    const fetchData = async (retries = 3) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const rates = await response.json();
+        setData(rates.rows);
+        if (echartsInstance?.current !== null) {
+          echartsInstance.current.getEchartsInstance().hideLoading();
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+        if (retries > 0) {
+          console.log(`Retrying... (${retries} attempts left)`);
+          await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second before retrying
+          fetchData(retries - 1);
+        } else {
+          console.error("Max retries reached. Fetch failed.");
+          if (echartsInstance?.current !== null) {
+            echartsInstance.current.getEchartsInstance().hideLoading();
+          }
+          // Optionally, set an error state or display an error message to the user
+        }
+      }
+    };
+
+    fetchData();
   }, [meta.site.siteMetadata.apiUrl, selectedCrime, selectedSector]);
 
   let chartOption = {

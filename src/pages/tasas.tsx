@@ -34,14 +34,12 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const updateRegion = useCallback(
     (name) => {
       setSelectedRegion(name);
-      console.log(selectedRegion);
     },
     [selectedRegion]
   );
 
   const updateCrime = (crime) => {
     setSelectedCrime(crime);
-    console.log(selectedCrime);
   };
 
   // useEffect(() => {}, [selectedRegion]);
