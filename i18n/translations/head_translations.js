@@ -6,7 +6,7 @@ export const translations = {
     "/en/cuadrantes-map_title": "Crime in Mexico City by Cuadrante",
     "/en/cuadrantes-map_description":
       "Interactive map of crime rates in the cuadrantes of Mexico City",
-    "/en/neighborhoods_title": "Homicides Rates in Mexico City by Neighborhood",
+    "/en/neighborhoods_title": "Map of Homicides Rates in Mexico City by Neighborhood",
     "/en/neighborhoods_description":
       "Interactive map of homicides rates in the different colonias of Mexico City. Find out which neighborhoods are safe with this map.",
     "/en/sectores-map_title": "Crime Rate in Mexico City by Sector",
