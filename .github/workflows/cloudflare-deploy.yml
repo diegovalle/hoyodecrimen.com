@@ -14,6 +14,7 @@ jobs:
           docker run -v ${{github.workspace}}:/hoyodecrimen node:20.14.0
           /bin/sh -c 'cd /hoyodecrimen 
           && npm install 
+          && export CLOUDFLARE="true"
           && ./node_modules/.bin/gatsby telemetry --disable 
           && ./node_modules/.bin/gatsby build 
           && chmod -R o+rwx /hoyodecrimen'

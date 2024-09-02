@@ -7,8 +7,8 @@ import type { GatsbyConfig } from "gatsby";
 const osmTilesUrl = "https://tiles-r.hoyodecrimen.com";
 
 // const apiUrl = "https://cooperative-corissa-diegovalle-177b049e.koyeb.app",
-// const apiUrl = "http://localhost:8080";
-const apiUrl = "https://api.hoyodecrimen.com";
+const apiUrl = "http://localhost:8080";
+// const apiUrl = "https://api.hoyodecrimen.com";
 
 const deploy_headers_vercel = {
   headers: [
@@ -134,7 +134,7 @@ const deploy_headers_netlify = {
   ],
 }; // option to add more headers. `Link` headers are transformed by the below criteria
 
-const config: GatsbyConfig = {
+let config_no_gtag: GatsbyConfig = {
   flags: {
     //PARTIAL_HYDRATION: true
   },
@@ -230,15 +230,6 @@ const config: GatsbyConfig = {
     //     linkStyles: false, // (default: true) Enable/disable loading stylesheets via CDN
     //   },
     // },
-    {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "G-HQQDKGGFMW",
-        includeInDevelopment: false,
-        defaultDataLayer: { platform: "gatsby" },
-        enableWebVitalsTracking: true,
-      },
-    },
     // {
     //   resolve: `gatsby-plugin-google-gtag`,
     //   options: {
@@ -337,5 +328,19 @@ const config: GatsbyConfig = {
     },
   ],
 };
+
+let config: GatsbyConfig;
+if (!process.env.CLOUDFLARE) {
+  config_no_gtag.plugins.push({
+    resolve: "gatsby-plugin-google-tagmanager",
+    options: {
+      id: "G-HQQDKGGFMW",
+      includeInDevelopment: false,
+      defaultDataLayer: { platform: "gatsby" },
+      enableWebVitalsTracking: true,
+    },
+  });
+  config = { ...config_no_gtag };
+} else config = { ...config_no_gtag };
 
 export default config;
