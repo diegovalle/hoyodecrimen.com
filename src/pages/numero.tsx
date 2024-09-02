@@ -21,7 +21,7 @@ import {
 import Layout from "../components/Layout";
 import MapForCuadranteMonthChart from "../components/MapForCuadranteMonthChart";
 import CrimeCuadranteMonthChart from "../components/CrimeCuadranteMonthChart";
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-numero.jpg";
 import social_image_en from "../images/social/social-numero_en.jpg";
 
@@ -47,12 +47,7 @@ const NumeroPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-      <SocialImage
-        social_image={social_image}
-        social_image_en={social_image_en}
-        siteUrl={data.site.siteMetadata.siteUrl}
-        language={language}
-      />
+     
       <Center>
         <Title
           order={1}
@@ -109,7 +104,15 @@ const NumeroPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
 export default NumeroPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

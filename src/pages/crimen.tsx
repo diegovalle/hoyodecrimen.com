@@ -22,7 +22,7 @@ import { translations } from "../../i18n/translations/head_translations";
 
 import { daysInMonth } from "../components/utils";
 import { groupBy, sortBy } from "lodash-es";
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-crimen.jpg";
 import social_image_en from "../images/social/social-crimen_en.jpg";
 
@@ -293,12 +293,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-      <SocialImage
-        social_image={social_image}
-        social_image_en={social_image_en}
-        siteUrl={data.site.siteMetadata.siteUrl}
-        language={language}
-      />
+     
       <Center>
         <Title
           order={1}
@@ -359,7 +354,15 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
 export default CrimenPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

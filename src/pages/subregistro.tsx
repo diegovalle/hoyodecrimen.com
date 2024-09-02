@@ -9,7 +9,7 @@ import type { PageProps } from "gatsby";
 import { Title, Text, Center, Grid, Space, Blockquote } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-subregistro.jpg";
 import social_image_en from "../images/social/social-subregistro_en.jpg";
 import deathData from "../assets/hom_acc_na.json";
@@ -291,12 +291,7 @@ const SubregistroPage: React.FC<PageProps> = ({
 
   return (
     <Layout language={language} pageContext={pageContext}>
-      <SocialImage
-        social_image={social_image}
-        social_image_en={social_image_en}
-        siteUrl={data.site.siteMetadata.siteUrl}
-        language={language}
-      />
+     
       <Center>
         <Title
           order={1}
@@ -432,7 +427,15 @@ const SubregistroPage: React.FC<PageProps> = ({
 
 export default SubregistroPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

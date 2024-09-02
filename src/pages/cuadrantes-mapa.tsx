@@ -32,7 +32,7 @@ import LazyLoad from "react-lazy-load";
 import CuadrantesMap from "../components/HomicideMap/CuadrantesMap";
 import CuadrantesLineChart from "../components/CuadrantesLineChart";
 
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-cuadrantes-mapa.jpg";
 import social_image_en from "../images/social/social-cuadrantes-mapa_en.jpg";
 
@@ -71,12 +71,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       />
 
       <AppShell.Main>
-        <SocialImage
-          social_image={social_image}
-          social_image_en={social_image_en}
-          siteUrl={data.site.siteMetadata.siteUrl}
-          language={language}
-        />
         <Grid overflow="hidden">
           <Grid.Col
             span={{ base: 12, md: 9, lg: 9 }}
@@ -206,7 +200,15 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
 export default TasasPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

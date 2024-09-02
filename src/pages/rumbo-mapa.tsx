@@ -20,7 +20,7 @@ import GeoLocateButton from "../components/GeoLocateButton";
 
 import Layout from "../components/Layout";
 
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-rumbo.jpg";
 import social_image_en from "../images/social/social-rumbo_en.jpg";
 import { IconPointFilled } from "@tabler/icons-react";
@@ -33,12 +33,7 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-      <SocialImage
-        social_image={social_image}
-        social_image_en={social_image_en}
-        siteUrl={data.site.siteMetadata.siteUrl}
-        language={language}
-      />
+     
       <Center>
         <Title order={1} py=".5rem">
           <Trans>Crime in your Area</Trans>
@@ -148,7 +143,15 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
 export default RumboPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

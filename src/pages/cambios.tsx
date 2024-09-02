@@ -21,7 +21,7 @@ import {
 import Layout from "../components/Layout";
 import MapForSectorDiffMonthChart from "../components/MapForSectorDiffMonthChart";
 import CrimeSectorDiffMonthChart from "../components/CrimeSectorDiffMonthChart";
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-cambios.jpg";
 import social_image_en from "../images/social/social-cambios_en.jpg";
 
@@ -40,12 +40,7 @@ const CambiosPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-      <SocialImage
-        social_image={social_image}
-        social_image_en={social_image_en}
-        siteUrl={data.site.siteMetadata.siteUrl}
-        language={language}
-      />
+     
       <Center>
         <Title
           order={1}
@@ -102,7 +97,15 @@ const CambiosPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
 export default CambiosPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

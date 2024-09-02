@@ -28,7 +28,7 @@ import { IconInfoCircle } from "@tabler/icons-react";
 import useWindowSize from "../components/useWindowSize";
 
 import ColoniasMap from "../components/HomicideMap/ColoniasMap";
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-colonias.jpg";
 import social_image_en from "../images/social/social-colonias_en.jpg";
 
@@ -52,12 +52,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       }}
       padding={{ base: 0 }}
     >
-      <SocialImage
-        social_image={social_image}
-        social_image_en={social_image_en}
-        siteUrl={data.site.siteMetadata.siteUrl}
-        language={language}
-      />
+     
       <Header
         opened={openMenu}
         toggle={toggleMenu}
@@ -159,7 +154,15 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
 export default TasasPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

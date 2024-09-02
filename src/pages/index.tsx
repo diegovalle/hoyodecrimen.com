@@ -32,7 +32,8 @@ import CDMXLineChart from "../components/CDMXLineChart";
 
 import { StaticImage } from "gatsby-plugin-image";
 
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
+
 import social_image from "../images/social/social-index.jpg";
 import social_image_en from "../images/social/social-index_en.jpg";
 
@@ -170,12 +171,6 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-      <SocialImage
-        social_image={social_image}
-        social_image_en={social_image_en}
-        siteUrl={data.site.siteMetadata.siteUrl}
-        language={language}
-      />
       <Title order={1} py=".5rem" align="center">
         <Trans>Mexico City Crime</Trans>
       </Title>
@@ -335,10 +330,18 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Table striped size="xl">
             <Table.Thead>
               <Table.Tr>
-                <Table.Th role="columnheader" scope="col">{t("Year")}</Table.Th>
-                <Table.Th role="columnheader" scope="col">{t("Homicides")}</Table.Th>
-                <Table.Th role="columnheader" scope="col">{t("Population")}</Table.Th>
-                <Table.Th role="columnheader" scope="col">{t("Rate")}</Table.Th>
+                <Table.Th role="columnheader" scope="col">
+                  {t("Year")}
+                </Table.Th>
+                <Table.Th role="columnheader" scope="col">
+                  {t("Homicides")}
+                </Table.Th>
+                <Table.Th role="columnheader" scope="col">
+                  {t("Population")}
+                </Table.Th>
+                <Table.Th role="columnheader" scope="col">
+                  {t("Rate")}
+                </Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>
@@ -440,7 +443,15 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
 export default IndexPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

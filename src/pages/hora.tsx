@@ -34,7 +34,7 @@ import {
   // SVGRenderer,
 } from "echarts/renderers";
 import { YYYYmmddToDate15 } from "../components/utils";
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-hora.jpg";
 import social_image_en from "../images/social/social-hora.jpg";
 
@@ -217,12 +217,6 @@ const HoraPage: React.FC<PageProps> = ({ pageContext, location, data: meta }) =>
 
   return (
     <Layout language={language} pageContext={pageContext}>
-    <SocialImage
-      social_image={social_image}
-      social_image_en={social_image_en}
-      siteUrl={meta.site.siteMetadata.siteUrl}
-      language={language}
-    />
       <Center>
         <Title
           order={1}
@@ -280,7 +274,15 @@ const HoraPage: React.FC<PageProps> = ({ pageContext, location, data: meta }) =>
 
 export default HoraPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

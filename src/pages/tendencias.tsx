@@ -20,7 +20,7 @@ import {
 import Layout from "../components/Layout";
 
 import TrendMonthChart from "../components/TrendMonthChart";
-import { SocialImage } from "../components/SocialImage";
+import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-tendencias.jpg";
 import social_image_en from "../images/social/social-tendencias_en.jpg";
 
@@ -80,12 +80,6 @@ const TasasPage: React.FC<PageProps> = ({
 
   return (
     <Layout language={language} pageContext={pageContext}>
-      <SocialImage
-        social_image={social_image}
-        social_image_en={social_image_en}
-        siteUrl={meta.site.siteMetadata.siteUrl}
-        language={language}
-      />
       <Center>
         <Title
           order={1}
@@ -164,7 +158,15 @@ const TasasPage: React.FC<PageProps> = ({
 
 export default TasasPage;
 
-export { Head } from "../components/Head";
+export const Head: HeadFC = (props) => {
+  const {language} = props.pageContext
+  return (
+    <SEO
+      image={language === "es" ? social_image : social_image_en}
+      props={props}
+    />
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

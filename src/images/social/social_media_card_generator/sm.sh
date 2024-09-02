@@ -59,7 +59,7 @@ TITLES_EN=("About"
         "Under-\nreporting\nCrime"
 )
 WW=1200
-HH=628
+HH=630
 SLIDE_BGCOLOR="#ff5f00"
 BORDER_COLOR="#999999"
 TITLE_FONT=fonts/Raleway-ExtraBold.ttf
