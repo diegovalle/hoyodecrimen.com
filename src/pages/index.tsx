@@ -329,7 +329,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Space h="xl" />
           <Table striped size="xl">
             <Table.Thead>
-              <Table.Tr>
+              <Table.Tr role="row">
                 <Table.Th role="columnheader" scope="col">
                   {t("Year")}
                 </Table.Th>
