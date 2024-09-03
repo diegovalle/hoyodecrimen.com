@@ -33,7 +33,7 @@
     "echarts": "^5.5.0",
     "echarts-for-react": "^3.0.2",
     "fetch-retry": "^6.0.0",
-    "gatsby": "^5.13.7",
+    "gatsby": "^5.13.6",
     "gatsby-adapter-netlify": "^1.1.6",
     "gatsby-plugin-cloudflare-pages": "^1.0.3",
     "gatsby-plugin-google-tagmanager": "^5.13.1",
