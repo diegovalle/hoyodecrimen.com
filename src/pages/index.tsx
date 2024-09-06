@@ -449,7 +449,6 @@ export default IndexPage;
 
 export const Head: HeadFC = (props) => {
   const { language } = props.pageContext;
-  const { t } = useTranslation();
   return (
     <>
       <SEO
@@ -463,10 +462,16 @@ export const Head: HeadFC = (props) => {
           mainEntity: [
             {
               "@type": "Question",
-              name: t("What is the murder rate in Mexico City?"),
+              name:
+                language === "en"
+                  ? "What is the murder rate in Mexico City?"
+                  : "¿Cuál es la tasa de homicidio en la Ciudad de México?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: t("The homicide rate in Mexico City was 9.3 in 2023"),
+                text:
+                  language === "en"
+                    ? "The homicide rate in Mexico City was 9.3 in 2023"
+                    : "La tasa de homicidios en la Ciudad de México en 2023 fue de 9.6",
               },
             },
           ],

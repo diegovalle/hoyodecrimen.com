@@ -411,7 +411,7 @@ const SubregistroPage: React.FC<PageProps> = ({
             delitosDenunciadosSecondLast={{ delitosDenunciadosSecondLast }}
             lastYear={lastYear}
           >
-            a{{ delitosDenunciadosLast }}df{{ lastYear }}dsf{{lastYear2}}asdf
+            a{{ delitosDenunciadosLast }}df{{ lastYear }}dsf{{ lastYear2 }}asdf
             {{ delitosDenunciadosSecondLast }}asdf
           </Trans>
           <Space h="md" />
@@ -425,21 +425,23 @@ const SubregistroPage: React.FC<PageProps> = ({
             investigadosLast={investigadosLast}
             inevestigaosSecondLast={inevestigaosSecondLast}
           >
-            afas{{ carpetaLast }}sfsadf{{ carpetaSecondLast }}sadfasdf{{lastYear2}}
-            saddfsaasd{{investigadosLast}}asdfsadf{{inevestigaosSecondLast}}asdfasdf
+            afas{{ carpetaLast }}sfsadf{{ carpetaSecondLast }}sadfasdf
+            {{ lastYear2 }}
+            saddfsaasd{{ investigadosLast }}asdfsadf{{ inevestigaosSecondLast }}
+            asdfasdf
           </Trans>
           <Space h="md" />
 
           <Space h="md" />
           <Trans i18nKey="cifra_negra" cifraNegra={cifraNegra}>
-            sdfasdf<b>{{cifraNegra}}fds</b>
+            sdfasdf<b>{{ cifraNegra }}fds</b>
           </Trans>
           <Space h="lg" />
 
           <Blockquote color="orange" cite={t("Source: ENVIPE")}>
             {t(
               "In Mexico City 92.6% of crimes were not denounced or investigated by the police",
-              {cifraNegra: cifraNegra}
+              { cifraNegra: cifraNegra }
             )}
           </Blockquote>
 
@@ -448,7 +450,9 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Space h="md" />
 
           <Space h="md" />
-          <Trans i18nKey="conclusion" lastYear={lastYear}>asfsadf{{lastYear}}afs</Trans>
+          <Trans i18nKey="conclusion" lastYear={lastYear}>
+            asfsadf{{ lastYear }}afs
+          </Trans>
           <Space h="md" />
         </Grid.Col>
       </Grid>
@@ -460,7 +464,6 @@ export default SubregistroPage;
 
 export const Head: HeadFC = (props) => {
   const { language } = props.pageContext;
-  const { t } = useTranslation();
   return (
     <>
       <SEO
@@ -474,10 +477,16 @@ export const Head: HeadFC = (props) => {
           mainEntity: [
             {
               "@type": "Question",
-              name: t("What is the crime rate in Mexico City?"),
+              name:
+                language === "en"
+                  ? "What is the crime rate in Mexico City?"
+                  : "¿Cuál es la tasa de criminalidad en la Ciudad de México",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: t("a_crime_rate"),
+                text:
+                  language === "en"
+                    ? "The overall crime rate in Mexico City was 37.4% according to the National Victimization Survey (ENVIPE). That is, in 37.4% households at least one person was the victim of a crime in 2022"
+                    : "El 37.4% de los hogares en la Ciudad de México tuvo al menos una víctima de delito durante el 2022",
               },
             },
           ],
