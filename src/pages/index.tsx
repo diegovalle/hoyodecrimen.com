@@ -159,10 +159,14 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const rows = yearlyHomicides
     ? yearlyHomicides.map((element) => (
         <Table.Tr key={element.year}>
-          <Table.Td>{element.year}</Table.Td>
-          <Table.Td>{comma(element.count)}</Table.Td>
-          <Table.Td>{comma(element.population)}</Table.Td>
-          <Table.Td>
+          <Table.Td key={element.year + Math.random()}>{element.year}</Table.Td>
+          <Table.Td key={element.year + Math.random()}>
+            {comma(element.count)}
+          </Table.Td>
+          <Table.Td key={element.year + Math.random()}>
+            {comma(element.population)}
+          </Table.Td>
+          <Table.Td key={element.year + Math.random()}>
             {round1((element.count / element.population) * 100000)}
           </Table.Td>
         </Table.Tr>
@@ -330,16 +334,16 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Table striped size="xl">
             <Table.Thead>
               <Table.Tr role="row">
-                <Table.Th role="columnheader" scope="col">
+                <Table.Th key="1" role="columnheader" scope="col">
                   {t("Year")}
                 </Table.Th>
-                <Table.Th role="columnheader" scope="col">
+                <Table.Th key="2" role="columnheader" scope="col">
                   {t("Homicides")}
                 </Table.Th>
-                <Table.Th role="columnheader" scope="col">
+                <Table.Th key="3" role="columnheader" scope="col">
                   {t("Population")}
                 </Table.Th>
-                <Table.Th role="columnheader" scope="col">
+                <Table.Th key="4" role="columnheader" scope="col">
                   {t("Rate")}
                 </Table.Th>
               </Table.Tr>
@@ -444,12 +448,31 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default IndexPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
+  const { t } = useTranslation();
   return (
-    <SEO
-      image={language === "es" ? social_image : social_image_en}
-      props={props}
-    />
+    <>
+      <SEO
+        image={language === "es" ? social_image : social_image_en}
+        props={props}
+      />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "http://schema.org/",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: t("What is the murder rate in Mexico City?"),
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: t("The homicide rate in Mexico City was 9.3 in 2023"),
+              },
+            },
+          ],
+        })}
+      </script>
+    </>
   );
 };
 

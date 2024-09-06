@@ -25,6 +25,69 @@ export const SEO = ({ image, props }) => {
     <>
       <html lang={language} />
       <title>{translations[language][localizedPath + "_title"]}</title>
+
+      <script type="application/ld+json">
+        {JSON.stringify({
+          '@context': 'http://schema.org/',
+          '@type': 'Organization',
+          url: 'https://hoyodecrimen.com',
+          '@id': 'https://hoyodecrimen.com/#Organization',
+          name: 'Hoyo de Crimen',
+          description: 'Mexico City Crime Rates',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://hoyodecrimen.com/logo_hoyodecrimen.png',
+            width: '411',
+            height: '411',
+          },
+          founder: {
+            '@type': 'Person',
+            '@id': 'https://www.diegovalle.net/#Person',
+            name: 'Diego Valle-Jones',
+            givenName: 'Diego',
+            familyName: 'Valle-Jones',
+            sameAs: [
+              'https://twitter.com/diegovalle',
+              'https://github.com/diegovalle',
+              'https://facebook.com/diegovalle',
+              'https://www.linkedin.com/in/diegovalle',
+              '',
+              '',
+            ],
+            url: 'https://www.diegovalle.net',
+          },
+          foundingDate: '2011',
+        })}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: "Hoyo de Crimen",
+          inLanguage: props.lang === 'es' ? 'en' : 'es',
+          url:
+            props.lang === 'es' ? 'https://hoyodecrimen.com' : 'https//hoyodecrimen.com/en/',
+          author: [
+            {
+              '@type': 'Person',
+              '@id': 'https://www.diegovalle.net/#Person',
+              name: 'Diego Valle-Jones',
+              givenName: 'Diego',
+              familyName: 'Valle-Jones',
+              sameAs: [
+                'https://twitter.com/diegovalle',
+                'https://github.com/diegovalle',
+                'https://facebook.com/diegovalle',
+                'https://www.linkedin.com/in/diegovalle',
+                '',
+                '',
+              ],
+              url: 'https://www.diegovalle.net',
+            },
+          ],
+        })}
+      </script>
+
       <meta
         name="description"
         content={translations[language][localizedPath + "_description"]}
@@ -50,6 +113,7 @@ export const SEO = ({ image, props }) => {
           props.socialTitle || translations[language][localizedPath + "_title"]
         }
       />
+      <meta property="og:site_name" content={'Hoyo de Crimen'} />
       <meta
         property="og:description"
         content={translations[language][localizedPath + "_description"]}

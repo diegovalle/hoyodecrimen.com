@@ -27,7 +27,7 @@ import social_image_en from "../images/social/social-tendencias_en.jpg";
 const TrendChartPlaceHolder = (props) => {
   return [...Array(props.n)].map((e, i) => (
     <Grid.Col key={i + props.prefix + "grid"} span={{ base: 12, md: 6, lg: 3 }}>
-      <AspectRatio key={i + props.prefix} ratio={5 / 3} h={340} p={15}>
+      <AspectRatio key={i + props.prefix} ratio={4 / 3} h={255} p={15}>
         {" "}
         <Skeleton height="100%" width="100%" style={{ position: "absolute" }} />
       </AspectRatio>

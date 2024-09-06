@@ -128,7 +128,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Trans
             i18nKey="translation"
             components={{
-              Link: <a href="https://api.hoyodecrimen.com/api/" />,
+              Link: <a href="https://hoyodecrimen.com/api/" />,
             }}
           ></Trans>
           <Space h="sm" />

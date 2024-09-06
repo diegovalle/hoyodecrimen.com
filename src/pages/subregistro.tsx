@@ -61,6 +61,16 @@ const SubregistroPage: React.FC<PageProps> = ({
   useEffect(() => {}, []);
   const { language } = pageContext;
   const { t } = useTranslation();
+  const lastPer = prevalencia_hogares[prevalencia_hogares.length - 1].per;
+  const lastYear = prevalencia_hogares[prevalencia_hogares.length - 1].year;
+  const lastYear2 = lastYear - 1;
+  const delitosDenunciadosLast = 11.1;
+  const delitosDenunciadosSecondLast = 11.8;
+  const carpetaLast = 67;
+  const carpetaSecondLast = 65.9;
+  const investigadosLast = 7.4;
+  const inevestigaosSecondLast = 7.8;
+  const cifraNegra = 100 - investigadosLast;
 
   let inegiChartOption = {
     animation: false,
@@ -291,7 +301,6 @@ const SubregistroPage: React.FC<PageProps> = ({
 
   return (
     <Layout language={language} pageContext={pageContext}>
-     
       <Center>
         <Title
           order={1}
@@ -380,35 +389,57 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Space h="xl" />
           <Blockquote color="orange" cite={t("Source: ENVIPE")}>
             {t(
-              "In 37% of Mexico City households at least one person was the victim of a crime in 2023"
+              "In 37% of Mexico City households at least one person was the victim of a crime in 2023",
+              { lastPer: lastPer }
             )}
           </Blockquote>
 
           <Space h="xl" />
 
           <Space h="md" />
-          <Trans i18nKey="victimizacion">
-            asdfafd<b>sdf</b>
+          <Trans i18nKey="victimizacion" lastPer={lastPer} lastYear={lastYear}>
+            asdfafd{{ lastYear }}
+            <b>{{ lastPer }}sdf</b>
           </Trans>
           <Space h="md" />
 
           <Space h="md" />
-          <Trans i18nKey="tasa_denuncia" />
+          <Trans
+            lastYear2={lastYear2}
+            i18nKey="tasa_denuncia"
+            delitosDenunciadosLast={{ delitosDenunciadosLast }}
+            delitosDenunciadosSecondLast={{ delitosDenunciadosSecondLast }}
+            lastYear={lastYear}
+          >
+            a{{ delitosDenunciadosLast }}df{{ lastYear }}dsf{{lastYear2}}asdf
+            {{ delitosDenunciadosSecondLast }}asdf
+          </Trans>
           <Space h="md" />
 
           <Space h="md" />
-          <Trans i18nKey="investigaciones" />
+          <Trans
+            i18nKey="investigaciones"
+            lastYear2={lastYear2}
+            carpetaLast={carpetaLast}
+            carpetaSecondLast={carpetaSecondLast}
+            investigadosLast={investigadosLast}
+            inevestigaosSecondLast={inevestigaosSecondLast}
+          >
+            afas{{ carpetaLast }}sfsadf{{ carpetaSecondLast }}sadfasdf{{lastYear2}}
+            saddfsaasd{{investigadosLast}}asdfsadf{{inevestigaosSecondLast}}asdfasdf
+          </Trans>
           <Space h="md" />
 
           <Space h="md" />
-          <Trans i18nKey="cifra_negra">
-            sdfasdf<b>fds</b>
+          <Trans i18nKey="cifra_negra" cifraNegra={cifraNegra}>
+            sdfasdf<b>{{cifraNegra}}fds</b>
           </Trans>
           <Space h="lg" />
 
           <Blockquote color="orange" cite={t("Source: ENVIPE")}>
             {t(
-              "In Mexico City 92.6% of crimes were not denounced or investigated by the police"
+              "In Mexico City 92.6% of crimes were not denounced or investigated by the police",
+              {cifraNegra: cifraNegra}
             )}
           </Blockquote>
 
@@ -417,7 +448,7 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Space h="md" />
 
           <Space h="md" />
-          <Trans i18nKey="conclusion" />
+          <Trans i18nKey="conclusion" lastYear={lastYear}>asfsadf{{lastYear}}afs</Trans>
           <Space h="md" />
         </Grid.Col>
       </Grid>
@@ -428,12 +459,31 @@ const SubregistroPage: React.FC<PageProps> = ({
 export default SubregistroPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
+  const { t } = useTranslation();
   return (
-    <SEO
-      image={language === "es" ? social_image : social_image_en}
-      props={props}
-    />
+    <>
+      <SEO
+        image={language === "es" ? social_image : social_image_en}
+        props={props}
+      />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "http://schema.org/",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: t("What is the crime rate in Mexico City?"),
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: t("a_crime_rate"),
+              },
+            },
+          ],
+        })}
+      </script>
+    </>
   );
 };
 

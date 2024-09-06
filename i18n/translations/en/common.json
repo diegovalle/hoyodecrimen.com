@@ -28,7 +28,7 @@
   "Your email": "Your Email",
   "Submit": "Submit",
   "createdBy": "Created by <1 href=\"https://www.diegovalle.net/es/\">Diego Valle-Jones</1>",
-  "dataSource": "The source of crime data is the <1 href=\"https://datos.cdmx.gob.mx/dataset/carpetas-de-investigacion-fgj-de-la-ciudad-de-mexico\"> FGJ-CDMX </1>. The shapefiles for the cuadrantes come from the <3 href=\"https://datos.cdmx.gob.mx/dataset/cuadrantesl\"> Secretaría de Seguridad Ciudadana (SSC) </3> and the colonias are from the <5 href=\"https://datos.cdmx.gob.mx/dataset/coloniascdmx\"> Instituto Electoral de la Ciudad de México </5>. The population figures are based on the <7 href=\"https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html\"> 2020 Census by Manzana </7>.",
+  "dataSource": "The source of crime data is the <1 href=\"https://datos.cdmx.gob.mx/dataset/carpetas-de-investigacion-fgj-de-la-ciudad-de-mexico\"> FGJ-CDMX </1>. The shapefiles for the cuadrantes come from the <3 href=\"https://datos.cdmx.gob.mx/dataset/cuadrantes\"> Secretaría de Seguridad Ciudadana (SSC) </3> and the colonias are from the <5 href=\"https://datos.cdmx.gob.mx/dataset/coloniascdmx\"> Instituto Electoral de la Ciudad de México </5>. The population figures are based on the <7 href=\"https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html\"> 2020 Census by Manzana </7>.",
   "coolAPI": "There's also a really cool <1 href=\"https://hoyodecrimen.com/api/\">API</0>.",
   "elcrimenLink": "For a complete crime and safety report for all the states of Mexico, please visit <1 href=\"https://elcri.men/en/\">El Crimen</1>.",
   "copyright": "Diego Valle-Jones. All Rights Reserved.",
