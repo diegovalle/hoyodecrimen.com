@@ -47,6 +47,6 @@ Project Link: [https://github.com/diegovalle/hoyodecrimen.com](https://github.co
 
 When a new ENVIPE comes out
 
-- Updated FAQ JSON+LD in the index 
-- Updated ENIVPE variables in the subregistro page
-- Change the last two translations for the FAQ (JSON+LD)
+- Updated FAQ JSON+LD in the /index/ page 
+- Updated ENIVPE variables in the /subregistro/ page
+- Update the FAQ JSON+LD in the /subregistro/ page
