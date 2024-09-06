@@ -20,7 +20,7 @@ export const SEO = ({ image, props }) => {
     }
     return retObj;
   }
-  
+
   return (
     <>
       <html lang={language} />
@@ -129,8 +129,8 @@ export const SEO = ({ image, props }) => {
               (localizedPath !== "/" ? "/" : "")
             : invert(translated_routes)[
                 props.location.pathname
-                  .replace("/en", "")
-                  .replace(/(?:[\w]{1})\/$/, "")
+                  .replace(/^\/en/, "")
+                  .replace(/([\w]{1})(\/$)/, "$1")
               ])
         }
       />
