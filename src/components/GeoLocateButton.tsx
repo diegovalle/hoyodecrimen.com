@@ -24,7 +24,6 @@ export const GeoLocateButton = ({ setButtonCoords } = props) => {
   });
 
   useEffect(() => {
-    console.log(coords);
     if (coords) setButtonCoords([coords.longitude, coords.latitude]);
   }, [coords]);
 
