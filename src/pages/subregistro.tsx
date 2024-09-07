@@ -485,7 +485,7 @@ export const Head: HeadFC = (props) => {
                 "@type": "Answer",
                 text:
                   language === "en"
-                    ? "The overall crime rate in Mexico City was 37.4% according to the National Victimization Survey (ENVIPE). That is, in 37.4% households at least one person was the victim of a crime in 2022"
+                    ? "The overall crime rate in Mexico City was 37.4% according to the National Victimization Survey (ENVIPE). That is, in 37.4% of households at least one person was the victim of a crime in 2022"
                     : "El 37.4% de los hogares en la Ciudad de México tuvo al menos una víctima de delito durante el 2022",
               },
             },

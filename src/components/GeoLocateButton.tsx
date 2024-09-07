@@ -33,7 +33,6 @@ export const GeoLocateButton = ({ setButtonCoords } = props) => {
       navigator.permissions
         .query({ name: "geolocation" })
         .then(function (result) {
-          console.log(result);
           if (result.state === "granted") {
             setIsGeolocationEnabled(true);
           } else if (result.state === "prompt") {
