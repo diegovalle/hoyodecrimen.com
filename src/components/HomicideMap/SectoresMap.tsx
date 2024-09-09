@@ -31,6 +31,7 @@ export const SectoresMap = (props: Props) => {
   const [sectorData, setSectorData] = useState(null);
   const [pmTilesReady, setPmTilesReady] = useState(false);
 
+  const [hoverInfo, setHoverInfo] = useState(null);
   const [clickInfo, setClickInfo] = useState(null);
   const [fillLayerOptions, setFillLayerOptions] = useState(undefined);
   const [mapOptions, setMapOptions] = useState(null);
@@ -76,21 +77,14 @@ export const SectoresMap = (props: Props) => {
   };
 
   const onHover = useCallback((event) => {
-    if (mapRef) {
-      // mapRef.current.setFeatureState(
-      //   { source: "openmaptiles", id: event.features[0].id, sourceLayer: "sectores" },
-      //   { hover: true }
-      // );
-    }
-    //console.log(event);
-    // const crime = event.features && event.features[0];
-    // setHoverInfo({
-    //   longitude: event.lngLat.lng,
-    //   latitude: event.lngLat.lat,
-    //   crimeName: crime && crime.properties.crime,
-    //   date: crime && crime.properties.date,
-    //   hour: crime && crime.properties.hour,
-    // });
+    const crime = event.features && event.features[0];
+    setHoverInfo({
+      longitude: event.lngLat.lng,
+      latitude: event.lngLat.lat,
+      crimeName: crime && crime.properties.crime,
+      date: crime && crime.properties.date,
+      hour: crime && crime.properties.hour,
+    });
   }, []);
 
   const onClick = useCallback(
@@ -344,6 +338,19 @@ export const SectoresMap = (props: Props) => {
     fetchData();
   }, [props.selectedCrime, pmTilesReady, mapOptions]);
 
+  const crimePopUp =
+    hoverInfo && hoverInfo.crimeName ? (
+      <div>
+        <b>{hoverInfo.crimeName}</b>
+        <br />
+        {hoverInfo.date}
+        <br />
+        {hoverInfo.hour}
+      </div>
+    ) : (
+      ""
+    );
+
   return (
     <Map
       ref={(ref) => (mapRef.current = ref && ref.getMap())}
@@ -365,7 +372,7 @@ export const SectoresMap = (props: Props) => {
       maxZoom={maxZoom}
       onClick={onClick}
       onMouseMove={onHover}
-      interactiveLayerIds={["sectores-fill"]}
+      interactiveLayerIds={["sectores-fill", "crime-points"]}
     >
       {pmTilesReady ? (
         fillLayerOptions ? (
@@ -417,6 +424,18 @@ export const SectoresMap = (props: Props) => {
           <br />
           <b>Población</b>: {comma(clickInfo.population)}
           <br />
+        </Popup>
+      )}
+      {crimePopUp && (
+        <Popup
+          key={hoverInfo.longitude + hoverInfo.latitude}
+          longitude={hoverInfo.longitude}
+          latitude={hoverInfo.latitude}
+          offset={[0, -10]}
+          closeButton={false}
+          className="crime-info"
+        >
+          {crimePopUp}
         </Popup>
       )}
     </Map>
