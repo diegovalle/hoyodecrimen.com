@@ -188,18 +188,6 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       </Center>
       <Center>
         <Space h="sm" />
-
-        {/* <Text size="xl" styles={{ height: "20px" }} lineClamp={1}>
-          &nbsp;
-          {lastDate
-            ? [
-                language === "es" ? "Reporte " : "",
-                lastDate.toLocaleString(language, { month: "long" }),
-                lastDate.getFullYear(),
-                language === "en" ? " Report" : "",
-              ].join(" ")
-            : null}
-        </Text> */}
       </Center>
       <div style={{ height: "400px", width: "100%" }}>
         <ColoniasMap
@@ -488,7 +476,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

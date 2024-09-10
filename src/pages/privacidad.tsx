@@ -20,7 +20,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-     
       <Center>
         <Title
           order={1}
@@ -45,7 +44,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           span={{ base: 12, md: 6, lg: 6 }}
           offset={{ base: 0, md: 3, lg: 3 }}
         >
-         
           <p>
             <strong>HoyoDeCrimen</strong> respects your privacy and is committed
             to protecting your personal information. This Privacy Policy
@@ -161,7 +159,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default TasasPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -177,7 +175,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
       }

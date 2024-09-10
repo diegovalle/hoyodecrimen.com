@@ -45,12 +45,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-     
       <Center>
-        <Title
-          order={1}
-          py=".5rem"
-        >
+        <Title order={1} py=".5rem">
           <Trans>About Crime in Mexico City</Trans>
         </Title>
       </Center>
@@ -101,7 +97,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             </List.Item>
           </List>
           <Space h="xl" />
-
           <Trans i18nKey="rest">
             Additional Information:
             <p>There's also a Spanish version and a really cool API.</p>
@@ -163,7 +158,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default TasasPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -179,7 +174,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
       }

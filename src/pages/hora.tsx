@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
 import type { HeadFC, PageProps } from "gatsby";
@@ -33,7 +33,7 @@ import {
   CanvasRenderer,
   // SVGRenderer,
 } from "echarts/renderers";
-import { YYYYmmddToDate15 } from "../components/utils";
+import { YYYYmmddToDate15, getMonthYear } from "../components/utils";
 import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-hora.jpg";
 import social_image_en from "../images/social/social-hora.jpg";
@@ -56,7 +56,11 @@ interface Crime {
   start_date: string;
 }
 
-const HoraPage: React.FC<PageProps> = ({ pageContext, location, data: meta }) => {
+const HoraPage: React.FC<PageProps> = ({
+  pageContext,
+  location,
+  data: meta,
+}) => {
   useEffect(() => {}, []);
   const { language } = pageContext;
   const { t } = useTranslation();
@@ -74,15 +78,9 @@ const HoraPage: React.FC<PageProps> = ({ pageContext, location, data: meta }) =>
         });
         setGroupedData(groupedData);
         let dateStart = YYYYmmddToDate15(data.rows[0].start_date);
-        let dateStrStart = [
-          dateStart.toLocaleString(language, { month: "long" }),
-          dateStart.getFullYear(),
-        ].join(" ");
+        let dateStrStart = getMonthYear(dateStart, language, "long", " ");
         let dateEnd = YYYYmmddToDate15(data.rows[0].end_date);
-        let dateStrEnd = [
-          dateEnd.toLocaleString(language, { month: "long" }),
-          dateEnd.getFullYear(),
-        ].join(" ");
+        let dateStrEnd = getMonthYear(dateEnd, language, "long", " ");
         setPeriod(dateStrStart + " " + t("to") + " " + dateStrEnd);
       });
   }, []);
@@ -275,7 +273,7 @@ const HoraPage: React.FC<PageProps> = ({ pageContext, location, data: meta }) =>
 export default HoraPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -291,7 +289,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

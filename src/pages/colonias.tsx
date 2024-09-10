@@ -52,7 +52,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       }}
       padding={{ base: 0 }}
     >
-     
       <Header
         opened={openMenu}
         toggle={toggleMenu}
@@ -64,7 +63,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <Grid overflow="hidden">
           <Grid.Col
             span={{ base: 12, md: 12, lg: 12 }}
-            style={{ height: wSize.height ?  wSize.height- 60 + 16 : 0 }}
+            style={{ height: wSize.height ? wSize.height - 60 + 16 : 0 }}
             pb={0}
           >
             {wSize.height ? (
@@ -131,7 +130,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               </Container>
             </Drawer>
             <Affix position={{ bottom: 85, right: 20 }}>
-              
               <Button
                 px={6}
                 variant="filled"
@@ -141,7 +139,9 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 aria-label="Options"
                 title={t("Homicide rate by Neighborhood")}
               >
-                <h1 style={{display: "none"}}>Homicide rate by Neighborhood</h1>
+                <h1 style={{ display: "none" }}>
+                  Homicide rate by Neighborhood
+                </h1>
                 <IconInfoCircle style={{}} />
               </Button>
             </Affix>
@@ -155,7 +155,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default TasasPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -171,7 +171,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
       }

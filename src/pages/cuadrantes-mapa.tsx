@@ -201,7 +201,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default TasasPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -217,7 +217,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

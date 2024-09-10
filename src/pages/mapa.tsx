@@ -22,10 +22,12 @@ import { useHash } from "@mantine/hooks";
 //import "@mantine/core/styles.css";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 import useWindowSize from "../components/useWindowSize";
+import { mmddToLocale } from "../components/utils";
 
 import DotMap from "../components/HomicideMap/DotMap";
 import MapFilters from "../components/MapFilters";
 import { SEO } from "../components/SEO";
+import { dateRange, getMonthYear } from "../components/utils";
 import social_image from "../images/social/social-mapa.jpg";
 import social_image_en from "../images/social/social-mapa_en.jpg";
 
@@ -66,33 +68,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [hourValue, setHourValue] = useState<[number, number]>([5, 28]);
   const [monthsText, setMonthsText] = useState(t("All"));
   const [hoursText, setHoursText] = useState(t("All"));
-
-  function dateRange(startDate, endDate) {
-    // we use UTC methods so that timezone isn't considered
-    let start = new Date(startDate);
-    const end = new Date(endDate).setUTCHours(12);
-    const dates = [];
-    while (start <= end) {
-      // compensate for zero-based months in display
-      const displayMonth = start.getUTCMonth() + 1;
-      dates.push(
-        new Date(
-          [
-            start.getUTCFullYear(),
-            // months are zero based, ensure leading zero
-            displayMonth.toString().padStart(2, "0"),
-            // always display the first of the month
-            "15",
-          ].join("-")
-        )
-      );
-
-      // progress the start date by one month
-      start = new Date(start.setUTCMonth(displayMonth));
-    }
-
-    return dates;
-  }
 
   const monthRange = (start_date, end_date) => {
     let allMonths = [];
@@ -156,21 +131,11 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           setMonthMarks([
             {
               value: 0,
-              label: [
-                new Date(start_date + "-15").toLocaleString(language, {
-                  month: "short",
-                }),
-                new Date(start_date + "-15").getFullYear(),
-              ].join(`\n`),
+              label: mmddToLocale(language, start_date),
             },
             {
               value: totalMonths,
-              label: [
-                new Date(end_date + "-15").toLocaleString(language, {
-                  month: "short",
-                }),
-                new Date(end_date + "-15").getFullYear(),
-              ].join(`\n`),
+              label: mmddToLocale(language, end_date),
             },
           ]);
 
@@ -195,10 +160,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   ];
 
   function valueLabelFormat(value: number) {
-    return [
-      months[value].toLocaleString(language, { month: "short" }),
-      months[value].getFullYear(),
-    ].join(` `);
+    return getMonthYear(months[value], language, "short", " ");
   }
 
   function hourLabelFormat(value: number) {
@@ -217,7 +179,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       }}
       padding={{ base: 0 }}
     >
-     
       <Header
         opened={openMenu}
         toggle={toggleMenu}
@@ -357,7 +318,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default TasasPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -373,7 +334,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

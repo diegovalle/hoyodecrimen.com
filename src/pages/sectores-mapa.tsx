@@ -31,7 +31,6 @@ import social_image from "../images/social/social-sectores-mapa.jpg";
 import social_image_en from "../images/social/social-sectores-mapa_en.jpg";
 import useWindowSize from "../components/useWindowSize";
 
-import LazyLoad from "react-lazy-load";
 import SectoresMap from "../components/HomicideMap/SectoresMap";
 import SelectCrime from "../components/SelectCrime";
 import SectoresLineChart from "../components/SectoresLineChart";
@@ -61,7 +60,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       }}
       padding={{ base: 0 }}
     >
-     
       <Header
         opened={openMenu}
         toggle={toggleMenu}
@@ -206,7 +204,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default TasasPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -222,7 +220,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

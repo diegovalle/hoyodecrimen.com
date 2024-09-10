@@ -20,7 +20,7 @@ import {
 } from "echarts/renderers";
 import { useTranslation } from "gatsby-plugin-react-i18next";
 
-import { YYYYmmddToDate15, axisLabel, nameTextStyle } from "./utils";
+import { YYYYmmddToDate15, axisLabel, getMonthYear } from "./utils";
 
 echarts.use([
   TitleComponent,
@@ -86,10 +86,7 @@ function CrimeSectorDiffMonthChart(props) {
         },
         formatter: function (item) {
           let date = YYYYmmddToDate15(item[0].name);
-          let dateStr = [
-            date.toLocaleString(props.lang, { month: "long" }),
-            date.getFullYear(),
-          ].join(" ");
+          let dateStr = getMonthYear(date, props.lang, "long", " ");
           return `${dateStr}<br/>${t("count")}: <b>${
             Math.round(item[0].value * 10) / 10
           }</b>`;
@@ -112,10 +109,7 @@ function CrimeSectorDiffMonthChart(props) {
           interval: 23,
           formatter: function (value, idx) {
             let date = YYYYmmddToDate15(value);
-            return [
-              date.toLocaleString(props.lang, { month: "short" }),
-              date.getFullYear(),
-            ].join("\n");
+            return getMonthYear(date, props.lang, "short", "\n");
           },
         },
         boundaryGap: false,
@@ -230,6 +224,7 @@ function CrimeSectorDiffMonthChart(props) {
           echartsInstance.current.getEchartsInstance().hideLoading();
       });
   }, [
+    meta.site.siteMetadata.apiUrl,
     props.fontSize,
     props.fontWeight,
     props.lang,
@@ -238,6 +233,7 @@ function CrimeSectorDiffMonthChart(props) {
     props.yname,
     selectedCrime,
     selectedRegion,
+    t,
   ]);
 
   return (

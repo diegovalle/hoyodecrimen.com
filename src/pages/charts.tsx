@@ -18,7 +18,6 @@ import {
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
-import { translations } from "../../i18n/translations/head_translations";
 import SelectCrime from "../components/SelectCrime";
 import { groupBy, sortBy, maxBy } from "lodash-es";
 
@@ -38,7 +37,7 @@ import {
   // SVGRenderer,
 } from "echarts/renderers";
 
-import { round1, YYYYmmddToDate15 } from "../components/utils";
+import { round1, YYYYmmddToDate15, getMonthYear } from "../components/utils";
 import LazyLoad from "react-lazy-load";
 import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-charts.jpg";
@@ -160,10 +159,7 @@ const SectoresPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           interval: 35, //3 years
           formatter: function (value, idx) {
             var date = YYYYmmddToDate15(value);
-            return [
-              date.toLocaleString(language, { month: "short" }),
-              date.getFullYear(),
-            ].join("\n");
+            return getMonthYear(date, language, "short", "\n");
           },
         },
         boundaryGap: false,
@@ -246,7 +242,6 @@ const SectoresPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-     
       <Center>
         <Title
           order={1}
@@ -311,7 +306,7 @@ const SectoresPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default SectoresPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -327,7 +322,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

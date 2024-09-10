@@ -22,7 +22,7 @@ import { useTranslation } from "gatsby-plugin-react-i18next";
 import MAP_STYLE from "../MapStyles/3d";
 
 import sectorStyle from "../MapStyles/sectores-map";
-import { round1, comma, YYYYmmddToDate15 } from "../utils";
+import { round1, comma, YYYYmmddToDate15, getMonthYear } from "../utils";
 
 export const SectoresMap = (props: Props) => {
   const maxZoom = 19;
@@ -132,7 +132,7 @@ export const SectoresMap = (props: Props) => {
         longitude: event.lngLat.lng,
         latitude: event.lngLat.lat,
         sector: sector && sector.properties.sector,
-        rate: sector && obj.rate,
+        rate: sector && obj?.rate,
         population: sector && obj.population,
         x: event.point.x,
         y: event.point.y,
@@ -254,15 +254,9 @@ export const SectoresMap = (props: Props) => {
 
         if (props?.setLastDate) {
           let dateStart = YYYYmmddToDate15(data.rows[0].start_date);
-          let dateStrStart = [
-            dateStart.toLocaleString(props.lang, { month: "long" }),
-            dateStart.getFullYear(),
-          ].join(" ");
+          let dateStrStart = getMonthYear(dateStart, props.lang, "long", " ");
           let dateEnd = YYYYmmddToDate15(data.rows[0].end_date);
-          let dateStrEnd = [
-            dateEnd.toLocaleString(props.lang, { month: "long" }),
-            dateEnd.getFullYear(),
-          ].join(" ");
+          let dateStrEnd = getMonthYear(dateEnd, props.lang, "long", " ");
           props.setLastDate(dateStrStart + " " + t("to") + " " + dateStrEnd);
         }
 

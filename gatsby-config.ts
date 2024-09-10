@@ -141,14 +141,13 @@ let config_no_gtag: GatsbyConfig = {
   siteMetadata: {
     title: `hoyodecrimen`,
     siteUrl: `https://hoyodecrimen.com`,
-
+    startYear: 2019,
     apiUrl: apiUrl,
     osmTilesUrl: `${osmTilesUrl}/{z}/{x}/{y}.html`,
 
     spriteUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/sprites/sprite",
     glyphsUrl:
       "https://hoyodecrimen-tiles.onrender.com/tiles/fonts/{fontstack}/{range}.pbf",
-    year: "2024",
     // arcgis "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
     // stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"
     satelliteMap:

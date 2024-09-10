@@ -27,7 +27,7 @@ import {
   // SVGRenderer,
 } from "echarts/renderers";
 import ReactEChartsCore from "echarts-for-react/lib/core";
-import { YYYYmmddToDate15 } from "../components/utils";
+import { YYYYmmddToDate15, getMonthYear } from "../components/utils";
 
 echarts.use([
   TitleComponent,
@@ -101,10 +101,7 @@ const SubregistroPage: React.FC<PageProps> = ({
       },
       formatter: function (item) {
         let date = YYYYmmddToDate15(item[0].name);
-        let datestr = [
-          date.toLocaleString(language, { month: "long" }),
-          date.getFullYear(),
-        ].join(" ");
+        let datestr = getMonthYear(date, language, "long", " ");
         return (
           `${datestr}<br/><br/>` +
           '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' +
@@ -144,10 +141,7 @@ const SubregistroPage: React.FC<PageProps> = ({
         interval: 23,
         formatter: function (value, idx) {
           var date = YYYYmmddToDate15(value);
-          return [
-            date.toLocaleString(language, { month: "short" }),
-            date.getFullYear(),
-          ].join("\n");
+          return getMonthYear(date, language, "short", "\n");
         },
       },
       boundaryGap: false,
@@ -227,10 +221,7 @@ const SubregistroPage: React.FC<PageProps> = ({
       },
       /* formatter: function (item) {
         let date = YYYYmmddToDate15(item[0].name);
-        let datestr = [
-          date.toLocaleString(props.lang, { month: "long" }),
-          date.getFullYear(),
-        ].join(" ");
+        let datestr = getMonthYear(date, props.lang, "long", " ");
         let c = CDMXRate[item[0].dataIndex].count;
         return (
           `${datestr}<br/><b>` +
@@ -503,7 +494,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
       }

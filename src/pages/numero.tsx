@@ -47,7 +47,6 @@ const NumeroPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-     
       <Center>
         <Title
           order={1}
@@ -105,7 +104,7 @@ const NumeroPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default NumeroPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -121,7 +120,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

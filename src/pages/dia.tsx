@@ -18,7 +18,6 @@ import {
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
-import { translations } from "../../i18n/translations/head_translations";
 
 import { groupBy } from "lodash-es";
 
@@ -35,12 +34,14 @@ import {
   CanvasRenderer,
   // SVGRenderer,
 } from "echarts/renderers";
-import { YYYYmmddToDate15 } from "../components/utils";
+import {
+  YYYYmmddToDate15,
+  dayToLocale,
+  getMonthYear,
+} from "../components/utils";
 import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-dia.jpg";
 import social_image_en from "../images/social/social-dia.jpg";
-
-//import '../assets/css/trends.css';
 
 echarts.use([
   TitleComponent,
@@ -72,15 +73,9 @@ const DiaPage: React.FC<PageProps> = ({
         });
         setGroupedData(groupedData);
         let dateStart = YYYYmmddToDate15(data.rows[0].start_date);
-        let dateStrStart = [
-          dateStart.toLocaleString(language, { month: "long" }),
-          dateStart.getFullYear(),
-        ].join(" ");
+        let dateStrStart = getMonthYear(dateStart, language, "long", " ");
         let dateEnd = YYYYmmddToDate15(data.rows[0].end_date);
-        let dateStrEnd = [
-          dateEnd.toLocaleString(language, { month: "long" }),
-          dateEnd.getFullYear(),
-        ].join(" ");
+        let dateStrEnd = getMonthYear(dateEnd, language, "long", " ");
         setPeriod(dateStrStart + " " + t("to") + " " + dateStrEnd);
       });
   }, []);
@@ -128,11 +123,7 @@ const DiaPage: React.FC<PageProps> = ({
           animation: false,
         },
         formatter: function (item) {
-          const dummyDate = new Date(2001, 0, parseInt(item.name));
-          return (
-            dummyDate.toLocaleDateString(language, { weekday: "long" }) +
-            `: ${item.value}`
-          );
+          return dayToLocale(language, "long", item.name) + `: ${item.value}`;
         },
       },
       grid: {
@@ -160,8 +151,7 @@ const DiaPage: React.FC<PageProps> = ({
           color: "#4d4d4d",
           interval: 0,
           formatter: function (value, idx) {
-            const dummyDate = new Date(2001, 0, value);
-            return dummyDate.toLocaleDateString(language, { weekday: "short" });
+            return dayToLocale(language, "short", Number(value));
           },
         },
         boundaryGap: ["20%", "0%"],
@@ -275,7 +265,7 @@ const DiaPage: React.FC<PageProps> = ({
 export default DiaPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -291,7 +281,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

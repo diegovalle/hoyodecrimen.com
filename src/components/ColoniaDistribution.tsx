@@ -23,7 +23,7 @@ import {
 import { axisLabel } from "./utils";
 
 import { useTranslation } from "gatsby-plugin-react-i18next";
-import { round0, YYYYmmddToDate15 } from "./utils";
+import { round0, YYYYmmddToDate15, getMonthYear } from "./utils";
 
 echarts.use([
   TitleComponent,
@@ -89,22 +89,6 @@ function CrimeSectorDiffMonthChart(props) {
       nameLocation: "middle",
       nameGap: 30,
       type: "value",
-      //   data: data[0].map(function (item) {
-      //     return item.date;
-      //   }),
-      //   axisLabel: {
-      //     ...axisLabel,
-      //     interval: 23,
-      //     formatter: function (value, idx) {
-      //       let date = YYYYmmddToDate15(value);
-      //       return [
-      //         date.toLocaleString(props.lang, { month: "short" }),
-      //         date.getFullYear(),
-      //       ].join("\n");
-      //     },
-      //   },
-      //   boundaryGap: false,
-      //   splitNumber: 6,
     },
     yAxis: [
       {
@@ -214,15 +198,9 @@ function CrimeSectorDiffMonthChart(props) {
         setChartOptions({ ...option });
 
         let dateStart = YYYYmmddToDate15(data[1].start[0]);
-        let dateStrStart = [
-          dateStart.toLocaleString(language, { month: "long" }),
-          dateStart.getFullYear(),
-        ].join(" ");
+        let dateStrStart = getMonthYear(dateStart, props.lang, "long", " ");
         let dateEnd = YYYYmmddToDate15(data[2].end[0]);
-        let dateStrEnd = [
-          dateEnd.toLocaleString(language, { month: "long" }),
-          dateEnd.getFullYear(),
-        ].join(" ");
+        let dateStrEnd = getMonthYear(dateEnd, language, "long", " ");
         setPeriod(dateStrStart + " " + t("to") + " " + dateStrEnd);
       } catch (error) {
         console.error("Fetch error:", error);

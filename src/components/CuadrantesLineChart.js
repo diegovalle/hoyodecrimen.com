@@ -16,7 +16,7 @@ import {
   CanvasRenderer,
   // SVGRenderer,
 } from "echarts/renderers";
-import { YYYYmmddToDate15 } from "./utils";
+import { YYYYmmddToDate15, getMonthYear } from "./utils";
 import { useTranslation } from "gatsby-plugin-react-i18next";
 
 //import '../assets/css/trends.css';
@@ -120,10 +120,7 @@ function SectoresLineChart(props) {
       },
       formatter: function (item) {
         let date = YYYYmmddToDate15(item[0].name);
-        let dateStr = [
-          date.toLocaleString(language, { month: "long" }),
-          date.getFullYear(),
-        ].join(" ");
+        let dateStr = getMonthYear(date, language, "long", " ");
         return `${dateStr}<br/>${t("number")}: <b>${
           Math.round(item[0].value * 10) / 10
         }</b>`;
@@ -147,10 +144,7 @@ function SectoresLineChart(props) {
         interval: 23,
         formatter: function (value, idx) {
           var date = YYYYmmddToDate15(value);
-          return [
-            date.toLocaleString(language, { month: "short" }),
-            date.getFullYear(),
-          ].join("\n");
+          return getMonthYear(date, language, "short", "\n");
         },
       },
       boundaryGap: false,
@@ -219,10 +213,6 @@ function SectoresLineChart(props) {
     //maskColor: "rgba(194, 88, 86, 0.3)",
     zlevel: 0,
   };
-
-  function onChartReady(echarts) {
-    echarts.hideLoading();
-  }
 
   return (
     <ReactEChartsCore

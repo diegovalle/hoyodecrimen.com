@@ -14,7 +14,7 @@ import {
   CanvasRenderer,
   // SVGRenderer,
 } from "echarts/renderers";
-import { annualizeRate, YYYYmmddToDate15 } from "./utils";
+import { annualizeRate, YYYYmmddToDate15, getMonthYear } from "./utils";
 
 echarts.use([
   TitleComponent,
@@ -104,7 +104,7 @@ function CDMXLineChart(props) {
           );
           yearly = yearly.filter((year) => !(year.num_months % 12));
           for (let i = 0; i < yearly.length; i++) {
-            yearly[i].population = cdmx_pop[yearly[i].num_months -6 ];
+            yearly[i].population = cdmx_pop[yearly[i].num_months - 6];
           }
           setYearlyHomicides(yearly);
         }
@@ -142,13 +142,10 @@ function CDMXLineChart(props) {
       },
       formatter: function (item) {
         let date = YYYYmmddToDate15(item[0].name);
-        let datestr = [
-          date.toLocaleString(props.lang, { month: "long" }),
-          date.getFullYear(),
-        ].join(" ");
+        let dateStr = getMonthYear(date, props.lang, "long", " ");
         let c = CDMXRate[item[0].dataIndex].count;
         return (
-          `${datestr}<br/><b>` +
+          `${dateStr}<br/><b>` +
           t("Rate") +
           `</b>:${Math.round(item[0].data * 10) / 10} <i>(${c} ` +
           t("homicides") +
@@ -178,10 +175,7 @@ function CDMXLineChart(props) {
         interval: 23,
         formatter: function (value, idx) {
           var date = YYYYmmddToDate15(value);
-          return [
-            date.toLocaleString(props.lang, { month: "short" }),
-            date.getFullYear(),
-          ].join("\n");
+          return getMonthYear(date, props.lang, "short", "\n");
         },
       },
       boundaryGap: false,

@@ -39,7 +39,7 @@ import {
   CanvasRenderer,
   // SVGRenderer,
 } from "echarts/renderers";
-import { round1, YYYYmmddToDate15 } from "../components/utils";
+import { round1, YYYYmmddToDate15, getMonthYear } from "../components/utils";
 //import '../assets/css/trends.css';
 
 echarts.use([
@@ -142,13 +142,6 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         axisPointer: {
           animation: false,
         },
-        // formatter: function (value, idx) {
-        // let date = new Date(item.name);
-        // let datestr = [
-        //   date.toLocaleString(props.lang, { month: "long" }),
-        //   date.getFullYear(),
-        // ].join(" ");
-        //},
       },
       grid: {
         left: "45",
@@ -168,10 +161,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           interval: 35, //3 years
           formatter: function (value, idx) {
             var date = YYYYmmddToDate15(value);
-            return [
-              date.toLocaleString(language, { month: "short" }),
-              date.getFullYear(),
-            ].join("\n");
+            return getMonthYear(date, language, "short", "\n");
           },
         },
         boundaryGap: false,
@@ -293,7 +283,6 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   return (
     <Layout language={language} pageContext={pageContext}>
-     
       <Center>
         <Title
           order={1}
@@ -355,7 +344,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 export default CrimenPage;
 
 export const Head: HeadFC = (props) => {
-  const {language} = props.pageContext
+  const { language } = props.pageContext;
   return (
     <SEO
       image={language === "es" ? social_image : social_image_en}
@@ -371,7 +360,6 @@ export const query = graphql`
         title
         description
         siteUrl
-        year
         satelliteMap
         osmTilesUrl
         apiUrl

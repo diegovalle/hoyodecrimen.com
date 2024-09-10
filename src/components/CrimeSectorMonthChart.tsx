@@ -23,8 +23,8 @@ import { useTranslation } from "gatsby-plugin-react-i18next";
 import {
   YYYYmmddToDate15,
   axisLabel,
-  nameTextStyle,
   annualizeRate,
+  getMonthYear,
 } from "./utils";
 
 echarts.use([
@@ -91,10 +91,7 @@ function CrimeSectorMonthChart(props) {
         },
         formatter: function (item) {
           let date = YYYYmmddToDate15(item[0].name);
-          let datestr = [
-            date.toLocaleString(props.lang, { month: "long" }),
-            date.getFullYear(),
-          ].join(" ");
+          let datestr = getMonthYear(date, props.lang, "long", " ");
           return `${datestr}<br/>${t("rate")}: <b>${
             Math.round(item[0].value * 10) / 10
           }</b>`;
@@ -117,10 +114,7 @@ function CrimeSectorMonthChart(props) {
           interval: 23,
           formatter: function (value, idx) {
             let date = YYYYmmddToDate15(value);
-            return [
-              date.toLocaleString(props.lang, { month: "short" }),
-              date.getFullYear(),
-            ].join("\n");
+            return getMonthYear(date, props.lang, "short", "\n");
           },
         },
         boundaryGap: false,

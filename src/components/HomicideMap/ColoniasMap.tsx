@@ -22,7 +22,7 @@ import MAP_STYLE from "../MapStyles/3d";
 
 import crimeStyle from "../MapStyles/colonias-map";
 import { useTranslation } from "gatsby-plugin-react-i18next";
-import { YYYYmmddToDate15, comma } from "../utils";
+import { YYYYmmddToDate15, comma, getMonthYear } from "../utils";
 
 let coloniaId = null;
 
@@ -253,15 +253,9 @@ export const ColoniasMap = (props: Props) => {
       .then((crimes) => {
         if (props?.setLastDate) {
           let dateStart = YYYYmmddToDate15(crimes[1].start[0]);
-          let dateStrStart = [
-            dateStart.toLocaleString(props.lang, { month: "long" }),
-            dateStart.getFullYear(),
-          ].join(" ");
+          let dateStrStart = getMonthYear(dateStart, props.lang, "long", " ");
           let dateEnd = YYYYmmddToDate15(crimes[2].end[0]);
-          let dateStrEnd = [
-            dateEnd.toLocaleString(props.lang, { month: "long" }),
-            dateEnd.getFullYear(),
-          ].join(" ");
+          let dateStrEnd = getMonthYear(dateEnd, props.lang, "long", " ");
           props.setLastDate(dateStrStart + " " + t("to") + " " + dateStrEnd);
         }
         let maxRate = max(crimes[0].pred_rate.map((x) => Math.exp(x)));

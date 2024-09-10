@@ -18,7 +18,7 @@ import {
   // SVGRenderer,
 } from "echarts/renderers";
 
-import { YYYYmmddToDate15, axisLabel, nameTextStyle } from "./utils";
+import { YYYYmmddToDate15, axisLabel, getMonthYear } from "./utils";
 
 import { useTranslation } from "gatsby-plugin-react-i18next";
 
@@ -87,10 +87,7 @@ function CrimeCuadranteMonthChart(props) {
         },
         formatter: function (item) {
           let date = YYYYmmddToDate15(item[0].name);
-          let datestr = [
-            date.toLocaleString(props.lang, { month: "long" }),
-            date.getFullYear(),
-          ].join(" ");
+          let datestr = getMonthYear(date, props.lang, "long", " ");
           return `${datestr}<br/>${t("Number of Crimes")}: <b>${
             Math.round(item[0].value * 10) / 10
           }</b>`;
@@ -113,10 +110,7 @@ function CrimeCuadranteMonthChart(props) {
           interval: 23,
           formatter: function (value, idx) {
             let date = YYYYmmddToDate15(value);
-            return [
-              date.toLocaleString(props.lang, { month: "short" }),
-              date.getFullYear(),
-            ].join("\n");
+            return getMonthYear(date, props.lang, "short", "\n");
           },
         },
         boundaryGap: false,

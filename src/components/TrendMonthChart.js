@@ -1,6 +1,4 @@
 import React, { useRef } from "react";
-//import {useIntl} from 'react-intl';
-//import {dateLoc} from '../../src/i18n';
 import LazyLoad from "react-lazy-load";
 
 import ReactEChartsCore from "echarts-for-react/lib/core";
@@ -17,7 +15,7 @@ import {
   // SVGRenderer,
 } from "echarts/renderers";
 
-//import '../assets/css/trends.css';
+import { YYYYmToDate15, addMonths, getMonthYear } from "./utils";
 
 echarts.use([
   TitleComponent,
@@ -29,24 +27,23 @@ echarts.use([
 ]);
 
 const formatData = (data) => {
-  const start_year = 2019;
   let state = Object.keys(data)[0];
   let len = data[state][0].length;
   // Substract one from the length of the array since js months are zero indexed
   //setMonth((len - 1) % 12);
   let state_tidy = [[], []];
   for (let i = 0; i < len; i++) {
-    let d = new Date(start_year, 0, 1);
+    let d = YYYYmToDate15(data["start_year"][0], 0);
     state_tidy[0].push({
       value: data[state][1][i],
-      date: new Date(d.setMonth(d.getMonth() + i)),
+      date: addMonths(d, i),
       l: data[state][0][i],
       u: data[state][2][i],
       active: true,
     });
     state_tidy[1].push({
       value: data[state][3][i],
-      date: new Date(d.setMonth(d.getMonth())),
+      date: addMonths(d, i),
       active: true,
     });
   }
@@ -95,13 +92,9 @@ function TrendMonthChart(props) {
         },
       },
       formatter: function (item) {
-        let date = new Date(item.name);
-        let datestr = [
-          date.toLocaleString(props.lang, { month: "long" }),
-          date.getFullYear(),
-        ].join(" ");
+        let dateStr = getMonthYear(item.name, props.lang, "long", " ");
         let tasa = props.yname;
-        return `${datestr}<br/>${tasa}: <b>${item.value}</b>`;
+        return `${dateStr}<br/>${tasa}: <b>${item.value}</b>`;
       },
     },
     grid: {
@@ -119,11 +112,7 @@ function TrendMonthChart(props) {
       axisLabel: {
         interval: 35,
         formatter: function (value, idx) {
-          var date = new Date(value);
-          return [
-            date.toLocaleString(props.lang, { month: "short" }),
-            date.getFullYear(),
-          ].join("\n");
+          return getMonthYear(value, props.lang, "short", "\n");
         },
       },
       boundaryGap: false,
@@ -134,7 +123,9 @@ function TrendMonthChart(props) {
         name: props.yname,
         nameLocation: "middle",
         nameGap: 31,
-        nameTextStyle: { fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif" },
+        nameTextStyle: {
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+        },
         type: "value",
         scale: false,
         splitNumber: 3,
