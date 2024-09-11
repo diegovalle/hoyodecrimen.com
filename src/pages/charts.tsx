@@ -140,6 +140,11 @@ const SectoresPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         axisPointer: {
           animation: false,
         },
+        formatter: function (item) {
+          let dateStr = getMonthYear(item[0].name, language, "long", " ");
+          let tasa = t("tasa anualizada");
+          return `${dateStr}<br/>${tasa}: <b>${item[0].value}</b>`;
+        },
       },
       grid: {
         left: "45",

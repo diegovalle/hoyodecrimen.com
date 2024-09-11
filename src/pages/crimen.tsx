@@ -142,6 +142,24 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         axisPointer: {
           animation: false,
         },
+        formatter: function (item) {
+          let dateStr = getMonthYear(item[0].name, language, "long", " ");
+          let tasa = t("tasa anualizada");
+          let str = `${dateStr}<br/>
+                      <span style="color:${item[0].color};">⚫ </span> 
+                      ${item[0].seriesName}: <b>${item[0].value}</b><br/>`;
+          if (typeof item[1] !== "undefined")
+            str =
+              str +
+              ` <span style="color:${item[1].color};">⚫ </span> 
+                         ${item[1].seriesName}: <b>${item[1].value}</b><br/>`;
+          if (typeof item[2] !== "undefined")
+            str =
+              str +
+              ` <span style="color:${item[2].color};">⚫ </span> 
+                        ${item[2].seriesName}: <b>${item[2].value}</b>`;
+          return str;
+        },
       },
       grid: {
         left: "45",
@@ -207,7 +225,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           type: "line",
           data: groupedData.ssp[crime].map((item) => item.rate),
           itemStyle: {
-            color: "#333",
+            color: "#6b3c04",
           },
           lineStyle: {
             width: 1.2,
@@ -226,7 +244,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               ? groupedData.pgj[crime].map((item) => item.rate)
               : null,
           itemStyle: {
-            color: "#333",
+            color: "#ec8407",
           },
           lineStyle: {
             width: 1.2,
@@ -257,7 +275,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 )
               : null,
           itemStyle: {
-            color: "#333",
+            color: "#db4437",
           },
           lineStyle: {
             width: 1.4,
