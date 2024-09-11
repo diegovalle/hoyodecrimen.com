@@ -179,7 +179,6 @@ function CrimeSectorDiffMonthChart(props) {
         option.xAxis.data = data.rows.map(function (item) {
           return item.date;
         });
-        console.log(props.period);
         option.series[0].markArea = {
           ...{
             itemStyle: {
