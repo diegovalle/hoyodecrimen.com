@@ -89,6 +89,7 @@ export const SectoresMap = (props: Props) => {
 
   const onClick = useCallback(
     (event) => {
+      if (event?.features[0]?.layer?.id === "crime-points") return;
       if (event.features.length === 0) {
         if (cuadranteId.current)
           mapRef.current.removeFeatureState({

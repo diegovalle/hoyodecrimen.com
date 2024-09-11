@@ -25,6 +25,7 @@ import sectorStyle from "../MapStyles/sectores-map";
 import { round1, comma, YYYYmmddToDate15, getMonthYear } from "../utils";
 
 export const SectoresMap = (props: Props) => {
+  const { setSelectedSector } = props;
   const maxZoom = 19;
   const mapRef = useRef();
   const { t } = useTranslation();
@@ -89,6 +90,7 @@ export const SectoresMap = (props: Props) => {
 
   const onClick = useCallback(
     (event) => {
+      if (event?.features[0]?.layer?.id === "crime-points") return;
       if (event.features.length === 0) {
         if (sectorId)
           mapRef.current.removeFeatureState({
@@ -96,7 +98,7 @@ export const SectoresMap = (props: Props) => {
             id: sectorId,
             sourceLayer: "sectores",
           });
-        props.setSelectedSector("df");
+        setSelectedSector("df");
         return;
       }
       if (mapRef) {
@@ -127,19 +129,18 @@ export const SectoresMap = (props: Props) => {
           sector.properties.sector
         );
       let obj = sectorData[idx];
-      props.setSelectedSector(sector.properties.sector);
+      setSelectedSector(sector.properties.sector);
       setClickInfo({
         longitude: event.lngLat.lng,
         latitude: event.lngLat.lat,
         sector: sector && sector.properties.sector,
         rate: sector && obj?.rate,
-        population: sector && obj.population,
+        population: sector && obj?.population,
         x: event.point.x,
         y: event.point.y,
       });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [sectorData, sectorId]
+    [sectorData, sectorId, setSelectedSector]
   );
 
   const lines = {
