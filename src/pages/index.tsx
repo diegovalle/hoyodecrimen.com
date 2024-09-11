@@ -158,15 +158,13 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   const rows = yearlyHomicides
     ? yearlyHomicides.map((element) => (
-        <Table.Tr key={element.year}>
-          <Table.Td key={element.year + Math.random()}>{element.year}</Table.Td>
-          <Table.Td key={element.year + Math.random()}>
-            {comma(element.count)}
-          </Table.Td>
-          <Table.Td key={element.year + Math.random()}>
+        <Table.Tr key={element.year + "_0"}>
+          <Table.Td key={element.year + "_1"}>{element.year}</Table.Td>
+          <Table.Td key={element.year + "_2"}>{comma(element.count)}</Table.Td>
+          <Table.Td key={element.year + "_3"}>
             {comma(element.population)}
           </Table.Td>
-          <Table.Td key={element.year + Math.random()}>
+          <Table.Td key={element.year + "_4"}>
             {round1((element.count / element.population) * 100000)}
           </Table.Td>
         </Table.Tr>
