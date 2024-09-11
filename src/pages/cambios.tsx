@@ -33,7 +33,6 @@ const CambiosPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   const updateCrime = (crime) => {
     setSelectedCrime(crime);
-    console.log(selectedCrime);
   };
 
   // useEffect(() => {}, [selectedRegion]);
