@@ -32,7 +32,7 @@ import "@mantine/core/styles/ActionIcon.css";
 import "@mantine/core/styles/Affix.css";
 import "@mantine/core/styles/AppShell.css";
 import "@mantine/core/styles/AspectRatio.css";
-import '@mantine/core/styles/Blockquote.css';
+import "@mantine/core/styles/Blockquote.css";
 import "@mantine/core/styles/Burger.css";
 import "@mantine/core/styles/Button.css";
 import "@mantine/core/styles/Card.css";
@@ -58,23 +58,27 @@ import "@mantine/core/styles/Radio.css";
 import "@mantine/core/styles/Skeleton.css";
 import "@mantine/core/styles/Slider.css";
 import "@mantine/core/styles/Stack.css";
-import '@mantine/core/styles/Table.css';
+import "@mantine/core/styles/Table.css";
 import "@mantine/core/styles/Text.css";
 import "@mantine/core/styles/ThemeIcon.css";
 import "@mantine/core/styles/Title.css";
 import "@mantine/core/styles/Tooltip.css";
 
-import '@mantine/notifications/styles.css';
+import "@mantine/notifications/styles.css";
 
 import "./src/css/global.css";
 import React from "react";
+import ReactDOM from "react-dom/client";
 import { MantineProvider } from "@mantine/core";
 import { theme } from "./src/theme";
 
 export const wrapPageElement = ({ element }) => {
-  return (
-    <MantineProvider theme={theme}>
-      {element}
-    </MantineProvider>
-  );
+  return <MantineProvider theme={theme}>{element}</MantineProvider>;
+};
+
+export const replaceHydrateFunction = () => {
+  return (element, container) => {
+    const root = ReactDOM.createRoot(container);
+    root.render(element);
+  };
 };
