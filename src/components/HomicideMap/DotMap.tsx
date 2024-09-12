@@ -225,6 +225,7 @@ export const DotMap = forwardRef((props: Props, ref) => {
   ]);
 
   useEffect(() => {
+    let geo
     const buildUrl = (base) => {
       let url = base;
       if (
@@ -246,7 +247,9 @@ export const DotMap = forwardRef((props: Props, ref) => {
       return url;
     };
     if (!mapOptions) return;
-    let geo = structuredClone(sectoresCentroids);
+    if (typeof structuredClone === "undefined" )
+      geo = JSON.parse(JSON.stringify(sectoresCentroids))
+    else geo = structuredClone(sectoresCentroids);
 
     let vectorUrl =
       `${meta.site.siteMetadata.apiUrl}/api/v1/tiles/crimes/` +
