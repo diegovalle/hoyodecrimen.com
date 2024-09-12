@@ -108,12 +108,6 @@ const deploy_headers_vercel = {
 };
 
 const deploy_headers_netlify = {
-  "/": [`Link: <${apiUrl}>; rel=preconnect, <${osmTilesUrl}>; rel=preconnect`],
-  "/static/json/*": [
-    "cache-control: public",
-    "cache-control: max-age=0",
-    "cache-control: must-revalidate",
-  ],
   "/*": [
     "Strict-Transport-Security: max-age=31536000",
     "Permissions-Policy: geolocation=(self)",
@@ -121,6 +115,7 @@ const deploy_headers_netlify = {
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 1; mode=block",
     "X-Content-Type-Options: nosniff",
+    `Link: <${apiUrl}>; rel=preconnect, <${osmTilesUrl}>; rel=preconnect`,
   ],
   "/*.html": [
     "cache-control: public",
@@ -131,6 +126,21 @@ const deploy_headers_netlify = {
     "cache-control: public",
     "cache-control: max-age=0",
     "cache-control: must-revalidate",
+  ],
+  "/static/*": [
+    "cache-control: public",
+    "cache-control: max-age=2592000",
+    "cache-control: immutable",
+  ],
+  "/sw.js": [
+    "cache-control: public",
+    "cache-control: max-age=0",
+    "cache-control: must-revalidate",
+  ],
+  "/*.js": [
+    "cache-control: public",
+    "cache-control: max-age=2592000",
+    "cache-control: immutable",
   ],
 }; // option to add more headers. `Link` headers are transformed by the below criteria
 
