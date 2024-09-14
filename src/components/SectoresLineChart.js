@@ -130,10 +130,10 @@ function SectoresLineChart(props) {
       },
     },
     grid: {
-      left: "15%",
-      right: "5%",
+      left: "12%",
+      right: "12%",
       bottom: "20%",
-      top: "30%",
+      top: "20%",
       containLabel: true,
     },
     xAxis: {

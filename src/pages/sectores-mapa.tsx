@@ -32,7 +32,7 @@ import social_image_en from "../images/social/social-sectores-mapa_en.jpg";
 import useWindowSize from "../components/useWindowSize";
 
 import SectoresMap from "../components/HomicideMap/SectoresMap";
-import SelectCrime from "../components/SelectCrime";
+import ComboboxCrime from "../components/ComboboxCrime";
 import SectoresLineChart from "../components/SectoresLineChart";
 
 const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
@@ -110,7 +110,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
                   <>
                     <Container pb="1rem" size="25rem">
-                      <SelectCrime
+                      <ComboboxCrime
                         updateCrime={updateCrime}
                         selectedCrime={selectedCrime}
                       />
@@ -175,7 +175,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
               <>
                 <Container pb="1rem" size="25rem">
-                  <SelectCrime
+                  <ComboboxCrime
                     updateCrime={updateCrime}
                     selectedCrime={selectedCrime}
                   />

@@ -24,7 +24,7 @@ import {
 //import "@mantine/core/styles.css";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 
-import SelectCrime from "../components/SelectCrime";
+import ComboboxCrime from "../components/ComboboxCrime";
 
 import useWindowSize from "../components/useWindowSize";
 
@@ -115,7 +115,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 <LazyLoad once>
                   <>
                     <Container pb="1rem" size="25rem">
-                      <SelectCrime
+                      <ComboboxCrime
                         updateCrime={updateCrime}
                         selectedCrime={selectedCrime}
                       />
@@ -172,7 +172,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
               <>
                 <Container pb="1rem" size="25rem">
-                  <SelectCrime
+                  <ComboboxCrime
                     updateCrime={updateCrime}
                     selectedCrime={selectedCrime}
                   />
