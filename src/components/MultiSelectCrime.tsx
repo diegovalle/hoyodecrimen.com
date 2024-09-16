@@ -72,12 +72,34 @@ function MultiSelectCrime({
       <Text fz={"14px"} span c={getColorForText(item || "HOMICIDIO DOLOSO")}>
         ●
       </Text>{" "}
-      {item}
+      {item.replace("AUTOMOTOR ", "")}
     </Pill>
   ));
 
+  const sortCrimes = (items) => {
+    if (items.length === 1) return items;
+    return items.sort(function (a, b) {
+      return a
+        .replace(/HOMICIDIO DOLOSO/, "0")
+        .replace(/LESIONES POR ARMA DE FUEGO/, "1")
+        .replace(/ROBO DE VEHICULO AUTOMOTOR C.V./, "2")
+        .replace(/ROBO DE VEHICULO AUTOMOTOR S.V./, "3")
+        .replace(/ROBO A TRANSEUNTE C.V./, "4")
+        .replace(/ROBO A TRANSEUNTE S.V./, "5")
+        .localeCompare(
+          b
+            .replace(/HOMICIDIO DOLOSO/, "0")
+            .replace(/LESIONES POR ARMA DE FUEGO/, "1")
+            .replace(/ROBO DE VEHICULO AUTOMOTOR C.V./, "2")
+            .replace(/ROBO DE VEHICULO AUTOMOTOR S.V./, "3")
+            .replace(/ROBO A TRANSEUNTE C.V./, "4")
+            .replace(/ROBO A TRANSEUNTE S.V./, "5")
+        );
+    });
+  };
+
   if (!crimeList) crimeList = ["HOMICIDIO DOLOSO"];
-  const options = crimeList.map((item) => (
+  const options = sortCrimes(crimeList).map((item) => (
     <Combobox.Option value={item} key={item} active={value.includes(item)}>
       <Group gap="sm">
         <Group gap={7}>
@@ -89,7 +111,7 @@ function MultiSelectCrime({
           >
             ●
           </Text>{" "}
-          <span>{item}</span>
+          <span>{item.replace("AUTOMOTOR ", "")}</span>
         </Group>
       </Group>
     </Combobox.Option>

@@ -321,20 +321,20 @@ let config_no_gtag: GatsbyConfig = {
         },
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-rollbar",
-    //   options: {
-    //     accessToken: "01e6e28461fb46f7ad79d087bf33a744", // POST_CLIENT_ITEM_ACCESS_TOKEN
-    //     // For all configuration options, see https://docs.rollbar.com/docs/rollbarjs-configuration-reference
-    //     captureUncaught: true,
-    //     maxItems: 10,
-    //     itemsPerMinute: 5,
-    //     captureUnhandledRejections: true,
-    //     payload: {
-    //       environment: "production",
-    //     },
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-rollbar",
+      options: {
+        accessToken: "01e6e28461fb46f7ad79d087bf33a744", // POST_CLIENT_ITEM_ACCESS_TOKEN
+        // For all configuration options, see https://docs.rollbar.com/docs/rollbarjs-configuration-reference
+        captureUncaught: true,
+        maxItems: 10,
+        itemsPerMinute: 5,
+        captureUnhandledRejections: true,
+        payload: {
+          environment: "production",
+        },
+      },
+    },
   ],
 };
 

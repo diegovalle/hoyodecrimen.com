@@ -25,9 +25,7 @@ export const MapFilters = (props: Props) => {
     <>
       <Center pl={"1rem"} pr={"1rem"} pt={"2rem"}>
         <Title order={1} size="sm">
-          <Trans>
-            Police investigations started by the FGJ‑CDMX since January 2019
-          </Trans>
+          <Trans>Police investigations started by the FGJ‑CDMX</Trans>
         </Title>
       </Center>
       <Space h="sm" />
