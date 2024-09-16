@@ -87,6 +87,28 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
     return allMonths;
   };
 
+  const sortCrimes = (items) => {
+    if (items.length === 1) return items;
+    return items.sort(function (a, b) {
+      return a
+        .replace(/HOMICIDIO DOLOSO/, "0")
+        .replace(/LESIONES POR ARMA DE FUEGO/, "1")
+        .replace(/ROBO DE VEHICULO C.V./, "2")
+        .replace(/ROBO DE VEHICULO S.V./, "3")
+        .replace(/ROBO A TRANSEUNTE C.V./, "4")
+        .replace(/ROBO A TRANSEUNTE S.V./, "5")
+        .localeCompare(
+          b
+            .replace(/HOMICIDIO DOLOSO/, "0")
+            .replace(/LESIONES POR ARMA DE FUEGO/, "1")
+            .replace(/ROBO DE VEHICULO C.V./, "2")
+            .replace(/ROBO DE VEHICULO S.V./, "3")
+            .replace(/ROBO A TRANSEUNTE C.V./, "4")
+            .replace(/ROBO A TRANSEUNTE S.V./, "5")
+        );
+    });
+  };
+
   useEffect(() => {
     const url = `${data.site.siteMetadata.apiUrl}/api/v1/crimes_extra`;
     const fetchData = async () => {
@@ -99,21 +121,20 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             throw new Error("Network response was not ok");
           }
           const data = await response.json();
+          let crimes = data.crimes.map((r) => {
+            switch (r.crime) {
+              case "HOMICIDIO DOLOSO":
+                return "HOMICIDIO DOLOSO";
+              case "ROBO DE VEHICULO AUTOMOTOR S.V.":
+                return "ROBO DE VEHICULO S.V.";
+              case "ROBO DE VEHICULO AUTOMOTOR C.V.":
+                return "ROBO DE VEHICULO C.V.";
+              default:
+                return r.crime;
+            }
+          });
 
-          setCrimeList(
-            data.crimes.map((r) => {
-              switch (r.crime) {
-                case "HOMICIDIO DOLOSO":
-                  return "HOMICIDIO DOLOSO";
-                case "ROBO DE VEHICULO AUTOMOTOR S.V.":
-                  return "ROBO DE VEHICULO AUTOMOTOR S.V.";
-                case "ROBO DE VEHICULO AUTOMOTOR C.V.":
-                  return "ROBO DE VEHICULO AUTOMOTOR C.V.";
-                default:
-                  return r.crime;
-              }
-            })
-          );
+          setCrimeList(sortCrimes(crimes));
 
           let start_date = data.date_range[0];
           let end_date = data.date_range[1];

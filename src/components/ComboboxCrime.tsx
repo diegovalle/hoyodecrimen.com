@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import {
-  CheckIcon,
   Combobox,
   Group,
   Input,
