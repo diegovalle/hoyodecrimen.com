@@ -47,6 +47,5 @@ Project Link: [https://github.com/diegovalle/hoyodecrimen.com](https://github.co
 
 When a new ENVIPE comes out
 
-- Updated FAQ JSON+LD in the /index/ page 
-- Updated ENIVPE variables in the /subregistro/ page
+- Updated ENIVPE variables in the /subregistro/ page (delitosDenunciadosLast))
 - Update the FAQ JSON+LD in the /subregistro/ page

@@ -20,7 +20,7 @@
   "Percentage of households where at least one person was the victim of a crime": "Porcentaje de hogares en los que por lo menos un integrante fue víctima de un delito",
   "% households": "porciento",
   "percentage": "porciento",
-  "In 37% of Mexico City households at least one person was the victim of a crime in 2023": "El {{lastPer}}% de los hogares en la Ciudad de México tuvo al menos una víctima de delito durante el 2022",
+  "In 37% of Mexico City households at least one person was the victim of a crime in 2023": "El {{lastPer}}% de los hogares en la Ciudad de México tuvo al menos una víctima de delito durante el {{lastYear}}",
   "Source: ENVIPE": "Fuente: ENVIPE",
   "In Mexico City 92.6% of crimes were not denounced or investigated by the police": "En la Ciudad de México, el {{cifraNegra}}% de los delitos cometidos quedaron sin denuncia o sin investigación",
   "Selected Violent Deaths INEGI 2004-2022": "Muertes Violentas Seleccionadas INEGI 2004-2022",
