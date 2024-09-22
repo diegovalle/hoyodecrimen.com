@@ -23,7 +23,75 @@ import "../../css/loading.css";
 import MAP_STYLE from "../MapStyles/3d";
 
 import dotStyle from "../MapStyles/dot-map";
-import sectoresCentroids from "../../../static/maps/sectores_centroids_2023.geojson.json";
+import hexPoints from "../../assets/hexpoints";
+
+let hexPointsGeojson = {
+  type: "FeatureCollection",
+  name: "hextiles_points",
+  crs: { type: "name", properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  features: [],
+};
+
+for (let i = 0; i <= hexPoints.length; i += 3) {
+  if (
+    [
+      5,
+      7,
+      16,
+      21,
+      27,
+      28,
+      32,
+      33,
+      34,
+      35,
+      37,
+      38,
+      39,
+      42,
+      43,
+      46,
+      48,
+      51,
+      53,
+      54,
+      55,
+      57,
+      58,
+      59,
+      63,
+      72,
+      75,
+      81,
+      82,
+      83,
+      94,
+      102,
+      110,
+      117,
+      119,
+      126,
+      127,
+      131,
+      140,
+      141,
+      144,
+      148,
+      153,
+      158,
+    ].indexOf(hexPoints[i + 2]) >= 0
+  ) {
+    continue;
+  }
+  hexPointsGeojson.features.push({
+    type: "Feature",
+    properties: { hex_idx: hexPoints[i + 2] },
+    geometry: {
+      type: "Point",
+      coordinates: [hexPoints[i], hexPoints[i + 1]],
+    },
+  });
+}
 
 export const DotMap = forwardRef((props: Props, ref) => {
   const maxZoom = 19;
@@ -99,16 +167,9 @@ export const DotMap = forwardRef((props: Props, ref) => {
 
   // const onMoveEnd = useCallback((event) => {
   //   //console.log(event);
-  //   setViewState(event.viewState);
-  //   if (event)
-  //     setHash(
-  //       round5(event.viewState.latitude) +
-  //         "/" +
-  //         round5(event.viewState.longitude) +
-  //         "/" +
-  //         round1(event.viewState.zoom)
-  //     );
-  // }, [setHash]);
+
+  //   console.log(event.viewState.zoom);
+  // }, []);
 
   // const onClick = useCallback((event) => {
   //   if (event.features.length === 0) {
@@ -225,7 +286,7 @@ export const DotMap = forwardRef((props: Props, ref) => {
   ]);
 
   useEffect(() => {
-    let geo
+    let geo;
     const buildUrl = (base) => {
       let url = base;
       if (
@@ -247,9 +308,9 @@ export const DotMap = forwardRef((props: Props, ref) => {
       return url;
     };
     if (!mapOptions) return;
-    if (typeof structuredClone === "undefined" )
-      geo = JSON.parse(JSON.stringify(sectoresCentroids))
-    else geo = structuredClone(sectoresCentroids);
+    if (typeof structuredClone === "undefined")
+      geo = JSON.parse(JSON.stringify(hexPointsGeojson));
+    else geo = structuredClone(hexPointsGeojson);
 
     let vectorUrl =
       `${meta.site.siteMetadata.apiUrl}/api/v1/tiles/crimes/` +
@@ -279,7 +340,7 @@ export const DotMap = forwardRef((props: Props, ref) => {
     }
 
     let url =
-      `${meta.site.siteMetadata.apiUrl}/api/v1/sectores/crimes/` +
+      `${meta.site.siteMetadata.apiUrl}/api/v1/hextiles/crimes/` +
       `${
         debounced ? debounced.map((x) => encodeURIComponent(x)).join(",") : ""
       }` +
@@ -325,7 +386,7 @@ export const DotMap = forwardRef((props: Props, ref) => {
               geo.features[i].properties["count"] = 0;
             for (let i = 0; i < geo.features.length; i++)
               for (let j = 0; j < crimes.length; j++) {
-                if (geo.features[i].properties.sector === crimes[j].sector) {
+                if (geo.features[i].properties.hex_idx === crimes[j].hex_idx) {
                   geo.features[i].properties["count"] = crimes[j].count;
                 }
               }
@@ -354,7 +415,7 @@ export const DotMap = forwardRef((props: Props, ref) => {
                   min ? min : 1,
                   max === 1 ? 10 : 3,
                   max > 1 ? max : 2,
-                  30,
+                  25,
                 ],
                 "circle-stroke-width": [
                   "case",
@@ -547,7 +608,7 @@ export const DotMap = forwardRef((props: Props, ref) => {
       // onClick={onClick}
       onMouseMove={onHover}
       onZoomEnd={onZoomEnd}
-      //onMoveEnd={onMoveEnd}
+      // onMoveEnd={onMoveEnd}
       onSourceData={handleData}
       onIdle={handleIdle}
       interactiveLayerIds={["crime-points"]}
