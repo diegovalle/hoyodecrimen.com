@@ -397,7 +397,7 @@ export const ColoniasMap = (props: Props) => {
           : {round0(Math.exp(clickInfo.pred_rate))}
           <br />
           <b>
-            <Trans>Count</Trans>
+            <Trans>Homicides</Trans>
           </b>
           : {clickInfo.hom_count}
           <br />

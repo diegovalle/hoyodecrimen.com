@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import { scaleSequential } from "d3-scale";
 import { interpolateYlOrRd } from "d3-scale-chromatic";
 import { max, min, zip } from "lodash-es";
+import { Trans } from "gatsby-plugin-react-i18next";
 import {
   Map,
   NavigationControl,
@@ -394,9 +395,9 @@ export const SectoresMap = (props: Props) => {
           <br />
           <b>Sector</b>: {clickInfo.sector}
           <br />
-          <b>Alcaldía</b>: {clickInfo.alcaldia}
+          <b><Trans>Alcaldía</Trans></b>: {clickInfo.alcaldia}
           <br />
-          <b>Count</b>: {clickInfo.count}
+          <b><Trans>Count</Trans></b>: {clickInfo.count}
           <br />
         </Popup>
       )}
