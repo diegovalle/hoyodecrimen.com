@@ -31,7 +31,6 @@ A web application for visualizing and analyzing crime data in Mexico City.
 ## Todo
 
 - Implement save functionality for map type (satellite or street) and dates in the `/mapa/` route
-- Add month-over-month difference calculation (current month − same month previous year) to trends page
 
 ## License
 
