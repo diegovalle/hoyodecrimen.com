@@ -102,36 +102,39 @@ export const MailChimp = ({ language }) => {
               unsubscribe anytime.
             </Trans>
           </Text>
-          <Flex
-            mih={50}
-            bg="dark.8"
-            gap="md"
-            justify="flex-start"
-            align="flex-start"
-            direction="row"
-            wrap="wrap"
-          >
-            <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
-              <Group justify="center" mt={2}>
-                <TextInput
-                  // mt={0}
-                  
-                  rightSectionPointerEvents="none"
-                  rightSection={icon}
-                  key={form.key("email")}
-                  {...form.getInputProps("email")}
-                  placeholder={t("Your email")}
-                  error={error}
-                  disabled={success}
-                  aria-label="Email for submission" 
-                />
 
-                <Button type="submit" style={{ color: "#000" }}>
-                  <Trans>Submit</Trans>
-                </Button>
-              </Group>
-            </form>
-          </Flex>
+          <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
+            <Flex
+              mih={56}
+              gap="md"
+              justify="flex-start"
+              align="flex-start"
+              direction="row"
+              wrap="wrap"
+            >
+              <TextInput
+                // mt={0}
+                withErrorStyles
+                rightSectionPointerEvents="none"
+                rightSection={icon}
+                key={form.key("email")}
+                {...form.getInputProps("email")}
+                placeholder={t("Your email")}
+                error={error}
+                disabled={success}
+                aria-label="Email for submission"
+              />
+
+              <Button
+                type="submit"
+                style={{ color: "#000" }}
+                bg={success ? "#4caf50" : "#1c7ed6"}
+                disabled={success}
+              >
+                {success ? <Trans>✓ Success</Trans> : <Trans>Submit</Trans>}
+              </Button>
+            </Flex>
+          </form>
         </Flex>
       </Container>
     </>
