@@ -324,7 +324,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   {t("Year")}
                 </Table.Th>
                 <Table.Th key="2" role="columnheader" scope="col">
-                  {t("Homicides")}
+                  {t("Homicide Investigations")}
                 </Table.Th>
                 <Table.Th key="3" role="columnheader" scope="col">
                   {t("Population")}
