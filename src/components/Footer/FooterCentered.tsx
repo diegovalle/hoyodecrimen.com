@@ -98,7 +98,7 @@ function FooterCentered({ language } = props) {
                   FGJ-CDMX
                 </a>
                 . Shapefiles for the cuadrantes come from the
-                <a href="https://datos.cdmx.gob.mx/dataset/cuadrantesl">
+                <a href="https://datos.cdmx.gob.mx/dataset/cuadrantes">
                   Secretaría de Seguridad Ciudadana (SSC)
                 </a>
                 and for the colonias from the
