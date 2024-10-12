@@ -63,7 +63,7 @@ export const MailChimp = ({ language }) => {
       (err, data) => {
         if (err) {
           console.log(err);
-          setError("Invalid");
+          setError(t("Invalid email"));
         } else if (data.result !== "success") {
           console.log(data);
           setError(data.msg);
@@ -77,7 +77,7 @@ export const MailChimp = ({ language }) => {
 
   const handleError = (errors: typeof form.errors) => {
     if (errors.email) {
-      setError("Invalid Email");
+      setError(t("Invalid email"));
     }
   };
 
