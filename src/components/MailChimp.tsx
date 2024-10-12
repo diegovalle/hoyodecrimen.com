@@ -19,7 +19,7 @@ export const MailChimp = ({ language }) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const errorMessage = t("Invalid email2");
+  const errorMessage = t("Invalid email");
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
