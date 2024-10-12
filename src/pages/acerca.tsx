@@ -34,6 +34,7 @@ export function ReformaPic() {
       height={390}
       //layout="fullWidth"
       aspectRatio={1}
+      placeholder="none"
     />
   );
 }
