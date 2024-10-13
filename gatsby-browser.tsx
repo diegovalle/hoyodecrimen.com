@@ -76,9 +76,9 @@ export const wrapPageElement = ({ element }) => {
   return <MantineProvider theme={theme}>{element}</MantineProvider>;
 };
 
-export const replaceHydrateFunction = () => {
-  return (element, container) => {
-    const root = ReactDOM.createRoot(container);
-    root.render(element);
-  };
-};
+// export const replaceHydrateFunction = () => {
+//   return (element, container) => {
+//     const root = ReactDOM.createRoot(container);
+//     root.render(element);
+//   };
+// };
