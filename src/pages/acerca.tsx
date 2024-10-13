@@ -35,6 +35,7 @@ export function ReformaPic() {
       //layout="fullWidth"
       aspectRatio={1}
       placeholder="none"
+      imgStyle={{ transition: "none" }}
     />
   );
 }
