@@ -68,7 +68,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Title order={2}>
             <Trans i18nKey="created">
               Created by
-              <a href="https://www.diegovalle.net">Diego Valle-Jones</a>.
+              <a>Diego Valle-Jones</a>.
             </Trans>
           </Title>
           <Space h="sm" />
@@ -113,7 +113,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               This webapp is open source and you can view the code on GitHub.
             </p>
           </Trans>
-          aaa
+          <Space h="sm" />
+          <Trans i18nKey="rest2"></Trans>
           <Space h="sm" />
           <Trans
             i18nKey="contact"
@@ -121,6 +122,10 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               Link: <a href="https://www.diegovalle.net/contact/" />,
             }}
           ></Trans>
+          <Space h="lg" />
+          <Title order={3}>
+            <Trans i18nKey="add_features"></Trans>
+          </Title>
           <Space h="sm" />
           <Trans
             i18nKey="translation"
