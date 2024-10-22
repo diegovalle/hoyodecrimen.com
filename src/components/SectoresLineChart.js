@@ -208,7 +208,7 @@ function SectoresLineChart(props) {
           },
         },
         showSymbol: false,
-        //lineStyle: { width: 1 },
+        lineStyle: { width: 1 },
         z: 1000,
       },
     ],
