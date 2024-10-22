@@ -152,9 +152,11 @@ function CrimeSectorMonthChart(props) {
           //   return item.value;
           // }),
           itemStyle: {
-            color: "#333",
+            color: "#111",
+            opacity: 1,
           },
           showSymbol: false,
+          z: 1000,
         },
       ],
     };

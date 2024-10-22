@@ -210,9 +210,10 @@ function CDMXLineChart(props) {
             })
           : null,
         itemStyle: {
-          color: "black",
-          opacity: 0,
+          color: "#111",
+          opacity: 1,
         },
+        showSymbol: false,
         z: 1000,
       },
     ],

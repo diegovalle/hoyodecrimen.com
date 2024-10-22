@@ -200,6 +200,12 @@ function SectoresLineChart(props) {
           color: "#111",
           opacity: 1,
         },
+        emphasis: {
+          itemStyle: {
+            color: "#111",
+            opacity: 1,
+          },
+        },
         showSymbol: false,
         lineStyle: { width: 1 },
         z: 1000,
