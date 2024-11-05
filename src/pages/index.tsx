@@ -156,15 +156,29 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [yearlyHomicides, setYearlyHomicides] = useState(null);
   const icon = <IconInfoCircle />;
 
+  function numDigits(x) {
+    let ret;
+    if (String(x).includes(".")) {
+      x = Number(String(x).replace(/[^0-9]/g, ""));
+      ret = (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0) + 2;
+    } else {
+      x = Number(String(x).replace(/[^0-9]/g, ""));
+      ret = (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0) + 1;
+    }
+    return ret;
+  }
+
   const rows = yearlyHomicides
     ? yearlyHomicides.map((element) => (
         <Table.Tr key={element.year + "_0"}>
           <Table.Td key={element.year + "_1"}>{element.year}</Table.Td>
-          <Table.Td key={element.year + "_2"}>{comma(element.count)}</Table.Td>
-          <Table.Td key={element.year + "_3"}>
+          <Table.Td align={"right"} key={element.year + "_2"}>
+            {comma(element.count)}
+          </Table.Td>
+          <Table.Td align={"right"} key={element.year + "_3"}>
             {comma(element.population)}
           </Table.Td>
-          <Table.Td key={element.year + "_4"}>
+          <Table.Td align={"right"} key={element.year + "_4"}>
             {round1((element.count / element.population) * 100000)}
           </Table.Td>
         </Table.Tr>
