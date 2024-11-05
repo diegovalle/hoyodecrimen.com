@@ -22,7 +22,7 @@ import {
 import LazyLoad from "react-lazy-load";
 import { LocLink } from "../components/LocLink";
 import ColoniasMap from "../components/HomicideMap/ColoniasMap";
-import { round1, comma } from "../components/utils";
+import { round1, comma, f1 } from "../components/utils";
 
 import Layout from "../components/Layout";
 
@@ -156,18 +156,6 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
   const [yearlyHomicides, setYearlyHomicides] = useState(null);
   const icon = <IconInfoCircle />;
 
-  function numDigits(x) {
-    let ret;
-    if (String(x).includes(".")) {
-      x = Number(String(x).replace(/[^0-9]/g, ""));
-      ret = (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0) + 2;
-    } else {
-      x = Number(String(x).replace(/[^0-9]/g, ""));
-      ret = (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0) + 1;
-    }
-    return ret;
-  }
-
   const rows = yearlyHomicides
     ? yearlyHomicides.map((element) => (
         <Table.Tr key={element.year + "_0"}>
@@ -179,7 +167,11 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             {comma(element.population)}
           </Table.Td>
           <Table.Td align={"right"} key={element.year + "_4"}>
-            {round1((element.count / element.population) * 100000)}
+            {(f1((element.count / element.population) * 100000) + "").split(
+              "."
+            )[1] !== "0"
+              ? f1((element.count / element.population) * 100000)
+              : round1((element.count / element.population) * 100000) + "  "}
           </Table.Td>
         </Table.Tr>
       ))
@@ -337,13 +329,13 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 <Table.Th key="1" role="columnheader" scope="col">
                   {t("Year")}
                 </Table.Th>
-                <Table.Th key="2" role="columnheader" scope="col">
+                <Table.Th ta={"right"} key="2" role="columnheader" scope="col">
                   {t("Homicide Investigations")}
                 </Table.Th>
-                <Table.Th key="3" role="columnheader" scope="col">
+                <Table.Th ta="right" key="3" role="columnheader" scope="col">
                   {t("Population")}
                 </Table.Th>
-                <Table.Th key="4" role="columnheader" scope="col">
+                <Table.Th ta="right" key="4" role="columnheader" scope="col">
                   {t("Rate")}
                 </Table.Th>
               </Table.Tr>

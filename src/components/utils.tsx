@@ -17,6 +17,8 @@ export function YYYYmmddToDate15(str: RawDateString | RawDateMonthString) {
   return date;
 }
 
+export const f1 = format(".1f");
+
 export function YYYYmToDate15(y: number, m: number) {
   // js months start at 0, since it is specified as an
   // integer, we need to add 1
