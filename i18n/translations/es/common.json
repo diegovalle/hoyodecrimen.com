@@ -26,7 +26,7 @@
   "Your email": "Email",
   "Submit": "Enviar",
   "createdBy": "Creado por <1 href=\"https://www.diegovalle.net/es/\">Diego Valle</1>",
-  "dataSource": "Los datos de incidencia delictiva provienen de la <1 href=\"https://datos.cdmx.gob.mx/dataset/carpetas-de-investigacion-fgj-de-la-ciudad-de-mexico\">FGJ-CDMX</1>. El mapa de cuadrantes es de la <3 href=\"https://datos.cdmx.gob.mx/dataset/cuadrantes\">Secretaría de Seguridad Ciudadana (SSC)</3> y el de las colonias del <5 href=\"https://datos.cdmx.gob.mx/dataset/coloniascdmx\"> Instituto Electoral de la Ciudad de México</5>. Las cifras de población está basada en información del <7 href=\"https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html\"> Censo 2020 por manzana</7>.",
+  "dataSource": "Los datos de incidencia delictiva provienen de la <1 href=\"https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj\">FGJ-CDMX</1>. El mapa de cuadrantes es de la <3 href=\"https://datos.cdmx.gob.mx/dataset/cuadrantes\">Secretaría de Seguridad Ciudadana (SSC)</3> y el de las colonias del <5 href=\"https://datos.cdmx.gob.mx/dataset/coloniascdmx\"> Instituto Electoral de la Ciudad de México</5>. Las cifras de población está basada en información del <7 href=\"https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html\"> Censo 2020 por manzana</7>.",
   "coolAPI": "También contamos con un <1 href=\"https://hoyodecrimen.com/api/\">API</1>.",
   "elcrimenLink": "Visiten <1 href=\"https://elcri.men/\">El Crimen</1> para una guía completa de la delincuencia e inseguridad en todo México.",
   "copyright": "Diego Valle-Jones. Todos los derechos reservados.",
@@ -77,7 +77,7 @@
   "Options": "Opciones",
   "Crimes by Cuadrante": "Número de Crímenes por Cuadrante",
   "Crimes": "Crímenes",
-  "Police investigations started by the FGJ‑CDMX": "Averiguaciones previas iniciadas por la FGJ‑CDMX",
+  "Police investigations started by the FGJ‑CDMX": "Víctimas en las carpetas de la FGJ‑CDMX",
   "Filters": "Filtros",
   "Privacy": " <0 href=\"/privacidad\">Privacidad</0>",
   "English Version": "English Version",
@@ -89,7 +89,7 @@
   "homicides per 100,000": "homicidios por 100,000",
   "Underreporting Crime": "Subregistro de Delitos",
   "Homicide": "Homicidios",
-  "Homicide Investigations": "Carpetas por Homicidio",
+  "Homicide Investigations": "Víctimas de Homicidio",
   "Alcaldía": "Alcaldía",
   "✓ Success": "✓ Exito"
 }

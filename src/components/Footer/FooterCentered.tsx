@@ -61,7 +61,7 @@ function FooterCentered({ language } = props) {
 
   return (
     <>
-      <MailChimp language={language}/>
+      <MailChimp language={language} />
 
       <AppShell.Footer
         withBorder={true}
@@ -94,7 +94,7 @@ function FooterCentered({ language } = props) {
             <p>
               <Trans i18nKey="dataSource">
                 The source of crime data is the
-                <a href="https://datos.cdmx.gob.mx/dataset/carpetas-de-investigacion-fgj-de-la-ciudad-de-mexico">
+                <a href="https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj">
                   FGJ-CDMX
                 </a>
                 . Shapefiles for the cuadrantes come from the
@@ -146,7 +146,9 @@ function FooterCentered({ language } = props) {
               <Trans i18nKey="copyright">
                 Diego Valle-Jones. All Rights Reserved.
               </Trans>
-              <Trans i18nKey="Privacy"><a href="/privacidad/">Privacy</a></Trans>
+              <Trans i18nKey="Privacy">
+                <a href="/privacidad/">Privacy</a>
+              </Trans>
             </Text>
             {/*  <Text size="sm">
               Unless otherwise stated, the content of this page is licensed

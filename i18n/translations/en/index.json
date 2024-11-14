@@ -4,7 +4,7 @@
   "Crimen en la Ciudad de México - Delitos por tu Rumbo": "Mexico City Crime Rates and Statistics",
   "number of crimes": "number of crimes",
   "Homicide Map": "Map of homicide rates by neighborhood",
-  "intro": "The Mexico City Police Department divided the city into 847 quadrants. Thanks to the <1 href=\"https://datos.cdmx.gob.mx/explore/dataset/carpetas-de-investigacion-pgj-cdmx/custom/\">open data initiative</1> by the Mexico City government, there is geolocated data available for all crimes committed in Mexico City.<br/>",
+  "intro": "The Mexico City Police Department divided the city into 847 quadrants. Thanks to the <1 href=\"https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj\">open data initiative</1> by the Mexico City government, there is geolocated data available for all crimes committed in Mexico City.<br/>",
   "intro2": "Armed with this detailed information, citizens can make informed decisions about their safety, businesses can assess risk factors for their operations, and authorities can strategically allocate resources to combat crime effectively. By pinpointing areas with higher crime rates, residents can take precautions and businesses can implement security measures. Moreover, this data empowers citizens to hold the government accountable by revealing crime hotspots and identifying potential areas of neglect<br/><br/>Interactive maps generated from this data can serve as powerful tools for community engagement, fostering transparency and trust between citizens and authorities.",
   "Annualized Homicide Rate in Mexico City": "Annualized Homicide Rate in Mexico City",
   "Crime Locations": "Safety Map",

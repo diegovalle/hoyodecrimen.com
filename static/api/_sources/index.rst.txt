@@ -49,7 +49,7 @@ notice an error, have any comments, or stuff you'd like added to the
 API raise an issue on `GitHub
 <https://github.com/diegovalle/hoyodecrimen.api/issues>`_ or email me
 at diego [at] diegovalle.net. All crime data comes from the Mexico City
-`open data portal <https://datos.cdmx.gob.mx/explore/dataset/carpetas-de-investigacion-pgj-cdmx/custom/>`_ 
+`open data portal <https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj>`_ 
 
 License
 ========
