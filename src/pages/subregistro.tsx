@@ -13,6 +13,7 @@ import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-subregistro.jpg";
 import social_image_en from "../images/social/social-subregistro_en.jpg";
 import deathData from "../assets/hom_acc_na.json";
+import NADeaths from "../assets/na_deaths.json";
 
 import * as echarts from "echarts/core";
 import { LineChart, BarChart } from "echarts/charts";
@@ -72,6 +73,110 @@ const SubregistroPage: React.FC<PageProps> = ({
   const investigadosLast = 7;
   const inevestigaosSecondLast = 7.4;
   const cifraNegra = 100 - investigadosLast;
+
+  let NAChartOption = {
+    animation: false,
+    title: {
+      text: "",
+      left: "center",
+      textStyle: {
+        fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+        fontSize: 14,
+        fontWeight: "bold",
+      },
+    },
+    legend: { show: false },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        animation: false,
+        label: {
+          backgroundColor: "#ccc",
+          borderColor: "#aaa",
+          borderWidth: 0.1,
+          shadowBlur: 0,
+          shadowOffsetX: 0,
+          shadowOffsetY: 0,
+          color: "#111",
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+        },
+      },
+      formatter: function (item) {
+        let date = YYYYmmddToDate15(item[0].name);
+        let datestr = getMonthYear(date, language, "long", " ");
+        return (
+          `${datestr}<br/><br/>` +
+          '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' +
+          item[0].color +
+          ';"></span>' +
+          item[0].seriesName +
+          `: <b>` +
+          item[0].value +
+          "</b><br/>"
+        );
+      },
+    },
+    grid: {
+      left: "5%",
+      right: "5%",
+      bottom: "10%",
+      top: "17%",
+      containLabel: true,
+    },
+    xAxis: {
+      type: "category",
+      nameTextStyle: {
+        fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+        color: "#111",
+      },
+      data: NADeaths.map(function (item) {
+        return item.yearmon;
+      }),
+      axisLabel: {
+        interval: 23,
+        formatter: function (value, idx) {
+          var date = YYYYmmddToDate15(value);
+          return getMonthYear(date, language, "short", "\n");
+        },
+      },
+      boundaryGap: false,
+      splitNumber: 6,
+    },
+    yAxis: [
+      {
+        name: t("number of deaths"),
+        nameLocation: "middle",
+        nameGap: 35,
+        nameTextStyle: {
+          fontFamily: "Roboto Condensed, Ubuntu, system-ui, sans-serif",
+          color: "#111",
+        },
+        type: "value",
+        scale: false,
+        splitNumber: 2,
+        splitLine: {
+          show: true,
+          lineStyle: {
+            type: "solid",
+          },
+        },
+      },
+    ],
+    series: [
+      {
+        name: t("number of deaths"),
+        type: "line",
+        data: NADeaths.map(function (item) {
+          return item.count;
+        }),
+        labelLine: { show: false },
+        itemStyle: {
+          color: "#444",
+          opacity: 0,
+        },
+      },
+    ],
+  };
 
   let inegiChartOption = {
     animation: false,
@@ -307,11 +412,9 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Trans>Underreporting Crime</Trans>
         </Title>
       </Center>
-
       <Center>
         <Space h="sm" />
       </Center>
-
       <Grid pl={20}>
         <Grid.Col
           span={{ base: 12, md: 6, lg: 6 }}
@@ -324,7 +427,6 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Space h="xl" />
         </Grid.Col>
       </Grid>
-
       <Grid pl={20}>
         <Grid.Col
           span={{ base: 12, md: 10, lg: 10 }}
@@ -343,7 +445,6 @@ const SubregistroPage: React.FC<PageProps> = ({
           />
         </Grid.Col>
       </Grid>
-
       <Grid pl={20}>
         <Grid.Col
           span={{ base: 12, md: 6, lg: 6 }}
@@ -351,8 +452,35 @@ const SubregistroPage: React.FC<PageProps> = ({
         >
           <Space h="md" />
           <Trans i18nKey="error" />
+        </Grid.Col>
+      </Grid>{" "}
+      <Grid pl={20}>
+        <Grid.Col
+          span={{ base: 12, md: 10, lg: 10 }}
+          offset={{ base: 0, md: 1, lg: 1 }}
+        >
+          <Space h="xl" />
+          <Center>
+            {" "}
+            <Title order={2}>
+              {t("Number of Deaths of Unknown Intent INEGI 2004-2023")}
+            </Title>
+          </Center>
+          <ReactEChartsCore
+            echarts={echarts}
+            option={NAChartOption}
+            style={{ height: 400, width: "100%" }}
+            opts={{ locale: echarts.registerLocale(language) }}
+          />
 
           <Space h="md" />
+        </Grid.Col>
+      </Grid>
+      <Grid pl={20}>
+        <Grid.Col
+          span={{ base: 12, md: 6, lg: 6 }}
+          offset={{ base: 0, md: 3, lg: 3 }}
+        >
           <Trans i18nKey="envipe" />
           <Space h="md" />
 
