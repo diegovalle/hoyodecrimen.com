@@ -6,6 +6,7 @@
   "introduccion": "Unreported crime represents one of the most significant and persistent challenges in the realm of public safety and criminal justice. This term refers to the number of crimes that are not reported to authorities or that, even if reported, are not officially recorded or investigated. The importance of this figure lies in the fact that it reveals the gap between real criminality and what is reflected in official statistics. Factors such as lack of trust in justice institutions, fear of retaliation, the perception that reporting is useless, or even the normalization of certain crimes contribute to this massive underreporting.",
   "intro2": "Homicide figures, by their nature, are generally more accurate, as it is a crime that is difficult to conceal and tends to be reported more faithfully. Homicide data in Mexico primarily comes from two key sources: the National Institute of Statistics and Geography (INEGI) and local police departments. However, even homicide records present errors.",
   "error": "During January and February 2007, far fewer homicides than normal were recorded in the INEGI database, while the number of accidents without a mechanism of death (e.g., firearm or poisoning) skyrocketed. It is evident that some homicides ended up being recorded as accidental deaths, possibly due to an error or change in the way death certificates were entered into the database. Starting in 2023, a majority of deaths where the cause of death was undetermined (accidents, suicides, legal interventions, or war-related incidents) began to be categorized, and some were labeled as accidents without a specified mechanism.",
+  "error2": "Starting in 2023 there was also a negative correlation between deaths by homicide and accidents without a mechanism of death, that is, when homicides go up, accidents go down and vice versa.",
   "envipe": "The National Survey of Victimization and Perception of Public Safety (ENVIPE) plays a crucial role in understanding the criminal reality in Mexico, especially with respect to under-reported crime. Unlike official statistics based on police reports and investigations, the ENVIPE provides a more complete view of criminality by including unreported crimes.",
 
   "victimizacion": "First, it is alarming to note that more than a third of households in the Mexican capital were affected by crime during the year {{lastYear}}. Specifically, <1>{{lastPer}}% of households reported having had at least one victim of crime</1>. This figure underscores the omnipresence of criminal activity in the daily lives of the capital's residents, which undoubtedly has a significant impact on the perception of safety and the quality of life of citizens.",
@@ -26,5 +27,11 @@
   "In Mexico City 92.6% of crimes were not denounced or investigated by the police": "In Mexico City {{cifraNegra}}% of crimes were not denounced or investigated by the police",
   "Selected Violent Deaths INEGI 2004-2022": "Selected Violent Deaths INEGI 2004-2023",
   "What is the crime rate in Mexico City?": "What is the crime rate in Mexico City?",
-  "Number of Deaths of Unknown Intent INEGI 2004-2023": "Number of Deaths of Unknown Intent INEGI 2004-2023"
+  "Number of Deaths of Unknown Intent INEGI 2004-2023": "Number of Deaths of Unknown Intent INEGI 2004-2023",
+  "number of homicides": "number of homicides",
+  "accidents": "accidents",
+  "January and February 2007": "January and February 2007",
+  "2023": "2023",
+  "others": "others",
+  "Correlation between homicides and accidents with no mechanism of injury specified": "Correlation between homicides and accidents with no mechanism of injury specified"
 }
