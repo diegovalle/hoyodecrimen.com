@@ -9,12 +9,14 @@ A web application for visualizing and analyzing crime data in Mexico City.
 ## Setup
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/diegovalle/hoyodecrimen.com.git
    cd hoyodecrimen.com
    ```
 
 2. Use the correct Node.js version:
+
    ```
    nvm use v20.14.0
    ```
@@ -44,7 +46,12 @@ Project Link: [https://github.com/diegovalle/hoyodecrimen.com](https://github.co
 
 ## Note to self
 
-When a new ENVIPE comes out
+When a new ENVIPE comes out:
 
-- Updated ENIVPE variables in the /subregistro/ page (delitosDenunciadosLast))
+- Updated ENIVPE variables go in the /subregistro/ page (delitosDenunciadosLast))
 - Update the FAQ JSON+LD in the /subregistro/ page
+
+When new INEGI data comes out:
+
+- Download from the [INEGI](https://www.inegi.org.mx/sistemas/olap/proyectos/bd/continuas/mortalidad/defuncioneshom.asp?s=est)
+- Select 'Entidad y municipio de registro' and 'Mes de registro'
