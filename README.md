@@ -55,3 +55,7 @@ When new INEGI data comes out:
 
 - Download from the [INEGI](https://www.inegi.org.mx/sistemas/olap/proyectos/bd/continuas/mortalidad/defuncioneshom.asp?s=est)
 - Select 'Entidad y municipio de registro' and 'Mes de registro'
+
+When the homicide rate for the entire year is available:
+
+- Update the JSON+LD in the index file
