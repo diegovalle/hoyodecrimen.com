@@ -230,7 +230,6 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   zIndex={1000}
                   overlayProps={{ radius: "sm", blur: 1 }}
                 />
-                {wSize.height}
                 <MapFilters
                   checked={checked}
                   setChecked={setChecked}

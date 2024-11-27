@@ -1,8 +1,6 @@
 import * as React from "react";
+import { useState } from "react";
 import {
-  Radio,
-  Group,
-  CheckIcon,
   Space,
   RangeSlider,
   Container,
@@ -11,15 +9,47 @@ import {
   Center,
   Title,
 } from "@mantine/core";
+import { FloatingIndicator, UnstyledButton } from "@mantine/core";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
 import { useDebouncedValue } from "@mantine/hooks";
 import MultiSelectCrime from "./MultiSelectCrime";
 import { YYYYmmToStr } from "./utils";
 
+import * as classes from "./MapLayer.module.css";
+
 export const MapFilters = (props: Props) => {
   const { t } = useTranslation();
   const [debounced] = useDebouncedValue(props.selectedCrimes, 1000);
+
+  const [rootRef, setRootRef] = useState<HTMLDivElement | null>(null);
+  const [controlsRefs, setControlsRefs] = useState<
+    Record<string, HTMLButtonElement | null>
+  >({});
+  const [active, setActive] = useState(0);
+
+  const data = [t("Streets"), t("Satellite")];
+
+  const setControlRef = (index: number) => (node: HTMLButtonElement) => {
+    controlsRefs[index] = node;
+    setControlsRefs(controlsRefs);
+  };
+
+  const controls = data.map((item, index) => (
+    <UnstyledButton
+      key={item}
+      className={classes.control}
+      ref={setControlRef(index)}
+      onClick={() => {
+        if (data[index] === t("Streets")) props.setChecked("OpenStreetMap");
+        else props.setChecked("Satellite");
+        setActive(index);
+      }}
+      mod={{ active: active === index }}
+    >
+      <span className={classes.controlLabel}>{item}</span>
+    </UnstyledButton>
+  ));
 
   return (
     <>
@@ -29,37 +59,33 @@ export const MapFilters = (props: Props) => {
         </Title>
       </Center>
       <Space h="sm" />
+
       <Container pb="1rem" fluid>
-        <Radio.Group
-          name="favoriteFramework"
-          label={t("Base Map")}
-          defaultValue={props.checked}
-        >
-          <Group mt="xs">
-            <Radio
-              icon={CheckIcon}
-              value="OpenStreetMap"
-              label={t("Streets")}
-              onChange={(event) => {
-                props.setChecked("OpenStreetMap");
-              }}
+        <Text fw={500} size="sm">
+          {t("Base Map") + ":"}
+        </Text>
+        <Center pl={"1rem"} pr={"1rem"}>
+          <div className={classes.root} ref={setRootRef}>
+            {controls}
+            <FloatingIndicator
+              target={controlsRefs[active]}
+              parent={rootRef}
+              className={classes.indicator}
             />
-            <Radio
-              icon={CheckIcon}
-              value="Satellite"
-              label={t("Satellite")}
-              onChange={(event) => props.setChecked("Satellite")}
-            />
-          </Group>
-        </Radio.Group>
+          </div>
+        </Center>
         <Divider my="sm" variant="dashed" />
-        <Space h="lg" />
+        {/* <Space h="sm" /> */}
         <Text size="sm">
-          <Trans>Select a date range</Trans>: {props.monthsText}
+          <Text fw={500} span>
+            <Trans>Select a date range</Trans>:
+          </Text>{" "}
+          {props.monthsText}
         </Text>
         {/* <AspectRatio ratio={309.75 / (16+32)} style={{ flex: `0 0 ${rem(0)}` }}> */}
         {props.numMonths ? (
           <RangeSlider
+            size="lg"
             pl={30}
             pr={50}
             minRange={0}
@@ -87,10 +113,14 @@ export const MapFilters = (props: Props) => {
                       )
               );
             }}
+            styles={{
+              markLabel: { color: "var(--mantine-color-gray-7)" },
+            }}
             // classNames={classes}
           />
         ) : (
           <RangeSlider
+            size="lg"
             pl={30}
             pr={50}
             minRange={0}
@@ -101,12 +131,16 @@ export const MapFilters = (props: Props) => {
         )}
         {/* <Skeleton height={19+32} radius="xl" /> */}
         {/* </AspectRatio> */}
-        <Space h="xl" />
+        <Space h="lg" />
         <Divider my="sm" variant="dashed" />
         <Text size="sm">
-          <Trans>Select an hour range</Trans>: {props.hoursText}
+          <Text fw={500} span>
+            <Trans>Select an hour range</Trans>:{" "}
+          </Text>{" "}
+          {props.hoursText}
         </Text>
         <RangeSlider
+          size="lg"
           pl={30}
           pr={50}
           minRange={0}
@@ -126,8 +160,11 @@ export const MapFilters = (props: Props) => {
             );
             props.setHourEndValue(v);
           }}
+          styles={{
+            markLabel: { color: "var(--mantine-color-gray-7)" },
+          }}
         />
-        <Space h="xl" />
+        <Space h="lg" />
         <Divider my="sm" variant="dashed" />
         <MultiSelectCrime
           pl={30}
