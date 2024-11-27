@@ -209,21 +209,22 @@ const SubregistroPage: React.FC<PageProps> = ({
       formatter: function (item) {
         let date = YYYYmmddToDate15(item[0].name);
         let datestr = getMonthYear(date, language, "long", " ");
+
         return (
           `${datestr}<br/><br/>` +
           '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' +
-          item[0].color +
+          item[0]?.color +
           ';"></span>' +
-          item[0].seriesName +
-          `: <b>` +
-          item[0].value +
+          (item[0]?.seriesName === undefined ? "" : (item[0]?.seriesName+
+            `: `) ) +" <b>"+
+          (item[0]?.value === undefined ? "" : item[0]?.value) +
           "</b><br/>" +
           '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' +
-          item[1].color +
+          item[1]?.color +
           ';"></span>' +
-          item[1].seriesName +
-          ": <b>" +
-          item[1].value +
+          (item[1]?.seriesName === undefined ? "" :( item[1]?.seriesName + ": ") )+
+          "<b>" +
+          (item[1]?.value === undefined ? "" : item[1]?.value) +
           "</b>"
         );
       },
