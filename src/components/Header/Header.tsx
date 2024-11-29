@@ -98,9 +98,9 @@ function Header(props) {
       label: t("Mapas"),
       icon: IconChevronDown,
       links: [
+        { link: "/colonias/", label: t("Colonias") },
         { link: "/sectores-mapa/", label: t("Sectores (tasas)") },
         { link: "/cuadrantes-mapa/", label: t("Cuadrantes") },
-        { link: "/colonias/", label: t("Colonias") },
       ],
     },
     {
@@ -224,6 +224,7 @@ function Header(props) {
     const items = (hasLinks ? links : []).map((link) => (
       <Text<"a">
         component="a"
+        c="#0000FF"
         //className={classes.link}
         href={language === "es" ? link.link : link.en_link}
         key={link.label}
@@ -255,10 +256,11 @@ function Header(props) {
                   <Text
                     component="a"
                     href={language === "es" ? link : en_link}
+                    c="#0000FF"
                     className={
                       props.pageContext.localizedPath === link ||
                       props.pageContext.localizedPath === en_link
-                        ? classes.textUnderlined
+                        ? ""
                         : ""
                     }
                   >
@@ -268,7 +270,7 @@ function Header(props) {
               </Box>
             </Box>
             {hasLinks && (
-              <IconChevronRight
+              <IconChevronDown
                 // className={classes.chevron}
                 stroke={1.5}
                 style={{

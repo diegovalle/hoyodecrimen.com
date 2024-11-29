@@ -104,14 +104,18 @@ function MultiSelectCrime({
       <Group gap="sm">
         <Group gap={7}>
           {value.includes(item) ? <CheckIcon size={12} /> : null}
-          <Text
-            fz={"14px"}
-            span
-            c={getColorForText(item || "HOMICIDIO DOLOSO")}
-          >
-            ●
-          </Text>{" "}
-          <span>{item.replace("AUTOMOTOR ", "")}</span>
+          <Text lineClamp={1} span>
+            <Text
+              fz={"14px"}
+              span
+              c={getColorForText(item || "HOMICIDIO DOLOSO")}
+            >
+              ●
+            </Text>{" "}
+            <Text fz={"13px"} span>
+              {item.replace("AUTOMOTOR ", "")}
+            </Text>
+          </Text>
         </Group>
       </Group>
     </Combobox.Option>

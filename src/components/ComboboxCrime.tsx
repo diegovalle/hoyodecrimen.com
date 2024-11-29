@@ -91,11 +91,13 @@ function ComboboxCrime(props) {
     >
       <Group gap="xs">
         {/*  {item === value && <CheckIcon size={12} />} */}
-        <Text fz={"14px"} span c={getColorForText(item)}>
-          ●
-        </Text>
-        <Text fz={"14px"} span>
-          {item.replace(/AUTOMOTOR /g, "")}
+        <Text lineClamp={1} span>
+          <Text fz={"14px"} span c={getColorForText(item)}>
+            ●
+          </Text>{" "}
+          <Text fz={"14px"} span>
+            {item.replace(/AUTOMOTOR /g, "")}
+          </Text>
         </Text>
       </Group>
     </Combobox.Option>

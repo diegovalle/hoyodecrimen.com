@@ -21,7 +21,8 @@
 }
 
 .linkLabel {
-  font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+  font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+    Arial, sans-serif;
   font-size: var(--mantine-font-size-md);
   color: #111;
 
@@ -34,7 +35,8 @@
 }
 
 .link {
-  font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+  font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+    Arial, sans-serif;
   font-size: var(--mantine-font-size-md);
   text-decoration: none;
   color: #111;
@@ -58,11 +60,13 @@
 }
 
 .textUnderlined {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  background: linear-gradient(180deg, transparent 80%, #444 60%);
 }
 
 .linkDropdown {
-  font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+  font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+    Arial, sans-serif;
   /*  font-size: var(--mantine-font-size-md); */
   text-decoration: none;
   color: #111;
@@ -73,7 +77,8 @@
 }
 
 .submenu {
-  font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+  font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+    Arial, sans-serif;
   font-size: 18px;
   text-decoration: none;
   padding: 0;

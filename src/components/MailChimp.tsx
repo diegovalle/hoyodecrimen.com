@@ -11,6 +11,7 @@ import {
   rem,
   Center,
   Dialog,
+  Space,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useLocalStorage } from "@mantine/hooks";
@@ -24,6 +25,10 @@ export const MailChimp = ({ language }) => {
   const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [showPopup, setShowPopup] = useLocalStorage({
+    key: "showPopup",
+    defaultValue: true,
+  });
 
   const errorMessage = t("Invalid email");
   const form = useForm({
@@ -76,6 +81,7 @@ export const MailChimp = ({ language }) => {
         } else {
           console.log(err);
           setSuccess(true);
+          setShowPopup(false);
         }
       }
     );
@@ -320,24 +326,34 @@ export const MailChimp = ({ language }) => {
               </Button>
             </Flex>
           </form>
+          <Space hiddenFrom="md" pt={"25px"} />
           <Text c="white" size="xl" span>
+            <Text hiddenFrom="md" span>
+              ✓{" "}
+            </Text>
             <Trans>Únete a más de </Trans>
-            <Text fw={700} td="underline" span>
+            <Text fw={700} fs="italic" c="#ff9912" span>
               <Trans>1,000 lectores</Trans>
             </Text>{" "}
             <br className="mantine-hidden-from-md" />{" "}
             <Text visibleFrom="md" span>
               |{" "}
             </Text>
-            <Text fw={700} td="underline" span>
+            <Text hiddenFrom="md" span>
+              ✓{" "}
+            </Text>
+            <Text fw={700} fs="italic" c="#ff9912" span>
               <Trans> 1 email</Trans>
             </Text>{" "}
             <Trans>por mes</Trans> <br className="mantine-hidden-from-md" />{" "}
             <Text visibleFrom="md" span>
               |{" "}
             </Text>
+            <Text hiddenFrom="md" span>
+              ✓{" "}
+            </Text>
             100%{" "}
-            <Text fw={700} td="underline" span>
+            <Text fw={700} fs="italic" c="#ff9912" span>
               <Trans>gratis</Trans>
             </Text>
           </Text>
@@ -424,7 +440,6 @@ export const ModalSubscribe = ({ language }) => {
     }
   };
 
-
   useEffect(() => {
     if (idle && showPopup) {
       open();
@@ -451,7 +466,6 @@ export const ModalSubscribe = ({ language }) => {
         radius="md"
         withBorder
       >
-        
         <Text size="sm" mb="xs" fw={500}>
           <Trans>Subscribe to email newsletter</Trans>
         </Text>
@@ -459,38 +473,39 @@ export const ModalSubscribe = ({ language }) => {
           <Trans>One email per month and more than 1,000 subscribers</Trans>
         </Text>
         <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
-        <Group align="flex-end">
-        <TextInput
-                // mt={0}
-                withErrorStyles
-                rightSectionPointerEvents="none"
-                rightSection={icon}
-                key={form.key("email")}
-                {...form.getInputProps("email")}
-                placeholder={t("Your email")}
-                error={error}
-                disabled={success}
-                aria-label="Email for submission"
-                size="sm"
-              />
+          <Group align="flex-end">
+            <TextInput
+              // mt={0}
+              withErrorStyles
+              rightSectionPointerEvents="none"
+              rightSection={icon}
+              key={form.key("email")}
+              {...form.getInputProps("email")}
+              placeholder={t("Your email")}
+              error={error}
+              disabled={success}
+              aria-label="Email for submission"
+              size="sm"
+            />
 
-              <Button
-                type="submit"
-                style={{ color: "#000" }}
-                bg={success ? "#4caf50" : "#2196F3"}
-                disabled={success}
-                size="sm"
-              >
-                {success ? (
-                  <Text c="#ffffff" fw={500} span>
-                    <Trans>✓ Success</Trans>
-                  </Text>) : (
-                  <Text c="#ffffff" fw={500} span>
-                    <Trans>Subscribe</Trans>
-                  </Text>
-                )}
-              </Button>
-        </Group>
+            <Button
+              type="submit"
+              style={{ color: "#000" }}
+              bg={success ? "#4caf50" : "#2196F3"}
+              disabled={success}
+              size="sm"
+            >
+              {success ? (
+                <Text c="#ffffff" fw={500} span>
+                  <Trans>✓ Success</Trans>
+                </Text>
+              ) : (
+                <Text c="#ffffff" fw={500} span>
+                  <Trans>Subscribe</Trans>
+                </Text>
+              )}
+            </Button>
+          </Group>
         </form>
       </Dialog>
     </>
