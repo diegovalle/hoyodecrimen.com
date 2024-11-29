@@ -27,6 +27,7 @@ import { mmddToLocale } from "../components/utils";
 import DotMap from "../components/HomicideMap/DotMap";
 import MapFilters from "../components/MapFilters";
 import { SEO } from "../components/SEO";
+import { ModalSubscribe } from "../components/MailChimp.tsx";
 import { dateRange, getMonthYear } from "../components/utils";
 import social_image from "../images/social/social-mapa.jpg";
 import social_image_en from "../images/social/social-mapa_en.jpg";
@@ -299,6 +300,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
           {/* </Grid.Col> */}
         </Grid>
+        <ModalSubscribe language={language} />
       </AppShell.Main>
     </AppShell>
   );

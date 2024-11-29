@@ -41,6 +41,7 @@ import "@mantine/core/styles/Checkbox.css";
 //import '@mantine/core/styles/Chip.css';
 import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Combobox.css";
+//import '@mantine/core/styles/Dialog.css';
 import "@mantine/core/styles/Container.css";
 import "@mantine/core/styles/Divider.css";
 import "@mantine/core/styles/Drawer.css";

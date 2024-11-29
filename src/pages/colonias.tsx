@@ -26,6 +26,7 @@ import {
 //import "@mantine/core/styles.css";
 import { IconInfoCircle } from "@tabler/icons-react";
 import useWindowSize from "../components/useWindowSize";
+import { ModalSubscribe } from "../components/MailChimp.tsx";
 
 import ColoniasMap from "../components/HomicideMap/ColoniasMap";
 import { SEO } from "../components/SEO";
@@ -147,6 +148,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             </Affix>
           </Grid.Col>
         </Grid>
+        <ModalSubscribe language={language} />
       </AppShell.Main>
     </AppShell>
   );

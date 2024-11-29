@@ -5,8 +5,9 @@ import { useDisclosure } from "@mantine/hooks";
 import Header from "./Header/Header";
 import FooterCentered from "./Footer/FooterCentered";
 import { AppShell } from "@mantine/core";
+import { ModalSubscribe } from "./MailChimp.tsx";
 
-const Layout = ({ children, language, pageContext} = props ) => {
+const Layout = ({ children, language, pageContext } = props) => {
   const [opened, { toggle }] = useDisclosure();
 
   function toggle2() {
@@ -23,9 +24,15 @@ const Layout = ({ children, language, pageContext} = props ) => {
         }}
         padding="md"
       >
-        <Header opened={opened} toggle={toggle2}  language={language} pageContext={pageContext}/>
+        <Header
+          opened={opened}
+          toggle={toggle2}
+          language={language}
+          pageContext={pageContext}
+        />
         <AppShell.Main>{children}</AppShell.Main>
         <FooterCentered language={language} />
+        <ModalSubscribe language={language} />
       </AppShell>
     </>
   );

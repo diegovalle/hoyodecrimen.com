@@ -18,6 +18,7 @@ import {
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
+import MailChimp from "../components/MailChimp";
 
 import { IconCircleCheck } from "@tabler/icons-react";
 import { StaticImage } from "gatsby-plugin-image";
@@ -28,12 +29,11 @@ import social_image_en from "../images/social/social-acerca_en.jpg";
 export function ReformaPic() {
   return (
     <StaticImage
-      src="../images/Gemini_Generated_Image_axq0ctaxq0ctaxq0.jpeg"
+      src="../images/laurentiu-morariu-GNZM0Vvpchw-unsplash.jpg"
       alt="Reforma"
       transformOptions={{ fit: "cover", cropFocus: "entropy" }}
-      height={390}
-      //layout="fullWidth"
-      aspectRatio={1}
+      layout="fullWidth"
+      aspectRatio={16/5}
       placeholder="none"
       imgStyle={{ transition: "none" }}
     />
@@ -56,9 +56,9 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <Space h="sm" />
       </Center>
       <Divider my="xl" />
-      <Center>
+      
         <ReformaPic />
-      </Center>
+     
       <Divider my="xl" />
       <Grid pl={20}>
         <Grid.Col
@@ -73,7 +73,11 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           </Title>
           <Space h="sm" />
           <Trans i18nKey="about_text"></Trans>
-          <Space h="sm" />
+          <Space h="lg" />
+          <div style={{borderRadius: "10px", overflow: "hidden"}}>
+          <MailChimp language={language} />
+          </div>
+          <Space h="lg" />
           <Title order={3}>
             <Trans i18nKey="our_mission"></Trans>
           </Title>

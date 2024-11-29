@@ -24,9 +24,9 @@
   "Acerca": "About",
   "footerTitle": "Questions or comments? <1 href=\"https://www.diegovalle.net/contact/\" >Get in touch</1>",
   "Subscribe to our newsletter": "Subscribe to our newsletter",
-  "emailText": "Receive an email when I update the crime data. No spam and unsubscribe anytime.",
+  "emailText": "The latest report directly in your inbox!",
   "Your email": "Your Email",
-  "Submit": "Submit",
+  "Submit": "Subscribe now!",
   "createdBy": "Created by <1 href=\"https://www.diegovalle.net/es/\">Diego Valle-Jones</1>",
   "dataSource": "The source of crime data is the <1 href=\"https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj\"> FGJ-CDMX </1>. The shapefiles for the cuadrantes come from the <3 href=\"https://datos.cdmx.gob.mx/dataset/cuadrantes\"> Secretaría de Seguridad Ciudadana (SSC) </3> and the colonias are from the <5 href=\"https://datos.cdmx.gob.mx/dataset/coloniascdmx\"> Instituto Electoral de la Ciudad de México </5>. The population figures are based on the <7 href=\"https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html\"> 2020 Census by Manzana </7>.",
   "coolAPI": "There's also a really cool <1 href=\"https://hoyodecrimen.com/api/\">API</0>.",
@@ -92,5 +92,14 @@
   "Homicides": "Homicides",
   "Homicide Investigations": "Homicide Victims",
   "Alcaldía": "Borough",
-  "✓ Success": "✓ Success"
+  "✓ Success": "✓ Success",
+  "¿Sabes cuantos crímenes se cometieron por tu rumbo?": "Don't ever miss the latest crime updates!",
+  "Únete a más de ": "Join more than ",
+  "1,000 lectores": "1,000 readers",
+  "1 email": "1 email",
+  "por mes": "per month",
+  "gratis": "free",
+  "Subscribe": "Subscribe!",
+  "Subscribe to email newsletter": "Subscribe to email newsletter",
+  "One email per month and more than 1,000 subscribers": "One email per month and more than 1,000 subscribers"
 }

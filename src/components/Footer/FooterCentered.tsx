@@ -61,6 +61,7 @@ function FooterCentered({ language } = props) {
 
   return (
     <>
+      <Space mt={"9rem"} />
       <MailChimp language={language} />
 
       <AppShell.Footer

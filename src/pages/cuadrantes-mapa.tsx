@@ -23,6 +23,7 @@ import {
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
+import {ModalSubscribe} from "../components/MailChimp.tsx"
 
 import ComboboxCrime from "../components/ComboboxCrime";
 
@@ -193,6 +194,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             </>
           </Grid.Col>
         </Grid>
+        <ModalSubscribe language={language} />
       </AppShell.Main>
     </AppShell>
   );

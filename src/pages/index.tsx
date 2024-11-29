@@ -182,11 +182,11 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       <Title order={1} py=".5rem" align="center">
         <Trans>Mexico City Crime</Trans>
       </Title>
-      <Title order={2} size="sm" align="center">
+      <Title order={2} size="lg" align="center">
         <Trans>Homicide Map</Trans>
       </Title>
       <Center>
-        <Title order={2} size="sm">
+        <Title order={2} size="lg">
           {lastDate ? lastDate : " ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀"}
         </Title>
       </Center>
