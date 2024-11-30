@@ -467,10 +467,10 @@ export const ModalSubscribe = ({ language }) => {
         withBorder
         shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
       >
-        <Text size="sm" mb="xs" fw={500}>
+        <Text size="md" fw={500}>
           <Trans>Subscribe to email newsletter</Trans>
         </Text>
-        <Text size="xs" mb="xs" fw={300} c="#6E6E6E">
+        <Text size="xs" mb="xs" fw={300} c="#222">
           <Trans>One email per month and more than 1,000 subscribers</Trans>
         </Text>
         <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
@@ -487,6 +487,9 @@ export const ModalSubscribe = ({ language }) => {
               disabled={success}
               aria-label="Email for submission"
               size="sm"
+              styles={{
+                input: { outline: "none", border: ".1px solid #aaa" },
+              }}
             />
 
             <Button
