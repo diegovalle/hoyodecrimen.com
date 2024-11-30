@@ -310,7 +310,7 @@ export const MailChimp = ({ language }) => {
               <Button
                 type="submit"
                 style={{ color: "#000" }}
-                bg={success ? "#4caf50" : "#2196F3"}
+                bg={success ? "#4caf50" : "#0972C8"}
                 disabled={success}
                 size="md"
               >
@@ -465,11 +465,12 @@ export const ModalSubscribe = ({ language }) => {
         size="lg"
         radius="md"
         withBorder
+        shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
       >
         <Text size="sm" mb="xs" fw={500}>
           <Trans>Subscribe to email newsletter</Trans>
         </Text>
-        <Text size="xs" mb="xs" fw={300} c="#777">
+        <Text size="xs" mb="xs" fw={300} c="#6E6E6E">
           <Trans>One email per month and more than 1,000 subscribers</Trans>
         </Text>
         <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
@@ -491,9 +492,10 @@ export const ModalSubscribe = ({ language }) => {
             <Button
               type="submit"
               style={{ color: "#000" }}
-              bg={success ? "#4caf50" : "#2196F3"}
+              bg={success ? "#4caf50" : "#0972C8"}
               disabled={success}
               size="sm"
+              aria-label="close popup"
             >
               {success ? (
                 <Text c="#ffffff" fw={500} span>

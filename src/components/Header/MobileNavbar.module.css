@@ -64,6 +64,11 @@
   background: linear-gradient(180deg, transparent 80%, #444 60%);
 }
 
+.textUnderlinedBig {
+  /* text-decoration: underline; */
+  background: linear-gradient(180deg, transparent 90%, #444 60%);
+}
+
 .linkDropdown {
   font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
     Arial, sans-serif;

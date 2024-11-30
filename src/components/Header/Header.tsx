@@ -260,7 +260,7 @@ function Header(props) {
                     className={
                       props.pageContext.localizedPath === link ||
                       props.pageContext.localizedPath === en_link
-                        ? ""
+                        ? classes.textUnderlinedBig
                         : ""
                     }
                   >
