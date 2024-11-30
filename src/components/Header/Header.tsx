@@ -245,13 +245,15 @@ function Header(props) {
         <UnstyledButton className={classes.control}>
           <Group justify="space-between" gap={0}>
             <Box style={{ display: "flex", alignItems: "center" }}>
-              <ThemeIcon variant="light" size={30}>
+              <ThemeIcon variant={hasLinks ? "default" : "light"} size={30}>
                 <Icon style={{ width: rem(18), height: rem(18) }} />
               </ThemeIcon>
               <Box ml="md">
                 {" "}
                 {hasLinks ? (
-                  label
+                  <Text c="#777" span>
+                    {label}
+                  </Text>
                 ) : (
                   <Text
                     component="a"
