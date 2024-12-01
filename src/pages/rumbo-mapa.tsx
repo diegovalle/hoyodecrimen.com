@@ -42,8 +42,12 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       <Center>
         <Space h="sm" />
       </Center>
-
-      <Divider my="xl" />
+      <Container size="sm">
+        <Text>
+          <Trans>Move Marker</Trans>
+        </Text>
+      </Container>
+      <Space my="sm" />
       <Container pb="1rem" size="25rem">
         <GeoLocateButton setButtonCoords={setCoords} />
       </Container>

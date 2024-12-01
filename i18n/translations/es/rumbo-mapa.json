@@ -4,5 +4,6 @@
   "Get nearby results by using precise location": "Obtén resultados precisos",
   "You are not inside Mexico City": "Tu ubicación está fuera de la Ciudad de México",
   "Location error": "Error de ubicación",
-  "Looks like your are not in Mexico City. Setting your location to the Zocalo": "Tu ubicación está fuera de la Ciudad de México"
+  "Looks like your are not in Mexico City. Setting your location to the Zocalo": "Tu ubicación está fuera de la Ciudad de México",
+  "Move Marker": "Puedes cambiar la posición del marcador rojo en el mapa para mostrar los crímenes alrededor de diferentes puntos de la ciudad, o también, darle permiso a la aplicación de usar tu ubicación"
 }
