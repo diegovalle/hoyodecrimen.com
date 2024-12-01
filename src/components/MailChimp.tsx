@@ -370,7 +370,7 @@ export const ModalSubscribe = ({ language }) => {
     key: "showPopup",
     defaultValue: true,
   });
-  const idle = useIdle(7000, { initialState: false });
+  const idle = useIdle(20000, { initialState: false });
   // Value is set both to state and localStorage at 'color-scheme'
   // setValue("light");
   const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
