@@ -327,11 +327,11 @@ let config_no_gtag: GatsbyConfig = {
         // Specify the API key for your PostHog Project (required)
         apiKey: "phc_HWvAvFNyLWtPqQJRiJxMqAv8onqtgdJJyOkR0mJLxnd",
         // Specify the app host if self-hosting (optional, default: https://us.i.posthog.com)
-        apiHost: "https://us.i.posthog.com",
+        apiHost: "https://piggy.diegovalle.net",
         // Puts tracking script in the head instead of the body (optional, default: true)
         head: true,
         // Enable posthog analytics tracking during development (optional, default: false)
-        isEnabledDevMode: true
+        isEnabledDevMode: true,
       },
     },
     // {
