@@ -274,10 +274,20 @@ export const MailChimp = ({ language }) => {
           direction="column"
           wrap="wrap"
         >
-          <Title order={3} size="h1" c="white" style={{ textAlign: "center" }}>
+          <Title
+            visibleFrom="md"
+            order={3}
+            size="h1"
+            c="white"
+            style={{ textAlign: "center" }}
+          >
+            <Trans>¿Sabes cuantos crímenes se cometieron por tu rumbo?</Trans>
+          </Title>
+          <Title hiddenFrom="md" order={3} size="h1" c="white">
             <Trans>¿Sabes cuantos crímenes se cometieron por tu rumbo?</Trans>
           </Title>
           <Title
+            visibleFrom="md"
             order={4}
             size="h2"
             mt={0}
@@ -285,6 +295,12 @@ export const MailChimp = ({ language }) => {
             c="white"
             style={{ textAlign: "center" }}
           >
+            <Trans i18nKey="emailText">
+              Mantente informado de los últimos hechos criminales en la Ciudad
+              de México
+            </Trans>
+          </Title>
+          <Title hiddenFrom="md" order={4} size="h2" mt={0} mb={1} c="white">
             <Trans i18nKey="emailText">
               Mantente informado de los últimos hechos criminales en la Ciudad
               de México
