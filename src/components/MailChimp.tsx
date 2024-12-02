@@ -274,17 +274,10 @@ export const MailChimp = ({ language }) => {
           direction="column"
           wrap="wrap"
         >
-          <Title order={3} size="h1" c="white" style={{ textAlign: "center" }}>
+          <Title order={3} size="h1" c="white">
             <Trans>¿Sabes cuantos crímenes se cometieron por tu rumbo?</Trans>
           </Title>
-          <Title
-            order={4}
-            size="h2"
-            mt={0}
-            mb={1}
-            c="white"
-            style={{ textAlign: "center" }}
-          >
+          <Title order={4} size="h2" mt={0} mb={1} c="white">
             <Trans i18nKey="emailText">
               Mantente informado de los últimos hechos criminales en la Ciudad
               de México
