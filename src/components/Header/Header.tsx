@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { LocLink } from "../LocLink";
 import * as classes from "./MobileNavbar.module.css";
 
@@ -166,8 +167,8 @@ function Header(props) {
           }}
         >
           <Menu.Target>
-            <a
-              href={link.link}
+            <Link
+              to={link.link}
               className={classes.link}
               // onClick={(event) => event.preventDefault()}
             >
@@ -187,7 +188,7 @@ function Header(props) {
                 </span>
                 <IconChevronDown size="0.9rem" stroke={1.5} />
               </Center>
-            </a>
+            </Link>
           </Menu.Target>
           <Menu.Dropdown>{menuItems}</Menu.Dropdown>
         </Menu>
@@ -222,22 +223,23 @@ function Header(props) {
   }) => {
     const hasLinks = Array.isArray(links);
     const items = (hasLinks ? links : []).map((link) => (
-      <Text<"a">
-        component="a"
-        c="#0000FF"
-        //className={classes.link}
-        href={language === "es" ? link.link : link.en_link}
-        key={link.label}
-        className={
-          props.pageContext.localizedPath === link.link ||
-          props.pageContext.localizedPath === link.en_link
-            ? classes.link + " " + classes.textUnderlined
-            : classes.link
-        }
-        // onClick={(event) => event.preventDefault()}
-      >
-        {link.label}
-      </Text>
+      <Link to={language === "es" ? link.link : link.en_link}>
+        <Text
+          span
+          c="#0000FF"
+          //className={classes.link}
+          key={link.label}
+          className={
+            props.pageContext.localizedPath === link.link ||
+            props.pageContext.localizedPath === link.en_link
+              ? classes.link + " " + classes.textUnderlined
+              : classes.link
+          }
+          // onClick={(event) => event.preventDefault()}
+        >
+          {link.label}
+        </Text>
+      </Link>
     ));
 
     return (
@@ -255,32 +257,23 @@ function Header(props) {
                     {label}
                   </Text>
                 ) : (
-                  <Text
-                    component="a"
-                    href={language === "es" ? link : en_link}
-                    c="#0000FF"
-                    className={
-                      props.pageContext.localizedPath === link ||
-                      props.pageContext.localizedPath === en_link
-                        ? classes.textUnderlinedBig
-                        : ""
-                    }
-                  >
-                    {label}
-                  </Text>
+                  <Link to={language === "es" ? link : en_link}>
+                    <Text
+                      span
+                      c="#0000FF"
+                      className={
+                        props.pageContext.localizedPath === link ||
+                        props.pageContext.localizedPath === en_link
+                          ? classes.textUnderlinedBig
+                          : ""
+                      }
+                    >
+                      {label}
+                    </Text>
+                  </Link>
                 )}
               </Box>
             </Box>
-            {hasLinks && (
-              <IconChevronDown
-                // className={classes.chevron}
-                stroke={1.5}
-                style={{
-                  width: rem(16),
-                  height: rem(16),
-                }}
-              />
-            )}
           </Group>
         </UnstyledButton>
         {hasLinks ? items : null}

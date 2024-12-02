@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 import type { PageProps } from "gatsby";
 import {
@@ -118,7 +118,10 @@ const MyCard = ({ children, href }) => {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
-        {firstChild === undefined ? "undefined" : firstChild}
+        <Link to={href}>
+          {" "}
+          {firstChild === undefined ? "undefined" : firstChild}
+        </Link>
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
