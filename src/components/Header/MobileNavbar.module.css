@@ -61,12 +61,22 @@
 
 .textUnderlined {
   /* text-decoration: underline; */
-  background: linear-gradient(180deg, transparent 80%, #444 60%);
+  background: linear-gradient(180deg, transparent 80%, #222 60%);
 }
 
 .textUnderlinedBig {
   /* text-decoration: underline; */
-  background: linear-gradient(180deg, transparent 90%, #444 60%);
+  background: linear-gradient(180deg, transparent 80%, #222 60%);
+}
+
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .linkDropdown {

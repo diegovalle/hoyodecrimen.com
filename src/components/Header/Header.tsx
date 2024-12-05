@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
 import { LocLink } from "../LocLink";
 import * as classes from "./MobileNavbar.module.css";
@@ -90,6 +90,15 @@ const LanguageSwitch = ({ language, pageContext, showText = false }) => {
 
 function Header(props) {
   const { t } = useTranslation();
+  const [visibility, toggleVisibility] = useState({
+    "1": "visble",
+    "2": "visble",
+    "3": "visble",
+    "4": "visble",
+    "5": "visble",
+    "6": "visble",
+    "7": "visble",
+  });
   const links = [
     { link: "/", icon: IconHome, label: t("Inicio") },
     { link: "/mapa/", icon: IconMap, label: t("Localización Puntual") },
@@ -220,6 +229,7 @@ function Header(props) {
     en_link,
     icon: Icon,
     language,
+    i: itemNumber,
   }) => {
     const hasLinks = Array.isArray(links);
     const items = (hasLinks ? links : []).map((link) => (
@@ -247,13 +257,51 @@ function Header(props) {
         <UnstyledButton className={classes.control}>
           <Group justify="space-between" gap={0}>
             <Box style={{ display: "flex", alignItems: "center" }}>
-              <ThemeIcon variant={hasLinks ? "default" : "light"} size={30}>
-                <Icon style={{ width: rem(18), height: rem(18) }} />
-              </ThemeIcon>
+              {hasLinks ? (
+                <ThemeIcon
+                  onClick={() => {
+                    let updatedValue = {};
+                    let key = itemNumber.toString();
+                    let value =
+                      visibility[itemNumber.toString()] === "hidden"
+                        ? "visible"
+                        : "hidden";
+                    updatedValue = {
+                      [key.toString()]: value,
+                    };
+                    toggleVisibility({ ...visibility, ...updatedValue });
+                  }}
+                  variant={hasLinks ? "default" : "light"}
+                  size={30}
+                >
+                  <Icon style={{ width: rem(18), height: rem(18) }} />
+                </ThemeIcon>
+              ) : (
+                <Link to={language === "es" ? link : en_link}>
+                  <ThemeIcon variant={hasLinks ? "default" : "light"} size={30}>
+                    <Icon style={{ width: rem(18), height: rem(18) }} />
+                  </ThemeIcon>{" "}
+                </Link>
+              )}
               <Box ml="md">
                 {" "}
                 {hasLinks ? (
-                  <Text c="#777" span>
+                  <Text
+                    c="#777"
+                    span
+                    onClick={() => {
+                      let updatedValue = {};
+                      let key = itemNumber.toString();
+                      let value =
+                        visibility[itemNumber.toString()] === "hidden"
+                          ? "visible"
+                          : "hidden";
+                      updatedValue = {
+                        [key.toString()]: value,
+                      };
+                      toggleVisibility({ ...visibility, ...updatedValue });
+                    }}
+                  >
                     {label}
                   </Text>
                 ) : (
@@ -276,14 +324,30 @@ function Header(props) {
             </Box>
           </Group>
         </UnstyledButton>
-        {hasLinks ? items : null}
+        {hasLinks ? (
+          <div
+            style={{
+              borderRadius: "5px",
+              transition: "background-color 1.3s ease",
+              background:
+                visibility[itemNumber.toString()] === "hidden"
+                  ? "#FFF8DC"
+                  : "fff",
+            }}
+          >
+            {items}
+          </div>
+        ) : null}
       </>
     );
   };
 
   const MobileNavbarNested = ({ language }) => {
-    const mobileLinks = links.map((item) => (
-      <LinksGroup {...item} key={item.label} language={language} />
+    const mobileLinks = links.map((item, i) => (
+      <>
+        {console.log(i)}
+        <LinksGroup {...item} key={item.label} language={language} i={i} />
+      </>
     ));
 
     return (
