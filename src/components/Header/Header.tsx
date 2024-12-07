@@ -91,13 +91,13 @@ const LanguageSwitch = ({ language, pageContext, showText = false }) => {
 function Header(props) {
   const { t } = useTranslation();
   const [visibility, toggleVisibility] = useState({
-    "1": "visble",
-    "2": "visble",
-    "3": "visble",
-    "4": "visble",
-    "5": "visble",
-    "6": "visble",
-    "7": "visble",
+    "1": "normal",
+    "2": "normal",
+    "3": "normal",
+    "4": "normal",
+    "5": "normal",
+    "6": "normal",
+    "7": "normal",
   });
   const links = [
     { link: "/", icon: IconHome, label: t("Inicio") },
@@ -263,9 +263,9 @@ function Header(props) {
                     let updatedValue = {};
                     let key = itemNumber.toString();
                     let value =
-                      visibility[itemNumber.toString()] === "hidden"
-                        ? "visible"
-                        : "hidden";
+                      visibility[itemNumber.toString()] === "highlighted"
+                        ? "normal"
+                        : "highlighted";
                     updatedValue = {
                       [key.toString()]: value,
                     };
@@ -273,8 +273,9 @@ function Header(props) {
                   }}
                   variant={hasLinks ? "default" : "light"}
                   size={30}
+                  styles={{ root: { border: "none" } }}
                 >
-                  <Icon style={{ width: rem(18), height: rem(18) }} />
+                  {/* <Icon style={{ width: rem(18), height: rem(18) }} /> */}
                 </ThemeIcon>
               ) : (
                 <Link to={language === "es" ? link : en_link}>
@@ -293,9 +294,9 @@ function Header(props) {
                       let updatedValue = {};
                       let key = itemNumber.toString();
                       let value =
-                        visibility[itemNumber.toString()] === "hidden"
-                          ? "visible"
-                          : "hidden";
+                        visibility[itemNumber.toString()] === "highlighted"
+                          ? "normal"
+                          : "highlighted";
                       updatedValue = {
                         [key.toString()]: value,
                       };
@@ -330,7 +331,7 @@ function Header(props) {
               borderRadius: "5px",
               transition: "background-color 1.3s ease",
               background:
-                visibility[itemNumber.toString()] === "hidden"
+                visibility[itemNumber.toString()] === "highlighted"
                   ? "#FFF8DC"
                   : "fff",
             }}
@@ -345,7 +346,6 @@ function Header(props) {
   const MobileNavbarNested = ({ language }) => {
     const mobileLinks = links.map((item, i) => (
       <>
-        {console.log(i)}
         <LinksGroup {...item} key={item.label} language={language} i={i} />
       </>
     ));
