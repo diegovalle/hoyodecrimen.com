@@ -30,7 +30,7 @@ import { SEO } from "../components/SEO";
 import social_image from "../images/social/social-sectores-mapa.jpg";
 import social_image_en from "../images/social/social-sectores-mapa_en.jpg";
 import useWindowSize from "../components/useWindowSize";
-import {ModalSubscribe} from "../components/MailChimp.tsx"
+import { ModalSubscribe } from "../components/MailChimp.tsx";
 
 import SectoresMap from "../components/HomicideMap/SectoresMap";
 import ComboboxCrime from "../components/ComboboxCrime";
@@ -89,6 +89,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               onClose={close}
               lockScroll={false}
               zIndex={250}
+              offset={8}
+              radius="md"
             >
               <>
                 <ScrollArea hover>

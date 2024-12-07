@@ -219,6 +219,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             <Drawer
               opened={opened}
               onClose={close}
+              offset={8}
+              radius="md"
               lockScroll={false}
               title={t("Filters")}
               keepMounted={true}

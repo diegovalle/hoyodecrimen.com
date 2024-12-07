@@ -83,6 +83,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               title={""}
               zIndex={250}
               scrollAreaComponent={ScrollArea.Autosize}
+              offset={8}
+              radius="md"
             >
               <Container size="xs">
                 <Title order={2} size="h4">

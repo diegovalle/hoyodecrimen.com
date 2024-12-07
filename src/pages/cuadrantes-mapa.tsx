@@ -23,7 +23,7 @@ import {
 } from "@mantine/core";
 //import "@mantine/core/styles.css";
 import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
-import {ModalSubscribe} from "../components/MailChimp.tsx"
+import { ModalSubscribe } from "../components/MailChimp.tsx";
 
 import ComboboxCrime from "../components/ComboboxCrime";
 
@@ -92,6 +92,8 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               onClose={close}
               lockScroll={false}
               zIndex={250}
+              offset={8}
+              radius="md"
             >
               <Space h="md" />
               <Title order={1} size="lg">
