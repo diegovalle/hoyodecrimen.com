@@ -468,7 +468,7 @@ export const ModalSubscribe = ({ language }) => {
       open();
     }
     // Some logic only to be performed when variable changes OR at initial render
-  }, [idle]);
+  }, [idle, open, showPopup]);
 
   return (
     // <>
@@ -489,6 +489,7 @@ export const ModalSubscribe = ({ language }) => {
         radius="md"
         withBorder
         shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
+        position={{ bottom: 5, right: 5 }}
       >
         <Text size="md" fw={500}>
           <Trans>Subscribe to email newsletter</Trans>

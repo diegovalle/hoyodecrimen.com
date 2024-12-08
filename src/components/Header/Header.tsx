@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Link } from "gatsby";
 import { LocLink } from "../LocLink";
 import * as classes from "./MobileNavbar.module.css";
@@ -155,9 +155,13 @@ function Header(props) {
             ? classes.submenu + " " + classes.submenuActive
             : classes.submenu
         }
-        key={item.link}
+        key={item.link + "menuitem"}
       >
-        <LocLink to={item.link} className={classes.linkDropdown}>
+        <LocLink
+          to={item.link}
+          className={classes.linkDropdown}
+          key={item.link + "loclink"}
+        >
           {item.label}
         </LocLink>
       </Menu.Item>
@@ -165,7 +169,7 @@ function Header(props) {
     if (menuItems) {
       return (
         <Menu
-          key={link.label}
+          key={link.label + "menu"}
           trigger="hover"
           transitionProps={{ exitDuration: 0 }}
           withinPortal
@@ -175,14 +179,16 @@ function Header(props) {
             },
           }}
         >
-          <Menu.Target>
+          <Menu.Target key={link.link + "target"}>
             <Link
+              key={link.link + "linkmenu"}
               to={link.link}
               className={classes.link}
               // onClick={(event) => event.preventDefault()}
             >
-              <Center>
+              <Center key={link.link + "center"}>
                 <span
+                  key={link.link + "span"}
                   className={
                     link.links.some(
                       (e) =>
@@ -195,7 +201,11 @@ function Header(props) {
                 >
                   {link.label}
                 </span>
-                <IconChevronDown size="0.9rem" stroke={1.5} />
+                <IconChevronDown
+                  key={link.link + "iconc"}
+                  size="0.9rem"
+                  stroke={1.5}
+                />
               </Center>
             </Link>
           </Menu.Target>
@@ -206,7 +216,7 @@ function Header(props) {
 
     return (
       <LocLink
-        key={link.label}
+        key={link.label + "loclink2"}
         to={link.link}
         className={
           props.pageContext.localizedPath === link.link ||
@@ -233,12 +243,15 @@ function Header(props) {
   }) => {
     const hasLinks = Array.isArray(links);
     const items = (hasLinks ? links : []).map((link) => (
-      <Link to={language === "es" ? link.link : link.en_link}>
+      <Link
+        key={link.link + "linksgroup"}
+        to={language === "es" ? link.link : link.en_link}
+      >
         <Text
           span
           c="#0000FF"
           //className={classes.link}
-          key={link.label}
+          key={link.label + "textlinkgroup"}
           className={
             props.pageContext.localizedPath === link.link ||
             props.pageContext.localizedPath === link.en_link
@@ -345,9 +358,9 @@ function Header(props) {
 
   const MobileNavbarNested = ({ language }) => {
     const mobileLinks = links.map((item, i) => (
-      <>
-        <LinksGroup {...item} key={item.label} language={language} i={i} />
-      </>
+      <Fragment key={"fragmenent" + i}>
+        <LinksGroup {...item} language={language} i={i} key={"mobile" + i} />
+      </Fragment>
     ));
 
     return (
@@ -411,7 +424,10 @@ function Header(props) {
       </AppShell.Header>
 
       <AppShell.Navbar py="md" px={4} zIndex={300}>
-        <MobileNavbarNested language={props.language} />
+        <MobileNavbarNested
+          key="moiblenavbarnested"
+          language={props.language}
+        />
       </AppShell.Navbar>
     </>
   );
