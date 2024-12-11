@@ -97,7 +97,7 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               </ThemeIcon>
             }
           >
-            {t("Robo de Vehículo C.V.")}
+            {t("robo_cv_c")}
           </List.Item>{" "}
           <List.Item
             icon={
@@ -108,7 +108,7 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               </ThemeIcon>
             }
           >
-            {t("Robo de Vehículo S.V.")}
+            {t("robo_sv_c")}
           </List.Item>{" "}
           <List.Item
             icon={
@@ -119,7 +119,7 @@ const RumboPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               </ThemeIcon>
             }
           >
-            {t("Robo a Transeúnte C.V.")}
+            {t("robo_t_cv")}
           </List.Item>{" "}
           <List.Item
             icon={
