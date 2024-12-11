@@ -114,7 +114,10 @@ export const MapFilters = (props: Props) => {
               );
             }}
             styles={{
-              markLabel: { color: "var(--mantine-color-gray-7)" },
+              markLabel: {
+                color: "var(--mantine-color-gray-7)",
+                fontSize: "var(--mantine-font-size-sm)",
+              },
             }}
             // classNames={classes}
           />
@@ -161,7 +164,10 @@ export const MapFilters = (props: Props) => {
             props.setHourEndValue(v);
           }}
           styles={{
-            markLabel: { color: "var(--mantine-color-gray-7)" },
+            markLabel: {
+              color: "var(--mantine-color-gray-7)",
+              fontSize: "var(--mantine-font-size-sm)",
+            },
           }}
         />
         <Space h="lg" />

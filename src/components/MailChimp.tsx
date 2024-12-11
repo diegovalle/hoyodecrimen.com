@@ -10,7 +10,7 @@ import {
   Title,
   rem,
   Center,
-  Dialog,
+  Modal,
   Space,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -18,7 +18,7 @@ import { useLocalStorage } from "@mantine/hooks";
 import { useIdle } from "@mantine/hooks";
 import { useForm, isEmail } from "@mantine/form";
 import jsonp from "jsonp";
-import { IconAt } from "@tabler/icons-react";
+import { IconAt, IconMail } from "@tabler/icons-react";
 
 export const MailChimp = ({ language }) => {
   const { t } = useTranslation();
@@ -393,7 +393,7 @@ export const ModalSubscribe = ({ language }) => {
     key: "showPopup",
     defaultValue: true,
   });
-  const idle = useIdle(20000, { initialState: false });
+  const idle = useIdle(45000, { initialState: false });
   // Value is set both to state and localStorage at 'color-scheme'
   // setValue("light");
   const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
@@ -478,23 +478,38 @@ export const ModalSubscribe = ({ language }) => {
 
     // </>
     <>
-      <Dialog
+      <Modal
+        centered
         opened={opened}
-        withCloseButton
+        // withCloseButton
         onClose={() => {
           setShowPopup(false);
           close();
         }}
-        size="lg"
+        title={t("Subscribe to email newsletter")}
+        size="sm"
         radius="md"
-        withBorder
-        shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
-        position={{ bottom: 5, right: 5 }}
+        transitionProps={{ duration: 50, transition: "pop" }}
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 6,
+        }}
+        styles={{
+          title: {
+            fontWeight: "bold",
+            fontSize: "var(--mantine-font-size-xl)",
+          },
+        }}
+        // shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
+        // position={{ bottom: 5, right: 5 }}
       >
-        <Text size="md" fw={500}>
+        {/* <Text size="md" fw={500}>
           <Trans>Subscribe to email newsletter</Trans>
-        </Text>
-        <Text size="xs" mb="xs" fw={300} c="#222">
+        </Text> */}
+        <Center>
+          <IconMail size="3rem" stroke={1.5} />
+        </Center>
+        <Text size="sm" mb="xs" fw={400} c="#222">
           <Trans>One email per month and more than 1,000 subscribers</Trans>
         </Text>
         <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
@@ -536,7 +551,7 @@ export const ModalSubscribe = ({ language }) => {
             </Button>
           </Group>
         </form>
-      </Dialog>
+      </Modal>
     </>
   );
 };
