@@ -411,7 +411,11 @@ function Header(props) {
             aria-label="Toggle navigation"
           />
           <Group justify="space-between" style={{ flex: 1 }}>
-            <HoyodecrimenLogo size={40} />
+            <HoyodecrimenLogo
+              size={40}
+              language={props.language}
+              localizedPath={props.pageContext.localizedPath}
+            />
             <Group ml="sm" gap={0} visibleFrom="sm">
               {items}
               <LanguageSwitch
