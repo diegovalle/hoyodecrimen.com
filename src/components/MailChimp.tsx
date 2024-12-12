@@ -482,6 +482,7 @@ export const ModalSubscribe = ({ language }) => {
       <Modal
         centered
         opened={opened}
+        closeButtonProps={{ "aria-label": t("Close") }}
         // withCloseButton
         onClose={() => {
           setShowPopup(false);
