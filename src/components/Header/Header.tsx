@@ -246,6 +246,7 @@ function Header(props) {
       <Link
         key={link.link + "linksgroup"}
         to={language === "es" ? link.link : link.en_link}
+        aria-label={link.label}
       >
         <Text
           span
@@ -291,7 +292,10 @@ function Header(props) {
                   {/* <Icon style={{ width: rem(18), height: rem(18) }} /> */}
                 </ThemeIcon>
               ) : (
-                <Link to={language === "es" ? link : en_link}>
+                <Link
+                  to={language === "es" ? link : en_link}
+                  aria-label={language}
+                >
                   <ThemeIcon variant={hasLinks ? "default" : "light"} size={30}>
                     <Icon style={{ width: rem(18), height: rem(18) }} />
                   </ThemeIcon>{" "}
@@ -319,7 +323,10 @@ function Header(props) {
                     {label}
                   </Text>
                 ) : (
-                  <Link to={language === "es" ? link : en_link}>
+                  <Link
+                    to={language === "es" ? link : en_link}
+                    aria-label={label}
+                  >
                     <Text
                       span
                       c="#0000FF"
