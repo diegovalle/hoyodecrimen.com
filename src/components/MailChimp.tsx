@@ -318,6 +318,7 @@ export const MailChimp = ({ language }) => {
             >
               <TextInput
                 // mt={0}
+                type="email"
                 withErrorStyles
                 rightSectionPointerEvents="none"
                 rightSection={icon}
@@ -393,7 +394,7 @@ export const ModalSubscribe = ({ language }) => {
     key: "showPopup",
     defaultValue: true,
   });
-  const idle = useIdle(45000, { initialState: false });
+  const idle = useIdle(30000, { initialState: false });
   // Value is set both to state and localStorage at 'color-scheme'
   // setValue("light");
   const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
@@ -516,6 +517,7 @@ export const ModalSubscribe = ({ language }) => {
           <Group align="flex-end">
             <TextInput
               // mt={0}
+              type="email"
               withErrorStyles
               rightSectionPointerEvents="none"
               rightSection={icon}
