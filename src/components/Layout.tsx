@@ -31,8 +31,14 @@ const Layout = ({ children, language, pageContext } = props) => {
           pageContext={pageContext}
         />
         <AppShell.Main>{children}</AppShell.Main>
-        <FooterCentered language={language} />
-        <ModalSubscribe language={language} />
+        <FooterCentered
+          language={language}
+          localizedPath={pageContext?.localizedPath}
+        />
+        <ModalSubscribe
+          language={language}
+          localizedPath={pageContext?.localizedPath}
+        />
       </AppShell>
     </>
   );

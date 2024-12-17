@@ -20,7 +20,16 @@ import { useForm, isEmail } from "@mantine/form";
 import jsonp from "jsonp";
 import { IconAt, IconMail } from "@tabler/icons-react";
 
-export const MailChimp = ({ language }) => {
+const trackCall = (data) => {
+  // if (typeof window !== "undefined" && window.gtag) {
+  //   window.gtag("send", "subscribe_newsletter", data);
+  // }
+  if (typeof window !== "undefined" && zaraz?.track) {
+    zaraz.track("subscribe_newsletter", data);
+  }
+};
+
+export const MailChimp = ({ language, localizedPath }) => {
   const { t } = useTranslation();
   const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
   const [error, setError] = useState(false);
@@ -333,10 +342,18 @@ export const MailChimp = ({ language }) => {
 
               <Button
                 type="submit"
+                onClick={() =>
+                  trackCall({
+                    type: "EmbeddedSubscribe",
+                    language: language,
+                    localizedPath: localizedPath,
+                  })
+                }
                 style={{ color: "#000" }}
                 bg={success ? "#4caf50" : "#0972C8"}
                 disabled={success}
                 size="md"
+                id="PageSubscribeButton"
               >
                 {success ? (
                   <Text c="#ffffff" fw={500} span>
@@ -387,7 +404,7 @@ export const MailChimp = ({ language }) => {
   );
 };
 
-export const ModalSubscribe = ({ language }) => {
+export const ModalSubscribe = ({ language, localizedPath }) => {
   const { t } = useTranslation();
   const [opened, { open, close }] = useDisclosure(false);
   const [showPopup, setShowPopup] = useLocalStorage({
@@ -514,7 +531,10 @@ export const ModalSubscribe = ({ language }) => {
         <Text size="sm" mb="xs" fw={400} c="#222">
           <Trans>One email per month and more than 1,000 subscribers</Trans>
         </Text>
-        <form onSubmit={form.onSubmit(handleSubmit, handleError)}>
+        <form
+          onSubmit={form.onSubmit(handleSubmit, handleError)}
+          id="ModalForm"
+        >
           <Group align="flex-end">
             <TextInput
               // mt={0}
@@ -536,11 +556,19 @@ export const ModalSubscribe = ({ language }) => {
 
             <Button
               type="submit"
+              onClick={() =>
+                trackCall({
+                  type: "ModalSubscribe",
+                  language: language,
+                  localizedPath: localizedPath,
+                })
+              }
               style={{ color: "#000" }}
               bg={success ? "#4caf50" : "#0972C8"}
               disabled={success}
               size="sm"
               aria-label="close popup"
+              id="PopupButton"
             >
               {success ? (
                 <Text c="#ffffff" fw={500} span>

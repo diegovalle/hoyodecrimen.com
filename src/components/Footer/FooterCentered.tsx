@@ -20,7 +20,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import * as classes from "./FooterCentered.module.css";
 
-function FooterCentered({ language } = props) {
+function FooterCentered({ language, localizedPath } = props) {
   const { t } = useTranslation();
   const data = [
     {
@@ -62,7 +62,7 @@ function FooterCentered({ language } = props) {
   return (
     <>
       <Space mt={"9rem"} />
-      <MailChimp language={language} />
+      <MailChimp language={language} localizedPath={localizedPath} />
 
       <AppShell.Footer
         withBorder={true}
