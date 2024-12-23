@@ -13,20 +13,29 @@ import {
   Modal,
   Space,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, usePageLeave } from "@mantine/hooks";
 import { useLocalStorage } from "@mantine/hooks";
 import { useIdle } from "@mantine/hooks";
 import { useForm, isEmail } from "@mantine/form";
 import jsonp from "jsonp";
 import { IconAt, IconMail } from "@tabler/icons-react";
 
-const trackCall = (data) => {
-  // if (typeof window !== "undefined" && window.gtag) {
-  //   window.gtag("send", "subscribe_newsletter", data);
-  // }
-  if (typeof window !== "undefined" && zaraz?.track) {
-    zaraz.track("subscribe_newsletter", data);
+const trackSubscribe = (data) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("send", "subscribe_newsletter", data);
   }
+  // if (typeof window !== "undefined" && zaraz?.track) {
+  //   zaraz.track("subscribe_newsletter", data);
+  // }
+};
+
+const trackModalOpen = (data) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("send", "open_modal", data);
+  }
+  // if (typeof window !== "undefined" && zaraz?.track) {
+  //   zaraz.track("open_modal", data);
+  // }
 };
 
 export const MailChimp = ({ language, localizedPath }) => {
@@ -343,7 +352,7 @@ export const MailChimp = ({ language, localizedPath }) => {
               <Button
                 type="submit"
                 onClick={() =>
-                  trackCall({
+                  trackSubscribe({
                     type: "EmbeddedSubscribe",
                     language: language,
                     localizedPath: localizedPath,
@@ -412,6 +421,12 @@ export const ModalSubscribe = ({ language, localizedPath }) => {
     defaultValue: true,
   });
   const idle = useIdle(30000, { initialState: false });
+
+  const [leftPage, setLeftPage] = useState(0);
+  usePageLeave(() => {
+    setLeftPage((p) => p + 1);
+  });
+
   // Value is set both to state and localStorage at 'color-scheme'
   // setValue("light");
   const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
@@ -482,11 +497,16 @@ export const ModalSubscribe = ({ language, localizedPath }) => {
   };
 
   useEffect(() => {
-    if (idle && showPopup) {
+    if ((idle || leftPage) && showPopup) {
+      // trackModalOpen({
+      //   type: "ModalOpen",
+      //   language: language,
+      //   localizedPath: localizedPath,
+      // });
       open();
     }
     // Some logic only to be performed when variable changes OR at initial render
-  }, [idle, open, showPopup]);
+  }, [idle, open, showPopup, leftPage]);
 
   return (
     // <>
@@ -557,7 +577,7 @@ export const ModalSubscribe = ({ language, localizedPath }) => {
             <Button
               type="submit"
               onClick={() =>
-                trackCall({
+                trackSubscribe({
                   type: "ModalSubscribe",
                   language: language,
                   localizedPath: localizedPath,

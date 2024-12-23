@@ -45,7 +45,7 @@ import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Container.css";
 import "@mantine/core/styles/Divider.css";
 import "@mantine/core/styles/Drawer.css";
-import '@mantine/core/styles/FloatingIndicator.css';
+import "@mantine/core/styles/FloatingIndicator.css";
 import "@mantine/core/styles/Grid.css";
 import "@mantine/core/styles/List.css";
 import "@mantine/core/styles/LoadingOverlay.css";
@@ -84,3 +84,21 @@ export const wrapPageElement = ({ element }) => {
 //     root.render(element);
 //   };
 // };
+
+export const onRouteUpdate = ({ location }) => {
+  if (process.env.NODE_ENV !== "production") {
+    return null;
+  }
+
+  const pagePath = location
+    ? location.pathname + location.search + location.hash
+    : undefined;
+
+  setTimeout(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "page_view", { page_path: pagePath });
+    }
+  }, 100);
+
+  return true;
+};
