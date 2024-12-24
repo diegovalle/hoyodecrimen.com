@@ -85,7 +85,7 @@ export const wrapPageElement = ({ element }) => {
 //   };
 // };
 
-export const onRouteUpdate = ({ location }) => {
+/* export const onRouteUpdate = ({ location }) => {
   if (process.env.NODE_ENV !== "production") {
     return null;
   }
@@ -101,4 +101,4 @@ export const onRouteUpdate = ({ location }) => {
   }, 100);
 
   return true;
-};
+}; */

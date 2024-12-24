@@ -16,7 +16,7 @@ const Layout = ({ children, language, pageContext } = props) => {
   }
   return (
     <>
-      <Partytown key="partytown" forward={["gtag"]} />
+      {/* <Partytown key="partytown" forward={["gtag"]} />
       <script
         key="google-analytics"
         type="text/partytown"
@@ -32,7 +32,7 @@ const Layout = ({ children, language, pageContext } = props) => {
       gtag('js', new Date()); 
       gtag('config', 'G-HQQDKGGFMW', { send_page_view: false })`,
         }}
-      />
+      /> */}
       <AppShell
         header={{ height: 60 }}
         navbar={{

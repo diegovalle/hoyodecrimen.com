@@ -21,21 +21,21 @@ import jsonp from "jsonp";
 import { IconAt, IconMail } from "@tabler/icons-react";
 
 const trackSubscribe = (data) => {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("send", "subscribe_newsletter", data);
-  }
-  // if (typeof window !== "undefined" && zaraz?.track) {
-  //   zaraz.track("subscribe_newsletter", data);
+  // if (typeof window !== "undefined" && window.gtag) {
+  //   window.gtag("send", "subscribe_newsletter", data);
   // }
+  if (typeof window !== "undefined" && zaraz?.track) {
+    zaraz.track("subscribe_newsletter", data);
+  }
 };
 
 const trackModalOpen = (data) => {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("send", "open_modal", data);
-  }
-  // if (typeof window !== "undefined" && zaraz?.track) {
-  //   zaraz.track("open_modal", data);
+  // if (typeof window !== "undefined" && window.gtag) {
+  //   window.gtag("send", "open_modal", data);
   // }
+  if (typeof window !== "undefined" && zaraz?.track) {
+    zaraz.track("open_modal", data);
+  }
 };
 
 export const MailChimp = ({ language, localizedPath }) => {
