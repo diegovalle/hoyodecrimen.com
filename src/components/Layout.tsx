@@ -16,12 +16,12 @@ const Layout = ({ children, language, pageContext } = props) => {
   }
   return (
     <>
-      {/* <Partytown key="partytown" forward={["gtag"]} />
+      <Partytown key="partytown" forward={["gtag"]} />
       <script
         key="google-analytics"
         type="text/partytown"
-        //src={`https://www.googletagmanager.com/gtag/js?id=G-HQQDKGGFMW`}
-        src="/piggy"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-HQQDKGGFMW`}
+        //src="/piggy"
       />
       <script
         key="google-analytics-config"
@@ -32,7 +32,7 @@ const Layout = ({ children, language, pageContext } = props) => {
       gtag('js', new Date()); 
       gtag('config', 'G-HQQDKGGFMW', { send_page_view: false })`,
         }}
-      /> */}
+      />
       <AppShell
         header={{ height: 60 }}
         navbar={{
