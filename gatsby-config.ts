@@ -355,19 +355,18 @@ let config_no_gtag: GatsbyConfig = {
   ],
 };
 
-// let config: GatsbyConfig;
-// if (!process.env.CLOUDFLARE) {
-//   config_no_gtag.plugins.push({
-//     resolve: "gatsby-plugin-google-tagmanager",
-//     options: {
-//       id: "G-HQQDKGGFMW",
-//       includeInDevelopment: false,
-//       defaultDataLayer: { platform: "gatsby" },
-//       enableWebVitalsTracking: true,
-//     },
-//   });
-//   config = { ...config_no_gtag };
-// } else
-config = { ...config_no_gtag };
+let config: GatsbyConfig;
+if (!process.env.CLOUDFLARE) {
+  config_no_gtag.plugins.push({
+    resolve: "gatsby-plugin-google-tagmanager",
+    options: {
+      id: "G-HQQDKGGFMW",
+      includeInDevelopment: false,
+      defaultDataLayer: { platform: "gatsby" },
+      enableWebVitalsTracking: true,
+    },
+  });
+  config = { ...config_no_gtag };
+} else config = { ...config_no_gtag };
 
 export default config;
