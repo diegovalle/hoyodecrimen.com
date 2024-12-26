@@ -169,16 +169,16 @@ let config_no_gtag: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    // {
-    //   resolve: "gatsby-plugin-vercel-deploy",
-    //   options: { ...deploy_headers_vercel },
-    // },
-    // {
-    //   resolve: `gatsby-plugin-cloudflare-pages`,
-    //   options: {
-    //     headers: { ...deploy_headers_netlify },
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-vercel-deploy",
+      options: { ...deploy_headers_vercel },
+    },
+    {
+      resolve: `gatsby-plugin-cloudflare-pages`,
+      options: {
+        headers: { ...deploy_headers_netlify },
+      },
+    },
     // Proxy to another service
     // /api/*  https://api.hoyodecrimen.com/:splat  200
     {
@@ -350,7 +350,7 @@ let config_no_gtag: GatsbyConfig = {
     // },
   ],
   partytownProxiedURLs: [
-    `https://www.googletagmanager.com/gtag/js?id=G-HQQDKGGFMW`,
+    // `https://www.googletagmanager.com/gtag/js?id=G-HQQDKGGFMW`,
     //`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2949275046149330`,
   ],
 };
