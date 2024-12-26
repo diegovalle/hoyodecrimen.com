@@ -17,6 +17,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.10.3",
     "@mantine/code-highlight": "^7.14.2",
     "@mantine/core": "^7.14.2",
     "@mantine/form": "^7.14.2",
