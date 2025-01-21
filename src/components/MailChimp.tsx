@@ -13,7 +13,7 @@ import {
   Modal,
   Space,
 } from "@mantine/core";
-import { useDisclosure, usePageLeave } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 import { useLocalStorage } from "@mantine/hooks";
 import { useIdle } from "@mantine/hooks";
 import { useForm, isEmail } from "@mantine/form";
@@ -420,12 +420,12 @@ export const ModalSubscribe = ({ language, localizedPath }) => {
     key: "showPopup",
     defaultValue: true,
   });
-  const idle = useIdle(30000, { initialState: false });
+  const idle = useIdle(50000, { initialState: false });
 
-  const [leftPage, setLeftPage] = useState(0);
-  usePageLeave(() => {
-    setLeftPage((p) => p + 1);
-  });
+  // const [leftPage, setLeftPage] = useState(0);
+  // usePageLeave(() => {
+  //   setLeftPage((p) => p + 1);
+  // });
 
   // Value is set both to state and localStorage at 'color-scheme'
   // setValue("light");
@@ -497,7 +497,7 @@ export const ModalSubscribe = ({ language, localizedPath }) => {
   };
 
   useEffect(() => {
-    if ((idle || leftPage) && showPopup) {
+    if ((idle) && showPopup) {
       // trackModalOpen({
       //   type: "ModalOpen",
       //   language: language,
@@ -506,7 +506,7 @@ export const ModalSubscribe = ({ language, localizedPath }) => {
       open();
     }
     // Some logic only to be performed when variable changes OR at initial render
-  }, [idle, open, showPopup, leftPage]);
+  }, [idle, open, showPopup]);
 
   return (
     // <>
