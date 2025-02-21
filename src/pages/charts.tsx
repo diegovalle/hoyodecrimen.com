@@ -21,7 +21,7 @@ import Layout from "../components/Layout";
 import SelectCrime from "../components/SelectCrime";
 import { groupBy, sortBy, maxBy } from "lodash-es";
 
-import { annualizeRate } from "../components/utils";
+import { annualizeRate, prettyAxis } from "../components/utils";
 
 import ReactEChartsCore from "echarts-for-react/lib/core";
 // Import the echarts core module, which provides the necessary interfaces for using echarts.
@@ -183,7 +183,11 @@ const SectoresPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           },
           type: "value",
           scale: false,
-          splitNumber: 4,
+          interval:
+            prettyAxis([0, dataMax], 2).at(1) -
+            prettyAxis([0, dataMax], 2).at(0),
+          max: prettyAxis([0, dataMax], 2).at(-1),
+          //splitNumber: 4,
           splitLine: {
             show: true,
             lineStyle: {
@@ -199,9 +203,6 @@ const SectoresPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             margin: 0,
             padding: [0, 2, 0, 0],
           },
-          interval:
-            Math.round(Math.round((((dataMax + 5) / 10) * 10) / 3) / 10) * 10,
-          max: Math.round((dataMax + 5) / 10) * 10,
         },
       ],
       series: [
