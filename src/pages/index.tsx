@@ -171,7 +171,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           </Table.Td>
           <Table.Td align={"right"} key={element.year + "_4"}>
             {(f1((element.count / element.population) * 100000) + "").split(
-              "."
+              ".",
             )[1] !== "0"
               ? f1((element.count / element.population) * 100000)
               : round1((element.count / element.population) * 100000) + "  "}
@@ -355,7 +355,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   rate: round1(
                     (yearlyHomicides[yearlyHomicides.length - 1].count /
                       yearlyHomicides[yearlyHomicides.length - 1].population) *
-                      100000
+                      100000,
                   ),
                 })}
               </Title>
@@ -465,8 +465,8 @@ export const Head: HeadFC = (props) => {
                 "@type": "Answer",
                 text:
                   language === "en"
-                    ? "The homicide rate in Mexico City was 12.7 in 2023"
-                    : "La tasa de homicidios en la Ciudad de México en 2023 fue de 12.7",
+                    ? "The homicide rate in Mexico City was 14 in 2024"
+                    : "La tasa de homicidios en la Ciudad de México en 2024 fue de 14",
               },
             },
           ],
