@@ -1,4 +1,5 @@
 User-agent: *
-Disallow: /api/v1/*
-Disallow: /template/*
+Disallow: /api/v1/
+Disallow: /template/
+Disallow: /en/template/
 Sitemap: https://hoyodecrimen.com/sitemap-index.xml
