@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: build hoyodecrimen website
         run: >
           docker run -v ${{github.workspace}}:/hoyodecrimen node:20.14.0
@@ -26,9 +26,9 @@ jobs:
           --header "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
           --header "Content-Type: application/json"
           --data "{\"production_branch\": \"cloudflare\"}"
-     
+
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -42,4 +42,4 @@ jobs:
           # Optional: Change the working directory
           # workingDirectory: ${{github.workspace}}/public
           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-          wranglerVersion: '3'
+          wranglerVersion: "3"
