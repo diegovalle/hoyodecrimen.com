@@ -171,7 +171,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           </Table.Td>
           <Table.Td align={"right"} key={element.year + "_4"}>
             {(f1((element.count / element.population) * 100000) + "").split(
-              ".",
+              "."
             )[1] !== "0"
               ? f1((element.count / element.population) * 100000)
               : round1((element.count / element.population) * 100000) + "  "}
@@ -319,14 +319,14 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       <Space h="xl" />
 
       <Grid justify="center">
-        <Grid.Col span={{ base: 12, md: 5, lg: 5, xl: 4 }}>
+        <Grid.Col span={{ base: 12, md: 5, lg: 5, xl: 5 }}>
           <Center>
             <Title order={3}>
               <Trans>What is the murder rate in Mexico City?</Trans>
             </Title>
           </Center>
           <Space h="xl" />
-          <Table striped size="xl">
+          <Table striped size="xl" fz="lg">
             <Table.Thead>
               <Table.Tr role="row">
                 <Table.Th key="1" role="columnheader" scope="col">
@@ -355,7 +355,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   rate: round1(
                     (yearlyHomicides[yearlyHomicides.length - 1].count /
                       yearlyHomicides[yearlyHomicides.length - 1].population) *
-                      100000,
+                      100000
                   ),
                 })}
               </Title>
@@ -365,11 +365,14 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           )}
 
           <Space h="xl" />
-          <Text size="xl" component="div">
-            <Trans i18nKey="murder_rate">
-              aaa<em>zzz</em>
-            </Trans>
-          </Text>
+          <Container size="sm" mt="md">
+            <Text size="xl" component="div">
+              <Trans i18nKey="murder_rate">
+                aaa
+                <em>zzz</em>
+              </Trans>
+            </Text>
+          </Container>
         </Grid.Col>
       </Grid>
 
