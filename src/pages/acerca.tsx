@@ -73,6 +73,26 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           </Title>
           <Space h="sm" />
           <Trans i18nKey="about_text"></Trans>
+          <Space h="sm" />
+         <Trans i18nKey="dataSourceAbout">
+                The source of crime data is the
+                <a href="https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj">
+                  FGJ-CDMX
+                </a>
+                . Shapefiles for the cuadrantes come from the
+                <a href="https://datos.cdmx.gob.mx/dataset/cuadrantes">
+                  Secretaría de Seguridad Ciudadana (SSC)
+                </a>
+                and for the colonias from the
+                <a href="https://datos.cdmx.gob.mx/dataset/coloniascdmx">
+                  Instituto Electoral de la Ciudad de México
+                </a>
+                . The population figures are based on the
+                <a href="https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html">
+                  2020 Census by Manzana
+                </a>
+                .
+              </Trans>
           <Space h="lg" />
           <div style={{borderRadius: "10px", overflow: "hidden"}}>
           <MailChimp language={language} />

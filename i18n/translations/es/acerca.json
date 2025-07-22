@@ -1,7 +1,7 @@
 {
   "About Crime in Mexico City": "Acerca de HoyoDeCrimen",
   "created": "Creado por <1 href=\"https://www.diegovalle.net/es/\">Diego Valle</1>",
-  "about_text": "<p>Hoyo De Crimen es su ventanilla única para mantenerse informado sobre el crimen en la Ciudad de México. Creemos que una ciudad más segura es una ciudad más empoderada, y eso comienza con la transparencia y la conciencia.</p>",
+  "about_text": "<p>HoyoDeCrimen  nació de la necesidad urgente de ofrecer una herramienta clara y accesible para entender la realidad de la criminalidad en México. Frente a la saturación de información sesgada y la falta de datos confiables al alcance de todos, decidí crear un espacio donde la ciudadanía pueda visualizar, analizar y compartir datos reales sobre la violencia, con el fin de fomentar una mayor conciencia social y promover soluciones basadas en evidencia.</p>",
   "our_mission": "Nuestra Misión:",
   "li1": "Proporcionar un fácil acceso a datos delictivos confiables y actualizados para la Ciudad de México.",
   "li2": "Empoderar a los residentes con la información que necesitan para tomar decisiones informadas sobre su seguridad.",
@@ -14,5 +14,6 @@
   "cuadrantes": "- <strong>Mapa de Cuadrantes</<strong>: Pueden descargar un mapa de cuadrantes como GeoJSON usando la <Link href=\"\">API</Link>.",
   "github": "- <strong>Código Abierto</strong>: Esta aplicación web es de código abierto y pueden consultar el código en <Link href=\"\">GitHub</Link>.</p>",
   "community": "Comunidad",
-  "add_features": "Características Adicionales"
+  "add_features": "Características Adicionales",
+  "dataSourceAbout": "Los datos de incidencia delictiva provienen de la <1 href=\"https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj\">FGJ-CDMX</1> y/o solicitudes de información. El mapa de cuadrantes es de la <3 href=\"https://datos.cdmx.gob.mx/dataset/cuadrantes\">Secretaría de Seguridad Ciudadana (SSC)</3> y el de las colonias del <5 href=\"https://datos.cdmx.gob.mx/dataset/coloniascdmx\"> Instituto Electoral de la Ciudad de México</5>. Las cifras de población están basadas en información del <7 href=\"https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html\"> Censo 2020 por manzana</7>."
 }
