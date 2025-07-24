@@ -17,6 +17,7 @@ import {
   Group,
   Blockquote,
   Table,
+  List,
 } from "@mantine/core";
 
 import LazyLoad from "react-lazy-load";
@@ -262,6 +263,43 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 by the Mexico City government, there is geolocated data
                 available for all crimes committed in Mexico City.
               </Trans>
+              <Space h="md" />
+              <Trans i18nKey="what_you_will_find_title"></Trans>
+              <Space h="md" />
+              <List size="xl" withPadding spacing="xs">
+                <List.Item>
+                  <Trans i18nKey="verified_data_item">
+                    <b>Datos verificados y actualizados</b> - Procesamos la
+                    información oficial de delitos reportados, complementada
+                    cuando es necesario con solicitudes de transparencia para
+                    garantizar que tengas acceso a los datos más recientes.
+                  </Trans>
+                </List.Item>
+
+                <List.Item>
+                  <Trans i18nKey="interactive_maps_item">
+                    <b>Mapas interactivos de criminalidad</b> - Visualiza dónde
+                    ocurren los delitos en tiempo real, con filtros por tipo de
+                    crimen, delegación y período de tiempo.
+                  </Trans>
+                </List.Item>
+
+                <List.Item>
+                  <Trans i18nKey="territorial_analysis_item">
+                    <b>Análisis territorial detallado</b> - Comprende los
+                    patrones criminales por colonia, zona y horario para tomar
+                    decisiones informadas sobre tu seguridad personal.
+                  </Trans>
+                </List.Item>
+
+                <List.Item>
+                  <Trans i18nKey="georeferenced_info_item">
+                    <b>Información georeferenciada</b> - Cada reporte de delito
+                    está ubicado geográficamente para ofrecerte una perspectiva
+                    real de la situación de seguridad en tu área.
+                  </Trans>
+                </List.Item>
+              </List>
               <br />
               <Trans i18nKey="intro2">
                 With this data, citizens and authorities can visualize the most
