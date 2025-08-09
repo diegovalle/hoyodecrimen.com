@@ -33,7 +33,7 @@ export function ReformaPic() {
       alt="Reforma"
       transformOptions={{ fit: "cover", cropFocus: "entropy" }}
       layout="fullWidth"
-      aspectRatio={16/5}
+      aspectRatio={16 / 5}
       placeholder="none"
       imgStyle={{ transition: "none" }}
     />
@@ -56,9 +56,9 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         <Space h="sm" />
       </Center>
       <Divider my="xl" />
-      
-        <ReformaPic />
-     
+
+      <ReformaPic />
+
       <Divider my="xl" />
       <Grid pl={20}>
         <Grid.Col
@@ -74,28 +74,28 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Space h="sm" />
           <Trans i18nKey="about_text"></Trans>
           <Space h="sm" />
-         <Trans i18nKey="dataSourceAbout">
-                The source of crime data is the
-                <a href="https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj">
-                  FGJ-CDMX
-                </a>
-                . Shapefiles for the cuadrantes come from the
-                <a href="https://datos.cdmx.gob.mx/dataset/cuadrantes">
-                  Secretaría de Seguridad Ciudadana (SSC)
-                </a>
-                and for the colonias from the
-                <a href="https://datos.cdmx.gob.mx/dataset/coloniascdmx">
-                  Instituto Electoral de la Ciudad de México
-                </a>
-                . The population figures are based on the
-                <a href="https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html">
-                  2020 Census by Manzana
-                </a>
-                .
-              </Trans>
+          <Trans i18nKey="dataSourceAbout">
+            The source of crime data is the
+            <a href="https://www.fgjcdmx.gob.mx/transparencia/incidencia-delictiva">
+              FGJ-CDMX
+            </a>
+            . Shapefiles for the cuadrantes come from the
+            <a href="https://datos.cdmx.gob.mx/dataset/cuadrantes">
+              Secretaría de Seguridad Ciudadana (SSC)
+            </a>
+            and for the colonias from the
+            <a href="https://datos.cdmx.gob.mx/dataset/coloniascdmx">
+              Instituto Electoral de la Ciudad de México
+            </a>
+            . The population figures are based on the
+            <a href="https://blog.diegovalle.net/2022/11/inegi-mexico-2020-census-shapefiles.html">
+              2020 Census by Manzana
+            </a>
+            .
+          </Trans>
           <Space h="lg" />
-          <div style={{borderRadius: "10px", overflow: "hidden"}}>
-          <MailChimp language={language} />
+          <div style={{ borderRadius: "10px", overflow: "hidden" }}>
+            <MailChimp language={language} />
           </div>
           <Space h="lg" />
           <Title order={3}>

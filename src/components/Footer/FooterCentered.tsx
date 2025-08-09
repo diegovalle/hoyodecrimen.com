@@ -95,7 +95,7 @@ function FooterCentered({ language, localizedPath } = props) {
             <p>
               <Trans i18nKey="dataSource">
                 The source of crime data is the
-                <a href="https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj">
+                <a href="https://www.fgjcdmx.gob.mx/transparencia/incidencia-delictiva">
                   FGJ-CDMX
                 </a>
                 . Shapefiles for the cuadrantes come from the
