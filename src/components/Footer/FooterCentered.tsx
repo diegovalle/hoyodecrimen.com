@@ -112,6 +112,9 @@ function FooterCentered({ language, localizedPath } = props) {
                 </a>
                 .
               </Trans>
+              <Space h="sm" />
+              {/** número de folio 092453825002126 **/}
+              <Trans i18nKey="approximate_method"></Trans>
             </p>
             <Space h="xl" />
             <Text>
