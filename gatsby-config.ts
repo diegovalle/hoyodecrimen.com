@@ -6,8 +6,8 @@ import type { GatsbyConfig } from "gatsby";
 const osmTilesUrl = "https://tiles-r.hoyodecrimen.com";
 
 // const apiUrl = "https://cooperative-corissa-diegovalle-177b049e.koyeb.app";
-const apiUrl = "http://localhost:8080";
-// const apiUrl = "https://api.hoyodecrimen.com";
+// const apiUrl = "http://localhost:8080";
+const apiUrl = "https://api.hoyodecrimen.com";
 
 const deploy_headers_vercel = {
   headers: [
