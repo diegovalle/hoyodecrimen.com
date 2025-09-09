@@ -1,14 +1,13 @@
 import type { GatsbyConfig } from "gatsby";
 
 // const osmTilesUrl = `https://tileshoyo.surge.sh/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
-// const osmTilesUrl = `https://tileshoyo.surge.sh/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
 // const osmTilesUrl = `https://tiles-n.hoyodecrimen.com/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com)
 // const osmTilesUrl = `https://tiles-r.hoyodecrimen.com/{z}/{x}/{y}.html`,
 const osmTilesUrl = "https://tiles-r.hoyodecrimen.com";
 
 // const apiUrl = "https://cooperative-corissa-diegovalle-177b049e.koyeb.app";
-// const apiUrl = "http://localhost:8080";
-const apiUrl = "https://api.hoyodecrimen.com";
+const apiUrl = "http://localhost:8080";
+// const apiUrl = "https://api.hoyodecrimen.com";
 
 const deploy_headers_vercel = {
   headers: [

@@ -93,6 +93,11 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
             </a>
             .
           </Trans>
+
+          <Space h="sm" />
+          {/** número de folio 092453825002126 **/}
+          <Trans i18nKey="approximate_method"></Trans>
+
           <Space h="lg" />
           <div style={{ borderRadius: "10px", overflow: "hidden" }}>
             <MailChimp language={language} />
