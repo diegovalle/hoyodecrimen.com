@@ -33,5 +33,13 @@
   "January and February 2007": "January and February 2007",
   "2023": "2023",
   "others": "others",
-  "Correlation between homicides and accidents with no mechanism of injury specified": "Correlation between homicides and accidents with no mechanism of injury specified"
+  "Correlation between homicides and accidents with no mechanism of injury specified": "Correlation between homicides and accidents with no mechanism of injury specified",
+  "Menos homicidios en los datos de la FGJ ¿error o corrección?": "Fewer homicides in the FGJ data: error or correction?",
+  "september_error_intro": "We also detected a notable discrepancy between the homicide data published by the Office of the Attorney General of Justice (FGJ) in August and the figures released in September 2025. Although both datasets refer to the same period, the more recent figures show a sudden drop in the number of reported homicides throughout 2025. This suggests a possible revision, correction, or adjustment in the methodology or case recording. The magnitude of the difference raises questions about the consistency and transparency of the FGJ’s monthly updates.",
+  "Agosto 2025": "August 2025",
+  "Septiembre 2025": "September 2025",
+  "Datos Publicados en Agosto 2025": "Data Published August 2025",
+  "Datos Publicados en Septiembre 2025": "Data Publichsed September 2025",
+  "Homicidios": "homicides",
+  "Fecha": "date"
 }
