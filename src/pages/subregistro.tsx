@@ -6,7 +6,15 @@ import { graphql } from "gatsby";
 import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
 import type { PageProps } from "gatsby";
-import { Title, Text, Center, Grid, Space, Blockquote } from "@mantine/core";
+import {
+  Title,
+  Text,
+  Center,
+  Grid,
+  Space,
+  Blockquote,
+  Divider,
+} from "@mantine/core";
 //import "@mantine/core/styles.css";
 import Layout from "../components/Layout";
 import { SEO } from "../components/SEO";
@@ -15,6 +23,7 @@ import social_image_en from "../images/social/social-subregistro_en.jpg";
 import deathData from "../assets/hom_acc_na.json";
 import NADeaths from "../assets/na_deaths.json";
 
+import SeptemberErrorChart from "../components/SeptemberErrorChart";
 import * as echarts from "echarts/core";
 import { LineChart, BarChart, ScatterChart } from "echarts/charts";
 import {
@@ -215,14 +224,18 @@ const SubregistroPage: React.FC<PageProps> = ({
           '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' +
           item[0]?.color +
           ';"></span>' +
-          (item[0]?.seriesName === undefined ? "" : (item[0]?.seriesName+
-            `: `) ) +" <b>"+
+          (item[0]?.seriesName === undefined
+            ? ""
+            : item[0]?.seriesName + `: `) +
+          " <b>" +
           (item[0]?.value === undefined ? "" : item[0]?.value) +
           "</b><br/>" +
           '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' +
           item[1]?.color +
           ';"></span>' +
-          (item[1]?.seriesName === undefined ? "" :( item[1]?.seriesName + ": ") )+
+          (item[1]?.seriesName === undefined
+            ? ""
+            : item[1]?.seriesName + ": ") +
           "<b>" +
           (item[1]?.value === undefined ? "" : item[1]?.value) +
           "</b>"
@@ -648,10 +661,40 @@ const SubregistroPage: React.FC<PageProps> = ({
             style={{ height: 400, width: "100%" }}
             opts={{ locale: echarts.registerLocale(language) }}
           />
-
-          <Space h="md" />
         </Grid.Col>
       </Grid>
+      <Space h="sm" />
+      <Divider my="xl" />
+      <Space h="sm" />
+      <Grid pl={20}>
+        <Grid.Col
+          span={{ base: 12, md: 6, lg: 6 }}
+          offset={{ base: 0, md: 3, lg: 3 }}
+        >
+          <p>
+            <Trans i18nKey="september_error_intro" />
+          </p>
+          <Space h="xl" />
+          <Center>
+            <Title order={2}>
+              {t(
+                "Menos homicidios en los datos de la FGJ ¿error o corrección?"
+              )}
+            </Title>
+          </Center>
+          <Space h="xl" />
+        </Grid.Col>
+        <Grid.Col
+          span={{ base: 12, md: 6, lg: 6 }}
+          offset={{ base: 0, md: 3, lg: 3 }}
+        >
+          <SeptemberErrorChart lang={language} height={400} />
+          <Space h="xl" />
+        </Grid.Col>
+      </Grid>
+      <Space h="sm" />
+      <Divider my="xl" />
+      <Space h="sm" />
       <Grid pl={20}>
         <Grid.Col
           span={{ base: 12, md: 6, lg: 6 }}
