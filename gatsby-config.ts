@@ -55,7 +55,7 @@ const deploy_headers_vercel = {
         },
         {
           key: "X-XSS-Protection",
-          value: "1; mode=block",
+          value: "0",
         },
         {
           key: "referrer-policy",
@@ -112,7 +112,7 @@ const deploy_headers_netlify = {
     "Permissions-Policy: geolocation=(self)",
     "Referrer-Policy: same-origin",
     "X-Frame-Options: DENY",
-    "X-XSS-Protection: 1; mode=block",
+    "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
     `Link: <${apiUrl}>; rel=preconnect, <${osmTilesUrl}>; rel=preconnect`,
   ],
