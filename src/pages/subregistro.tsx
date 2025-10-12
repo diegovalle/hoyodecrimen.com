@@ -666,7 +666,7 @@ const SubregistroPage: React.FC<PageProps> = ({
       <Space h="sm" />
       <Divider my="xl" />
       <Space h="sm" />
-      <Grid pl={20}>
+      <Grid pl={20} id="september_error">
         <Grid.Col
           span={{ base: 12, md: 6, lg: 6 }}
           offset={{ base: 0, md: 3, lg: 3 }}
