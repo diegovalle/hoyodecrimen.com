@@ -99,11 +99,11 @@ function FooterCentered({ language, localizedPath } = props) {
                   FGJ-CDMX
                 </a>
                 . Shapefiles for the cuadrantes come from the
-                <a href="https://datos.cdmx.gob.mx/dataset/cuadrantes">
+                <a href="https://web.archive.org/web/20250318000000*/https://datos.cdmx.gob.mx/dataset/cuadrantes">
                   Secretaría de Seguridad Ciudadana (SSC)
                 </a>
                 and for the colonias from the
-                <a href="https://datos.cdmx.gob.mx/dataset/coloniascdmx">
+                <a href="https://web.archive.org/web/20250318000000*/https://datos.cdmx.gob.mx/dataset/coloniascdmx">
                   Instituto Electoral de la Ciudad de México
                 </a>
                 . The population figures are based on the

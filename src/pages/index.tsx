@@ -257,7 +257,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               <Trans i18nKey="intro">
                 The Mexico City Police Department divided the city into 847
                 quadrants. Thanks to the
-                <a href="https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj">
+                <a href="https://web.archive.org/web/20250318000000*/https://datos.cdmx.gob.mx/dataset/victimas-en-carpetas-de-investigacion-fgj">
                   open data initiative
                 </a>{" "}
                 by the Mexico City government, there is geolocated data
