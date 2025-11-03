@@ -76,7 +76,7 @@ const TasasPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           <Space h="sm" />
           <Trans i18nKey="dataSourceAbout">
             The source of crime data is the
-            <a href="https://www.fgjcdmx.gob.mx/transparencia/incidencia-delictiva">
+            <a href="https://web.archive.org/web/20250601000000*/https://www.fgjcdmx.gob.mx/transparencia/incidencia-delictiva">
               FGJ-CDMX
             </a>
             . Shapefiles for the cuadrantes come from the
