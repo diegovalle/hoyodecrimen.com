@@ -28,7 +28,7 @@
   "Your email": "Your Email",
   "Submit": "Subscribe now!",
   "createdBy": "Created by <1 href=\"https://www.diegovalle.net/\">Diego Valle-Jones</1>",
-  "dataSource": "The source of crime data is the <1 href=\"https://www.fgjcdmx.gob.mx/transparencia/incidencia-delictiva\"> FGJ-CDMX</1> and/or FOIA requests.",
+  "dataSource": "The source of crime data is the <1 href=\"https://web.archive.org/web/20250601000000*/https://www.fgjcdmx.gob.mx/transparencia/incidencia-delictiva\"> FGJ-CDMX</1> and/or FOIA requests.",
   "approximate_method": "The coordinates shown on the maps do not correspond exactly to the location of the incident but rather represent an approximate position, preserving geostatistical significance. To ensure privacy, the FGJ-CDMX modifies the data starting from an initial coordinate, identifying the corresponding geometry and generating a buffering area of approximately 200 meters, which is then intersected with the neighborhood and the original crime quadrant. Within this area, a random point is selected and subsequently adjusted to the nearest roadway to prevent it from being placed on a specific property.",
   "coolAPI": "There's also a really cool <1 href=\"https://hoyodecrimen.com/api/\">API</0>.",
   "elcrimenLink": "For a complete crime and safety report for all the states of Mexico, please visit <1 href=\"https://elcri.men/en/\">El Crimen</1>.",
