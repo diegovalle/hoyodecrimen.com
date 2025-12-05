@@ -1,0 +1,9 @@
+# Security.txt for hoyodecrimen.com
+# RFC 9116: https://www.rfc-editor.org/rfc/rfc9116.html
+
+Contact: https://github.com/diegovalle/hoyodecrimen.api/issues
+Contact: https://www.diegovalle.net/contact/
+Encryption: https://github.com/diegovalle.keys
+Expires: 2035-12-20T00:47:00.000Z
+Preferred-Languages: en,es
+Canonical: https://hoyodecrimen.com/.well-known/security.txt
