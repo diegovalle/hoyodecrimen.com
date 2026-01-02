@@ -71,8 +71,8 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 30) /
                 x.population) *
                 100000 *
-                12
-            ))
+                12,
+            )),
         );
         let population = data.ssp[0].population;
         data.pgj.forEach((x) => {
@@ -83,7 +83,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               30) /
               population) *
               100000 *
-              12
+              12,
           );
         });
 
@@ -108,7 +108,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         if (x === "ROBO A TRANSEUNTE S.V.") return 7;
         if (x === "LESIONES POR ARMA DE FUEGO") return 5;
         return 9999;
-      }
+      },
     );
 
   const singleChart = (crime) => {
@@ -116,7 +116,8 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
       116, 93, 128, 99, 137, 90, 92, 93, 111, 94, 109, 139, 114, 115, 144, 127,
       108, 123, 107, 88, 84, 109, 110, 111, 100, 105, 109, 102, 113, 57, 104,
       108, 75, 67, 71, 65, 70, 45, 63, 51, 65, 49, 53, 59, 60, 62, 82, 88, 66,
-      49, 50, 47, 61, 88, 64, 39, 48, 41, 44, 61,
+      49, 51, 47, 62, 92, 77, 62, 61, 65, 46, 72, 50, 64, 87, 70, 112, 81, 85,
+      83, 94, 67, 103, 82,
     ];
     let population = groupedData.ssp[crime][0].population;
 
@@ -147,17 +148,17 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
           let dateStr = getMonthYear(item[0].name, language, "long", " ");
           let tasa = t("tasa anualizada");
           let str = `${dateStr}<br/>
-                      <span style="color:${item[0].color};">⚫ </span> 
+                      <span style="color:${item[0].color};">⚫ </span>
                       ${item[0].seriesName}: <b>${item[0].value}</b><br/>`;
           if (typeof item[1] !== "undefined")
             str =
               str +
-              ` <span style="color:${item[1].color};">⚫ </span> 
+              ` <span style="color:${item[1].color};">⚫ </span>
                          ${item[1].seriesName}: <b>${item[1].value}</b><br/>`;
           if (typeof item[2] !== "undefined")
             str =
               str +
-              ` <span style="color:${item[2].color};">⚫ </span> 
+              ` <span style="color:${item[2].color};">⚫ </span>
                         ${item[2].seriesName}: <b>${item[2].value}</b>`;
           return str;
         },
@@ -266,13 +267,13 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                     (((x /
                       daysInMonth(
                         groupedData.ssp[crime][i].date.substr(5, 6),
-                        groupedData.ssp[crime][i].date.substr(0, 4)
+                        groupedData.ssp[crime][i].date.substr(0, 4),
                       )) *
                       30) /
                       population) *
                       100000 *
-                      12
-                  )
+                      12,
+                  ),
                 )
               : null,
           itemStyle: {
