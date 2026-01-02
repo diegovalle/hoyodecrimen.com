@@ -506,8 +506,8 @@ export const Head: HeadFC = (props) => {
                 "@type": "Answer",
                 text:
                   language === "en"
-                    ? "The homicide rate in Mexico City was 14 in 2024"
-                    : "La tasa de homicidios en la Ciudad de México en 2024 fue de 14",
+                    ? "The homicide rate in Mexico City was 13.2 in 2024"
+                    : "La tasa de homicidios en la Ciudad de México en 2024 fue de 13.2",
               },
             },
           ],
