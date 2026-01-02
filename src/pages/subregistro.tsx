@@ -63,6 +63,7 @@ const prevalencia_hogares = [
   { year: 2021, per: 37.3 },
   { year: 2022, per: 37.4 },
   { year: 2023, per: 37.4 },
+  { year: 2024, per: 36.4 },
 ];
 
 const SubregistroPage: React.FC<PageProps> = ({
@@ -76,12 +77,12 @@ const SubregistroPage: React.FC<PageProps> = ({
   const lastPer = prevalencia_hogares[prevalencia_hogares.length - 1].per;
   const lastYear = prevalencia_hogares[prevalencia_hogares.length - 1].year;
   const lastYear2 = lastYear - 1;
-  const delitosDenunciadosLast = 10.8;
-  const delitosDenunciadosSecondLast = 11.1;
-  const carpetaLast = 64.6;
-  const carpetaSecondLast = 65.67;
-  const investigadosLast = 7;
-  const inevestigaosSecondLast = 7.4;
+  const delitosDenunciadosLast = 10;
+  const delitosDenunciadosSecondLast = 10.8;
+  const carpetaLast = 68.5;
+  const carpetaSecondLast = 64.6;
+  const investigadosLast = 10.1;
+  const inevestigaosSecondLast = 7;
   const cifraNegra = 100 - investigadosLast;
 
   let NAChartOption = {
@@ -651,7 +652,7 @@ const SubregistroPage: React.FC<PageProps> = ({
             {" "}
             <Title order={2}>
               {t(
-                "Correlation between homicides and accidents with no mechanism of injury specified"
+                "Correlation between homicides and accidents with no mechanism of injury specified",
               )}
             </Title>
           </Center>
@@ -678,7 +679,7 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Center>
             <Title order={2}>
               {t(
-                "Menos homicidios en los datos de la FGJ ¿error o corrección?"
+                "Menos homicidios en los datos de la FGJ ¿error o corrección?",
               )}
             </Title>
           </Center>
@@ -713,7 +714,7 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Center>
             <Text size="lg">
               {t(
-                "Percentage of households where at least one person was the victim of a crime"
+                "Percentage of households where at least one person was the victim of a crime",
               )}
             </Text>
           </Center>
@@ -729,7 +730,7 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Blockquote color="orange" cite={t("Source: ENVIPE")}>
             {t(
               "In 37% of Mexico City households at least one person was the victim of a crime in 2023",
-              { lastPer: lastPer, lastYear: lastYear }
+              { lastPer: lastPer, lastYear: lastYear },
             )}
           </Blockquote>
 
@@ -780,7 +781,7 @@ const SubregistroPage: React.FC<PageProps> = ({
           <Blockquote color="orange" cite={t("Source: ENVIPE")}>
             {t(
               "In Mexico City 92.6% of crimes were not denounced or investigated by the police",
-              { cifraNegra: cifraNegra }
+              { cifraNegra: cifraNegra },
             )}
           </Blockquote>
 
@@ -824,8 +825,8 @@ export const Head: HeadFC = (props) => {
                 "@type": "Answer",
                 text:
                   language === "en"
-                    ? "The overall crime rate in Mexico City was 37.4% according to the National Victimization Survey (ENVIPE). That is, in 37.4% of households at least one person was the victim of a crime in 2023"
-                    : "El 37.4% de los hogares en la Ciudad de México tuvo al menos una víctima de delito durante el 2023",
+                    ? "The overall crime rate in Mexico City was 37.4% according to the National Victimization Survey (ENVIPE). That is, in 36.4% of households at least one person was the victim of a crime in 2023"
+                    : "El 36.4% de los hogares en la Ciudad de México tuvo al menos una víctima de delito durante el 2023",
               },
             },
           ],

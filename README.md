@@ -48,13 +48,14 @@ Project Link: [https://github.com/diegovalle/hoyodecrimen.com](https://github.co
 
 When a new ENVIPE comes out:
 
-- Updated ENIVPE variables go in the /subregistro/ page (delitosDenunciadosLast))
+- Updated ENIVPE variables go in the /subregistro/ page (delitosDenunciadosLast and other variables))
 - Update the FAQ JSON+LD in the /subregistro/ page
 
 When new INEGI data comes out:
 
 - Download from the [INEGI](https://www.inegi.org.mx/sistemas/olap/proyectos/bd/continuas/mortalidad/defuncioneshom.asp?s=est)
 - Select 'Entidad y municipio de registro' and 'Mes de registro'
+- Update 'crimen' page
 
 When the homicide rate for the entire year is available:
 
