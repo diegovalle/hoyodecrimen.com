@@ -71,8 +71,8 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 30) /
                 x.population) *
                 100000 *
-                12,
-            )),
+                12
+            ))
         );
         let population = data.ssp[0].population;
         data.pgj.forEach((x) => {
@@ -83,7 +83,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
               30) /
               population) *
               100000 *
-              12,
+              12
           );
         });
 
@@ -108,7 +108,7 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
         if (x === "ROBO A TRANSEUNTE S.V.") return 7;
         if (x === "LESIONES POR ARMA DE FUEGO") return 5;
         return 9999;
-      },
+      }
     );
 
   const singleChart = (crime) => {
@@ -267,13 +267,13 @@ const CrimenPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                     (((x /
                       daysInMonth(
                         groupedData.ssp[crime][i].date.substr(5, 6),
-                        groupedData.ssp[crime][i].date.substr(0, 4),
+                        groupedData.ssp[crime][i].date.substr(0, 4)
                       )) *
                       30) /
                       population) *
                       100000 *
-                      12,
-                  ),
+                      12
+                  )
                 )
               : null,
           itemStyle: {
