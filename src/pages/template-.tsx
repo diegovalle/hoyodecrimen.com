@@ -81,27 +81,27 @@ export const Head: HeadFC = (props) => {
   );
 };
 
-export const query = graphql`
-  query ($language: String!) {
-    site {
-      siteMetadata {
-        title
-        description
-        siteUrl
-        satelliteMap
-        osmTilesUrl
-      }
-    }
-    locales: allLocale(
-      filter: { ns: { in: ["common", "index"] }, language: { eq: $language } }
-    ) {
-      edges {
-        node {
-          ns
-          data
-          language
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query ($language: String!) {
+//     site {
+//       siteMetadata {
+//         title
+//         description
+//         siteUrl
+//         satelliteMap
+//         osmTilesUrl
+//       }
+//     }
+//     locales: allLocale(
+//       filter: { ns: { in: ["common", "index"] }, language: { eq: $language } }
+//     ) {
+//       edges {
+//         node {
+//           ns
+//           data
+//           language
+//         }
+//       }
+//     }
+//   }
+// `;
