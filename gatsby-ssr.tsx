@@ -11,16 +11,27 @@ export const onPreRenderHTML = ({
   replaceHeadComponents,
 }) => {
   const headComponents = getHeadComponents();
-  replaceHeadComponents([
-    ...headComponents,
-    <script
-      async
-      key="google-ads"
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2949275046149330"
-      crossOrigin="anonymous"
-    ></script>,
-    <ColorSchemeScript key="color-scheme-script" />,
-  ]);
+  const result = headComponents.find((item: any) => item?.props && Object.hasOwn(item.props, 'hrefLang'));
+  // Add the adsense script only to the non-English pages
+  // if hrefLang is not 'en' then it's in English (sound weird, I know)
+  if (result?.props?.hrefLang !== "en") {
+    return replaceHeadComponents([
+      ...headComponents,
+      <script
+        async
+        key="google-ads"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2949275046149330"
+        crossOrigin="anonymous"
+      ></script>,
+      <ColorSchemeScript key="color-scheme-script" />,
+    ]);
+  } else {
+    return replaceHeadComponents([
+      ...headComponents,
+      <ColorSchemeScript key="color-scheme-script" />,
+    ]);
+  }
+
 };
 
 export const wrapPageElement = ({ element }) => {

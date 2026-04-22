@@ -5,13 +5,15 @@ import { useLocalStorage } from "@mantine/hooks";
 import { useIdle } from "@mantine/hooks";
 import { Dialog, Group, Button, TextInput, Text } from "@mantine/core";
 
+const idleTime = 60000;
+
 const ModalSubscribe = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [showPopup, setShowPopup] = useLocalStorage({
     key: "showPopup",
     defaultValue: true,
   });
-  const idle = useIdle(7000, { initialState: false });
+  const idle = useIdle(idleTime, { initialState: false });
   // Value is set both to state and localStorage at 'color-scheme'
   // setValue("light");
 
