@@ -162,23 +162,23 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
 
   const rows = yearlyHomicides
     ? yearlyHomicides.map((element) => (
-        <Table.Tr key={element.year + "_0"}>
-          <Table.Td key={element.year + "_1"}>{element.year}</Table.Td>
-          <Table.Td align={"right"} key={element.year + "_2"}>
-            {comma(element.count)}
-          </Table.Td>
-          <Table.Td align={"right"} key={element.year + "_3"}>
-            {comma(element.population)}
-          </Table.Td>
-          <Table.Td align={"right"} key={element.year + "_4"}>
-            {(f1((element.count / element.population) * 100000) + "").split(
-              "."
-            )[1] !== "0"
-              ? f1((element.count / element.population) * 100000)
-              : round1((element.count / element.population) * 100000) + "  "}
-          </Table.Td>
-        </Table.Tr>
-      ))
+      <Table.Tr key={element.year + "_0"}>
+        <Table.Td key={element.year + "_1"}>{element.year}</Table.Td>
+        <Table.Td align={"right"} key={element.year + "_2"}>
+          {comma(element.count)}
+        </Table.Td>
+        <Table.Td align={"right"} key={element.year + "_3"}>
+          {comma(element.population)}
+        </Table.Td>
+        <Table.Td align={"right"} key={element.year + "_4"}>
+          {(f1((element.count / element.population) * 100000) + "").split(
+            "."
+          )[1] !== "0"
+            ? f1((element.count / element.population) * 100000)
+            : round1((element.count / element.population) * 100000) + "  "}
+        </Table.Td>
+      </Table.Tr>
+    ))
     : null;
 
   return (
@@ -263,53 +263,54 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                 by the Mexico City government, there is geolocated data
                 available for all crimes committed in Mexico City.
               </Trans>
-              <Space h="md" />
-              <Trans i18nKey="what_you_will_find_title"></Trans>
-              <Space h="md" />
-              <List size="xl" withPadding spacing="xs">
-                <List.Item>
-                  <Trans i18nKey="verified_data_item">
-                    <b>Datos verificados y actualizados</b> - Procesamos la
-                    información oficial de delitos reportados, complementada
-                    cuando es necesario con solicitudes de transparencia para
-                    garantizar que tengas acceso a los datos más recientes.
-                  </Trans>
-                </List.Item>
-
-                <List.Item>
-                  <Trans i18nKey="interactive_maps_item">
-                    <b>Mapas interactivos de criminalidad</b> - Visualiza dónde
-                    ocurren los delitos en tiempo real, con filtros por tipo de
-                    crimen, delegación y período de tiempo.
-                  </Trans>
-                </List.Item>
-
-                <List.Item>
-                  <Trans i18nKey="territorial_analysis_item">
-                    <b>Análisis territorial detallado</b> - Comprende los
-                    patrones criminales por colonia, zona y horario para tomar
-                    decisiones informadas sobre tu seguridad personal.
-                  </Trans>
-                </List.Item>
-
-                <List.Item>
-                  <Trans i18nKey="georeferenced_info_item">
-                    <b>Información georeferenciada</b> - Cada reporte de delito
-                    está ubicado geográficamente para ofrecerte una perspectiva
-                    real de la situación de seguridad en tu área.
-                  </Trans>
-                </List.Item>
-              </List>
-              <br />
-              <Trans i18nKey="intro2">
-                With this data, citizens and authorities can visualize the most
-                violent parts of the city; businessmen can decide where to
-                locate or expand; drivers can find in which parking lots their
-                cars are least likely to be stolen... With interactive maps, the
-                Mexico City government can be held accountable for its
-                incompetence in managing the city's crime problem.
-              </Trans>
             </Text>
+            <Space h="md" />
+            <Trans i18nKey="what_you_will_find_title"></Trans>
+            <Space h="md" />
+            <List size="xl" withPadding spacing="xs">
+              <List.Item>
+                <Text size="xl"><Trans i18nKey="verified_data_item">
+                  <b>Datos verificados y actualizados</b> - Procesamos la
+                  información oficial de delitos reportados, complementada
+                  cuando es necesario con solicitudes de transparencia para
+                  garantizar que tengas acceso a los datos más recientes.
+                </Trans></Text>
+              </List.Item>
+
+              <List.Item>
+                <Text size="xl"> <Trans i18nKey="interactive_maps_item">
+                  <b>Mapas interactivos de criminalidad</b> - Visualiza dónde
+                  ocurren los delitos en tiempo real, con filtros por tipo de
+                  crimen, delegación y período de tiempo.
+                </Trans></Text>
+              </List.Item>
+
+              <List.Item>
+                <Text size="xl"><Trans i18nKey="territorial_analysis_item">
+                  <b>Análisis territorial detallado</b> - Comprende los
+                  patrones criminales por colonia, zona y horario para tomar
+                  decisiones informadas sobre tu seguridad personal.
+                </Trans></Text>
+              </List.Item>
+
+              <List.Item>
+                <Text size="xl"><Trans i18nKey="georeferenced_info_item">
+                  <b>Información georeferenciada</b> - Cada reporte de delito
+                  está ubicado geográficamente para ofrecerte una perspectiva
+                  real de la situación de seguridad en tu área.
+                </Trans></Text>
+              </List.Item>
+            </List>
+            <br />
+            <Text size="xl"><Trans i18nKey="intro2">
+              With this data, citizens and authorities can visualize the most
+              violent parts of the city; businessmen can decide where to
+              locate or expand; drivers can find in which parking lots their
+              cars are least likely to be stolen... With interactive maps, the
+              Mexico City government can be held accountable for its
+              incompetence in managing the city's crime problem.
+            </Trans></Text>
+
           </Container>
         </Grid.Col>
 
@@ -393,7 +394,7 @@ const IndexPage: React.FC<PageProps> = ({ pageContext, location, data }) => {
                   rate: round1(
                     (yearlyHomicides[yearlyHomicides.length - 1].count /
                       yearlyHomicides[yearlyHomicides.length - 1].population) *
-                      100000
+                    100000
                   ),
                 })}
               </Title>

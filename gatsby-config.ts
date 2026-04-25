@@ -3,7 +3,9 @@ import type { GatsbyConfig } from "gatsby";
 // const osmTilesUrl = `https://tileshoyo.surge.sh/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
 // const osmTilesUrl = `https://tiles-n.hoyodecrimen.com/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com)
 // const osmTilesUrl = `https://tiles-r.hoyodecrimen.com/{z}/{x}/{y}.html`,
-const osmTilesUrl = "https://tiles-r.hoyodecrimen.com";
+const osmTilesUrl = "https://tiles-r.hoyodecrimen.com/{z}/{x}/{y}.html";
+const spriteUrl ="https://hoyodecrimen.com/tiles/sprites/sprite";
+const glyphsUrl="https://hoyodecrimen.com/tiles/fonts/{fontstack}/{range}.pbf";
 
 // const apiUrl = "https://cooperative-corissa-diegovalle-177b049e.koyeb.app";
 // const apiUrl = "http://localhost:8080";
@@ -152,11 +154,9 @@ let config_no_gtag: GatsbyConfig = {
     siteUrl: `https://hoyodecrimen.com`,
     startYear: 2019,
     apiUrl: apiUrl,
-    osmTilesUrl: `${osmTilesUrl}/{z}/{x}/{y}.html`,
-
-    spriteUrl: "https://hoyodecrimen-tiles.onrender.com/tiles/sprites/sprite",
-    glyphsUrl:
-      "https://hoyodecrimen-tiles.onrender.com/tiles/fonts/{fontstack}/{range}.pbf",
+    osmTilesUrl: `${osmTilesUrl}`,
+    spriteUrl: `${spriteUrl}`,
+    glyphsUrl: `${glyphsUrl}`,
     // arcgis "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
     // stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"
     satelliteMap:

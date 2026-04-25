@@ -46,7 +46,7 @@ function FooterCentered({ language, localizedPath } = props) {
         className={classes.link}
         component="a"
         href={link.link}
-        //onClick={(event) => event.preventDefault()}
+      //onClick={(event) => event.preventDefault()}
       >
         {link.label}
       </Text>
@@ -92,7 +92,8 @@ function FooterCentered({ language, localizedPath } = props) {
               </Trans>
             </Text>
             <Space h="xl" />
-            <p>
+
+            <Text>
               <Trans i18nKey="dataSource">
                 The source of crime data is the
                 <a href="https://web.archive.org/web/20250601000000*/https://www.fgjcdmx.gob.mx/transparencia/incidencia-delictiva">
@@ -111,11 +112,12 @@ function FooterCentered({ language, localizedPath } = props) {
                   2020 Census by Manzana
                 </a>
                 .
-              </Trans>
-              <Space h="sm" />
-              {/** número de folio 092453825002126 **/}
-              <Trans i18nKey="approximate_method"></Trans>
-            </p>
+              </Trans></Text>
+            <Space h="sm" />
+            {/** número de folio 092453825002126 **/}
+            <Text>
+              <Trans i18nKey="approximate_method"></Trans></Text>
+
             <Space h="xl" />
             <Text>
               <Trans i18nKey="coolAPI">
