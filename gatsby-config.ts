@@ -4,12 +4,18 @@ import type { GatsbyConfig } from "gatsby";
 // const osmTilesUrl = `https://tiles-n.hoyodecrimen.com/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com)
 // const osmTilesUrl = `https://tiles-r.hoyodecrimen.com/{z}/{x}/{y}.html`,
 const osmTilesUrl = "https://tiles-r.hoyodecrimen.com/{z}/{x}/{y}.html";
+const osmTilesBaseUrl = new URL(osmTilesUrl);
 const spriteUrl ="https://hoyodecrimen.com/tiles/sprites/sprite";
 const glyphsUrl="https://hoyodecrimen.com/tiles/fonts/{fontstack}/{range}.pbf";
+// arcgis "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+// stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"
+const satelliteMap = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 
 // const apiUrl = "https://cooperative-corissa-diegovalle-177b049e.koyeb.app";
 // const apiUrl = "http://localhost:8080";
 const apiUrl = "https://api.hoyodecrimen.com";
+
+const preconnectStr = `Link: <${apiUrl}>; rel=preconnect, <${osmTilesBaseUrl.origin}>; rel=preconnect`
 
 const deploy_headers_vercel = {
   headers: [
@@ -108,7 +114,7 @@ const deploy_headers_vercel = {
   ],
 };
 
-const deploy_headers_netlify = {
+const deploy_headers_netlify_cloudflare = {
   "/*": [
     "Strict-Transport-Security: max-age=31536000",
     "Permissions-Policy: geolocation=(self)",
@@ -116,7 +122,7 @@ const deploy_headers_netlify = {
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
-    `Link: <${apiUrl}>; rel=preconnect, <${osmTilesUrl}>; rel=preconnect`,
+    `${preconnectStr}`,
   ],
   "/*.html": [
     "cache-control: public",
@@ -157,10 +163,7 @@ let config_no_gtag: GatsbyConfig = {
     osmTilesUrl: `${osmTilesUrl}`,
     spriteUrl: `${spriteUrl}`,
     glyphsUrl: `${glyphsUrl}`,
-    // arcgis "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-    // stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"
-    satelliteMap:
-      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    satelliteMap: `${satelliteMap}`,
     twitterHandle: "@diegovalle",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -175,7 +178,7 @@ let config_no_gtag: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-cloudflare-pages`,
       options: {
-        headers: { ...deploy_headers_netlify },
+        headers: { ...deploy_headers_netlify_cloudflare },
       },
     },
     // Proxy to another service
@@ -183,13 +186,13 @@ let config_no_gtag: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-netlify`,
       options: {
-        headers: { ...deploy_headers_netlify },
+        headers: { ...deploy_headers_netlify_cloudflare },
       },
     },
     {
       resolve: "gatsby-plugin-preconnect",
       options: {
-        domains: [apiUrl, osmTilesUrl],
+        domains: [apiUrl, osmTilesBaseUrl.origin],
       },
     },
     /* {
