@@ -149,6 +149,12 @@ const deploy_headers_netlify_cloudflare = {
     "cache-control: max-age=2592000",
     "cache-control: immutable",
   ],
+  "/tiles/*": [
+    "cache-control: public",
+    "cache-control: max-age=2592000",
+    "cache-control: immutable",
+    "access-control-allow-origin: *",
+  ],
 }; // option to add more headers. `Link` headers are transformed by the below criteria
 
 let config_no_gtag: GatsbyConfig = {
