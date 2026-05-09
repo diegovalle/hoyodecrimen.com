@@ -3,19 +3,21 @@ import type { GatsbyConfig } from "gatsby";
 // const osmTilesUrl = `https://tileshoyo.surge.sh/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com / no pbf fonts [glyphsUrl])
 // const osmTilesUrl = `https://tiles-n.hoyodecrimen.com/{z}/{x}/{y}.html`, //(cors hoyodecrimen.com)
 // const osmTilesUrl = `https://tiles-r.hoyodecrimen.com/{z}/{x}/{y}.html`,
-const osmTilesUrl = "https://tiles-r.hoyodecrimen.com/{z}/{x}/{y}.html";
+const osmTilesUrl = "https://tiles-n.hoyodecrimen.com/{z}/{x}/{y}.html";
 const osmTilesBaseUrl = new URL(osmTilesUrl);
-const spriteUrl ="https://hoyodecrimen.com/tiles/sprites/sprite";
-const glyphsUrl="https://hoyodecrimen.com/tiles/fonts/{fontstack}/{range}.pbf";
+const spriteUrl = "https://hoyodecrimen.com/tiles/sprites/sprite";
+const glyphsUrl =
+  "https://hoyodecrimen.com/tiles/fonts/{fontstack}/{range}.pbf";
 // arcgis "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
 // stadia "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}.jpg"
-const satelliteMap = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+const satelliteMap =
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 
 // const apiUrl = "https://cooperative-corissa-diegovalle-177b049e.koyeb.app";
 // const apiUrl = "http://localhost:8080";
 const apiUrl = "https://api.hoyodecrimen.com";
 
-const preconnectStr = `Link: <${apiUrl}>; rel=preconnect, <${osmTilesBaseUrl.origin}>; rel=preconnect`
+const preconnectStr = `Link: <${apiUrl}>; rel=preconnect, <${osmTilesBaseUrl.origin}>; rel=preconnect`;
 
 const deploy_headers_vercel = {
   headers: [
