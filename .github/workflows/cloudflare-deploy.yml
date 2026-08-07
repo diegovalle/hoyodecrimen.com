@@ -37,10 +37,10 @@ jobs:
           GITHUB_WORKSPACE: ${{ github.workspace }}
 
       - name: Production branch control
-        run: >
+        run: |
           curl --request PATCH
-          "https://api.cloudflare.com/client/v4/accounts/${ CLOUDFLARE_ACCOUNT_ID }/pages/projects/hoyodecrimen-com"
-          --header "Authorization: Bearer ${ secrets.CLOUDFLARE_API_TOKEN }"
+          "https://api.cloudflare.com/client/v4/accounts/${{secrets.CLOUDFLARE_ACCOUNT_ID}}/pages/projects/hoyodecrimen-com" 
+          --header "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
           --header "Content-Type: application/json"
           --data "{\"production_branch\": \"cloudflare\"}"
         env:
