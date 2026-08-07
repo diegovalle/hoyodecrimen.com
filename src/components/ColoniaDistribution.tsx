@@ -218,7 +218,7 @@ function CrimeSectorDiffMonthChart(props) {
   }, [meta.site.siteMetadata.apiUrl, language, t]);
 
   useEffect(() => {
-    if (!data | !low | !high) return;
+    if (!data || !low || !high) return;
     let idx = data[0].CVEUT.findIndex((element) => element === selectedRegion);
 
     if (idx) {

@@ -3,32 +3,52 @@ on:
   push:
     branches:
       - cloudflare
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   Deploy-Cloudflare-Production:
+    name: deploy to cloudflare
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
 
       - name: build hoyodecrimen website
         run: >
-          docker run -v ${{github.workspace}}:/hoyodecrimen node:20.14.0
-          /bin/sh -c 'cd /hoyodecrimen 
-          && npm install 
+          docker run -v ${GITHUB_WORKSPACE}:/hoyodecrimen node:20.14.0
+          /bin/sh -c 'cd /hoyodecrimen
+          && npm install
           && export CLOUDFLARE="true"
-          && ./node_modules/.bin/gatsby telemetry --disable 
-          && ./node_modules/.bin/gatsby build 
+          && ./node_modules/.bin/gatsby telemetry --disable
+          && ./node_modules/.bin/gatsby build
           && chmod -R o+rwx /hoyodecrimen'
+        env:
+          GITHUB_WORKSPACE: ${{ github.workspace }}
 
       - name: Production branch control
         run: >
           curl --request PATCH
-          "https://api.cloudflare.com/client/v4/accounts/${{secrets.CLOUDFLARE_ACCOUNT_ID}}/pages/projects/hoyodecrimen-com" 
-          --header "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          "https://api.cloudflare.com/client/v4/accounts/${ CLOUDFLARE_ACCOUNT_ID }/pages/projects/hoyodecrimen-com"
+          --header "Authorization: Bearer ${ secrets.CLOUDFLARE_API_TOKEN }"
           --header "Content-Type: application/json"
           --data "{\"production_branch\": \"cloudflare\"}"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
